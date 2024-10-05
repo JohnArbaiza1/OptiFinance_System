@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OptiFinance_System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f95652794f614ab2f3930020851e6de28b2e022")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd70deb9792984a7a19320a22f242c603f151b63")]
 [assembly: System.Reflection.AssemblyProductAttribute("OptiFinance_System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OptiFinance_System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
