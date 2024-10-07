@@ -16,3 +16,4 @@ C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\Op
 C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\obj\Debug\net6.0-windows\OptiFinance_System.genruntimeconfig.cache
 C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\obj\Debug\net6.0-windows\ref\OptiFinance_System.dll
 C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\obj\Debug\net6.0-windows\OptiFinance_System.Properties.Resources.resources
+C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\obj\Debug\net6.0-windows\OptiFinance_System.Views.Principal.resources

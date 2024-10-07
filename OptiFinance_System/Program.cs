@@ -1,3 +1,4 @@
+using OptiFinance_System.Views;
 namespace OptiFinance_System
 {
     internal static class Program
@@ -12,6 +13,7 @@ namespace OptiFinance_System
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+            //Application.Run(new Principal());
         }
     }
 }
