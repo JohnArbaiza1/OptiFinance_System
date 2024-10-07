@@ -47,6 +47,7 @@
             btnInicio = new Button();
             pictureBox1 = new PictureBox();
             panelContenedor = new Panel();
+            panelRedireccion = new Panel();
             barraTitulo.SuspendLayout();
             opcionesBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximo).BeginInit();
@@ -55,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)btnBarraTituloCerrar).BeginInit();
             panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelContenedor.SuspendLayout();
             SuspendLayout();
             // 
             // barraTitulo
@@ -338,7 +340,8 @@
             // 
             // panelContenedor
             // 
-            panelContenedor.Dock = DockStyle.Fill;
+            panelContenedor.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelContenedor.Controls.Add(panelRedireccion);
             panelContenedor.Location = new Point(363, 50);
             panelContenedor.Name = "panelContenedor";
             panelContenedor.Size = new Size(1287, 850);
@@ -346,6 +349,18 @@
             panelContenedor.MouseDown += panelContenedor_MouseDown;
             panelContenedor.MouseMove += panelContenedor_MouseMove;
             panelContenedor.MouseUp += panelContenedor_MouseUp;
+            // 
+            // panelRedireccion
+            // 
+            panelRedireccion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelRedireccion.BackColor = Color.White;
+            panelRedireccion.Location = new Point(1236, 762);
+            panelRedireccion.Name = "panelRedireccion";
+            panelRedireccion.Size = new Size(51, 88);
+            panelRedireccion.TabIndex = 0;
+            panelRedireccion.MouseDown += panelRedireccion_MouseDown;
+            panelRedireccion.MouseMove += panelRedireccion_MouseMove;
+            panelRedireccion.MouseUp += panelRedireccion_MouseUp;
             // 
             // Principal
             // 
@@ -359,6 +374,7 @@
             Name = "Principal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Principal";
+            Load += Principal_Load;
             barraTitulo.ResumeLayout(false);
             opcionesBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)btnMaximo).EndInit();
@@ -367,6 +383,7 @@
             ((System.ComponentModel.ISupportInitialize)btnBarraTituloCerrar).EndInit();
             panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelContenedor.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -390,5 +407,6 @@
         private Button btnIngresarPartida;
         private Button btnSalir;
         private Panel panelContenedor;
+        private Panel panelRedireccion;
     }
 }

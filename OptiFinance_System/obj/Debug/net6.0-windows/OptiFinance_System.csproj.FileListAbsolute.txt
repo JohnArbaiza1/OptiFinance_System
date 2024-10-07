@@ -135,3 +135,4 @@ C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\Op
 C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\obj\Debug\net6.0-windows\OptiFinance_System.csproj.AssemblyReference.cache
 C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\obj\Debug\net6.0-windows\OptiFinance_System.Views.Principal.resources
 C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\obj\Debug\net6.0-windows\OptiFina.182333C9.Up2Date
+C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\obj\Debug\net6.0-windows\OptiFinance_System.Views.Inicio.resources

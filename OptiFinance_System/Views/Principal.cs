@@ -26,6 +26,9 @@ namespace OptiFinance_System.Views
             this.MouseDown += new MouseEventHandler(panelContenedor_MouseDown);
             this.MouseMove += new MouseEventHandler(panelContenedor_MouseMove);
             this.MouseUp += new MouseEventHandler(panelContenedor_MouseUp);
+            this.MouseDown += new MouseEventHandler(panelRedireccion_MouseDown);
+            this.MouseMove += new MouseEventHandler(panelRedireccion_MouseMove);
+            this.MouseUp += new MouseEventHandler(panelRedireccion_MouseUp);
         }
 
         #region Varibles Empleadas
@@ -111,6 +114,44 @@ namespace OptiFinance_System.Views
                 resizing = false;
             }
         }
+
+
+        private void panelRedireccion_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Verifica si el botón presionado es el izquierdo
+            if (e.Button == MouseButtons.Left)
+            {
+                // Inicia el redimensionamiento
+                resizing = true;
+                // Guarda la posición actual del mouse
+                lastMousePos = e.Location;
+            }
+        }
+
+        private void panelRedireccion_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Verifica si se está redimensionando
+            if (resizing)
+            {
+                // Calcula la diferencia en la posición del mouse
+                int dx = e.X - lastMousePos.X;
+                int dy = e.Y - lastMousePos.Y;
+                // Ajusta el tamaño del formulario según el movimiento del mouse
+                this.Size = new Size(this.Width + dx, this.Height + dy);
+                // Actualiza la posición del mouse
+                lastMousePos = e.Location;
+            }
+        }
+
+        private void panelRedireccion_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Verifica si el botón soltado es el izquierdo
+            if (e.Button == MouseButtons.Left)
+            {
+                // Termina el redimensionamiento
+                resizing = false;
+            }
+        }
         #endregion
 
         #region Parte donde se trabaja la logica del panel contenedor de formularios
@@ -134,6 +175,7 @@ namespace OptiFinance_System.Views
                 panelContenedor.Tag = formulario;
                 formulario.Show();//Se encarga de mostrar
                 formulario.FormClosed += new FormClosedEventHandler(Close);
+                formulario.Dock = DockStyle.Fill;
 
             }
             //Si el formulario o instancia existe
@@ -157,13 +199,20 @@ namespace OptiFinance_System.Views
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            //abrirF<Form1>();
+            abrirF<Inicio>();
             //btnInicio.BackColor = Color.FromArgb(215, 143, 35);
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+            btnInicio_Click(null, e);
+        }
+
+
     }
 
 }
