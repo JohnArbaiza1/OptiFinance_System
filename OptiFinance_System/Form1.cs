@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using OptiFinance_System.Views;
 
 namespace OptiFinance_System
 {
@@ -24,6 +25,65 @@ namespace OptiFinance_System
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUser_Enter(object sender, EventArgs e)
+        {
+            if (txtUser.Text == "USUARIO")
+            {
+                txtUser.Text = "";
+                txtUser.ForeColor = Color.Goldenrod;
+            }
+        }
+        private void txtUser_Leave(object sender, EventArgs e)
+        {
+            if (txtUser.Text == "")
+            {
+                txtUser.Text = "USUARIO";
+                txtUser.ForeColor = Color.Goldenrod;
+            }
+        }
+
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            if (txtPassword.Text == "PASSWORD")
+            {
+                txtPassword.Text = "";
+                txtPassword.ForeColor = Color.Goldenrod;
+            }
+        }
+
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            if (txtPassword.Text == "")
+            {
+                txtPassword.Text = "PASSWORD";
+                txtPassword.ForeColor = Color.Goldenrod;
+            }
+        }
+
+        //Variables
+        string usuario = "";
+        string pass = "";
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            usuario = txtUser.Text;
+            pass = txtPassword.Text;
+            if(usuario == "admin" && pass == "balance")
+            {
+                this.Hide();
+                Principal menu = new Principal();
+                menu.Show();
+                //evento que se dispara cuando el formulario Principal se cierra.
+                menu.FormClosed += (s, args) => this.Close();
+
+            }
         }
     }
 }

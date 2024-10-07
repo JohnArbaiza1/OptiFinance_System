@@ -131,23 +131,31 @@
             txtUser.BackColor = SystemColors.Menu;
             txtUser.BorderStyle = BorderStyle.None;
             txtUser.CausesValidation = false;
-            txtUser.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtUser.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            txtUser.ImeMode = ImeMode.NoControl;
             txtUser.Location = new Point(719, 285);
             txtUser.Multiline = true;
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(264, 30);
             txtUser.TabIndex = 7;
+            txtUser.Text = "USUARIO";
+            txtUser.Enter += txtUser_Enter;
+            txtUser.Leave += txtUser_Leave;
             // 
             // txtPassword
             // 
             txtPassword.BackColor = SystemColors.Menu;
             txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPassword.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             txtPassword.Location = new Point(719, 400);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(264, 30);
             txtPassword.TabIndex = 8;
+            txtPassword.Text = "PASSWORD";
+            txtPassword.Enter += txtPassword_Enter;
+            txtPassword.Leave += txtPassword_Leave;
             // 
             // label2
             // 
@@ -185,6 +193,7 @@
             btnIngresar.TabIndex = 11;
             btnIngresar.Text = "Ingresar";
             btnIngresar.UseVisualStyleBackColor = false;
+            btnIngresar.Click += btnIngresar_Click;
             // 
             // btnSalir
             // 
@@ -231,6 +240,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             MouseDown += Form1_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

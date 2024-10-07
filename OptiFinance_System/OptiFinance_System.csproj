@@ -9,7 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Formularios\" />
+    <Compile Remove="Formularios\**" />
+    <EmbeddedResource Remove="Formularios\**" />
+    <None Remove="Formularios\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Config\" />
   </ItemGroup>
 
