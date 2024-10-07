@@ -352,7 +352,7 @@
             // 
             // panelRedireccion
             // 
-            panelRedireccion.Anchor = AnchorStyles.Bottom;
+            panelRedireccion.Anchor = AnchorStyles.None;
             panelRedireccion.BackColor = Color.White;
             panelRedireccion.Location = new Point(1169, 765);
             panelRedireccion.Name = "panelRedireccion";
