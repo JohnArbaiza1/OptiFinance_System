@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "72PEAjfW7Z4=",
+  "dgSpecHash": "uVSJWpZm9gE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\johna\\OneDrive\\Documentos\\Proyectos UES\\Proyecto Analisis Financiero\\OptiFinance_System\\OptiFinance_System\\OptiFinance_System.csproj",
+  "projectFilePath": "C:\\Users\\johna\\OneDrive\\Documentos\\Proyectos UES\\Proyecto Analisis Financiero\\OptiFinance_System\\OptiFinance_System.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\johna\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\johna\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
