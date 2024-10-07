@@ -340,8 +340,8 @@
             // 
             // panelContenedor
             // 
-            panelContenedor.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelContenedor.Controls.Add(panelRedireccion);
+            panelContenedor.Dock = DockStyle.Fill;
             panelContenedor.Location = new Point(363, 50);
             panelContenedor.Name = "panelContenedor";
             panelContenedor.Size = new Size(1287, 850);
@@ -352,11 +352,11 @@
             // 
             // panelRedireccion
             // 
-            panelRedireccion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelRedireccion.Anchor = AnchorStyles.Bottom;
             panelRedireccion.BackColor = Color.White;
-            panelRedireccion.Location = new Point(1236, 762);
+            panelRedireccion.Location = new Point(1169, 765);
             panelRedireccion.Name = "panelRedireccion";
-            panelRedireccion.Size = new Size(51, 88);
+            panelRedireccion.Size = new Size(118, 85);
             panelRedireccion.TabIndex = 0;
             panelRedireccion.MouseDown += panelRedireccion_MouseDown;
             panelRedireccion.MouseMove += panelRedireccion_MouseMove;

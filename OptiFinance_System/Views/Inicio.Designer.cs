@@ -43,7 +43,7 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Bookman Old Style", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(35, 55, 80);
@@ -55,7 +55,7 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
             label2.Font = new Font("Bookman Old Style", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(35, 55, 80);
@@ -67,7 +67,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Anchor = AnchorStyles.None;
+            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(344, 162);
             pictureBox1.Name = "pictureBox1";
@@ -78,7 +78,7 @@
             // 
             // lblHora
             // 
-            lblHora.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblHora.Anchor = AnchorStyles.Bottom;
             lblHora.AutoSize = true;
             lblHora.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             lblHora.ForeColor = Color.FromArgb(35, 55, 80);
@@ -90,7 +90,7 @@
             // 
             // lblFecha
             // 
-            lblFecha.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblFecha.Anchor = AnchorStyles.Bottom;
             lblFecha.AutoSize = true;
             lblFecha.Font = new Font("Bookman Old Style", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
             lblFecha.ForeColor = Color.FromArgb(35, 55, 80);
@@ -107,12 +107,12 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(lblFecha);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(lblHora);
+            panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1287, 850);
