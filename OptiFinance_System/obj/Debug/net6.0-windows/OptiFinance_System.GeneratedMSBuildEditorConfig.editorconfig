@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OptiFinance_System
-build_property.ProjectDir = C:\Users\johna\OneDrive\Documentos\Proyectos UES\Proyecto Analisis Financiero\OptiFinance_System\
+build_property.ProjectDir = C:\Users\angel\RiderProjects\OptiFinance\OptiFinance_System\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\johna\\OneDrive\\Documentos\\Proyectos UES\\Proyecto Analisis Financiero\\OptiFinance_System\\OptiFinance_System.csproj": {}
+    "C:\\Users\\angel\\RiderProjects\\OptiFinance\\OptiFinance_System\\OptiFinance_System.csproj": {}
   },
   "projects": {
-    "C:\\Users\\johna\\OneDrive\\Documentos\\Proyectos UES\\Proyecto Analisis Financiero\\OptiFinance_System\\OptiFinance_System.csproj": {
+    "C:\\Users\\angel\\RiderProjects\\OptiFinance\\OptiFinance_System\\OptiFinance_System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\johna\\OneDrive\\Documentos\\Proyectos UES\\Proyecto Analisis Financiero\\OptiFinance_System\\OptiFinance_System.csproj",
+        "projectUniqueName": "C:\\Users\\angel\\RiderProjects\\OptiFinance\\OptiFinance_System\\OptiFinance_System.csproj",
         "projectName": "OptiFinance_System",
-        "projectPath": "C:\\Users\\johna\\OneDrive\\Documentos\\Proyectos UES\\Proyecto Analisis Financiero\\OptiFinance_System\\OptiFinance_System.csproj",
-        "packagesPath": "C:\\Users\\johna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\johna\\OneDrive\\Documentos\\Proyectos UES\\Proyecto Analisis Financiero\\OptiFinance_System\\obj\\",
+        "projectPath": "C:\\Users\\angel\\RiderProjects\\OptiFinance\\OptiFinance_System\\OptiFinance_System.csproj",
+        "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\angel\\RiderProjects\\OptiFinance\\OptiFinance_System\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\johna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\angel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,6 +49,20 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.2, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
