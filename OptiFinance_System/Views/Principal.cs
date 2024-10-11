@@ -38,6 +38,7 @@ namespace OptiFinance_System.Views
         private Point lastMousePos;
 
         private Form activeForm;
+
         #endregion
 
         #region Parte donde se trabaja la barra de titulo
@@ -190,29 +191,131 @@ namespace OptiFinance_System.Views
         #region Metodo para regresar los buttons del menu a su color original al cerrar el form secundario
         private void Close(object sender, FormClosedEventArgs e)
         {
-            //if (Application.OpenForms["Fomr1"] == null)
-            //{
-            //    btnInicio.BackColor = Color.FromArgb(39, 52, 69);
-            //}
+            if (Application.OpenForms["Usuarios"] == null)
+            {
+                btnUsuarios.BackColor = Color.FromArgb(34, 53, 80);
+            }
         }
         #endregion
+
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+            btnInicio_Click(null, e);
+            //========================================================
+            //Para la opcion de cuentas
+            btnCuentas.Location = new Point(0, 190);
+            btnLibros.Location = new Point(0, 260);
+            PanelCuentas.Hide();
+            //Para la opcion de libros
+            btnEstados.Location = new Point(0, 330);
+            panelLibros.Hide();
+            //Para la opcion de estados
+            btnRLiquidez.Location = new Point(0, 400);
+            panelEstados.Hide();
+            btnIngresarPartida.Location = new Point(0, 470);
+            btnUsuarios.Location = new Point(0, 540);
+            btnInfo.Location = new Point(0, 610);
+            btnSalir.Location = new Point(0, 830);
+        }
+
+        #region Buttons del menu
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
             abrirF<Inicio>();
-            //btnInicio.BackColor = Color.FromArgb(215, 143, 35);
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void Principal_Load(object sender, EventArgs e)
+        //=================================================================================
+        //Opcion de las cuentas
+        private void btnCuentas_Click(object sender, EventArgs e)
         {
-            btnInicio_Click(null, e);
+            if (PanelCuentas.Visible)
+            {
+                PanelCuentas.Visible = false;
+                btnLibros.Location = new Point(0, 257);
+                btnEstados.Location = new Point(0, 330);
+                btnRLiquidez.Location = new Point(0, 400);
+                btnIngresarPartida.Location = new Point(0, 470);
+                btnUsuarios.Location = new Point(0, 540);
+                btnInfo.Location = new Point(0, 610);
+            }
+            else
+            {
+                PanelCuentas.Visible = true;
+                btnLibros.Location = new Point(0, 392);
+                btnEstados.Location = new Point(0, 465);
+                btnRLiquidez.Location = new Point(0, 535);
+                btnIngresarPartida.Location = new Point(0, 604);
+                btnUsuarios.Location = new Point(0, 674);
+                btnInfo.Location = new Point(0, 738);
+            }
+            btnCuentas.Location = new Point(0, 190);
+            PanelCuentas.Location = new Point(0, 263);
+        }
+        //=================================================================================
+        //OPcion de los libros contables
+        private void btnLibros_Click(object sender, EventArgs e)
+        {
+            if (panelLibros.Visible)
+            {
+                panelLibros.Visible = false;
+                btnEstados.Location = new Point(0, 330);
+                btnRLiquidez.Location = new Point(0, 400);
+                btnIngresarPartida.Location = new Point(0, 470);
+                btnUsuarios.Location = new Point(0, 540);
+                btnInfo.Location = new Point(0, 610);
+            }
+            else
+            {
+                panelLibros.Visible = true;
+                btnEstados.Location = new Point(0, 465);
+                btnRLiquidez.Location = new Point(0, 530);
+                btnIngresarPartida.Location = new Point(0, 600);
+                btnUsuarios.Location = new Point(0, 665);
+                btnInfo.Location = new Point(0, 735);
+
+            }
+            btnLibros.Location = new Point(0, 257);
+            panelLibros.Location = new Point(0, 330);
         }
 
+        //=================================================================================
+        //Opcion de los Estados Financieros
+        private void btnEstados_Click(object sender, EventArgs e)
+        {
+            if (panelEstados.Visible)
+            {
+                panelEstados.Visible = false;
+                btnRLiquidez.Location = new Point(0, 400);
+                btnIngresarPartida.Location = new Point(0, 470);
+                btnUsuarios.Location = new Point(0, 540);
+                btnInfo.Location = new Point(0, 610);
+            }
+            else
+            {
+                panelEstados.Visible = true;
+                btnRLiquidez.Location = new Point(0, 545);
+                btnIngresarPartida.Location = new Point(0, 610);
+                btnUsuarios.Location = new Point(0, 680);
+                btnInfo.Location = new Point(0, 750);
+                btnSalir.Location = new Point(0, 830);
+            }
+            btnEstados.Location = new Point(0, 332);
+            panelEstados.Location = new Point(0, 400);
+        }
 
+        #endregion
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            abrirF<Usuarios>();
+            btnUsuarios.BackColor = Color.FromArgb(215, 143, 35);
+        }
     }
 
 }

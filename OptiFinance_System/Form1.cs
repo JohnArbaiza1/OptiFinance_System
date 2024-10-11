@@ -75,7 +75,7 @@ namespace OptiFinance_System
         {
             usuario = txtUser.Text;
             pass = txtPassword.Text;
-            if(usuario == "admin" && pass == "balance")
+            if (usuario == "admin" && pass == "balance")
             {
                 this.Hide();
                 Principal menu = new Principal();
@@ -84,6 +84,13 @@ namespace OptiFinance_System
                 menu.FormClosed += (s, args) => this.Close();
 
             }
+        }
+
+        private void lblRegistro_Click(object sender, EventArgs e)
+        {
+            Registro registro = new Registro();
+            registro.Show();
+            this.Hide();
         }
     }
 }
