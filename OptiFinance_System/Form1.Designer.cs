@@ -43,6 +43,9 @@
             btnIngresar = new Button();
             btnSalir = new PictureBox();
             pictureBox7 = new PictureBox();
+            label4 = new Label();
+            label5 = new Label();
+            lblRegistro = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -55,10 +58,11 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Dock = DockStyle.Left;
             pictureBox1.Image = Properties.Resources.sin_fondo;
-            pictureBox1.Location = new Point(-6, -2);
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(641, 576);
+            pictureBox1.Size = new Size(629, 589);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -66,7 +70,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(748, 23);
+            pictureBox2.Location = new Point(744, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(154, 142);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -78,7 +82,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Gray;
-            label1.Location = new Point(666, 190);
+            label1.Location = new Point(666, 145);
             label1.Name = "label1";
             label1.Size = new Size(317, 24);
             label1.TabIndex = 2;
@@ -87,7 +91,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(654, 261);
+            pictureBox3.Location = new Point(654, 204);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(346, 71);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -97,7 +101,7 @@
             // pictureBox4
             // 
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(654, 378);
+            pictureBox4.Location = new Point(654, 322);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(346, 71);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -108,7 +112,7 @@
             // 
             pictureBox5.BackColor = SystemColors.MenuBar;
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(666, 391);
+            pictureBox5.Location = new Point(666, 335);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(47, 44);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -119,7 +123,7 @@
             // 
             pictureBox6.BackColor = SystemColors.MenuBar;
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(666, 274);
+            pictureBox6.Location = new Point(666, 217);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(47, 46);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -128,12 +132,12 @@
             // 
             // txtUser
             // 
-            txtUser.BackColor = SystemColors.Menu;
+            txtUser.BackColor = Color.FromArgb(229, 234, 238);
             txtUser.BorderStyle = BorderStyle.None;
             txtUser.CausesValidation = false;
-            txtUser.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            txtUser.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             txtUser.ImeMode = ImeMode.NoControl;
-            txtUser.Location = new Point(719, 285);
+            txtUser.Location = new Point(719, 228);
             txtUser.Multiline = true;
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(264, 30);
@@ -144,10 +148,10 @@
             // 
             // txtPassword
             // 
-            txtPassword.BackColor = SystemColors.Menu;
+            txtPassword.BackColor = Color.FromArgb(229, 234, 238);
             txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            txtPassword.Location = new Point(719, 400);
+            txtPassword.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            txtPassword.Location = new Point(719, 344);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
@@ -162,7 +166,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ControlDarkDark;
-            label2.Location = new Point(654, 238);
+            label2.Location = new Point(654, 181);
             label2.Name = "label2";
             label2.Size = new Size(76, 20);
             label2.TabIndex = 9;
@@ -173,7 +177,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ControlDarkDark;
-            label3.Location = new Point(654, 355);
+            label3.Location = new Point(654, 299);
             label3.Name = "label3";
             label3.Size = new Size(91, 20);
             label3.TabIndex = 10;
@@ -187,7 +191,7 @@
             btnIngresar.FlatStyle = FlatStyle.Flat;
             btnIngresar.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnIngresar.ForeColor = SystemColors.ButtonHighlight;
-            btnIngresar.Location = new Point(684, 469);
+            btnIngresar.Location = new Point(686, 441);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(281, 55);
             btnIngresar.TabIndex = 11;
@@ -209,19 +213,56 @@
             // pictureBox7
             // 
             pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(654, 465);
+            pictureBox7.Location = new Point(656, 437);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(346, 63);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox7.TabIndex = 13;
             pictureBox7.TabStop = false;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.Highlight;
+            label4.Location = new Point(728, 396);
+            label4.Name = "label4";
+            label4.Size = new Size(272, 20);
+            label4.TabIndex = 14;
+            label4.Text = "¿Has olvidado tu contraseña?";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ControlDarkDark;
+            label5.Location = new Point(719, 519);
+            label5.Name = "label5";
+            label5.Size = new Size(134, 20);
+            label5.TabIndex = 15;
+            label5.Text = "¿Eres nuevo? ";
+            // 
+            // lblRegistro
+            // 
+            lblRegistro.AutoSize = true;
+            lblRegistro.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRegistro.ForeColor = SystemColors.Highlight;
+            lblRegistro.Location = new Point(847, 519);
+            lblRegistro.Name = "lblRegistro";
+            lblRegistro.Size = new Size(101, 20);
+            lblRegistro.TabIndex = 16;
+            lblRegistro.Text = "Regístrate";
+            lblRegistro.Click += lblRegistro_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1034, 572);
+            ClientSize = new Size(1039, 589);
+            Controls.Add(lblRegistro);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(btnIngresar);
             Controls.Add(pictureBox7);
             Controls.Add(btnSalir);
@@ -239,6 +280,7 @@
             Cursor = Cursors.Hand;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             MouseDown += Form1_MouseDown;
@@ -270,5 +312,8 @@
         private Button btnIngresar;
         private PictureBox btnSalir;
         private PictureBox pictureBox7;
+        private Label label4;
+        private Label label5;
+        private Label lblRegistro;
     }
 }

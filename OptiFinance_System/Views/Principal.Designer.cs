@@ -206,6 +206,7 @@
             btnUsuarios.TextAlign = ContentAlignment.MiddleLeft;
             btnUsuarios.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnUsuarios.UseVisualStyleBackColor = true;
+            btnUsuarios.Click += btnUsuarios_Click;
             // 
             // btnSalir
             // 
@@ -579,6 +580,7 @@
             // 
             // panelContenedor
             // 
+            panelContenedor.BackColor = Color.White;
             panelContenedor.Controls.Add(panelRedireccion);
             panelContenedor.Dock = DockStyle.Fill;
             panelContenedor.Location = new Point(380, 50);

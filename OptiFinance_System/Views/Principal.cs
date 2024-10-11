@@ -191,24 +191,13 @@ namespace OptiFinance_System.Views
         #region Metodo para regresar los buttons del menu a su color original al cerrar el form secundario
         private void Close(object sender, FormClosedEventArgs e)
         {
-            //if (Application.OpenForms["Fomr1"] == null)
-            //{
-            //    btnInicio.BackColor = Color.FromArgb(39, 52, 69);
-            //}
+            if (Application.OpenForms["Usuarios"] == null)
+            {
+                btnUsuarios.BackColor = Color.FromArgb(34, 53, 80);
+            }
         }
         #endregion
 
-        #region Buttons del menu
-
-        private void btnInicio_Click(object sender, EventArgs e)
-        {
-            abrirF<Inicio>();
-            //btnInicio.BackColor = Color.FromArgb(215, 143, 35);
-        }
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
         private void Principal_Load(object sender, EventArgs e)
         {
@@ -228,6 +217,17 @@ namespace OptiFinance_System.Views
             btnUsuarios.Location = new Point(0, 540);
             btnInfo.Location = new Point(0, 610);
             btnSalir.Location = new Point(0, 830);
+        }
+
+        #region Buttons del menu
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            abrirF<Inicio>();
+        }
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         //=================================================================================
@@ -311,6 +311,11 @@ namespace OptiFinance_System.Views
 
         #endregion
 
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            abrirF<Usuarios>();
+            btnUsuarios.BackColor = Color.FromArgb(215, 143, 35);
+        }
     }
 
 }
