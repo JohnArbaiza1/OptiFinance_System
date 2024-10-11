@@ -216,18 +216,18 @@ namespace OptiFinance_System.Views
             //========================================================
             //Para la opcion de cuentas
             btnCuentas.Location = new Point(0, 190);
-            btnLibros.Location = new Point(0, 257);
+            btnLibros.Location = new Point(0, 260);
             PanelCuentas.Hide();
             //Para la opcion de libros
-            btnEstados.Location = new Point(0, 335);
+            btnEstados.Location = new Point(0, 330);
             panelLibros.Hide();
             //Para la opcion de estados
-            btnRLiquidez.Location = new Point(0, 392);
+            btnRLiquidez.Location = new Point(0, 400);
             panelEstados.Hide();
-            btnRLiquidez.Location = new Point(0, 405);
             btnIngresarPartida.Location = new Point(0, 470);
-            btnUsuarios.Location = new Point(0, 535);
-            btnInfo.Location = new Point(0, 600);
+            btnUsuarios.Location = new Point(0, 540);
+            btnInfo.Location = new Point(0, 610);
+            btnSalir.Location = new Point(0, 830);
         }
 
         //=================================================================================
@@ -238,17 +238,24 @@ namespace OptiFinance_System.Views
             {
                 PanelCuentas.Visible = false;
                 btnLibros.Location = new Point(0, 257);
-                btnEstados.Location = new Point(0, 335);
+                btnEstados.Location = new Point(0, 330);
+                btnRLiquidez.Location = new Point(0, 400);
+                btnIngresarPartida.Location = new Point(0, 470);
+                btnUsuarios.Location = new Point(0, 540);
+                btnInfo.Location = new Point(0, 610);
             }
             else
             {
                 PanelCuentas.Visible = true;
-                //btnLibros.Location = new Point(0, 392);
-                //btnEstados.Location = new Point(0, 465);
+                btnLibros.Location = new Point(0, 392);
+                btnEstados.Location = new Point(0, 465);
+                btnRLiquidez.Location = new Point(0, 535);
+                btnIngresarPartida.Location = new Point(0, 604);
+                btnUsuarios.Location = new Point(0, 674);
+                btnInfo.Location = new Point(0, 738);
             }
-
             btnCuentas.Location = new Point(0, 190);
-            PanelCuentas.Location = new Point(0, 140);
+            PanelCuentas.Location = new Point(0, 263);
         }
         //=================================================================================
         //OPcion de los libros contables
@@ -257,41 +264,50 @@ namespace OptiFinance_System.Views
             if (panelLibros.Visible)
             {
                 panelLibros.Visible = false;
-                btnEstados.Location = new Point(0, 335);
-                btnRLiquidez.Location = new Point(0, 392);
+                btnEstados.Location = new Point(0, 330);
+                btnRLiquidez.Location = new Point(0, 400);
+                btnIngresarPartida.Location = new Point(0, 470);
+                btnUsuarios.Location = new Point(0, 540);
+                btnInfo.Location = new Point(0, 610);
             }
             else
             {
                 panelLibros.Visible = true;
-                //btnEstados.Location = new Point(0, 465);
-            }
+                btnEstados.Location = new Point(0, 465);
+                btnRLiquidez.Location = new Point(0, 530);
+                btnIngresarPartida.Location = new Point(0, 600);
+                btnUsuarios.Location = new Point(0, 665);
+                btnInfo.Location = new Point(0, 735);
 
+            }
             btnLibros.Location = new Point(0, 257);
-            panelLibros.Location = new Point(0, 208);
-            panelEstados.BackColor = Color.FromArgb(34, 53, 80);
+            panelLibros.Location = new Point(0, 330);
         }
 
-
+        //=================================================================================
+        //Opcion de los Estados Financieros
         private void btnEstados_Click(object sender, EventArgs e)
         {
             if (panelEstados.Visible)
             {
                 panelEstados.Visible = false;
-                btnRLiquidez.Location = new Point(0, 392);
+                btnRLiquidez.Location = new Point(0, 400);
+                btnIngresarPartida.Location = new Point(0, 470);
+                btnUsuarios.Location = new Point(0, 540);
+                btnInfo.Location = new Point(0, 610);
             }
             else
             {
                 panelEstados.Visible = true;
-                panelEstados.BringToFront();
-                //btnRLiquidez.Location = new Point(0, 550);
+                btnRLiquidez.Location = new Point(0, 545);
+                btnIngresarPartida.Location = new Point(0, 610);
+                btnUsuarios.Location = new Point(0, 680);
+                btnInfo.Location = new Point(0, 750);
+                btnSalir.Location = new Point(0, 830);
             }
-
             btnEstados.Location = new Point(0, 332);
-            panelEstados.Location = new Point(0, 280);
-            panelEstados.BackColor = Color.FromArgb(34, 53, 80);
-
+            panelEstados.Location = new Point(0, 400);
         }
-
 
         #endregion
 

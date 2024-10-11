@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             barraTitulo = new Panel();
             opcionesBarraTitulo = new Panel();
@@ -44,6 +43,14 @@
             btnIngresarPartida = new Button();
             btnRLiquidez = new Button();
             btnLibros = new Button();
+            btnCuentas = new Button();
+            panelEstados = new Panel();
+            panel7 = new Panel();
+            panel8 = new Panel();
+            btnBGeneral = new Button();
+            btnEResultados = new Button();
+            btnInicio = new Button();
+            pictureBox1 = new PictureBox();
             PanelCuentas = new Panel();
             panel3 = new Panel();
             panel4 = new Panel();
@@ -51,22 +58,13 @@
             panel1 = new Panel();
             button2 = new Button();
             button1 = new Button();
-            btnCuentas = new Button();
-            btnInicio = new Button();
-            pictureBox1 = new PictureBox();
             panelLibros = new Panel();
             panel6 = new Panel();
             panel5 = new Panel();
             btnDiario = new Button();
             btnMayor = new Button();
-            btnEResultados = new Button();
-            btnBGeneral = new Button();
             panelContenedor = new Panel();
-            panelEstados = new Panel();
-            panel7 = new Panel();
-            panel8 = new Panel();
             panelRedireccion = new Panel();
-            timer1 = new System.Windows.Forms.Timer(components);
             barraTitulo.SuspendLayout();
             opcionesBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximo).BeginInit();
@@ -74,11 +72,11 @@
             ((System.ComponentModel.ISupportInitialize)btnMenos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnBarraTituloCerrar).BeginInit();
             panelMenu.SuspendLayout();
-            PanelCuentas.SuspendLayout();
+            panelEstados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            PanelCuentas.SuspendLayout();
             panelLibros.SuspendLayout();
             panelContenedor.SuspendLayout();
-            panelEstados.SuspendLayout();
             SuspendLayout();
             // 
             // barraTitulo
@@ -86,9 +84,9 @@
             barraTitulo.BackColor = Color.Goldenrod;
             barraTitulo.Controls.Add(opcionesBarraTitulo);
             barraTitulo.Dock = DockStyle.Top;
-            barraTitulo.Location = new Point(363, 0);
+            barraTitulo.Location = new Point(380, 0);
             barraTitulo.Name = "barraTitulo";
-            barraTitulo.Size = new Size(1287, 50);
+            barraTitulo.Size = new Size(1270, 50);
             barraTitulo.TabIndex = 0;
             barraTitulo.MouseDown += barraTitulo_MouseDown;
             // 
@@ -99,7 +97,7 @@
             opcionesBarraTitulo.Controls.Add(btnMenos);
             opcionesBarraTitulo.Controls.Add(btnBarraTituloCerrar);
             opcionesBarraTitulo.Dock = DockStyle.Right;
-            opcionesBarraTitulo.Location = new Point(1046, 0);
+            opcionesBarraTitulo.Location = new Point(1029, 0);
             opcionesBarraTitulo.Name = "opcionesBarraTitulo";
             opcionesBarraTitulo.Size = new Size(241, 50);
             opcionesBarraTitulo.TabIndex = 2;
@@ -150,6 +148,7 @@
             // 
             // panelMenu
             // 
+            panelMenu.AutoScroll = true;
             panelMenu.BackColor = Color.FromArgb(34, 53, 80);
             panelMenu.Controls.Add(btnInfo);
             panelMenu.Controls.Add(btnUsuarios);
@@ -159,12 +158,15 @@
             panelMenu.Controls.Add(btnRLiquidez);
             panelMenu.Controls.Add(btnLibros);
             panelMenu.Controls.Add(btnCuentas);
+            panelMenu.Controls.Add(panelEstados);
             panelMenu.Controls.Add(btnInicio);
             panelMenu.Controls.Add(pictureBox1);
+            panelMenu.Controls.Add(PanelCuentas);
+            panelMenu.Controls.Add(panelLibros);
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(363, 900);
+            panelMenu.Size = new Size(380, 900);
             panelMenu.TabIndex = 1;
             // 
             // btnInfo
@@ -176,10 +178,10 @@
             btnInfo.ForeColor = Color.White;
             btnInfo.Image = (Image)resources.GetObject("btnInfo.Image");
             btnInfo.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInfo.Location = new Point(3, 616);
+            btnInfo.Location = new Point(3, 1036);
             btnInfo.Name = "btnInfo";
             btnInfo.Padding = new Padding(16, 0, 0, 0);
-            btnInfo.Size = new Size(363, 67);
+            btnInfo.Size = new Size(380, 67);
             btnInfo.TabIndex = 16;
             btnInfo.Text = "   Información de la empresa";
             btnInfo.TextAlign = ContentAlignment.MiddleLeft;
@@ -195,10 +197,10 @@
             btnUsuarios.ForeColor = Color.White;
             btnUsuarios.Image = (Image)resources.GetObject("btnUsuarios.Image");
             btnUsuarios.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsuarios.Location = new Point(0, 543);
+            btnUsuarios.Location = new Point(0, 963);
             btnUsuarios.Name = "btnUsuarios";
             btnUsuarios.Padding = new Padding(16, 0, 0, 0);
-            btnUsuarios.Size = new Size(363, 67);
+            btnUsuarios.Size = new Size(380, 67);
             btnUsuarios.TabIndex = 13;
             btnUsuarios.Text = "   Usuarios";
             btnUsuarios.TextAlign = ContentAlignment.MiddleLeft;
@@ -214,10 +216,10 @@
             btnSalir.ForeColor = Color.White;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
             btnSalir.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSalir.Location = new Point(3, 833);
+            btnSalir.Location = new Point(0, 1114);
             btnSalir.Name = "btnSalir";
             btnSalir.Padding = new Padding(16, 0, 0, 0);
-            btnSalir.Size = new Size(363, 67);
+            btnSalir.Size = new Size(380, 67);
             btnSalir.TabIndex = 10;
             btnSalir.Text = "   Salir";
             btnSalir.TextAlign = ContentAlignment.MiddleLeft;
@@ -227,7 +229,6 @@
             // 
             // btnEstados
             // 
-            btnEstados.Dock = DockStyle.Top;
             btnEstados.FlatAppearance.BorderSize = 0;
             btnEstados.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
             btnEstados.FlatStyle = FlatStyle.Flat;
@@ -235,10 +236,10 @@
             btnEstados.ForeColor = Color.White;
             btnEstados.Image = (Image)resources.GetObject("btnEstados.Image");
             btnEstados.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEstados.Location = new Point(0, 324);
+            btnEstados.Location = new Point(0, 607);
             btnEstados.Name = "btnEstados";
             btnEstados.Padding = new Padding(16, 0, 0, 0);
-            btnEstados.Size = new Size(363, 67);
+            btnEstados.Size = new Size(380, 67);
             btnEstados.TabIndex = 12;
             btnEstados.Text = "   Estados Financieros";
             btnEstados.TextAlign = ContentAlignment.MiddleLeft;
@@ -255,10 +256,10 @@
             btnIngresarPartida.ForeColor = Color.White;
             btnIngresarPartida.Image = (Image)resources.GetObject("btnIngresarPartida.Image");
             btnIngresarPartida.ImageAlign = ContentAlignment.MiddleLeft;
-            btnIngresarPartida.Location = new Point(0, 470);
+            btnIngresarPartida.Location = new Point(0, 890);
             btnIngresarPartida.Name = "btnIngresarPartida";
             btnIngresarPartida.Padding = new Padding(16, 0, 0, 0);
-            btnIngresarPartida.Size = new Size(360, 67);
+            btnIngresarPartida.Size = new Size(380, 67);
             btnIngresarPartida.TabIndex = 9;
             btnIngresarPartida.Text = "   Ingresar Partida";
             btnIngresarPartida.TextAlign = ContentAlignment.MiddleLeft;
@@ -274,10 +275,10 @@
             btnRLiquidez.ForeColor = Color.White;
             btnRLiquidez.Image = (Image)resources.GetObject("btnRLiquidez.Image");
             btnRLiquidez.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRLiquidez.Location = new Point(0, 397);
+            btnRLiquidez.Location = new Point(0, 817);
             btnRLiquidez.Name = "btnRLiquidez";
             btnRLiquidez.Padding = new Padding(16, 0, 0, 0);
-            btnRLiquidez.Size = new Size(360, 67);
+            btnRLiquidez.Size = new Size(380, 67);
             btnRLiquidez.TabIndex = 8;
             btnRLiquidez.Text = "   Razones de Liquidez";
             btnRLiquidez.TextAlign = ContentAlignment.MiddleLeft;
@@ -286,7 +287,6 @@
             // 
             // btnLibros
             // 
-            btnLibros.Dock = DockStyle.Top;
             btnLibros.FlatAppearance.BorderSize = 0;
             btnLibros.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
             btnLibros.FlatStyle = FlatStyle.Flat;
@@ -294,16 +294,136 @@
             btnLibros.ForeColor = Color.White;
             btnLibros.Image = (Image)resources.GetObject("btnLibros.Image");
             btnLibros.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLibros.Location = new Point(0, 257);
+            btnLibros.Location = new Point(0, 394);
             btnLibros.Name = "btnLibros";
             btnLibros.Padding = new Padding(16, 0, 0, 0);
-            btnLibros.Size = new Size(363, 67);
+            btnLibros.Size = new Size(380, 67);
             btnLibros.TabIndex = 11;
             btnLibros.Text = "   Libros Contables";
             btnLibros.TextAlign = ContentAlignment.MiddleLeft;
             btnLibros.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLibros.UseVisualStyleBackColor = true;
             btnLibros.Click += btnLibros_Click;
+            // 
+            // btnCuentas
+            // 
+            btnCuentas.Dock = DockStyle.Top;
+            btnCuentas.FlatAppearance.BorderSize = 0;
+            btnCuentas.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnCuentas.FlatStyle = FlatStyle.Flat;
+            btnCuentas.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCuentas.ForeColor = Color.White;
+            btnCuentas.Image = (Image)resources.GetObject("btnCuentas.Image");
+            btnCuentas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCuentas.Location = new Point(0, 190);
+            btnCuentas.Name = "btnCuentas";
+            btnCuentas.Padding = new Padding(16, 0, 0, 0);
+            btnCuentas.Size = new Size(383, 67);
+            btnCuentas.TabIndex = 3;
+            btnCuentas.Text = "   Cuentas";
+            btnCuentas.TextAlign = ContentAlignment.MiddleLeft;
+            btnCuentas.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCuentas.UseVisualStyleBackColor = true;
+            btnCuentas.Click += btnCuentas_Click;
+            // 
+            // panelEstados
+            // 
+            panelEstados.BackColor = Color.FromArgb(35, 55, 80);
+            panelEstados.Controls.Add(panel7);
+            panelEstados.Controls.Add(panel8);
+            panelEstados.Controls.Add(btnBGeneral);
+            panelEstados.Controls.Add(btnEResultados);
+            panelEstados.Location = new Point(0, 680);
+            panelEstados.Name = "panelEstados";
+            panelEstados.Size = new Size(380, 143);
+            panelEstados.TabIndex = 15;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(254, 214, 0);
+            panel7.Location = new Point(3, 6);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(10, 64);
+            panel7.TabIndex = 14;
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(254, 214, 0);
+            panel8.Location = new Point(3, 76);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(10, 64);
+            panel8.TabIndex = 14;
+            // 
+            // btnBGeneral
+            // 
+            btnBGeneral.Dock = DockStyle.Top;
+            btnBGeneral.FlatAppearance.BorderSize = 0;
+            btnBGeneral.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnBGeneral.FlatStyle = FlatStyle.Flat;
+            btnBGeneral.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBGeneral.ForeColor = Color.White;
+            btnBGeneral.Image = (Image)resources.GetObject("btnBGeneral.Image");
+            btnBGeneral.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBGeneral.Location = new Point(0, 0);
+            btnBGeneral.Name = "btnBGeneral";
+            btnBGeneral.Padding = new Padding(16, 0, 0, 0);
+            btnBGeneral.Size = new Size(380, 67);
+            btnBGeneral.TabIndex = 6;
+            btnBGeneral.Text = "   Balance General";
+            btnBGeneral.TextAlign = ContentAlignment.MiddleLeft;
+            btnBGeneral.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnBGeneral.UseVisualStyleBackColor = true;
+            // 
+            // btnEResultados
+            // 
+            btnEResultados.FlatAppearance.BorderSize = 0;
+            btnEResultados.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnEResultados.FlatStyle = FlatStyle.Flat;
+            btnEResultados.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEResultados.ForeColor = Color.White;
+            btnEResultados.Image = (Image)resources.GetObject("btnEResultados.Image");
+            btnEResultados.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEResultados.Location = new Point(3, 73);
+            btnEResultados.Name = "btnEResultados";
+            btnEResultados.Padding = new Padding(16, 0, 0, 0);
+            btnEResultados.Size = new Size(377, 67);
+            btnEResultados.TabIndex = 7;
+            btnEResultados.Text = "   Estado de Resultado";
+            btnEResultados.TextAlign = ContentAlignment.MiddleLeft;
+            btnEResultados.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEResultados.UseVisualStyleBackColor = true;
+            // 
+            // btnInicio
+            // 
+            btnInicio.Dock = DockStyle.Top;
+            btnInicio.FlatAppearance.BorderSize = 0;
+            btnInicio.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnInicio.FlatStyle = FlatStyle.Flat;
+            btnInicio.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnInicio.ForeColor = Color.White;
+            btnInicio.Image = (Image)resources.GetObject("btnInicio.Image");
+            btnInicio.ImageAlign = ContentAlignment.MiddleLeft;
+            btnInicio.Location = new Point(0, 123);
+            btnInicio.Name = "btnInicio";
+            btnInicio.Padding = new Padding(16, 0, 0, 0);
+            btnInicio.Size = new Size(383, 67);
+            btnInicio.TabIndex = 1;
+            btnInicio.Text = "   Inicio";
+            btnInicio.TextAlign = ContentAlignment.MiddleLeft;
+            btnInicio.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnInicio.UseVisualStyleBackColor = true;
+            btnInicio.Click += btnInicio_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Dock = DockStyle.Top;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(383, 123);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // PanelCuentas
             // 
@@ -314,7 +434,7 @@
             PanelCuentas.Controls.Add(panel1);
             PanelCuentas.Controls.Add(button2);
             PanelCuentas.Controls.Add(button1);
-            PanelCuentas.Location = new Point(6, 174);
+            PanelCuentas.Location = new Point(0, 257);
             PanelCuentas.Name = "PanelCuentas";
             PanelCuentas.Size = new Size(377, 139);
             PanelCuentas.TabIndex = 4;
@@ -363,7 +483,7 @@
             button2.Location = new Point(9, 67);
             button2.Name = "button2";
             button2.Padding = new Padding(16, 0, 0, 0);
-            button2.Size = new Size(339, 67);
+            button2.Size = new Size(377, 67);
             button2.TabIndex = 6;
             button2.Text = "   Catalogo de cuentas";
             button2.TextAlign = ContentAlignment.MiddleLeft;
@@ -390,59 +510,6 @@
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
             button1.UseVisualStyleBackColor = true;
             // 
-            // btnCuentas
-            // 
-            btnCuentas.Dock = DockStyle.Top;
-            btnCuentas.FlatAppearance.BorderSize = 0;
-            btnCuentas.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
-            btnCuentas.FlatStyle = FlatStyle.Flat;
-            btnCuentas.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCuentas.ForeColor = Color.White;
-            btnCuentas.Image = (Image)resources.GetObject("btnCuentas.Image");
-            btnCuentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCuentas.Location = new Point(0, 190);
-            btnCuentas.Name = "btnCuentas";
-            btnCuentas.Padding = new Padding(16, 0, 0, 0);
-            btnCuentas.Size = new Size(363, 67);
-            btnCuentas.TabIndex = 3;
-            btnCuentas.Text = "   Cuentas";
-            btnCuentas.TextAlign = ContentAlignment.MiddleLeft;
-            btnCuentas.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCuentas.UseVisualStyleBackColor = true;
-            btnCuentas.Click += btnCuentas_Click;
-            // 
-            // btnInicio
-            // 
-            btnInicio.Dock = DockStyle.Top;
-            btnInicio.FlatAppearance.BorderSize = 0;
-            btnInicio.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
-            btnInicio.FlatStyle = FlatStyle.Flat;
-            btnInicio.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnInicio.ForeColor = Color.White;
-            btnInicio.Image = (Image)resources.GetObject("btnInicio.Image");
-            btnInicio.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInicio.Location = new Point(0, 123);
-            btnInicio.Name = "btnInicio";
-            btnInicio.Padding = new Padding(16, 0, 0, 0);
-            btnInicio.Size = new Size(363, 67);
-            btnInicio.TabIndex = 1;
-            btnInicio.Text = "   Inicio";
-            btnInicio.TextAlign = ContentAlignment.MiddleLeft;
-            btnInicio.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnInicio.UseVisualStyleBackColor = true;
-            btnInicio.Click += btnInicio_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Dock = DockStyle.Top;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(363, 123);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
             // panelLibros
             // 
             panelLibros.BackColor = Color.FromArgb(35, 55, 80);
@@ -450,7 +517,7 @@
             panelLibros.Controls.Add(panel5);
             panelLibros.Controls.Add(btnDiario);
             panelLibros.Controls.Add(btnMayor);
-            panelLibros.Location = new Point(3, 319);
+            panelLibros.Location = new Point(0, 467);
             panelLibros.Name = "panelLibros";
             panelLibros.Size = new Size(380, 134);
             panelLibros.TabIndex = 11;
@@ -510,93 +577,23 @@
             btnMayor.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMayor.UseVisualStyleBackColor = true;
             // 
-            // btnEResultados
-            // 
-            btnEResultados.FlatAppearance.BorderSize = 0;
-            btnEResultados.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
-            btnEResultados.FlatStyle = FlatStyle.Flat;
-            btnEResultados.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEResultados.ForeColor = Color.White;
-            btnEResultados.Image = (Image)resources.GetObject("btnEResultados.Image");
-            btnEResultados.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEResultados.Location = new Point(3, 73);
-            btnEResultados.Name = "btnEResultados";
-            btnEResultados.Padding = new Padding(16, 0, 0, 0);
-            btnEResultados.Size = new Size(377, 67);
-            btnEResultados.TabIndex = 7;
-            btnEResultados.Text = "   Estado de Resultado";
-            btnEResultados.TextAlign = ContentAlignment.MiddleLeft;
-            btnEResultados.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnEResultados.UseVisualStyleBackColor = true;
-            // 
-            // btnBGeneral
-            // 
-            btnBGeneral.Dock = DockStyle.Top;
-            btnBGeneral.FlatAppearance.BorderSize = 0;
-            btnBGeneral.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
-            btnBGeneral.FlatStyle = FlatStyle.Flat;
-            btnBGeneral.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnBGeneral.ForeColor = Color.White;
-            btnBGeneral.Image = (Image)resources.GetObject("btnBGeneral.Image");
-            btnBGeneral.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBGeneral.Location = new Point(0, 0);
-            btnBGeneral.Name = "btnBGeneral";
-            btnBGeneral.Padding = new Padding(16, 0, 0, 0);
-            btnBGeneral.Size = new Size(380, 67);
-            btnBGeneral.TabIndex = 6;
-            btnBGeneral.Text = "   Balance General";
-            btnBGeneral.TextAlign = ContentAlignment.MiddleLeft;
-            btnBGeneral.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnBGeneral.UseVisualStyleBackColor = true;
-            // 
             // panelContenedor
             // 
-            panelContenedor.Controls.Add(panelEstados);
             panelContenedor.Controls.Add(panelRedireccion);
-            panelContenedor.Controls.Add(panelLibros);
-            panelContenedor.Controls.Add(PanelCuentas);
             panelContenedor.Dock = DockStyle.Fill;
-            panelContenedor.Location = new Point(363, 50);
+            panelContenedor.Location = new Point(380, 50);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1287, 850);
+            panelContenedor.Size = new Size(1270, 850);
             panelContenedor.TabIndex = 2;
             panelContenedor.MouseDown += panelContenedor_MouseDown;
             panelContenedor.MouseMove += panelContenedor_MouseMove;
             panelContenedor.MouseUp += panelContenedor_MouseUp;
             // 
-            // panelEstados
-            // 
-            panelEstados.BackColor = Color.FromArgb(35, 55, 80);
-            panelEstados.Controls.Add(panel7);
-            panelEstados.Controls.Add(panel8);
-            panelEstados.Controls.Add(btnBGeneral);
-            panelEstados.Controls.Add(btnEResultados);
-            panelEstados.Location = new Point(3, 459);
-            panelEstados.Name = "panelEstados";
-            panelEstados.Size = new Size(380, 143);
-            panelEstados.TabIndex = 15;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.FromArgb(254, 214, 0);
-            panel7.Location = new Point(3, 6);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(10, 64);
-            panel7.TabIndex = 14;
-            // 
-            // panel8
-            // 
-            panel8.BackColor = Color.FromArgb(254, 214, 0);
-            panel8.Location = new Point(3, 76);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(10, 64);
-            panel8.TabIndex = 14;
-            // 
             // panelRedireccion
             // 
             panelRedireccion.Anchor = AnchorStyles.None;
             panelRedireccion.BackColor = Color.White;
-            panelRedireccion.Location = new Point(1169, 765);
+            panelRedireccion.Location = new Point(1161, 765);
             panelRedireccion.Name = "panelRedireccion";
             panelRedireccion.Size = new Size(118, 85);
             panelRedireccion.TabIndex = 0;
@@ -624,11 +621,11 @@
             ((System.ComponentModel.ISupportInitialize)btnMenos).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnBarraTituloCerrar).EndInit();
             panelMenu.ResumeLayout(false);
-            PanelCuentas.ResumeLayout(false);
+            panelEstados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            PanelCuentas.ResumeLayout(false);
             panelLibros.ResumeLayout(false);
             panelContenedor.ResumeLayout(false);
-            panelEstados.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -668,7 +665,6 @@
         private Panel panel8;
         private Panel panel7;
         private Panel panelEstados;
-        private System.Windows.Forms.Timer timer1;
         private Button btnUsuarios;
         private Button btnInfo;
     }
