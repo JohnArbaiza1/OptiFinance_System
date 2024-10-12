@@ -13,10 +13,12 @@
     <EmbeddedResource Remove="Formularios\**" />
     <None Remove="Formularios\**" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <Folder Include="Config\" />
-  </ItemGroup>
+  <None Update="appsettings.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />

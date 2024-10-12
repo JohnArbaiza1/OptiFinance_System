@@ -1,0 +1,90 @@
+﻿ cuentas
+    id    pk, autogenerado
+    código    texto de no más de 20 caracteres
+    nombre    texto de no más de 200 caracteres (efectivo y equivalente, caja, etc.)
+    id_tipo_cuenta    fk, id que relaciona esta tabla con tipo_cuenta
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ tipo_cuenta
+    id    pk, autogenerado
+    nombre    texto de no más de 50 caracteres (pasivo, activo, patrimonio, etc.)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ usuarios
+    id    pk, autogenerado
+    nombres    texto de no más de 200 caracteres (Angel Miguel, etc.)
+    apellidos    texto de no más de 200 caracteres (Vasquez Crespo, etc.)
+    alias    texto de no más de 12 caracteres (angMiguel0067, etc.)
+    id_tipo_usuario    fk, id que relaciona esta tabla con tipo_usuario
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ tipo_usuario
+    id    pk, autogenerado
+    nombre    texto de no más de 20 caracteres (administrador, usuario, etc.)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ empresas
+    id    pk, autogenerado
+    nombre    texto de no más de 300 caracteres (ANFERMO S.A DE C.V)
+    NIT    texto de no más de 17 caracteres (de ser posible que tenga formato xxxx-xxxxxx-xxx-x) (1234-567890-123-1, 5678-358235-926-1, etc.)
+    giro_economico    texto de no más de 300 caracteres (venta de productos de limpieza, etc.)
+    Representante Legal    texto de no más de 300 caracteres (Oscar Alfonso Muralla Estrada, etc.)
+    id_usuario    fk, id que relaciona esta tabla con la tabla usuarios
+    id_distrito    fk, id que relaciona esta tabla con la tabla distritos
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ miembros_empresa
+    id    pk, autogenerado
+    id_usuario    fk, id que relaciona esta tabla con la tabla usuarios
+    id_lista_miembros_empresa    fk, id que relaciona esta tabla con la tabla lista_miembros_empresa
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ lista_miembros_empresa
+    id    pk, autogenerado
+    id_empresa    fk, id que relaciona esta tabla con la tabla empresas
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ departamentos
+    id    pk, autogenerado
+    nombre    texto de no más de 100 caracteres (San Miguel, San Salvador, Morazán, etc.)
+    código    texto de no más de 6 caracteres (SM, SS, MO, etc.)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ municipios
+    id    pk, autogenerado
+    nombre    texto de no más de 100 caracteres (San Miguel Centro, San Salvador Centro, San Miguel Norte, Morazán Sur, etc.)
+    id_departamento   fk, id que relaciona esta tabla con la tabla departamentos
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ distritos
+    id    pk, autogenerado
+    nombre    texto de no más de 100 caracteres (San Miguel, San Salvador, Morazán, etc.)
+    id_municipio    fk, id que relaciona esta tabla con la tabla municipios
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ partidas
+    id    pk, autogenerado
+    detalles    texto de no más de 300 caracteres (Deudas ya saldadas, inversiones realizadas, etc.)
+    fecha    Fecha en la que se realizó el registro contable (10 de mayo de 2024, etc.)
+    id_empresa    fk, id que relaciona esta tabla con la tabla empresas (Empresa a la que pertenece esta partida contable)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+ registros
+    id    pk, autogenerado
+    debe   decimal con dos valores decimal y sin límite en la parte entera (123.45, 0.67, etc.)
+    haber    decimal con dos valores decimal y sin límite en la parte entera (123.45, 0.67, etc.)
+    id_cuenta fk, id que relaciona esta tabla con la tabla cuentas
+    id_partida fk, id que relaciona esta tabla con la tabla partidas
+        ON UPDATE CASCADE
+        ON DELETE CASCADE

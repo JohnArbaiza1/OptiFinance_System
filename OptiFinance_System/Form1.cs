@@ -1,5 +1,8 @@
 using System.Runtime.InteropServices;
 using OptiFinance_System.Views;
+using OptiFinance_System.Helpers;
+using BCrypt.Net;
+using Microsoft.Data.SqlClient;
 
 namespace OptiFinance_System
 {
@@ -8,6 +11,36 @@ namespace OptiFinance_System
         public Form1()
         {
             InitializeComponent();
+        }
+        
+        private void InsertarUsuarios()
+        {
+            DatabaseHelper databaseHelper = new DatabaseHelper();
+            string password = BCrypt.Net.BCrypt.HashPassword("admin");
+            string query = "INSERT INTO usuarios (nombres, apellidos, alias, email, password, id_tipo_usuario) " + 
+                           $@"VALUES ('admin', 'admin', 'admin', 'admin@gmail.com', '{password}', '1')";
+            int value = databaseHelper.ExecuteQuery(query);
+            MessageBox.Show(value == 1 ? @"Usuario registrado correctamente" : @"Error al registrar el usuario");
+        }
+        
+        private bool validarUsuario(string username, string password)
+        {
+            DatabaseHelper databaseHelper = new DatabaseHelper();
+            string query = $@"SELECT * FROM usuarios WHERE alias = '{username}'";
+            SqlDataReader reader = databaseHelper.ExecuteReader(query);
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string? passwordHash = reader["password"].ToString();
+                    if (BCrypt.Net.BCrypt.Verify(password, passwordHash))
+                    {
+                        return true;
+                    }
+                }
+            }
+            MessageBox.Show(@"Usuario o contraseña incorrectos");
+            return false;
         }
 
         //Nos permite mover la ventana del formulario a traves de la barra de titulo
@@ -29,61 +62,50 @@ namespace OptiFinance_System
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            // InsertarUsuarios();
         }
 
         private void txtUser_Enter(object sender, EventArgs e)
         {
-            if (txtUser.Text == "USUARIO")
-            {
-                txtUser.Text = "";
-                txtUser.ForeColor = Color.Goldenrod;
-            }
+            if (txtUser.Text != @"USUARIO") return;
+            txtUser.Text = "";
+            txtUser.ForeColor = Color.Goldenrod;
         }
         private void txtUser_Leave(object sender, EventArgs e)
         {
-            if (txtUser.Text == "")
-            {
-                txtUser.Text = "USUARIO";
-                txtUser.ForeColor = Color.Goldenrod;
-            }
+            if (txtUser.Text != "") return;
+            txtUser.Text = @"USUARIO";
+            txtUser.ForeColor = Color.Goldenrod;
         }
 
         private void txtPassword_Enter(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "PASSWORD")
-            {
-                txtPassword.Text = "";
-                txtPassword.ForeColor = Color.Goldenrod;
-            }
+            if (txtPassword.Text != @"PASSWORD") return;
+            txtPassword.Text = "";
+            txtPassword.ForeColor = Color.Goldenrod;
         }
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "")
-            {
-                txtPassword.Text = "PASSWORD";
-                txtPassword.ForeColor = Color.Goldenrod;
-            }
+            if (txtPassword.Text != "") return;
+            txtPassword.Text = @"PASSWORD";
+            txtPassword.ForeColor = Color.Goldenrod;
         }
 
         //Variables
-        string usuario = "";
-        string pass = "";
+        private string _usuario = "";
+        private string _pass = "";
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            usuario = txtUser.Text;
-            pass = txtPassword.Text;
-            if (usuario == "admin" && pass == "balance")
-            {
-                this.Hide();
-                Principal menu = new Principal();
-                menu.Show();
-                //evento que se dispara cuando el formulario Principal se cierra.
-                menu.FormClosed += (s, args) => this.Close();
-
-            }
+            _usuario = txtUser.Text;
+            _pass = txtPassword.Text;
+            if (!validarUsuario(_usuario, _pass)) return;
+            this.Hide();
+            Principal menu = new Principal();
+            menu.Show();
+            //evento que se dispara cuando el formulario Principal se cierra.
+            menu.FormClosed += (s, args) => this.Close();
         }
 
         private void lblRegistro_Click(object sender, EventArgs e)
