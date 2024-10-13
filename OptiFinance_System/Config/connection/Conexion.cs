@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace OptiFinance_System.Config;
+namespace OptiFinance_System.Config.connection;
 
 public class Conexion
 {
