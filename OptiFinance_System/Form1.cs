@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using OptiFinance_System.Views;
-using OptiFinance_System.Helpers;
-using BCrypt.Net;
+using OptiFinance_System.Config.Helper;
 using Microsoft.Data.SqlClient;
+using OptiFinance_System.Config.connection;
 
 namespace OptiFinance_System
 {
@@ -15,7 +15,7 @@ namespace OptiFinance_System
         
         private void InsertarUsuarios()
         {
-            DatabaseHelper databaseHelper = new DatabaseHelper();
+            DatabaseHelper databaseHelper = new DatabaseHelper("");
             string password = BCrypt.Net.BCrypt.HashPassword("admin");
             string query = "INSERT INTO usuarios (nombres, apellidos, alias, email, password, id_tipo_usuario) " + 
                            $@"VALUES ('admin', 'admin', 'admin', 'admin@gmail.com', '{password}', '1')";
@@ -25,9 +25,9 @@ namespace OptiFinance_System
         
         private bool validarUsuario(string username, string password)
         {
-            DatabaseHelper databaseHelper = new DatabaseHelper();
+            DatabaseHelper databaseHelper = new DatabaseHelper("");
             string query = $@"SELECT * FROM usuarios WHERE alias = '{username}'";
-            SqlDataReader reader = databaseHelper.ExecuteReader(query);
+            SqlDataReader reader = databaseHelper.ExecuteReader(query, Conexion.Instance.GetConnection());
             if (reader.HasRows)
             {
                 while (reader.Read())
@@ -47,7 +47,7 @@ namespace OptiFinance_System
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private static extern void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(IntPtr hwnd, int wmsg, int wparam, int lparam);
+        private static extern void SendMessage(IntPtr hwnd, int wmsg, int wparam, int lparam);
 
         private void btnSalir_Click(object sender, EventArgs e)
         {

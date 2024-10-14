@@ -9,14 +9,14 @@ namespace OptiFinance_System.Config.Helper
     {
         private readonly string? _connectionString;
 
-        public DatabaseHelper()
+        public DatabaseHelper(string? connectionString)
         {
-            _connectionString = Conexion.Instance.GetConnectionString();
+            _connectionString = connectionString;
         }
 
         public int ExecuteQuery(string query)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection? connection = Conexion.Instance.GetConnection())
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
@@ -25,11 +25,11 @@ namespace OptiFinance_System.Config.Helper
             }
         }
 
-        public SqlDataReader ExecuteReader(string query)
+        public SqlDataReader ExecuteReader(string query, SqlConnection connection)
         {
-            SqlConnection connection = new SqlConnection(_connectionString);
-            SqlCommand command = new SqlCommand(query, connection);
-            connection.Open();
+            SqlConnection connectionLocal = connection;
+            SqlCommand command = new SqlCommand(query, connectionLocal);
+            connectionLocal.Open();
             return command.ExecuteReader(CommandBehavior.CloseConnection);
         }
     }
