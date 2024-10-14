@@ -5,10 +5,9 @@ namespace OptiFinance_System.Config.connection;
 
 public class Conexion
 {
-    private static Conexion? _instance;
-    private static readonly object _lock = new object();
+    private static readonly Lazy<Conexion> _instance = new Lazy<Conexion>(() => new Conexion());
     private readonly string? _connectionString;
-    private readonly SqlConnection? _connection;
+    private readonly SqlConnection _connection;
 
     private Conexion()
     {
@@ -17,47 +16,31 @@ public class Conexion
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
         IConfigurationRoot configuration = builder.Build();
-        _connectionString = configuration.GetConnectionString("DefaultConnection");
+        _connectionString = configuration.GetConnectionString("DefaultConnection")
+                            ?? throw new InvalidOperationException("Connection string not found.");
 
         // Inicializar el objeto SqlConnection
         _connection = new SqlConnection(_connectionString);
     }
 
-    public static Conexion Instance
-    {
-        get
-        {
-            lock (_lock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new Conexion();
-                }
+    public static Conexion Instance => _instance.Value;
 
-                return _instance;
-            }
-        }
-    }
-
-    // Método para obtener el objeto SqlConnection
     public SqlConnection GetConnection()
     {
-        return _connection ?? throw new InvalidOperationException();
+        return _connection;
     }
 
-    // Método para abrir la conexión (si aún no está abierta)
-    public void AbrirConexion()
+    public void OpenConnection()
     {
-        if (_connection != null && _connection.State == System.Data.ConnectionState.Closed)
+        if (_connection.State == System.Data.ConnectionState.Closed)
         {
             _connection.Open();
         }
     }
 
-    // Método para cerrar la conexión (si está abierta)
-    public void CerrarConexion()
+    public void CloseConnection()
     {
-        if (_connection != null && _connection.State == System.Data.ConnectionState.Open)
+        if (_connection.State == System.Data.ConnectionState.Open)
         {
             _connection.Close();
         }
