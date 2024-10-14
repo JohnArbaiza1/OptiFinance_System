@@ -27,7 +27,7 @@ namespace OptiFinance_System
         {
             DatabaseHelper databaseHelper = new DatabaseHelper("");
             string query = $@"SELECT * FROM usuarios WHERE alias = '{username}'";
-            SqlDataReader reader = databaseHelper.ExecuteReader(query, Conexion.Instance.GetConnection());
+            SqlDataReader reader = databaseHelper.ExecuteReader(query, Connection.Instance.GetSqlConnection());
             if (reader.HasRows)
             {
                 while (reader.Read())

@@ -16,7 +16,7 @@ namespace OptiFinance_System.Config.Helper
 
         public int ExecuteQuery(string query)
         {
-            using (SqlConnection? connection = Conexion.Instance.GetConnection())
+            using (SqlConnection? connection = Connection.Instance.GetSqlConnection())
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();

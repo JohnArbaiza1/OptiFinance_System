@@ -1,7 +1,11 @@
-﻿namespace OptiFinance_System.Config.query;
+﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.Config.connection;
+
+namespace OptiFinance_System.Config.query;
 
 public interface IQueryEstandar<T>
 {
+    
     bool Insert(T entity);
     bool Insert(List<T> entities);
     
