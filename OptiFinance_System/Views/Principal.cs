@@ -316,6 +316,12 @@ namespace OptiFinance_System.Views
             abrirF<Usuarios>();
             btnUsuarios.BackColor = Color.FromArgb(215, 143, 35);
         }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            abrirF<InfoEmpresacs>();
+            btnInfo.BackColor = Color.FromArgb(215, 143, 35);
+        }
     }
 
 }
