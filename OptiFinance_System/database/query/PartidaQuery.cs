@@ -54,4 +54,9 @@ public class PartidaQuery : IQueryEstandar<Partida>
     {
         throw new NotImplementedException();
     }
+
+    public Partida MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }

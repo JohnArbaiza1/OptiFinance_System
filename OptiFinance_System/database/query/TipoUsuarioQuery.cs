@@ -54,4 +54,13 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
     {
         throw new NotImplementedException();
     }
+
+    public TipoUsuario MapEntity(SqlDataReader reader)
+    {
+        return new TipoUsuario()
+        {
+            Id = reader.GetInt64(0),
+            Nombre = reader.GetString(1)
+        };
+    }
 }

@@ -309,4 +309,9 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
         }
         return departamentos;
     }
+
+    public Departamento MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -54,4 +54,9 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
     {
         throw new NotImplementedException();
     }
+
+    public Municipio MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }

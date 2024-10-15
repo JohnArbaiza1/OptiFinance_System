@@ -54,4 +54,9 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
     {
         throw new NotImplementedException();
     }
+
+    public MiembroEmpresa MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }

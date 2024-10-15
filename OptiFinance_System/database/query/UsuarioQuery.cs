@@ -54,4 +54,9 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
     {
         throw new NotImplementedException();
     }
+
+    public Usuario MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }

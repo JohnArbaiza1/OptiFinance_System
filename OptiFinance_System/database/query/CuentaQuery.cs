@@ -54,4 +54,9 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
     {
         throw new NotImplementedException();
     }
+
+    public Cuenta MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }

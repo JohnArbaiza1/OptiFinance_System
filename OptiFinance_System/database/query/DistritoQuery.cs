@@ -54,4 +54,9 @@ public class DistritoQuery : IQueryEstandar<Distrito>
     {
         throw new NotImplementedException();
     }
+
+    public Distrito MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }

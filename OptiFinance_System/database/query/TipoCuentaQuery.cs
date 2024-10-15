@@ -54,4 +54,9 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
     {
         throw new NotImplementedException();
     }
+
+    public TipoCuenta MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }

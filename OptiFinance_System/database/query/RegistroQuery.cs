@@ -54,4 +54,9 @@ public class RegistroQuery : IQueryEstandar<Registro>
     {
         throw new NotImplementedException();
     }
+
+    public Registro MapEntity(SqlDataReader reader)
+    {
+        throw new NotImplementedException();
+    }
 }
