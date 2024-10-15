@@ -1,10 +1,11 @@
-﻿using OptiFinance_System.database.models;
+﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
 public class PartidaQuery : IQueryEstandar<Partida>
 {
-    public bool Insert(Partida entity)
+    public bool Insert(Partida entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }

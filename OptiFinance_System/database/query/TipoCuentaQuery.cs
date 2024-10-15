@@ -1,10 +1,11 @@
-﻿using OptiFinance_System.database.models;
+﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
 public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
 {
-    public bool Insert(TipoCuenta entity)
+    public bool Insert(TipoCuenta entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }

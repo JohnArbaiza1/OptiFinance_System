@@ -1,9 +1,11 @@
-﻿namespace OptiFinance_System.database.query;
+﻿using Microsoft.Data.SqlClient;
+
+namespace OptiFinance_System.database.query;
 
 public interface IQueryEstandar<T>
 {
     
-    bool Insert(T entity);
+    bool Insert(T entity, SqlTransaction? transaction = null);
     bool Insert(List<T> entities);
     
     bool Update(T entity);

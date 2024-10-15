@@ -1,10 +1,11 @@
-﻿using OptiFinance_System.database.models;
+﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
 public class MunicipioQuery : IQueryEstandar<Municipio>
 {
-    public bool Insert(Municipio entity)
+    public bool Insert(Municipio entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }

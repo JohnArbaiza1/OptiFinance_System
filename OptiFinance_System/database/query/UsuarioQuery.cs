@@ -1,10 +1,11 @@
-﻿using OptiFinance_System.database.models;
+﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
 public class UsuarioQuery : IQueryEstandar<Usuario>
 {
-    public bool Insert(Usuario entity)
+    public bool Insert(Usuario entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }

@@ -23,7 +23,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public SqlConnection Connection { get; set; }
 
-    public bool Insert(Departamento entity)
+    public bool Insert(Departamento entity, SqlTransaction? transaction)
     {
         try
         {
@@ -31,7 +31,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
             string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
 
-            SqlCommand command = new SqlCommand(query, _connection);
+            SqlCommand command = new SqlCommand(query, _connection, transaction);
             command.Parameters.AddWithValue("@nombre", entity.Nombre);
             command.Parameters.AddWithValue("@codigo", entity.Codigo);
 
@@ -49,58 +49,49 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public bool Insert(List<Departamento> entities)
     {
-        bool isInserted = true;
-        string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
+        bool isInserted = false;
 
         try
         {
-            _connectionInstance.OpenConnection();
-            using (SqlTransaction transaction = _connection.BeginTransaction())
+            _connectionInstance.OpenConnection(); // Abrimos la conexión
+            using (SqlTransaction? transaction = _connection.BeginTransaction()) // Iniciamos la transacción
             {
                 try
                 {
                     foreach (var entity in entities)
                     {
-                        SqlCommand command = new SqlCommand(query, _connection, transaction);
-                        command.Parameters.AddWithValue("@nombre", entity.Nombre);
-                        command.Parameters.AddWithValue("@codigo", entity.Codigo);
-
-                        if (command.ExecuteNonQuery() <= 0)
+                        // Llamamos al método Insert para cada Departamento, pasando la transacción
+                        if (!Insert(entity, transaction))
                         {
-                            isInserted = false;
-                            break;
+                            throw new Exception("Error al insertar uno de los departamentos.");
                         }
                     }
 
-                    if (isInserted)
-                    {
-                        transaction.Commit();
-                    }
-                    else
-                    {
-                        transaction.Rollback();
-                    }
+                    // Si todas las inserciones son exitosas, confirmamos la transacción
+                    transaction.Commit();
+                    isInserted = true;
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
+                    // Si algo falla, deshacemos todas las inserciones
                     transaction.Rollback();
-                    Console.WriteLine(e);
+                    Console.WriteLine(ex.Message);
                     throw;
                 }
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            Console.WriteLine("Error al insertar la lista de departamentos: " + e.Message);
         }
         finally
         {
-            _connectionInstance.CloseConnection();
+            _connectionInstance.CloseConnection(); // Cerramos la conexión
         }
 
-        return isInserted;
+        return isInserted; // Retorna true si todas las inserciones son exitosas
     }
+
 
 
 

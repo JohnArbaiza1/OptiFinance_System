@@ -1,10 +1,11 @@
-﻿using OptiFinance_System.database.models;
+﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
 public class RegistroQuery : IQueryEstandar<Registro>
 {
-    public bool Insert(Registro entity)
+    public bool Insert(Registro entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
