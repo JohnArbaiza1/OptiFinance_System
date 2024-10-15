@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
+using OptiFinance_System.database.helper;
 using OptiFinance_System.database.models;
 using Exception = System.Exception;
 using Message = OptiFinance_System.utils.Message;
@@ -26,7 +27,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public bool Insert(Departamento entity, SqlTransaction? transaction = null)
     {
-        bool isInserted = false;
+        /*bool isInserted = false;
         try
         {
             _connectionInstance.OpenConnection();
@@ -48,12 +49,24 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             _connectionInstance.CloseConnection();
         }
 
-        return isInserted;
+        return isInserted;*/
+        
+        string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
+        List<SqlParameter> parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@nombre", entity.Nombre),
+            new SqlParameter("@codigo", entity.Codigo)
+        };
+        
+        _connectionInstance.OpenConnection();
+        bool result = QueryHelper.ExecuteInsert(_connection, query, parameters, transaction);
+        _connectionInstance.CloseConnection();
+        return result;
     }
 
     public bool Insert(List<Departamento> entities)
     {
-        bool isInserted = false;
+        /*bool isInserted = false;
 
         try
         {
@@ -91,7 +104,28 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             _connectionInstance.CloseConnection();
         }
 
-        return isInserted;
+        return isInserted;*/
+        
+        string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
+        return QueryHelper.ExecuteInTransaction(_connection, transaction =>
+        {
+            foreach (var entity in entities)
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>
+                {
+                    new SqlParameter("@nombre", entity.Nombre),
+                    new SqlParameter("@codigo", entity.Codigo)
+                };
+                
+                bool result = QueryHelper.ExecuteInsert(_connection, query, parameters, transaction);
+                if (!result)
+                {
+                    Message.MessageViewError(@"Error al insertar una de las entidades.");
+                    return false;
+                }
+            }
+            return true;
+        });
     }
 
 
@@ -312,6 +346,11 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public Departamento MapEntity(SqlDataReader reader)
     {
-        throw new NotImplementedException();
+        return new Departamento
+        {
+            Id = reader.GetInt64(0),
+            Nombre = reader.GetString(1),
+            Codigo = reader.GetString(2),
+        };
     }
 }
