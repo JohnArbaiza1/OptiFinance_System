@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
-namespace OptiFinance_System.Config.connection;
+namespace OptiFinance_System.database.connection;
 
 public class Connection
 {

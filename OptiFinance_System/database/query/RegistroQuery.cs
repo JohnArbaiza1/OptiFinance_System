@@ -1,25 +1,25 @@
-﻿using OptiFinance_System.models;
+﻿using OptiFinance_System.database.models;
 
-namespace OptiFinance_System.Config.query;
+namespace OptiFinance_System.database.query;
 
-public class UsuarioQuery : IQueryEstandar<Usuario>
+public class RegistroQuery : IQueryEstandar<Registro>
 {
-    public bool Insert(Usuario entity)
+    public bool Insert(Registro entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Insert(List<Usuario> entities)
+    public bool Insert(List<Registro> entities)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(Usuario entity)
+    public bool Update(Registro entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(List<Usuario> entities)
+    public bool Update(List<Registro> entities)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
         throw new NotImplementedException();
     }
 
-    public bool Delete(Usuario entity)
+    public bool Delete(Registro entity)
     {
         return Delete(entity.Id);
     }
@@ -39,17 +39,17 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
         throw new NotImplementedException();
     }
 
-    public bool Delete(List<Usuario> entities)
+    public bool Delete(List<Registro> entities)
     {
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Usuario FindById(long id)
+    public Registro FindById(long id)
     {
         throw new NotImplementedException();
     }
 
-    public List<Usuario> SelectAll()
+    public List<Registro> SelectAll()
     {
         throw new NotImplementedException();
     }

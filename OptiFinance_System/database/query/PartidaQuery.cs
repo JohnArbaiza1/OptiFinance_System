@@ -1,25 +1,25 @@
-﻿using OptiFinance_System.models;
+﻿using OptiFinance_System.database.models;
 
-namespace OptiFinance_System.Config.query;
+namespace OptiFinance_System.database.query;
 
-public class MunicipioQuery : IQueryEstandar<Municipio>
+public class PartidaQuery : IQueryEstandar<Partida>
 {
-    public bool Insert(Municipio entity)
+    public bool Insert(Partida entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Insert(List<Municipio> entities)
+    public bool Insert(List<Partida> entities)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(Municipio entity)
+    public bool Update(Partida entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(List<Municipio> entities)
+    public bool Update(List<Partida> entities)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         throw new NotImplementedException();
     }
 
-    public bool Delete(Municipio entity)
+    public bool Delete(Partida entity)
     {
         return Delete(entity.Id);
     }
@@ -39,17 +39,17 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         throw new NotImplementedException();
     }
 
-    public bool Delete(List<Municipio> entities)
+    public bool Delete(List<Partida> entities)
     {
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Municipio FindById(long id)
+    public Partida FindById(long id)
     {
         throw new NotImplementedException();
     }
 
-    public List<Municipio> SelectAll()
+    public List<Partida> SelectAll()
     {
         throw new NotImplementedException();
     }

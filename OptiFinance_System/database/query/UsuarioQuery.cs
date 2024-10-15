@@ -1,25 +1,25 @@
-﻿using OptiFinance_System.models;
+﻿using OptiFinance_System.database.models;
 
-namespace OptiFinance_System.Config.query;
+namespace OptiFinance_System.database.query;
 
-public class EmpresaQuery : IQueryEstandar<Empresa>
+public class UsuarioQuery : IQueryEstandar<Usuario>
 {
-    public bool Insert(Empresa entity)
+    public bool Insert(Usuario entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Insert(List<Empresa> entities)
+    public bool Insert(List<Usuario> entities)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(Empresa entity)
+    public bool Update(Usuario entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(List<Empresa> entities)
+    public bool Update(List<Usuario> entities)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         throw new NotImplementedException();
     }
 
-    public bool Delete(Empresa entity)
+    public bool Delete(Usuario entity)
     {
         return Delete(entity.Id);
     }
@@ -39,17 +39,17 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         throw new NotImplementedException();
     }
 
-    public bool Delete(List<Empresa> entities)
+    public bool Delete(List<Usuario> entities)
     {
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Empresa FindById(long id)
+    public Usuario FindById(long id)
     {
         throw new NotImplementedException();
     }
 
-    public List<Empresa> SelectAll()
+    public List<Usuario> SelectAll()
     {
         throw new NotImplementedException();
     }

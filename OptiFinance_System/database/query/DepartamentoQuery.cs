@@ -1,9 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
-using OptiFinance_System.Config.connection;
-using OptiFinance_System.models;
+using OptiFinance_System.database.connection;
+using OptiFinance_System.database.models;
 using Exception = System.Exception;
 
-namespace OptiFinance_System.Config.query;
+namespace OptiFinance_System.database.query;
 
 public class DepartamentoQuery : IQueryEstandar<Departamento>
 {
@@ -15,7 +15,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     private DepartamentoQuery()
     {
-        _connectionInstance = connection.Connection.Instance;
+        _connectionInstance = database.connection.Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
     }
 

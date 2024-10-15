@@ -1,6 +1,6 @@
-﻿using OptiFinance_System.models;
+﻿using OptiFinance_System.database.models;
 
-namespace OptiFinance_System.Config.query;
+namespace OptiFinance_System.database.query;
 
 public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
 {

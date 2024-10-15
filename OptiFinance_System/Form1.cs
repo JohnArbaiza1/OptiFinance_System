@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices;
 using OptiFinance_System.Views;
-using OptiFinance_System.Config.Helper;
 using Microsoft.Data.SqlClient;
-using OptiFinance_System.Config.connection;
+using OptiFinance_System.database.connection;
+using OptiFinance_System.database.helper;
 
 namespace OptiFinance_System
 {

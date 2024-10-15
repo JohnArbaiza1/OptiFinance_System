@@ -1,6 +1,6 @@
-﻿namespace OptiFinance_System.models;
+﻿namespace OptiFinance_System.database.models;
 
-public class TipoUsuario
+public class TipoCuenta
 {
     public long Id { get; set; }
     public string Nombre { get; set; } = string.Empty;

@@ -1,7 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using OptiFinance_System.Config.connection;
-
-namespace OptiFinance_System.Config.query;
+﻿namespace OptiFinance_System.database.query;
 
 public interface IQueryEstandar<T>
 {

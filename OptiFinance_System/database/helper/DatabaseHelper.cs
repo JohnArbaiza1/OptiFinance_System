@@ -1,9 +1,8 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using OptiFinance_System.Config;
-using OptiFinance_System.Config.connection;
+using OptiFinance_System.database.connection;
 
-namespace OptiFinance_System.Config.Helper
+namespace OptiFinance_System.database.helper
 {
     public class DatabaseHelper
     {

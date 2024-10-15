@@ -1,25 +1,25 @@
-﻿using OptiFinance_System.models;
+﻿using OptiFinance_System.database.models;
 
-namespace OptiFinance_System.Config.query;
+namespace OptiFinance_System.database.query;
 
-public class PartidaQuery : IQueryEstandar<Partida>
+public class CuentaQuery : IQueryEstandar<Cuenta>
 {
-    public bool Insert(Partida entity)
+    public bool Insert(Cuenta entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Insert(List<Partida> entities)
+    public bool Insert(List<Cuenta> entities)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(Partida entity)
+    public bool Update(Cuenta entity)
     {
         throw new NotImplementedException();
     }
 
-    public bool Update(List<Partida> entities)
+    public bool Update(List<Cuenta> entities)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
         throw new NotImplementedException();
     }
 
-    public bool Delete(Partida entity)
+    public bool Delete(Cuenta entity)
     {
         return Delete(entity.Id);
     }
@@ -39,17 +39,17 @@ public class PartidaQuery : IQueryEstandar<Partida>
         throw new NotImplementedException();
     }
 
-    public bool Delete(List<Partida> entities)
+    public bool Delete(List<Cuenta> entities)
     {
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Partida FindById(long id)
+    public Cuenta FindById(long id)
     {
         throw new NotImplementedException();
     }
 
-    public List<Partida> SelectAll()
+    public List<Cuenta> SelectAll()
     {
         throw new NotImplementedException();
     }
