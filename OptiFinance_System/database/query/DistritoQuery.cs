@@ -15,7 +15,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
         throw new NotImplementedException();
     }
 
-    public bool Update(Distrito entity)
+    public bool Update(Distrito entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
         throw new NotImplementedException();
     }
 
-    public bool Delete(long id)
+    public bool Delete(long id, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Distrito FindById(long id)
+    public Distrito? FindById(long id)
     {
         throw new NotImplementedException();
     }

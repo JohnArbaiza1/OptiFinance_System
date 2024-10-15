@@ -15,7 +15,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
         throw new NotImplementedException();
     }
 
-    public bool Update(Partida entity)
+    public bool Update(Partida entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
         throw new NotImplementedException();
     }
 
-    public bool Delete(long id)
+    public bool Delete(long id, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Partida FindById(long id)
+    public Partida? FindById(long id)
     {
         throw new NotImplementedException();
     }

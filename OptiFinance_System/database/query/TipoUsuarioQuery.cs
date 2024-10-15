@@ -15,7 +15,7 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
         throw new NotImplementedException();
     }
 
-    public bool Update(TipoUsuario entity)
+    public bool Update(TipoUsuario entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
         throw new NotImplementedException();
     }
 
-    public bool Delete(long id)
+    public bool Delete(long id, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public TipoUsuario FindById(long id)
+    public TipoUsuario? FindById(long id)
     {
         throw new NotImplementedException();
     }

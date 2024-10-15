@@ -15,7 +15,7 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
         throw new NotImplementedException();
     }
 
-    public bool Update(Cuenta entity)
+    public bool Update(Cuenta entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
         throw new NotImplementedException();
     }
 
-    public bool Delete(long id)
+    public bool Delete(long id, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Cuenta FindById(long id)
+    public Cuenta? FindById(long id)
     {
         throw new NotImplementedException();
     }

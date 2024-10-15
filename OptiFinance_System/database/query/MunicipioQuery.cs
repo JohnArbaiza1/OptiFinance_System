@@ -15,7 +15,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         throw new NotImplementedException();
     }
 
-    public bool Update(Municipio entity)
+    public bool Update(Municipio entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         throw new NotImplementedException();
     }
 
-    public bool Delete(long id)
+    public bool Delete(long id, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Municipio FindById(long id)
+    public Municipio? FindById(long id)
     {
         throw new NotImplementedException();
     }

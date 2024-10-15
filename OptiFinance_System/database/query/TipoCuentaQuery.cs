@@ -15,7 +15,7 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
         throw new NotImplementedException();
     }
 
-    public bool Update(TipoCuenta entity)
+    public bool Update(TipoCuenta entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
         throw new NotImplementedException();
     }
 
-    public bool Delete(long id)
+    public bool Delete(long id, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public TipoCuenta FindById(long id)
+    public TipoCuenta? FindById(long id)
     {
         throw new NotImplementedException();
     }

@@ -15,7 +15,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         throw new NotImplementedException();
     }
 
-    public bool Update(Empresa entity)
+    public bool Update(Empresa entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         throw new NotImplementedException();
     }
 
-    public bool Delete(long id)
+    public bool Delete(long id, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Empresa FindById(long id)
+    public Empresa? FindById(long id)
     {
         throw new NotImplementedException();
     }

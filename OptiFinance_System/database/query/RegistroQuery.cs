@@ -15,7 +15,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
         throw new NotImplementedException();
     }
 
-    public bool Update(Registro entity)
+    public bool Update(Registro entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
         throw new NotImplementedException();
     }
 
-    public bool Delete(long id)
+    public bool Delete(long id, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Registro FindById(long id)
+    public Registro? FindById(long id)
     {
         throw new NotImplementedException();
     }

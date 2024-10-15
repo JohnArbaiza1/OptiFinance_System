@@ -45,7 +45,7 @@ namespace OptiFinance_System.Views
         private void btnBarraTituloCerrar_Click(object sender, EventArgs e)
         {
             //Almacenamos la respuesta del usuario en una variable
-            DialogResult respuesta = MessageBox.Show("¿Esta seguro que desea salir?", "Salir del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show(@"¿Esta seguro que desea salir?", @"Salir del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             //Verificamos la respuesta del usuario
             if (respuesta == DialogResult.OK)
@@ -243,7 +243,7 @@ namespace OptiFinance_System.Views
         private void btnSalir_Click(object sender, EventArgs e)
         {
             //Almacenamos la respuesta del usuario en una variable
-            DialogResult respuesta = MessageBox.Show("¿Esta seguro que desea salir?", "Salir del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show(@"¿Esta seguro que desea salir?", @"Salir del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             //Verificamos la respuesta del usuario
             if (respuesta == DialogResult.OK)
