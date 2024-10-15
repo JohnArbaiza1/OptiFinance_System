@@ -4,7 +4,13 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\InfoEmpresacs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\libriDiario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\Principal.cs">

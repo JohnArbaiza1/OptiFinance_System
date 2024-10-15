@@ -1,21 +1,22 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
 using OptiFinance_System.Config;
+using OptiFinance_System.Config.connection;
 
-namespace OptiFinance_System.Helpers
+namespace OptiFinance_System.Config.Helper
 {
     public class DatabaseHelper
     {
         private readonly string? _connectionString;
 
-        public DatabaseHelper()
+        public DatabaseHelper(string? connectionString)
         {
-            _connectionString = Conexion.Instance.GetConnectionString();
+            _connectionString = connectionString;
         }
 
         public int ExecuteQuery(string query)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection? connection = Connection.Instance.GetSqlConnection())
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
@@ -24,11 +25,11 @@ namespace OptiFinance_System.Helpers
             }
         }
 
-        public SqlDataReader ExecuteReader(string query)
+        public SqlDataReader ExecuteReader(string query, SqlConnection connection)
         {
-            SqlConnection connection = new SqlConnection(_connectionString);
-            SqlCommand command = new SqlCommand(query, connection);
-            connection.Open();
+            SqlConnection connectionLocal = connection;
+            SqlCommand command = new SqlCommand(query, connectionLocal);
+            connectionLocal.Open();
             return command.ExecuteReader(CommandBehavior.CloseConnection);
         }
     }

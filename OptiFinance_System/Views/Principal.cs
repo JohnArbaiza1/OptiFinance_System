@@ -44,7 +44,14 @@ namespace OptiFinance_System.Views
         #region Parte donde se trabaja la barra de titulo
         private void btnBarraTituloCerrar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            //Almacenamos la respuesta del usuario en una variable
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro que desea salir?", "Salir del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            //Verificamos la respuesta del usuario
+            if (respuesta == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
         //Nos permite mover la ventana del formulario a traves de la barra de titulo
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -195,6 +202,14 @@ namespace OptiFinance_System.Views
             {
                 btnUsuarios.BackColor = Color.FromArgb(34, 53, 80);
             }
+            if (Application.OpenForms["InfoEmpresa"] == null)
+            {
+                btnInfo.BackColor = Color.FromArgb(34, 53, 80);
+            }
+            if (Application.OpenForms["libriDiario"] == null)
+            {
+                btnDiario.BackColor = Color.FromArgb(34, 53, 80);
+            }
         }
         #endregion
 
@@ -227,7 +242,14 @@ namespace OptiFinance_System.Views
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            //Almacenamos la respuesta del usuario en una variable
+            DialogResult respuesta = MessageBox.Show("¿Esta seguro que desea salir?", "Salir del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            //Verificamos la respuesta del usuario
+            if (respuesta == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
 
         //=================================================================================
@@ -309,13 +331,25 @@ namespace OptiFinance_System.Views
             panelEstados.Location = new Point(0, 400);
         }
 
-        #endregion
-
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             abrirF<Usuarios>();
             btnUsuarios.BackColor = Color.FromArgb(215, 143, 35);
         }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            abrirF<InfoEmpresacs>();
+            btnInfo.BackColor = Color.FromArgb(215, 143, 35);
+        }
+
+        private void btnDiario_Click(object sender, EventArgs e)
+        {
+            abrirF<libriDiario>();
+            btnDiario.BackColor = Color.FromArgb(254, 214, 0);
+        }
+
+        #endregion
     }
 
 }

@@ -25,23 +25,25 @@ CREATE TABLE usuarios
     nombres NVARCHAR(200) NOT NULL,
     apellidos NVARCHAR(200) NOT NULL,
     alias NVARCHAR(12) NOT NULL,
-    email NVARCHAR(200) NOT NULL,
+    email NVARCHAR(200),
     password NVARCHAR(200) NOT NULL,
-    id_tipo_usuario BIGINT NOT NULL,
+    telefono NVARCHAR(8),
+    direccion NVARCHAR(300),
+    id_tipo_usuario BIGINT NOT NULL DEFAULT 2,
     FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE departamentos
 (
     id BIGINT PRIMARY KEY IDENTITY(1,1),
-    nombre NVARCHAR(100) NOT NULL,
-    codigo NVARCHAR(6) NOT NULL
+    nombre NVARCHAR(100) NOT NULL UNIQUE,
+    codigo NVARCHAR(6) UNIQUE
 );
 
 CREATE TABLE municipios
 (
     id BIGINT PRIMARY KEY IDENTITY(1,1),
-    nombre NVARCHAR(100) NOT NULL,
+    nombre NVARCHAR(100) NOT NULL UNIQUE,
     id_departamento BIGINT NOT NULL,
     FOREIGN KEY (id_departamento) REFERENCES departamentos (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -58,9 +60,12 @@ CREATE TABLE empresas
 (
     id BIGINT PRIMARY KEY IDENTITY(1,1),
     nombre NVARCHAR(300) NOT NULL,
-    nit NVARCHAR(17) NOT NULL,
-    representante_legal NVARCHAR(300) NOT NULL,
+    nit NVARCHAR(17) UNIQUE,
     giro_economico NVARCHAR(300) NOT NULL,
+    representante_legal NVARCHAR(300) NOT NULL DEFAULT 'No especificado',
+    direccion NVARCHAR(300),
+    telefono NVARCHAR(8) NOT NULL UNIQUE,
+    email NVARCHAR(200) UNIQUE DEFAULT 'No especificado',
     id_usuario BIGINT NOT NULL,
     id_distrito BIGINT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -72,8 +77,11 @@ CREATE TABLE miembros_empresa
     id BIGINT PRIMARY KEY IDENTITY(1,1),
     nombres NVARCHAR(200) NOT NULL,
     apellidos NVARCHAR(200) NOT NULL,
-    alias NVARCHAR(12) NOT NULL,
-    correo_electronico NVARCHAR(200) NOT NULL,
+    alias NVARCHAR(12) NOT NULL UNIQUE,
+    dui NVARCHAR(10) NOT NULL UNIQUE,
+    correo_electronico NVARCHAR(200) UNIQUE DEFAULT 'No especificado',
+    telefono NVARCHAR(8) UNIQUE DEFAULT 'No especificado',
+    direccion NVARCHAR(300) NOT NULL,
     id_empresa BIGINT NOT NULL,
     FOREIGN KEY (id_empresa) REFERENCES empresas (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -81,7 +89,7 @@ CREATE TABLE miembros_empresa
 CREATE TABLE partidas
 (
     id BIGINT PRIMARY KEY IDENTITY(1,1),
-    detalles NVARCHAR(300) NOT NULL,
+    detalles NVARCHAR(500) NOT NULL,
     fecha DATE NOT NULL,
     id_empresa BIGINT NOT NULL,
     FOREIGN KEY (id_empresa) REFERENCES empresas (id) ON UPDATE CASCADE ON DELETE CASCADE

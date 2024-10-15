@@ -187,6 +187,7 @@
             btnInfo.TextAlign = ContentAlignment.MiddleLeft;
             btnInfo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnInfo.UseVisualStyleBackColor = true;
+            btnInfo.Click += btnInfo_Click;
             // 
             // btnUsuarios
             // 
@@ -558,6 +559,7 @@
             btnDiario.TextAlign = ContentAlignment.MiddleLeft;
             btnDiario.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDiario.UseVisualStyleBackColor = true;
+            btnDiario.Click += btnDiario_Click;
             // 
             // btnMayor
             // 
