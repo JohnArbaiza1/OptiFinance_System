@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace OptiFinance_System.database.query;
+namespace OptiFinance_System.database.@interface;
 
 public interface IQueryEstandar<T>
 {

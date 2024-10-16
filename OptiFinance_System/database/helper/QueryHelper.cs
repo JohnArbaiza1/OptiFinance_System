@@ -1,16 +1,17 @@
 ﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.connection;
 using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.database.helper;
 
 public static class QueryHelper
 {
-    public static bool ExecuteNonQuery(SqlConnection connection, string query, List<SqlParameter> parameters,
+    private static bool ExecuteNonQuery(Connection connection, string query, List<SqlParameter> parameters,
         SqlTransaction? transaction = null)
     {
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection, transaction))
+            using (SqlCommand command = new SqlCommand(query, connection.GetSqlConnection(), transaction))
             {
                 command.Parameters.AddRange(parameters.ToArray());
                 return command.ExecuteNonQuery() > 0;
@@ -23,14 +24,12 @@ public static class QueryHelper
         }
     }
 
-    public static bool ExecuteInTransaction(SqlConnection connection, Func<SqlTransaction, bool> operation)
+    public static bool ExecuteInTransaction(Connection connection, Func<SqlTransaction, bool> operation)
     {
         bool isSuccess = false;
-
         try
         {
-            connection.Open();
-            using (SqlTransaction transaction = connection.BeginTransaction())
+            using (SqlTransaction transaction = connection.GetSqlConnection().BeginTransaction())
             {
                 try
                 {
@@ -48,7 +47,7 @@ public static class QueryHelper
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
+                    transaction.Rollback(); 
                     Message.MessageViewError(@"Error en la operación: " + ex.Message);
                 }
             }
@@ -59,38 +58,38 @@ public static class QueryHelper
         }
         finally
         {
-            connection.Close();
+            connection.CloseConnection();
         }
 
         return isSuccess;
     }
 
-    public static bool ExecuteInsert(SqlConnection connection, string query, List<SqlParameter> parameters,
+    public static bool ExecuteInsert(Connection connection, string query, List<SqlParameter> parameters,
         SqlTransaction? transaction = null)
     {
         return ExecuteNonQuery(connection, query, parameters, transaction);
     }
 
-    public static bool ExecuteUpdate(SqlConnection connection, string query, List<SqlParameter> parameters,
+    public static bool ExecuteUpdate(Connection connection, string query, List<SqlParameter> parameters,
         SqlTransaction? transaction = null)
     {
         return ExecuteNonQuery(connection, query, parameters, transaction);
     }
 
-    public static bool ExecuteDelete(SqlConnection connection, string query, List<SqlParameter> parameters,
+    public static bool ExecuteDelete(Connection connection, string query, List<SqlParameter> parameters,
         SqlTransaction? transaction = null)
     {
         return ExecuteNonQuery(connection, query, parameters, transaction);
     }
 
-    public static List<T> ExecuteSelect<T>(SqlConnection connection, string query, Func<SqlDataReader, T> func,
+    public static List<T> ExecuteSelect<T>(Connection connection, string query, Func<SqlDataReader, T> func,
         List<SqlParameter>? parameters = null)
     {
         List<T> resultList = new List<T>();
-
+        connection.OpenConnection();
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = new SqlCommand(query, connection.GetSqlConnection()))
             {
                 if (parameters != null)
                 {
@@ -110,17 +109,22 @@ public static class QueryHelper
         {
             Message.MessageViewError(@"Error en la consulta SQL: " + e.Message);
         }
+        finally
+        {
+            connection.CloseConnection();
+        }
         return resultList;
     }
 
-    public static T? ExecuteFindById<T>(SqlConnection connection, string query, Func<SqlDataReader, T> func,
+    public static T? ExecuteFindById<T>(Connection connection, string query, Func<SqlDataReader, T> func,
         List<SqlParameter> parameters)
     {
         T? entity = default;
+        connection.OpenConnection();
 
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = new SqlCommand(query, connection.GetSqlConnection()))
             {
                 command.Parameters.AddRange(parameters.ToArray());
 
@@ -136,6 +140,10 @@ public static class QueryHelper
         catch (Exception e)
         {
             Message.MessageViewError(@"Error en la consulta SQL: " + e.Message);
+        }
+        finally
+        {
+            connection.CloseConnection();
         }
         return entity;
     }

@@ -1,6 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
+using OptiFinance_System.database.@interface;
 using OptiFinance_System.database.models;
 using Exception = System.Exception;
 using Message = OptiFinance_System.utils.Message;
@@ -50,16 +52,16 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
         }
 
         return isInserted;*/
-        
+
         string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
         List<SqlParameter> parameters = new List<SqlParameter>
         {
             new SqlParameter("@nombre", entity.Nombre),
             new SqlParameter("@codigo", entity.Codigo)
         };
-        
+
         _connectionInstance.OpenConnection();
-        bool result = QueryHelper.ExecuteInsert(_connection, query, parameters, transaction);
+        bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
         _connectionInstance.CloseConnection();
         return result;
     }
@@ -105,9 +107,10 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
         }
 
         return isInserted;*/
-        
+
         string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
-        return QueryHelper.ExecuteInTransaction(_connection, transaction =>
+        _connectionInstance.OpenConnection();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance, transaction =>
         {
             foreach (var entity in entities)
             {
@@ -117,7 +120,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
                     new SqlParameter("@codigo", entity.Codigo)
                 };
                 
-                bool result = QueryHelper.ExecuteInsert(_connection, query, parameters, transaction);
+                bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
                 if (!result)
                 {
                     Message.MessageViewError(@"Error al insertar una de las entidades.");
@@ -131,7 +134,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public bool Update(Departamento entity, SqlTransaction? transaction = null)
     {
-        bool isUpdated = false;
+        /*bool isUpdated = false;
         string query = "UPDATE departamentos SET nombre = @nombre, codigo = @codigo WHERE id = @id";
         try
         {
@@ -152,12 +155,25 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             _connectionInstance.CloseConnection();
         }
 
-        return isUpdated;
+        return isUpdated;*/
+
+        string query = "UPDATE departamentos SET nombre = @nombre, codigo = @codigo WHERE id = @id";
+        List<SqlParameter> parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@nombre", entity.Nombre),
+            new SqlParameter("@codigo", entity.Codigo),
+            new SqlParameter("@id", entity.Id)
+        };
+
+        _connectionInstance.OpenConnection();
+        bool result = QueryHelper.ExecuteUpdate(_connectionInstance, query, parameters, transaction);
+        _connectionInstance.CloseConnection();
+        return result;
     }
 
     public bool Update(List<Departamento> entities)
     {
-        bool isUpdated = false;
+        /*bool isUpdated = false;
 
         try
         {
@@ -195,12 +211,37 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             _connectionInstance.CloseConnection();
         }
 
-        return isUpdated;
+        return isUpdated;*/
+
+        string query = "UPDATE departamentos SET nombre = @nombre, codigo = @codigo WHERE id = @id";
+        _connectionInstance.OpenConnection();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance, transaction =>
+            {
+                foreach (var entity in entities)
+                {
+                    List<SqlParameter> parameters = new List<SqlParameter>
+                    {
+                        new SqlParameter("@nombre", entity.Nombre),
+                        new SqlParameter("@codigo", entity.Codigo),
+                        new SqlParameter("@id", entity.Id)
+                    };
+
+                    bool result = QueryHelper.ExecuteUpdate(_connectionInstance, query, parameters, transaction);
+                    if (!result)
+                    {
+                        Message.MessageViewError(@"Error al actualizar una de las entidades.");
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        );
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        bool isDeleted = false;
+        /*bool isDeleted = false;
         string query = "DELETE FROM departamentos WHERE id = @id";
         try
         {
@@ -219,7 +260,19 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             _connectionInstance.CloseConnection();
         }
 
-        return isDeleted;
+        return isDeleted;*/
+        
+        string query = "DELETE FROM departamentos WHERE id = @id";
+        
+        List<SqlParameter> parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@id", id)
+        };
+        
+        _connectionInstance.OpenConnection();
+        bool result = QueryHelper.ExecuteDelete(_connectionInstance, query, parameters, transaction);
+        _connectionInstance.CloseConnection();
+        return result;
     }
 
     public bool Delete(Departamento entity)
@@ -229,7 +282,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public bool Delete(List<long> ids)
     {
-        bool isDeleted = false;
+        /*bool isDeleted = false;
         try
         {
             _connectionInstance.OpenConnection();
@@ -266,7 +319,31 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             _connectionInstance.CloseConnection();
         }
 
-        return isDeleted;
+        return isDeleted;*/
+
+        string query = "DELETE FROM departamentos WHERE id = @id";
+
+        _connectionInstance.OpenConnection();
+
+        return QueryHelper.ExecuteInTransaction(_connectionInstance, transaction =>
+        {
+            foreach (var id in ids)
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>
+                {
+                    new SqlParameter("@id", id)
+                };
+
+                bool result = QueryHelper.ExecuteDelete(_connectionInstance, query, parameters, transaction);
+                if (!result)
+                {
+                    Message.MessageViewError(@"Error al eliminar una de las entidades.");
+                    return false;
+                }
+            }
+
+            return true;
+        });
     }
 
     public bool Delete(List<Departamento> entities)
@@ -276,7 +353,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public Departamento? FindById(long id)
     {
-        Departamento? departamento = null;
+        /*Departamento? departamento = null;
         string query = "SELECT id, nombre, codigo FROM departamentos WHERE id = @id";
         
         try
@@ -306,14 +383,22 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
         {
             _connectionInstance.CloseConnection();
         }
-        return departamento;
+        return departamento;*/
+        
+        string query = "SELECT id, nombre, codigo FROM departamentos WHERE id = @id";
+        List<SqlParameter> parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@id", id)
+        };
+
+        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
     }
 
     public List<Departamento> SelectAll()
     {
-        List<Departamento> departamentos = new List<Departamento>();
+        /*List<Departamento> departamentos = new List<Departamento>();
         string query = "SELECT id, nombre, codigo FROM departamentos";
-        
+
         try
         {
             _connectionInstance.OpenConnection();
@@ -341,7 +426,11 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
         {
             _connectionInstance.CloseConnection();
         }
-        return departamentos;
+
+        return departamentos;*/
+
+        string query = "SELECT id, nombre, codigo FROM departamentos";
+        return QueryHelper.ExecuteSelect(_connectionInstance, query, MapEntity);
     }
 
     public Departamento MapEntity(SqlDataReader reader)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.@interface;
 using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
