@@ -9,6 +9,6 @@ public class Departamento
     public override string ToString()
     {
         return
-            $"{nameof(Id)}: {Id}, {nameof(Nombre)}: {Nombre}, {nameof(Codigo)}: {Codigo}, ";
+            $"{nameof(Id)}: {Id}, {nameof(Nombre)}: {Nombre}, {nameof(Codigo)}: {Codigo}";
     }
 }
