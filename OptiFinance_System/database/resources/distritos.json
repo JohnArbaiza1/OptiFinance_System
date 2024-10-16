@@ -1,0 +1,122 @@
+﻿[
+    {
+        "Nombre": "Ciudad Barrios",
+        "Municipio": {
+            "Nombre": "San Miguel Norte"
+        }
+    },
+    {
+        "Nombre": "Sesori",
+        "Municipio": {
+            "Nombre": "San Miguel Norte"
+        }
+    },
+    {
+        "Nombre": "Nuevo Edén de San Juan",
+        "Municipio": {
+            "Nombre": "San Miguel Norte"
+        }
+    },
+    {
+        "Nombre": "San Gerardo ",
+        "Municipio": {
+            "Nombre": "San Miguel Norte"
+        }
+    },
+    {
+        "Nombre": "San Luis La Reina ",
+        "Municipio": {
+            "Nombre": "San Miguel Norte"
+        }
+    },
+    {
+        "Nombre": "Carolina ",
+        "Municipio": {
+            "Nombre": "San Miguel Norte"
+        }
+    },
+    {
+        "Nombre": "San Antonio del Mosco ",
+        "Municipio": {
+            "Nombre": "San Miguel Norte"
+        }
+    },
+    {
+        "Nombre": "Chapeltique",
+        "Municipio": {
+            "Nombre": "San Miguel Norte"
+        }
+    },
+    {
+        "Nombre": "San Miguel",
+        "Municipio": {
+            "Nombre": "San Miguel Centro"
+        }
+    },
+    {
+        "Nombre": "Comacarán",
+        "Municipio": {
+            "Nombre": "San Miguel Centro"
+        }
+    },
+    {
+        "Nombre": "Uluazapa",
+        "Municipio": {
+            "Nombre": "San Miguel Centro"
+        }
+    },
+    {
+        "Nombre": "Moncagua",
+        "Municipio": {
+            "Nombre": "San Miguel Centro"
+        }
+    },
+    {
+        "Nombre": "Quelepa",
+        "Municipio": {
+            "Nombre": "San Miguel Centro"
+        }
+    },
+    {
+        "Nombre": "Chirilagua",
+        "Municipio": {
+            "Nombre": "San Miguel Centro"
+        }
+    },
+    {
+        "Nombre": "Chinameca",
+        "Municipio": {
+            "Nombre": "San Miguel Oeste"
+        }
+    },
+    {
+        "Nombre": "Nueva Guadalupe",
+        "Municipio": {
+            "Nombre": "San Miguel Oeste"
+        }
+    },
+    {
+        "Nombre": "Lolotique",
+        "Municipio": {
+            "Nombre": "San Miguel Oeste"
+        }
+    },
+    {
+        "Nombre": "San Jorge",
+        "Municipio": {
+            "Nombre": "San Miguel Oeste"
+        }
+    },
+    {
+        "Nombre": "San Rafael Oriente",
+        "Municipio": {
+            "Nombre": "San Miguel Oeste"
+        }
+    },
+    {
+        "Nombre": "El Tránsito",
+        "Municipio": {
+            "Nombre": "San Miguel Oeste"
+        }
+    }
+]
