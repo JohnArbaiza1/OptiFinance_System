@@ -1,0 +1,58 @@
+﻿[
+    {
+        "Nombre": "Ahuachapán",
+        "Codigo": "AH"
+    },
+    {
+        "Nombre": "Cabañas",
+        "Codigo": "CA"
+    },
+    {
+        "Nombre": "Chalatenango",
+        "Codigo": "CH"
+    },
+    {
+        "Nombre": "Cuscatlán",
+        "Codigo": "CU"
+    },
+    {
+        "Nombre": "La Libertad",
+        "Codigo": "LL"
+    },
+    {
+        "Nombre": "La Paz",
+        "Codigo": "LP"
+    },
+    {
+        "Nombre": "La Unión",
+        "Codigo": "LU"
+    },
+    {
+        "Nombre": "Morazán",
+        "Codigo": "MO"
+    },
+    {
+        "Nombre": "San Salvador",
+        "Codigo": "SS"
+    },
+    {
+        "Nombre": "San Miguel",
+        "Codigo": "SM"
+    },
+    {
+        "Nombre": "San Vicente",
+        "Codigo": "SV"
+    },
+    {
+        "Nombre": "Santa Ana",
+        "Codigo": "SA"
+    },
+    {
+        "Nombre": "Sonsonate",
+        "Codigo": "SO"
+    },
+    {
+        "Nombre": "Usulután",
+        "Codigo": "US"
+    }
+]
