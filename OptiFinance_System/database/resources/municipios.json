@@ -1,0 +1,266 @@
+﻿[
+    {
+        "Nombre": "Ahuachapán Norte",
+        "Departamento": {
+            "Nombre": "Ahuachapán"
+        }
+    },
+    {
+        "Nombre": "Ahuaquapán Centro",
+        "Departamento": {
+            "Nombre": "Ahuachapán"
+        }
+    },
+    {
+        "Nombre": "Ahuachapán Sur",
+        "Departamento": {
+            "Nombre": "Ahuachapán"
+        }
+    },
+    {
+        "Nombre": "Cabañas Este",
+        "Departamento": {
+            "Nombre": "Cabañas"
+        }
+    },
+    {
+        "Nombre": "Cabañas Oeste",
+        "Departamento": {
+            "Nombre": "Cabañas"
+        }
+    },
+    {
+        "Nombre": "Chalatenango Norte",
+        "Departamento": {
+            "Nombre": "Chalatenango"
+        }
+    },
+    {
+        "Nombre": "Chalatenango Centro",
+        "Departamento": {
+            "Nombre": "Chalatenango"
+        }
+    },
+    {
+        "Nombre": "Chalatenango Sur",
+        "Departamento": {
+            "Nombre": "Chalatenango"
+        }
+    },
+    {
+        "Nombre": "Cuscatlán Norte",
+        "Departamento": {
+            "Nombre": "Cuscatlán"
+        }
+    },
+    {
+        "Nombre": "Cuscatlán Centro",
+        "Departamento": {
+            "Nombre": "Cuscatlán"
+        }
+    },
+    {
+        "Nombre": "La Libertad Norte",
+        "Departamento": {
+            "Nombre": "La Libertad"
+        }
+    },
+    {
+        "Nombre": "La Libertad Centro",
+        "Departamento": {
+            "Nombre": "La Libertad"
+        }
+    },
+    {
+        "Nombre": "La Libertad Oeste",
+        "Departamento": {
+            "Nombre": "La Libertad"
+        }
+    },
+    {
+        "Nombre": "La Libertad Este",
+        "Departamento": {
+            "Nombre": "La Libertad"
+        }
+    },
+    {
+        "Nombre": "La Libertad Costa",
+        "Departamento": {
+            "Nombre": "La Libertad"
+        }
+    },
+    {
+        "Nombre": "La Libertad Sur",
+        "Departamento": {
+            "Nombre": "La Libertad"
+        }
+    },
+    {
+        "Nombre": "La paz Oeste",
+        "Departamento": {
+            "Nombre": "La Paz"
+        }
+    },
+    {
+        "Nombre": "La paz Centro",
+        "Departamento": {
+            "Nombre": "La Paz"
+        }
+    },
+    {
+        "Nombre": "La paz Este",
+        "Departamento": {
+            "Nombre": "La Paz"
+        }
+    },
+    {
+        "Nombre": "La Unión Norte",
+        "Departamento": {
+            "Nombre": "La Unión"
+        }
+    },
+    {
+        "Nombre": "La Unión Sur",
+        "Departamento": {
+            "Nombre": "La Unión"
+        }
+    },
+    {
+        "Nombre": "Morazán Norte",
+        "Departamento": {
+            "Nombre": "Morazán"
+        }
+    },
+    {
+        "Nombre": "Morazán Sur",
+        "Departamento": {
+            "Nombre": "Morazán"
+        }
+    },
+    {
+        "Nombre": "San Salvador Norte",
+        "Departamento": {
+            "Nombre": "San Salvador"
+        }
+    },
+    {
+        "Nombre": "San Salvador Oeste",
+        "Departamento": {
+            "Nombre": "San Salvador"
+        }
+    },
+    {
+        "Nombre": "San Salvador Este",
+        "Departamento": {
+            "Nombre": "San Salvador"
+        }
+    },
+    {
+        "Nombre": "San Salvador Centro",
+        "Departamento": {
+            "Nombre": "San Salvador"
+        }
+    },
+    {
+        "Nombre": "San Salvador Sur",
+        "Departamento": {
+            "Nombre": "San Salvador"
+        }
+    },
+    {
+        "Nombre": "San Miguel Norte",
+        "Departamento": {
+            "Nombre": "San Miguel"
+        }
+    },
+    {
+        "Nombre": "San Miguel Centro",
+        "Departamento": {
+            "Nombre": "San Miguel"
+        }
+    },
+    {
+        "Nombre": "San Miguel Oeste",
+        "Departamento": {
+            "Nombre": "San Miguel"
+        }
+    },
+    {
+        "Nombre": "San Vicente Norte",
+        "Departamento": {
+            "Nombre": "San Vicente"
+        }
+    },
+    {
+        "Nombre": "San Vicente Sur",
+        "Departamento": {
+            "Nombre": "San Vicente"
+        }
+    },
+    {
+        "Nombre": "Santa Ana Norte",
+        "Departamento": {
+            "Nombre": "Santa Ana"
+        }
+    },
+    {
+        "Nombre": "Santa Ana Centro",
+        "Departamento": {
+            "Nombre": "Santa Ana"
+        }
+    },
+    {
+        "Nombre": "Santa Ana Este",
+        "Departamento": {
+            "Nombre": "Santa Ana"
+        }
+    },
+    {
+        "Nombre": "Santa Ana Oeste",
+        "Departamento": {
+            "Nombre": "Santa Ana"
+        }
+    },
+    {
+        "Nombre": "Sonsonate Norte",
+        "Departamento": {
+            "Nombre": "Sonsonate"
+        }
+    },
+    {
+        "Nombre": "Sonsonate Centro",
+        "Departamento": {
+            "Nombre": "Sonsonate"
+        }
+    },
+    {
+        "Nombre": "Sonsonate Este",
+        "Departamento": {
+            "Nombre": "Sonsonate"
+        }
+    },
+    {
+        "Nombre": "Sonsonate Oeste",
+        "Departamento": {
+            "Nombre": "Sonsonate"
+        }
+    },
+    {
+        "Nombre": "Usulután Norte",
+        "Departamento": {
+            "Nombre": "Usulután"
+        }
+    },
+    {
+        "Nombre": "Usulután Este",
+        "Departamento": {
+            "Nombre": "Usulután"
+        }
+    },
+    {
+        "Nombre": "Usulután Oeste",
+        "Departamento": {
+            "Nombre": "Usulután"
+        }
+    }
+]
