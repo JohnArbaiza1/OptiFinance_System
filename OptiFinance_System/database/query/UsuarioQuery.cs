@@ -118,7 +118,14 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
             new SqlParameter("@id", id)
         };
         
-        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
+    }
+
+    public Usuario? FindByUsername(string username)
+    {
+        string query = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE alias = @alias";
+        List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@alias", username) };
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
     }
 
     public List<Usuario> SelectAll()
@@ -135,10 +142,10 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
             Nombre = reader.GetString(1),
             Apellido = reader.GetString(2),
             Alias = reader.GetString(3),
-            Email = reader.GetString(4),
+            Email = reader.IsDBNull(4) ? null : reader.GetString(4),
             Password = reader.GetString(5),
-            Telefono = reader.GetString(6),
-            Direccion = reader.GetString(7),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
+            Direccion = reader.IsDBNull(7) ? null : reader.GetString(7),
             TipoUsuario = TipoUsuarioQuery.Instance.FindById(reader.GetInt64(8))!
         };
     }

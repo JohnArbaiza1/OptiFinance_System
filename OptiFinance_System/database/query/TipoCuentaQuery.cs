@@ -70,7 +70,7 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
             new SqlParameter("@id", id)
         };
 
-        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
     }
 
     public List<TipoCuenta> SelectAll()

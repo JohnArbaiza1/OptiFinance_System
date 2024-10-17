@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using Message = OptiFinance_System.utils.Message;
 
@@ -96,7 +97,7 @@ public static class QueryHelper
                     command.Parameters.AddRange(parameters.ToArray());
                 }
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                 {
                     while (reader.Read())
                     {
@@ -116,7 +117,7 @@ public static class QueryHelper
         return resultList;
     }
 
-    public static T? ExecuteFindById<T>(Connection connection, string query, Func<SqlDataReader, T> func,
+    public static T? ExecuteFind<T>(Connection connection, string query, Func<SqlDataReader, T> func,
         List<SqlParameter> parameters)
     {
         T? entity = default;
@@ -128,7 +129,7 @@ public static class QueryHelper
             {
                 command.Parameters.AddRange(parameters.ToArray());
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                 {
                     if (reader.Read())
                     {
@@ -139,7 +140,8 @@ public static class QueryHelper
         }
         catch (Exception e)
         {
-            Message.MessageViewError(@"Error en la consulta SQL: " + e.Message);
+            // Message.MessageViewError(@"Error en la consulta SQL refdgdf: " + e.Message);
+            throw new Exception(e.Message);
         }
         finally
         {

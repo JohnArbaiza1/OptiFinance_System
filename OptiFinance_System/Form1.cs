@@ -6,6 +6,7 @@ using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
+using OptiFinance_System.utils;
 using Message = OptiFinance_System.utils.Message;
 using Registro = OptiFinance_System.Views.Registro;
 
@@ -93,20 +94,8 @@ namespace OptiFinance_System
         
         private static bool ValidarUsuario(string username, string password)
         {
-            DatabaseHelper databaseHelper = new DatabaseHelper("");
-            string query = $@"SELECT * FROM usuarios WHERE alias = '{username}'";
-            SqlDataReader reader = databaseHelper.ExecuteReader(query, Connection.Instance.GetSqlConnection());
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    string? passwordHash = reader["password"].ToString();
-                    if (BCrypt.Net.BCrypt.Verify(password, passwordHash))
-                    {
-                        return true;
-                    }
-                }
-            }
+            Usuario? usuario = UsuarioQuery.Instance.FindByUsername(username);
+            if (!Validations.UserExist(usuario)) return false;
             MessageBox.Show(@"Usuario o contraseña incorrectos");
             return false;
         }
@@ -162,6 +151,12 @@ namespace OptiFinance_System
             txtPassword.Text = @"PASSWORD";
             txtPassword.ForeColor = Color.Goldenrod;
         }
+        
+        private bool SigningSucces(Usuario? user, string password)
+        {
+            if (!Validations.UserExist(user)) return false;
+            return Validations.ComparePasswordHash(password, user!.Password);
+        }
 
         //Variables
         private string _usuario = "";
@@ -171,7 +166,14 @@ namespace OptiFinance_System
         {
             _usuario = txtUser.Text;
             _pass = txtPassword.Text;
-            if (!ValidarUsuario(_usuario, _pass)) return;
+            Usuario? usuario = UsuarioQuery.Instance.FindByUsername(_usuario);
+            Console.WriteLine(usuario);
+            if (!SigningSucces(usuario, _pass))
+            {
+                MessageBox.Show(@"Usuario o contraseña incorrectos");
+                return;
+            }
+            // if (!ValidarUsuario(_usuario, _pass)) return;
             this.Hide();
             Principal menu = new Principal();
             menu.Show();

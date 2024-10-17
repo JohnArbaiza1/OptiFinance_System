@@ -82,7 +82,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
             new SqlParameter("@id", id)
         };
 
-        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
     }
 
     public List<Partida> SelectAll()

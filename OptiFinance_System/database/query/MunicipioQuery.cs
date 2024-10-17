@@ -160,14 +160,14 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
             new SqlParameter("@id", id)
         };
 
-        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
     }
 
     public Municipio? FindByName(string name)
     {
         string query = "SELECT id, nombre, id_departamento FROM municipios WHERE nombre = @nombre";
         List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@nombre", name) };
-        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
     }
 
     public List<Municipio> SelectAll()

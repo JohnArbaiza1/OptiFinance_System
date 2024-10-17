@@ -172,7 +172,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             new SqlParameter("@id", id)
         };
 
-        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
     }
     
     public Departamento? FindByName(string name)
@@ -184,7 +184,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             new SqlParameter("@nombre", name)
         };
         
-        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
     }
 
     public List<Departamento> SelectAll()

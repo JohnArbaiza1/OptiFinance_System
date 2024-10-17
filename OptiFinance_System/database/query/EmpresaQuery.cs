@@ -123,7 +123,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
             new SqlParameter("@id", id)
         };
 
-        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
     }
 
     public List<Empresa> SelectAll()
