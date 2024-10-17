@@ -218,6 +218,10 @@ namespace OptiFinance_System.Views
             {
                 btnIngresarCuenta.BackColor = Color.FromArgb(34, 53, 80);
             }
+            if (Application.OpenForms["CatalogoCuentas"] == null)
+            {
+                btnCatalogo.BackColor = Color.FromArgb(34, 53, 80);
+            }
         }
         #endregion
 
@@ -369,6 +373,12 @@ namespace OptiFinance_System.Views
         {
             abrirF<IngresarCuentas>();
             btnIngresarCuenta.BackColor = Color.FromArgb(215, 143, 35);
+        }
+
+        private void btnCatalogo_Click(object sender, EventArgs e)
+        {
+            abrirF<CatalogoCuentas>();
+            btnCatalogo.BackColor = Color.FromArgb(215, 143, 35);
         }
     }
 }
