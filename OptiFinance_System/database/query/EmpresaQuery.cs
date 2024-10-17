@@ -18,6 +18,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
     {
         _connectionInstance = Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
+        _connectionInstance.OpenConnection();
     }
 
     public static EmpresaQuery Instance => _instance.Value;
@@ -41,9 +42,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
             new SqlParameter("@id_distrito", entity.Distrito.Id)
         };
         
-        _connectionInstance.OpenConnection();
         bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 
@@ -52,8 +51,6 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         string query =
             "INSERT INTO empresas (nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +
             "VALUES (@nombre, @nit, @giro_economico, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito)";
-        
-        _connectionInstance.OpenConnection();
 
         return QueryHelper.ExecuteInTransaction(_connectionInstance, transaction =>
         {

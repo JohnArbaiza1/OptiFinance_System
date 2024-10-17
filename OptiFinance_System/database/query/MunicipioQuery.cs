@@ -17,6 +17,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
     {
         _connectionInstance = Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
+        _connectionInstance.OpenConnection();
     }
 
     public static MunicipioQuery Instance => _instance.Value;
@@ -29,10 +30,8 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
             new SqlParameter("@nombre", entity.Nombre),
             new SqlParameter("@id_departamento", entity.Departamento.Id)
         };
-
-        _connectionInstance.OpenConnection();
+        
         bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 
@@ -70,10 +69,8 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
             new SqlParameter("@id_departamento", entity.Departamento.Id),
             new SqlParameter("@id", entity.Id)
         };
-
-        _connectionInstance.OpenConnection();
+        
         bool result = QueryHelper.ExecuteUpdate(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 
@@ -109,10 +106,8 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         {
             new SqlParameter("@id", id)
         };
-
-        _connectionInstance.OpenConnection();
+        
         bool result = QueryHelper.ExecuteDelete(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 

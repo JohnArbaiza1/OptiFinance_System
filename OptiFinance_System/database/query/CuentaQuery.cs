@@ -18,6 +18,7 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
     {
         _connectionInstance = Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
+        _connectionInstance.OpenConnection();
     }
     
     public static CuentaQuery Instance => _instance.Value;
@@ -32,9 +33,7 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
             new SqlParameter("@id_tipo_cuenta", entity.TipoCuenta.Id)
         };
         
-        _connectionInstance.OpenConnection();
         bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 

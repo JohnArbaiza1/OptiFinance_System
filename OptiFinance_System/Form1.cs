@@ -14,6 +14,8 @@ namespace OptiFinance_System
 {
     public partial class Form1 : Form
     {
+
+        public static Usuario currentUser = new();
         public Form1()
         {
             InitializeComponent();
@@ -173,7 +175,7 @@ namespace OptiFinance_System
                 MessageBox.Show(@"Usuario o contraseña incorrectos");
                 return;
             }
-            // if (!ValidarUsuario(_usuario, _pass)) return;
+            currentUser = usuario!;
             this.Hide();
             Principal menu = new Principal();
             menu.Show();

@@ -57,10 +57,6 @@ public static class QueryHelper
         {
             Message.MessageViewError(@"Error al abrir la conexión: " + ex.Message);
         }
-        finally
-        {
-            connection.CloseConnection();
-        }
 
         return isSuccess;
     }
@@ -87,7 +83,6 @@ public static class QueryHelper
         List<SqlParameter>? parameters = null)
     {
         List<T> resultList = new List<T>();
-        connection.OpenConnection();
         try
         {
             using (SqlCommand command = new SqlCommand(query, connection.GetSqlConnection()))
@@ -97,7 +92,7 @@ public static class QueryHelper
                     command.Parameters.AddRange(parameters.ToArray());
                 }
 
-                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -108,14 +103,12 @@ public static class QueryHelper
         }
         catch (Exception e)
         {
-            Message.MessageViewError(@"Error en la consulta SQL: " + e.Message);
+            throw new Exception(@"Error en la consulta SQL: " + e.Message);
         }
-        finally
-        {
-            connection.CloseConnection();
-        }
+    
         return resultList;
     }
+
 
     public static T? ExecuteFind<T>(Connection connection, string query, Func<SqlDataReader, T> func,
         List<SqlParameter> parameters)
@@ -129,7 +122,7 @@ public static class QueryHelper
             {
                 command.Parameters.AddRange(parameters.ToArray());
 
-                using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
@@ -142,10 +135,6 @@ public static class QueryHelper
         {
             // Message.MessageViewError(@"Error en la consulta SQL refdgdf: " + e.Message);
             throw new Exception(e.Message);
-        }
-        finally
-        {
-            connection.CloseConnection();
         }
         return entity;
     }

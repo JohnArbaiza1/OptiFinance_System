@@ -11,7 +11,7 @@ public class Empresa
     public string Telefono { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public Usuario Usuario { get; set; } = new Usuario();
-    public Distrito Distrito { get; set; } = new Distrito();
+    public Distrito? Distrito { get; set; } = new Distrito();
 
     public override string ToString()
     {

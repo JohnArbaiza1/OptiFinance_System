@@ -21,6 +21,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
     {
         _connectionInstance = database.connection.Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
+        _connectionInstance.OpenConnection();
     }
 
     public static DepartamentoQuery Instance => _instance.Value;
@@ -35,10 +36,8 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             new SqlParameter("@nombre", entity.Nombre),
             new SqlParameter("@codigo", entity.Codigo)
         };
-
-        _connectionInstance.OpenConnection();
+        
         bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 
@@ -77,10 +76,8 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             new SqlParameter("@codigo", entity.Codigo),
             new SqlParameter("@id", entity.Id)
         };
-
-        _connectionInstance.OpenConnection();
+        
         bool result = QueryHelper.ExecuteUpdate(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 
@@ -121,9 +118,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             new SqlParameter("@id", id)
         };
         
-        _connectionInstance.OpenConnection();
         bool result = QueryHelper.ExecuteDelete(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 

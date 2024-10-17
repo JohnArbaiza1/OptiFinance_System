@@ -18,6 +18,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
     {
         _connectionInstance = Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
+        _connectionInstance.OpenConnection();
     }
 
     public static UsuarioQuery Instance => _instance.Value;
@@ -39,10 +40,8 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
             new SqlParameter("@direccion", entity.Direccion),
             new SqlParameter("@id_tipo_usuario", entity.TipoUsuario.Id)
         };
-
-        _connectionInstance.OpenConnection();
+        
         bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 

@@ -18,6 +18,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
     {
         _connectionInstance = Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
+        _connectionInstance.OpenConnection();
     }
 
     public static PartidaQuery Instance => _instance.Value;
@@ -32,10 +33,8 @@ public class PartidaQuery : IQueryEstandar<Partida>
             new SqlParameter("@fecha", entity.Fecha),
             new SqlParameter("@id_empresa", entity.Empresa.Id)
         };
-
-        _connectionInstance.OpenConnection();
+        
         bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 

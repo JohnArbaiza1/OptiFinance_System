@@ -20,6 +20,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
     {
         _connectionInstance = Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
+        _connectionInstance.OpenConnection();
     }
     
     public static DistritoQuery Instance => _instance.Value;
@@ -33,9 +34,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
             new SqlParameter("@id_municipio", entity.Municipio.Id)
         };
         
-        _connectionInstance.OpenConnection();
         bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 
@@ -75,9 +74,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
             new SqlParameter("@id", entity.Id)
         };
         
-        _connectionInstance.OpenConnection();
         bool result = QueryHelper.ExecuteUpdate(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 
@@ -115,9 +112,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
             new SqlParameter("@id", id)
         };
         
-        _connectionInstance.OpenConnection();
         bool result = QueryHelper.ExecuteDelete(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 

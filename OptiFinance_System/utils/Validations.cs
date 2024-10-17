@@ -16,4 +16,9 @@ public class Validations
     {
         return user != null && !user.Alias.IsNullOrEmpty() && !user.Password.IsNullOrEmpty();
     }
+    
+    public static bool FieldNullOrEmpty(string field)
+    {
+        return field.IsNullOrEmpty();
+    }
 }

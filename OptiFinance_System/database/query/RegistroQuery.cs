@@ -18,6 +18,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
     {
         _connectionInstance = Connection.Instance;
         _connection = _connectionInstance.GetSqlConnection();
+        _connectionInstance.OpenConnection();
     }
     
     public static RegistroQuery Instance => _instance.Value;
@@ -33,9 +34,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
             new SqlParameter("@id_partida", entity.Partida.Id)
         };
         
-        _connectionInstance.OpenConnection();
         bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
-        _connectionInstance.CloseConnection();
         return result;
     }
 
