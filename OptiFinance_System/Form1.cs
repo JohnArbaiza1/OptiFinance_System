@@ -1,8 +1,13 @@
 using System.Runtime.InteropServices;
+using System.Text.Json;
 using OptiFinance_System.Views;
 using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
+using OptiFinance_System.database.models;
+using OptiFinance_System.database.query;
+using Message = OptiFinance_System.utils.Message;
+using Registro = OptiFinance_System.Views.Registro;
 
 namespace OptiFinance_System
 {
@@ -23,7 +28,70 @@ namespace OptiFinance_System
             MessageBox.Show(value == 1 ? @"Usuario registrado correctamente" : @"Error al registrar el usuario");
         }
         
-        private bool validarUsuario(string username, string password)
+        private List<T>? DeserializeJson<T>(string jsonPath, bool validateFileExiste = false)
+        {
+            if (validateFileExiste && !File.Exists(jsonPath)) return null;
+            string json = File.ReadAllText(jsonPath);
+            return JsonSerializer.Deserialize<List<T>>(json);
+        }
+
+        private void InsertarDepartamentos()
+        {
+            string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"database", "resources", "departamentos.json");
+
+            if (!File.Exists(jsonPath)) return;
+            string departamentosJson = File.ReadAllText(jsonPath);
+            List<Departamento>? departamentos = DeserializeJson<Departamento>(departamentosJson);
+
+            if (departamentos == null) return;
+            DepartamentoQuery departamentoQuery = DepartamentoQuery.Instance;
+            if (!departamentoQuery.Insert(departamentos)) return;
+            MessageBox.Show(@"Departamentos registrados correctamente");
+        }
+        
+        private void InsertarMunicipios()
+        {
+            string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources",
+                "municipios.json");
+
+            if (!File.Exists(jsonPath))
+            {
+                MessageBox.Show(@"No se encontró el archivo distritos.json");
+                return;
+            }
+            string municipiosJson = File.ReadAllText(jsonPath);
+            List<Municipio>? municipios = DeserializeJson<Municipio>(municipiosJson);
+            if (municipios == null) return;
+            municipios.ForEach(municipio => municipio.Departamento = DepartamentoQuery.Instance.FindByName(municipio.Departamento.Nombre)!);
+            if (MunicipioQuery.Instance.Insert(municipios))
+            {
+                MessageBox.Show(@"Municipios registrados correctamente");
+            }
+        }
+
+        private void InsertarDistritos()
+        {
+            string distritosJsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources",
+                "distritos.json");
+
+            if (!File.Exists(distritosJsonPath))
+            {
+                MessageBox.Show(@"No se encontró el archivo distritos.json");
+                return;
+            }
+
+            string distritosJson = File.ReadAllText(distritosJsonPath);
+            
+            List<Distrito>? distritos = JsonSerializer.Deserialize<List<Distrito>>(distritosJson);
+            if (distritos == null) return;
+            distritos.ForEach(distrito => distrito.Municipio = MunicipioQuery.Instance.FindByName(distrito.Municipio.Nombre)!);
+            if (DistritoQuery.Instance.Insert(distritos))
+            {
+                MessageBox.Show(@"Distritos registrados correctamente");
+            }
+        }
+        
+        private static bool ValidarUsuario(string username, string password)
         {
             DatabaseHelper databaseHelper = new DatabaseHelper("");
             string query = $@"SELECT * FROM usuarios WHERE alias = '{username}'";
@@ -63,6 +131,9 @@ namespace OptiFinance_System
         private void Form1_Load(object sender, EventArgs e)
         {
             // InsertarUsuarios();
+            // InsertarDepartamentos();
+            // InsertarMunicipios();
+            // InsertarDistritos();
         }
 
         private void txtUser_Enter(object sender, EventArgs e)
@@ -100,7 +171,7 @@ namespace OptiFinance_System
         {
             _usuario = txtUser.Text;
             _pass = txtPassword.Text;
-            if (!validarUsuario(_usuario, _pass)) return;
+            if (!ValidarUsuario(_usuario, _pass)) return;
             this.Hide();
             Principal menu = new Principal();
             menu.Show();

@@ -12,6 +12,15 @@
     <Compile Remove="Formularios\**" />
     <EmbeddedResource Remove="Formularios\**" />
     <None Remove="Formularios\**" />
+    <None Update="database\resources\departamentos.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="database\resources\distritos.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="database\resources\municipios.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
   <ItemGroup>

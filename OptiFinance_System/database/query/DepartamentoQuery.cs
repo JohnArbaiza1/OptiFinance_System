@@ -174,6 +174,18 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
         return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
     }
+    
+    public Departamento? FindByName(string name)
+    {
+        string query = "SELECT id, nombre, codigo FROM departamentos WHERE nombre = @nombre";
+        
+        List<SqlParameter> parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@nombre", name)
+        };
+        
+        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
+    }
 
     public List<Departamento> SelectAll()
     {
