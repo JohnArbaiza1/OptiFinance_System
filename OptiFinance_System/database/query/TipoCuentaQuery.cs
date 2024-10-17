@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.connection;
+using OptiFinance_System.database.helper;
 using OptiFinance_System.database.@interface;
 using OptiFinance_System.database.models;
 
@@ -6,6 +8,20 @@ namespace OptiFinance_System.database.query;
 
 public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
 {
+    private static readonly Lazy<TipoCuentaQuery> _instance =
+        new Lazy<TipoCuentaQuery>(() => new TipoCuentaQuery());
+
+    private readonly SqlConnection _connection;
+    private readonly Connection _connectionInstance;
+
+    private TipoCuentaQuery()
+    {
+        _connectionInstance = Connection.Instance;
+        _connection = _connectionInstance.GetSqlConnection();
+    }
+
+    public static TipoCuentaQuery Instance => _instance.Value;
+
     public bool Insert(TipoCuenta entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
@@ -48,16 +64,27 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
 
     public TipoCuenta? FindById(long id)
     {
-        throw new NotImplementedException();
+        string query = "SELECT id, nombre FROM tipo_cuenta WHERE id = @id";
+        List<SqlParameter> parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@id", id)
+        };
+
+        return QueryHelper.ExecuteFindById(_connectionInstance, query, MapEntity, parameters);
     }
 
     public List<TipoCuenta> SelectAll()
     {
-        throw new NotImplementedException();
+        string query = "SELECT id, nombre FROM tipo_cuenta";
+        return QueryHelper.ExecuteSelect(_connectionInstance, query, MapEntity);
     }
 
     public TipoCuenta MapEntity(SqlDataReader reader)
     {
-        throw new NotImplementedException();
+        return new TipoCuenta()
+        {
+            Id = reader.GetInt64(0),
+            Nombre = reader.GetString(1)
+        };
     }
 }
