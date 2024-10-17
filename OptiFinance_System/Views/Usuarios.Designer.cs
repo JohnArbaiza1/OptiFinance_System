@@ -109,7 +109,7 @@
             // btnGuardar
             // 
             btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnGuardar.BackColor = Color.Black;
+            btnGuardar.BackColor = Color.FromArgb(71, 102, 121);
             btnGuardar.ForeColor = Color.White;
             btnGuardar.Location = new Point(13, 299);
             btnGuardar.Name = "btnGuardar";

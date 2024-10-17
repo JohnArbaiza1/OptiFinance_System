@@ -267,6 +267,7 @@
             btnIngresarPartida.TextAlign = ContentAlignment.MiddleLeft;
             btnIngresarPartida.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnIngresarPartida.UseVisualStyleBackColor = true;
+            btnIngresarPartida.Click += btnIngresarPartida_Click;
             // 
             // btnRLiquidez
             // 
