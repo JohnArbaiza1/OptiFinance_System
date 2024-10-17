@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
-using OptiFinance_System.database.@interface;
+using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
@@ -10,14 +10,12 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 {
     private static readonly Lazy<UsuarioQuery> _instance =
         new Lazy<UsuarioQuery>(() => new UsuarioQuery());
-
-    private readonly SqlConnection _connection;
+    
     private readonly Connection _connectionInstance;
 
     private UsuarioQuery()
     {
         _connectionInstance = Connection.Instance;
-        _connection = _connectionInstance.GetSqlConnection();
         _connectionInstance.OpenConnection();
     }
 
@@ -41,7 +39,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
             new SqlParameter("@id_tipo_usuario", entity.TipoUsuario.Id)
         };
         
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
+        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
         return result;
     }
 
@@ -52,7 +50,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
             "VALUES (@nombres, @apellidos, @alias, @email, @password, @telefono, @direccion, @id_tipo_usuario)";
             
             _connectionInstance.OpenConnection();
-            return QueryHelper.ExecuteInTransaction(_connectionInstance, transaction =>
+            return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
             {
                 foreach (Usuario entity in entities)
                 {
@@ -68,7 +66,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
                         new SqlParameter("@id_tipo_usuario", entity.TipoUsuario.Id)
                     };
     
-                    bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
+                    bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
                     if (!result)
                     {
                         return false;
@@ -117,20 +115,20 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
             new SqlParameter("@id", id)
         };
         
-        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
     public Usuario? FindByUsername(string username)
     {
         string query = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE alias = @alias";
         List<SqlParameter> parameters = new List<SqlParameter> { new SqlParameter("@alias", username) };
-        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
     public List<Usuario> SelectAll()
     {
         string query = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios";
-        return QueryHelper.ExecuteSelect(_connectionInstance, query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
     }
 
     public Usuario MapEntity(SqlDataReader reader)

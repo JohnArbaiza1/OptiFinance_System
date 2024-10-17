@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
-using OptiFinance_System.database.@interface;
+using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
@@ -10,14 +10,12 @@ public class PartidaQuery : IQueryEstandar<Partida>
 {
     private static readonly Lazy<PartidaQuery> _instance =
         new Lazy<PartidaQuery>(() => new PartidaQuery());
-
-    private readonly SqlConnection _connection;
+    
     private readonly Connection _connectionInstance;
 
     private PartidaQuery()
     {
         _connectionInstance = Connection.Instance;
-        _connection = _connectionInstance.GetSqlConnection();
         _connectionInstance.OpenConnection();
     }
 
@@ -34,7 +32,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
             new SqlParameter("@id_empresa", entity.Empresa.Id)
         };
         
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
+        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
         return result;
     }
 
@@ -81,13 +79,13 @@ public class PartidaQuery : IQueryEstandar<Partida>
             new SqlParameter("@id", id)
         };
 
-        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
     public List<Partida> SelectAll()
     {
         string query = "SELECT id, detalles, fecha, id_empresa FROM partidas";
-        return QueryHelper.ExecuteSelect(_connectionInstance, query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
     }
 
     public Partida MapEntity(SqlDataReader reader)

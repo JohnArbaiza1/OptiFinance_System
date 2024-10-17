@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
-using OptiFinance_System.database.@interface;
+using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
@@ -10,14 +10,12 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
 {
     private static readonly Lazy<EmpresaQuery> _instance =
         new Lazy<EmpresaQuery>(() => new EmpresaQuery());
-
-    private readonly SqlConnection _connection;
+    
     private readonly Connection _connectionInstance;
 
     private EmpresaQuery()
     {
         _connectionInstance = Connection.Instance;
-        _connection = _connectionInstance.GetSqlConnection();
         _connectionInstance.OpenConnection();
     }
 
@@ -42,7 +40,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
             new SqlParameter("@id_distrito", entity.Distrito.Id)
         };
         
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
+        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
         return result;
     }
 
@@ -52,7 +50,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
             "INSERT INTO empresas (nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +
             "VALUES (@nombre, @nit, @giro_economico, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito)";
 
-        return QueryHelper.ExecuteInTransaction(_connectionInstance, transaction =>
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
             foreach (var entity in entities)
             {
@@ -69,7 +67,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
                     new SqlParameter("@id_distrito", entity.Distrito.Id)
                 };
                 
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
+                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
                 if (!result)
                 {
                     return false;
@@ -120,7 +118,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
             new SqlParameter("@id", id)
         };
 
-        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
     public List<Empresa> SelectAll()
@@ -128,7 +126,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         string query = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, " + 
             "telefono, email, id_usuario, id_distrito FROM empresas";
 
-        return QueryHelper.ExecuteSelect(_connectionInstance, query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
     }
 
     public Empresa MapEntity(SqlDataReader reader)
@@ -137,10 +135,10 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),
-            Nit = reader.GetString(2),
+            Nit = reader.IsDBNull(2) ? null : reader.GetString(2),
             GiroEconomico = reader.GetString(3),
             RepresentanteLegal = reader.GetString(4),
-            Direccion = reader.GetString(5),
+            Direccion = reader.IsDBNull(5) ? null : reader.GetString(5),
             Telefono = reader.GetString(6),
             Email = reader.GetString(7),
             Usuario = UsuarioQuery.Instance.FindById(reader.GetInt64(8))!,

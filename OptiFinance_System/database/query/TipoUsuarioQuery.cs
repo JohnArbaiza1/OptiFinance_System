@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
-using OptiFinance_System.database.@interface;
+using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
@@ -9,16 +9,14 @@ namespace OptiFinance_System.database.query;
 public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
 {
     
-    private static readonly Lazy<TipoUsuarioQuery> _instance =
+    private static readonly Lazy<TipoUsuarioQuery> _instance = 
         new Lazy<TipoUsuarioQuery>(() => new TipoUsuarioQuery());
-
-    private readonly SqlConnection _connection;
+    
     private readonly Connection _connectionInstance;
     
     private TipoUsuarioQuery()
     {
         _connectionInstance = Connection.Instance;
-        _connection = _connectionInstance.GetSqlConnection();
     }
     
     public static TipoUsuarioQuery Instance => _instance.Value;
@@ -69,13 +67,13 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
         {
             new SqlParameter("@id", id)
         };
-        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
     public List<TipoUsuario> SelectAll()
     {
         string query = "SELECT id, nombre FROM tipo_usuario";
-        return QueryHelper.ExecuteSelect(_connectionInstance, query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
     }
 
     public TipoUsuario MapEntity(SqlDataReader reader)

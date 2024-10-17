@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
-using OptiFinance_System.database.@interface;
+using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
@@ -10,14 +10,12 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
 {
     private static readonly Lazy<TipoCuentaQuery> _instance =
         new Lazy<TipoCuentaQuery>(() => new TipoCuentaQuery());
-
-    private readonly SqlConnection _connection;
+    
     private readonly Connection _connectionInstance;
 
     private TipoCuentaQuery()
     {
         _connectionInstance = Connection.Instance;
-        _connection = _connectionInstance.GetSqlConnection();
     }
 
     public static TipoCuentaQuery Instance => _instance.Value;
@@ -70,13 +68,13 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
             new SqlParameter("@id", id)
         };
 
-        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
     public List<TipoCuenta> SelectAll()
     {
         string query = "SELECT id, nombre FROM tipo_cuenta";
-        return QueryHelper.ExecuteSelect(_connectionInstance, query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
     }
 
     public TipoCuenta MapEntity(SqlDataReader reader)

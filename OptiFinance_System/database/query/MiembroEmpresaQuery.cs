@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-using OptiFinance_System.database.@interface;
+using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
@@ -58,6 +58,17 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
 
     public MiembroEmpresa MapEntity(SqlDataReader reader)
     {
-        throw new NotImplementedException();
+        return new MiembroEmpresa()
+        {
+            Id = reader.GetInt64(0),
+            Nombre = reader.GetString(1),
+            Apellido = reader.GetString(2),
+            Alias = reader.GetString(3),
+            Dui = reader.GetString(4),
+            Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
+            Direccion = reader.GetString(7),
+            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(8))
+        };
     }
 }

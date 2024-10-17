@@ -7,8 +7,8 @@ public class MiembroEmpresa
     public string Apellido { get; set; } = string.Empty;
     public string Alias { get; set; } = string.Empty;
     public string Dui { get; set; } = string.Empty;
-    public string Correo { get; set; } = string.Empty;
-    public string Telefono { get; set; } = string.Empty;
+    public string? Correo { get; set; } = string.Empty;
+    public string? Telefono { get; set; } = string.Empty;
     public string Direccion { get; set; } = string.Empty;
     public Empresa? Empresa { get; set; } = null;
 

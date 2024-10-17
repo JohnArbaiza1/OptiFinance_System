@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.helper;
-using OptiFinance_System.database.@interface;
+using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
@@ -10,14 +10,12 @@ public class RegistroQuery : IQueryEstandar<Registro>
 {
     private static readonly Lazy<RegistroQuery> _instance =
         new Lazy<RegistroQuery>(() => new RegistroQuery());
-
-    private readonly SqlConnection _connection;
+    
     private readonly Connection _connectionInstance;
     
     private RegistroQuery()
     {
         _connectionInstance = Connection.Instance;
-        _connection = _connectionInstance.GetSqlConnection();
         _connectionInstance.OpenConnection();
     }
     
@@ -34,7 +32,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
             new SqlParameter("@id_partida", entity.Partida.Id)
         };
         
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
+        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
         return result;
     }
 
@@ -42,7 +40,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
     {
         string query = "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
         _connectionInstance.OpenConnection();
-        return QueryHelper.ExecuteInTransaction(_connectionInstance, transaction =>
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
             foreach (var entity in entities)
             {
@@ -54,7 +52,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
                     new SqlParameter("@id_partida", entity.Partida.Id)
                 };
                 
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance, query, parameters, transaction);
+                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
                 if (!result)
                 {
                     return false;
@@ -102,13 +100,13 @@ public class RegistroQuery : IQueryEstandar<Registro>
             new SqlParameter("@id", id)
         };
         
-        return QueryHelper.ExecuteFind(_connectionInstance, query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
     public List<Registro> SelectAll()
     {
         string query = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros";
-        return QueryHelper.ExecuteSelect(_connectionInstance, query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
     }
 
     public Registro MapEntity(SqlDataReader reader)

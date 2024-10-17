@@ -7,12 +7,12 @@ namespace OptiFinance_System.database.helper;
 
 public static class QueryHelper
 {
-    private static bool ExecuteNonQuery(Connection connection, string query, List<SqlParameter> parameters,
+    private static bool ExecuteNonQuery(SqlConnection connection, string query, List<SqlParameter> parameters,
         SqlTransaction? transaction = null)
     {
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection.GetSqlConnection(), transaction))
+            using (SqlCommand command = new SqlCommand(query, connection, transaction))
             {
                 command.Parameters.AddRange(parameters.ToArray());
                 return command.ExecuteNonQuery() > 0;
@@ -25,12 +25,12 @@ public static class QueryHelper
         }
     }
 
-    public static bool ExecuteInTransaction(Connection connection, Func<SqlTransaction, bool> operation)
+    public static bool ExecuteInTransaction(SqlConnection connection, Func<SqlTransaction, bool> operation)
     {
         bool isSuccess = false;
         try
         {
-            using (SqlTransaction transaction = connection.GetSqlConnection().BeginTransaction())
+            using (SqlTransaction transaction = connection.BeginTransaction())
             {
                 try
                 {
@@ -61,31 +61,31 @@ public static class QueryHelper
         return isSuccess;
     }
 
-    public static bool ExecuteInsert(Connection connection, string query, List<SqlParameter> parameters,
+    public static bool ExecuteInsert(SqlConnection connection, string query, List<SqlParameter> parameters,
         SqlTransaction? transaction = null)
     {
         return ExecuteNonQuery(connection, query, parameters, transaction);
     }
 
-    public static bool ExecuteUpdate(Connection connection, string query, List<SqlParameter> parameters,
+    public static bool ExecuteUpdate(SqlConnection connection, string query, List<SqlParameter> parameters,
         SqlTransaction? transaction = null)
     {
         return ExecuteNonQuery(connection, query, parameters, transaction);
     }
 
-    public static bool ExecuteDelete(Connection connection, string query, List<SqlParameter> parameters,
+    public static bool ExecuteDelete(SqlConnection connection, string query, List<SqlParameter> parameters,
         SqlTransaction? transaction = null)
     {
         return ExecuteNonQuery(connection, query, parameters, transaction);
     }
 
-    public static List<T> ExecuteSelect<T>(Connection connection, string query, Func<SqlDataReader, T> func,
+    public static List<T> ExecuteSelect<T>(SqlConnection connection, string query, Func<SqlDataReader, T> func,
         List<SqlParameter>? parameters = null)
     {
         List<T> resultList = new List<T>();
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection.GetSqlConnection()))
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
                 if (parameters != null)
                 {
@@ -110,15 +110,14 @@ public static class QueryHelper
     }
 
 
-    public static T? ExecuteFind<T>(Connection connection, string query, Func<SqlDataReader, T> func,
+    public static T? ExecuteFind<T>(SqlConnection connection, string query, Func<SqlDataReader, T> func,
         List<SqlParameter> parameters)
     {
         T? entity = default;
-        connection.OpenConnection();
 
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection.GetSqlConnection()))
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddRange(parameters.ToArray());
 

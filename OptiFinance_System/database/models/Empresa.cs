@@ -4,10 +4,10 @@ public class Empresa
 {
     public long Id { get; set; }
     public string Nombre { get; set; } = string.Empty;
-    public string Nit { get; set; } = string.Empty;
+    public string? Nit { get; set; } = string.Empty;
     public string GiroEconomico { get; set; } = string.Empty;
     public string RepresentanteLegal { get; set; } = string.Empty;
-    public string Direccion { get; set; } = string.Empty;
+    public string? Direccion { get; set; } = string.Empty;
     public string Telefono { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public Usuario Usuario { get; set; } = new Usuario();
