@@ -45,11 +45,6 @@
             btnBuscar = new Button();
             panel4 = new Panel();
             dataGridView1 = new DataGridView();
-            Fecha = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
             comboFecha = new ComboBox();
             txtCodigo = new TextBox();
             label3 = new Label();
@@ -60,6 +55,11 @@
             panel2 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
+            Fecha = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column1 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -269,41 +269,6 @@
             dataGridView1.Size = new Size(983, 577);
             dataGridView1.TabIndex = 0;
             // 
-            // Fecha
-            // 
-            Fecha.HeaderText = "Fecha";
-            Fecha.MinimumWidth = 6;
-            Fecha.Name = "Fecha";
-            Fecha.Width = 160;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Cuenta";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.Width = 224;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Codigo";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.Width = 137;
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Debe";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.Width = 205;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Haber";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.Width = 205;
-            // 
             // comboFecha
             // 
             comboFecha.FormattingEnabled = true;
@@ -346,7 +311,7 @@
             label4.Name = "label4";
             label4.Size = new Size(82, 23);
             label4.TabIndex = 7;
-            label4.Text = "Codigo:";
+            label4.Text = "Código:";
             // 
             // label2
             // 
@@ -398,6 +363,42 @@
             btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAtras.TabIndex = 5;
             btnAtras.TabStop = false;
+            btnAtras.Click += btnAtras_Click;
+            // 
+            // Fecha
+            // 
+            Fecha.HeaderText = "Fecha";
+            Fecha.MinimumWidth = 6;
+            Fecha.Name = "Fecha";
+            Fecha.Width = 160;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Cuenta";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.Width = 224;
+            // 
+            // Column3
+            // 
+            Column3.HeaderText = "Código";
+            Column3.MinimumWidth = 6;
+            Column3.Name = "Column3";
+            Column3.Width = 137;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "Debe";
+            Column4.MinimumWidth = 6;
+            Column4.Name = "Column4";
+            Column4.Width = 205;
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Haber";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.Width = 205;
             // 
             // RegistrarPartidas
             // 

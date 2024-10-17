@@ -212,7 +212,11 @@ namespace OptiFinance_System.Views
             }
             if (Application.OpenForms["RegistrarPartidas"] == null)
             {
-                btnDiario.BackColor = Color.FromArgb(34, 53, 80);
+                btnIngresarPartida.BackColor = Color.FromArgb(34, 53, 80);
+            }
+            if (Application.OpenForms["IngresarCuentas"] == null)
+            {
+                btnIngresarCuenta.BackColor = Color.FromArgb(34, 53, 80);
             }
         }
         #endregion
@@ -359,6 +363,12 @@ namespace OptiFinance_System.Views
         {
             abrirF<RegistrarPartidas>();
             btnIngresarPartida.BackColor = Color.FromArgb(215, 143, 35);
+        }
+
+        private void btnIngresarCuenta_Click(object sender, EventArgs e)
+        {
+            abrirF<IngresarCuentas>();
+            btnIngresarCuenta.BackColor = Color.FromArgb(215, 143, 35);
         }
     }
 }

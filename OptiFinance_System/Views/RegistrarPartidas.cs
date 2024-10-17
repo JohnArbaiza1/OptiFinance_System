@@ -16,5 +16,10 @@ namespace OptiFinance_System.Views
         {
             InitializeComponent();
         }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
