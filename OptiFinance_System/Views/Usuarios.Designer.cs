@@ -78,17 +78,19 @@
             Container.Dock = DockStyle.Fill;
             Container.ForeColor = Color.FromArgb(35, 55, 80);
             Container.Location = new Point(0, 0);
+            Container.Margin = new Padding(3, 2, 3, 2);
             Container.Name = "Container";
-            Container.Size = new Size(1269, 803);
+            Container.Size = new Size(1110, 602);
             Container.TabIndex = 0;
             // 
             // panelControlUser
             // 
             panelControlUser.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelControlUser.Controls.Add(groupBox1);
-            panelControlUser.Location = new Point(827, 161);
+            panelControlUser.Location = new Point(724, 121);
+            panelControlUser.Margin = new Padding(3, 2, 3, 2);
             panelControlUser.Name = "panelControlUser";
-            panelControlUser.Size = new Size(430, 633);
+            panelControlUser.Size = new Size(376, 475);
             panelControlUser.TabIndex = 7;
             // 
             // groupBox1
@@ -99,9 +101,11 @@
             groupBox1.Controls.Add(btnEliminar);
             groupBox1.Controls.Add(btnEditar);
             groupBox1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(14, 3);
+            groupBox1.Location = new Point(12, 2);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(413, 428);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(361, 321);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Control de Usuarios";
@@ -111,9 +115,10 @@
             btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(71, 102, 121);
             btnGuardar.ForeColor = Color.White;
-            btnGuardar.Location = new Point(13, 299);
+            btnGuardar.Location = new Point(11, 224);
+            btnGuardar.Margin = new Padding(3, 2, 3, 2);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(389, 51);
+            btnGuardar.Size = new Size(340, 38);
             btnGuardar.TabIndex = 6;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -132,42 +137,46 @@
             tableLayoutPanel1.Controls.Add(label2, 0, 1);
             tableLayoutPanel1.Controls.Add(label3, 0, 2);
             tableLayoutPanel1.Controls.Add(txtName, 1, 0);
-            tableLayoutPanel1.Location = new Point(6, 50);
+            tableLayoutPanel1.Location = new Point(5, 38);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.9981289F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.0006237F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.0006275F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.0006275F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(399, 229);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutPanel1.Size = new Size(349, 172);
             tableLayoutPanel1.TabIndex = 5;
             // 
             // txtEmail
             // 
             txtEmail.Dock = DockStyle.Fill;
             txtEmail.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtEmail.Location = new Point(109, 174);
+            txtEmail.Location = new Point(96, 130);
+            txtEmail.Margin = new Padding(3, 2, 3, 2);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(287, 31);
+            txtEmail.Size = new Size(250, 26);
             txtEmail.TabIndex = 8;
             // 
             // txtAlias
             // 
             txtAlias.Dock = DockStyle.Fill;
             txtAlias.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtAlias.Location = new Point(109, 117);
+            txtAlias.Location = new Point(96, 87);
+            txtAlias.Margin = new Padding(3, 2, 3, 2);
             txtAlias.Name = "txtAlias";
-            txtAlias.Size = new Size(287, 31);
+            txtAlias.Size = new Size(250, 26);
             txtAlias.TabIndex = 7;
             // 
             // txtLastName
             // 
             txtLastName.Dock = DockStyle.Fill;
             txtLastName.Font = new Font("Bookman Old Style", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point);
-            txtLastName.Location = new Point(109, 60);
+            txtLastName.Location = new Point(96, 44);
+            txtLastName.Margin = new Padding(3, 2, 3, 2);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(287, 33);
+            txtLastName.Size = new Size(250, 28);
             txtLastName.TabIndex = 6;
             // 
             // lblNombre
@@ -176,9 +185,9 @@
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblNombre.ForeColor = Color.FromArgb(35, 55, 80);
-            lblNombre.Location = new Point(7, 0);
+            lblNombre.Location = new Point(12, 0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(96, 24);
+            lblNombre.Size = new Size(78, 19);
             lblNombre.TabIndex = 0;
             lblNombre.Text = "Nombre:";
             // 
@@ -188,9 +197,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(35, 55, 80);
-            label5.Location = new Point(18, 171);
+            label5.Location = new Point(21, 128);
             label5.Name = "label5";
-            label5.Size = new Size(85, 24);
+            label5.Size = new Size(69, 19);
             label5.TabIndex = 4;
             label5.Text = "Correo:";
             // 
@@ -200,9 +209,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(35, 55, 80);
-            label2.Location = new Point(4, 57);
+            label2.Location = new Point(9, 42);
             label2.Name = "label2";
-            label2.Size = new Size(99, 24);
+            label2.Size = new Size(81, 19);
             label2.TabIndex = 1;
             label2.Text = "Apellido:";
             // 
@@ -212,9 +221,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(35, 55, 80);
-            label3.Location = new Point(36, 114);
+            label3.Location = new Point(36, 85);
             label3.Name = "label3";
-            label3.Size = new Size(67, 24);
+            label3.Size = new Size(54, 19);
             label3.TabIndex = 2;
             label3.Text = "Alias:";
             // 
@@ -222,10 +231,10 @@
             // 
             txtName.Dock = DockStyle.Fill;
             txtName.Font = new Font("Bookman Old Style", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point);
-            txtName.Location = new Point(109, 3);
-            txtName.Margin = new Padding(3, 3, 3, 10);
+            txtName.Location = new Point(96, 2);
+            txtName.Margin = new Padding(3, 2, 3, 8);
             txtName.Name = "txtName";
-            txtName.Size = new Size(287, 33);
+            txtName.Size = new Size(250, 28);
             txtName.TabIndex = 5;
             // 
             // btnEliminar
@@ -238,10 +247,11 @@
             btnEliminar.ForeColor = Color.White;
             btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
             btnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEliminar.Location = new Point(252, 378);
+            btnEliminar.Location = new Point(220, 284);
+            btnEliminar.Margin = new Padding(3, 2, 3, 2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Padding = new Padding(5, 0, 0, 0);
-            btnEliminar.Size = new Size(150, 44);
+            btnEliminar.Padding = new Padding(4, 0, 0, 0);
+            btnEliminar.Size = new Size(131, 33);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -257,10 +267,11 @@
             btnEditar.ForeColor = Color.White;
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditar.Location = new Point(96, 378);
+            btnEditar.Location = new Point(84, 284);
+            btnEditar.Margin = new Padding(3, 2, 3, 2);
             btnEditar.Name = "btnEditar";
-            btnEditar.Padding = new Padding(5, 0, 0, 0);
-            btnEditar.Size = new Size(150, 44);
+            btnEditar.Padding = new Padding(4, 0, 0, 0);
+            btnEditar.Size = new Size(131, 33);
             btnEditar.TabIndex = 2;
             btnEditar.Text = " Editar";
             btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -270,9 +281,10 @@
             // 
             panelTabla.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panelTabla.Controls.Add(dataGridView1);
-            panelTabla.Location = new Point(34, 161);
+            panelTabla.Location = new Point(30, 121);
+            panelTabla.Margin = new Padding(3, 2, 3, 2);
             panelTabla.Name = "panelTabla";
-            panelTabla.Size = new Size(787, 630);
+            panelTabla.Size = new Size(689, 472);
             panelTabla.TabIndex = 5;
             // 
             // dataGridView1
@@ -291,10 +303,11 @@
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = SystemColors.Control;
             dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(787, 630);
+            dataGridView1.Size = new Size(689, 472);
             dataGridView1.TabIndex = 4;
             // 
             // Id
@@ -336,10 +349,11 @@
             // 
             txtBusqueda.BorderStyle = BorderStyle.FixedSingle;
             txtBusqueda.Font = new Font("Bookman Old Style", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBusqueda.Location = new Point(34, 101);
+            txtBusqueda.Location = new Point(30, 76);
+            txtBusqueda.Margin = new Padding(3, 2, 3, 2);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.PlaceholderText = "  Nombre de Usuario o Id";
-            txtBusqueda.Size = new Size(631, 43);
+            txtBusqueda.Size = new Size(552, 36);
             txtBusqueda.TabIndex = 0;
             // 
             // btnBuscar
@@ -351,10 +365,11 @@
             btnBuscar.ForeColor = Color.White;
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(671, 100);
+            btnBuscar.Location = new Point(587, 75);
+            btnBuscar.Margin = new Padding(3, 2, 3, 2);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Padding = new Padding(5, 0, 0, 0);
-            btnBuscar.Size = new Size(150, 44);
+            btnBuscar.Padding = new Padding(4, 0, 0, 0);
+            btnBuscar.Size = new Size(131, 33);
             btnBuscar.TabIndex = 1;
             btnBuscar.Text = " Buscar";
             btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -367,8 +382,9 @@
             panelHeader.Controls.Add(btnAtras);
             panelHeader.Dock = DockStyle.Top;
             panelHeader.Location = new Point(0, 0);
+            panelHeader.Margin = new Padding(3, 2, 3, 2);
             panelHeader.Name = "panelHeader";
-            panelHeader.Size = new Size(1269, 67);
+            panelHeader.Size = new Size(1110, 66);
             panelHeader.TabIndex = 3;
             // 
             // label1
@@ -377,16 +393,17 @@
             label1.AutoSize = true;
             label1.Font = new Font("Bookman Old Style", 24F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(35, 55, 80);
-            label1.Location = new Point(470, 9);
+            label1.Location = new Point(411, 7);
             label1.Name = "label1";
-            label1.Size = new Size(448, 45);
+            label1.Size = new Size(360, 39);
             label1.TabIndex = 1;
             label1.Text = "Usuarios del Sistema.";
             // 
             // btnAtras
             // 
             btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
-            btnAtras.Location = new Point(12, 0);
+            btnAtras.Location = new Point(10, 0);
+            btnAtras.Margin = new Padding(3, 2, 3, 2);
             btnAtras.Name = "btnAtras";
             btnAtras.Size = new Size(64, 64);
             btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -396,11 +413,12 @@
             // 
             // Usuarios
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1269, 803);
+            ClientSize = new Size(1110, 602);
             Controls.Add(Container);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Usuarios";
             Text = "Usuarios";
             Container.ResumeLayout(false);

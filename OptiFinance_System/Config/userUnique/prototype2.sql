@@ -24,11 +24,12 @@ CREATE TABLE usuarios
     id              BIGINT PRIMARY KEY IDENTITY(1,1),
     nombres         NVARCHAR(200) NOT NULL,
     apellidos       NVARCHAR(200) NOT NULL,
-    alias           NVARCHAR(12) NOT NULL,
-    email           NVARCHAR(200),
+    alias           NVARCHAR(12) UNIQUE NOT NULL,
+    email           NVARCHAR(200) UNIQUE NOT NULL,
     password        NVARCHAR(200) NOT NULL,
-    telefono        NVARCHAR(8),
-    direccion       NVARCHAR(300),
+    dui             NVARCHAR(10) UNIQUE NOT NULL,
+    telefono        NVARCHAR(8) UNIQUE NOT NULL,
+    direccion       NVARCHAR(300) DEFAULT 'No especificado',
     id_tipo_usuario BIGINT NOT NULL DEFAULT 2,
     FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
