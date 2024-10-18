@@ -1,6 +1,4 @@
-﻿using System.Data;
-using Microsoft.Data.SqlClient;
-using OptiFinance_System.database.connection;
+﻿using Microsoft.Data.SqlClient;
 using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.database.helper;
@@ -30,7 +28,7 @@ public static class QueryHelper
         bool isSuccess = false;
         try
         {
-            using (SqlTransaction transaction = connection.BeginTransaction())
+            using (SqlTransaction? transaction = connection.BeginTransaction())
             {
                 try
                 {
@@ -38,17 +36,13 @@ public static class QueryHelper
                     isSuccess = operation(transaction);
 
                     if (isSuccess)
-                    {
                         transaction.Commit();
-                    }
                     else
-                    {
                         transaction.Rollback();
-                    }
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback(); 
+                    transaction.Rollback();
                     Message.MessageViewError(@"Error en la operación: " + ex.Message);
                 }
             }
@@ -87,17 +81,11 @@ public static class QueryHelper
         {
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                if (parameters != null)
-                {
-                    command.Parameters.AddRange(parameters.ToArray());
-                }
+                if (parameters != null) command.Parameters.AddRange(parameters.ToArray());
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlDataReader? reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        resultList.Add(func(reader));
-                    }
+                    while (reader.Read()) resultList.Add(func(reader));
                 }
             }
         }
@@ -105,7 +93,7 @@ public static class QueryHelper
         {
             throw new Exception(@"Error en la consulta SQL: " + e.Message);
         }
-    
+
         return resultList;
     }
 
@@ -121,12 +109,9 @@ public static class QueryHelper
             {
                 command.Parameters.AddRange(parameters.ToArray());
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlDataReader? reader = command.ExecuteReader())
                 {
-                    if (reader.Read())
-                    {
-                        entity = func(reader);
-                    }
+                    if (reader.Read()) entity = func(reader);
                 }
             }
         }
@@ -135,6 +120,7 @@ public static class QueryHelper
             // Message.MessageViewError(@"Error en la consulta SQL refdgdf: " + e.Message);
             throw new Exception(e.Message);
         }
+
         return entity;
     }
 }

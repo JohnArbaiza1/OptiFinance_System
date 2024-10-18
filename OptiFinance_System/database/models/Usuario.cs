@@ -10,7 +10,7 @@ public class Usuario
     public string Password { get; set; } = string.Empty;
     public string? Telefono { get; set; } = string.Empty;
     public string? Direccion { get; set; } = string.Empty;
-    public TipoUsuario TipoUsuario { get; set; } = new TipoUsuario();
+    public TipoUsuario TipoUsuario { get; set; } = new();
 
     public override string ToString()
     {

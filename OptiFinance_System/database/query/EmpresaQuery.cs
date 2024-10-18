@@ -8,9 +8,8 @@ namespace OptiFinance_System.database.query;
 
 public class EmpresaQuery : IQueryEstandar<Empresa>
 {
-    private static readonly Lazy<EmpresaQuery> _instance =
-        new Lazy<EmpresaQuery>(() => new EmpresaQuery());
-    
+    private static readonly Lazy<EmpresaQuery> _instance = new(() => new EmpresaQuery());
+
     private readonly Connection _connectionInstance;
 
     private EmpresaQuery()
@@ -29,17 +28,17 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
 
         List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new SqlParameter("@nombre", entity.Nombre),
-            new SqlParameter("@nit", entity.Nit),
-            new SqlParameter("@giro_economico", entity.GiroEconomico),
-            new SqlParameter("@representante_legal", entity.RepresentanteLegal),
-            new SqlParameter("@direccion", entity.Direccion),
-            new SqlParameter("@telefono", entity.Telefono),
-            new SqlParameter("@email", entity.Email),
-            new SqlParameter("@id_usuario", entity.Usuario.Id),
-            new SqlParameter("@id_distrito", entity.Distrito.Id)
+            new("@nombre", entity.Nombre),
+            new("@nit", entity.Nit),
+            new("@giro_economico", entity.GiroEconomico),
+            new("@representante_legal", entity.RepresentanteLegal),
+            new("@direccion", entity.Direccion),
+            new("@telefono", entity.Telefono),
+            new("@email", entity.Email),
+            new("@id_usuario", entity.Usuario.Id),
+            new("@id_distrito", entity.Distrito.Id)
         };
-        
+
         bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
         return result;
     }
@@ -52,26 +51,24 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
 
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (var entity in entities)
+            foreach (Empresa entity in entities)
             {
                 List<SqlParameter> parameters = new List<SqlParameter>
                 {
-                    new SqlParameter("@nombre", entity.Nombre),
-                    new SqlParameter("@nit", entity.Nit),
-                    new SqlParameter("@giro_economico", entity.GiroEconomico),
-                    new SqlParameter("@representante_legal", entity.RepresentanteLegal),
-                    new SqlParameter("@direccion", entity.Direccion),
-                    new SqlParameter("@telefono", entity.Telefono),
-                    new SqlParameter("@email", entity.Email),
-                    new SqlParameter("@id_usuario", entity.Usuario.Id),
-                    new SqlParameter("@id_distrito", entity.Distrito.Id)
+                    new("@nombre", entity.Nombre),
+                    new("@nit", entity.Nit),
+                    new("@giro_economico", entity.GiroEconomico),
+                    new("@representante_legal", entity.RepresentanteLegal),
+                    new("@direccion", entity.Direccion),
+                    new("@telefono", entity.Telefono),
+                    new("@email", entity.Email),
+                    new("@id_usuario", entity.Usuario.Id),
+                    new("@id_distrito", entity.Distrito.Id)
                 };
-                
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-                if (!result)
-                {
-                    return false;
-                }
+
+                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
+                    transaction);
+                if (!result) return false;
             }
 
             return true;
@@ -110,12 +107,12 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
 
     public Empresa? FindById(long id)
     {
-        string query = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, " + 
-            "telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
-        
+        string query = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, " +
+                       "telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
+
         List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new SqlParameter("@id", id)
+            new("@id", id)
         };
 
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
@@ -123,15 +120,15 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
 
     public List<Empresa> SelectAll()
     {
-        string query = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, " + 
-            "telefono, email, id_usuario, id_distrito FROM empresas";
+        string query = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, " +
+                       "telefono, email, id_usuario, id_distrito FROM empresas";
 
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
     }
 
     public Empresa MapEntity(SqlDataReader reader)
     {
-        return new Empresa()
+        return new Empresa
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),

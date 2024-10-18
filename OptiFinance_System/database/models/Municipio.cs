@@ -4,7 +4,7 @@ public class Municipio
 {
     public long Id { get; set; }
     public string Nombre { get; set; } = string.Empty;
-    public Departamento Departamento { get; set; } = new Departamento();
+    public Departamento Departamento { get; set; } = new();
 
     public override string ToString()
     {

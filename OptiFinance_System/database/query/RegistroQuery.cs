@@ -8,56 +8,57 @@ namespace OptiFinance_System.database.query;
 
 public class RegistroQuery : IQueryEstandar<Registro>
 {
-    private static readonly Lazy<RegistroQuery> _instance =
-        new Lazy<RegistroQuery>(() => new RegistroQuery());
-    
+    private static readonly Lazy<RegistroQuery> _instance = new(() => new RegistroQuery());
+
     private readonly Connection _connectionInstance;
-    
+
     private RegistroQuery()
     {
         _connectionInstance = Connection.Instance;
         _connectionInstance.OpenConnection();
     }
-    
+
     public static RegistroQuery Instance => _instance.Value;
+
     public bool Insert(Registro entity, SqlTransaction? transaction = null)
     {
-        string query = "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
-        
+        string query =
+            "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
+
         List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new SqlParameter("@debe", entity.Debe),
-            new SqlParameter("@haber", entity.Haber),
-            new SqlParameter("@id_cuenta", entity.Cuenta.Id),
-            new SqlParameter("@id_partida", entity.Partida.Id)
+            new("@debe", entity.Debe),
+            new("@haber", entity.Haber),
+            new("@id_cuenta", entity.Cuenta.Id),
+            new("@id_partida", entity.Partida.Id)
         };
-        
+
         bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
         return result;
     }
 
     public bool Insert(List<Registro> entities)
     {
-        string query = "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
+        string query =
+            "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
         _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (var entity in entities)
+            foreach (Registro entity in entities)
             {
                 List<SqlParameter> parameters = new List<SqlParameter>
                 {
-                    new SqlParameter("@debe", entity.Debe),
-                    new SqlParameter("@haber", entity.Haber),
-                    new SqlParameter("@id_cuenta", entity.Cuenta.Id),
-                    new SqlParameter("@id_partida", entity.Partida.Id)
+                    new("@debe", entity.Debe),
+                    new("@haber", entity.Haber),
+                    new("@id_cuenta", entity.Cuenta.Id),
+                    new("@id_partida", entity.Partida.Id)
                 };
-                
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-                if (!result)
-                {
-                    return false;
-                }
+
+                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
+                    transaction);
+                if (!result) return false;
             }
+
             return true;
         });
     }
@@ -97,9 +98,9 @@ public class RegistroQuery : IQueryEstandar<Registro>
         string query = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id = @id";
         List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new SqlParameter("@id", id)
+            new("@id", id)
         };
-        
+
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
@@ -111,7 +112,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
 
     public Registro MapEntity(SqlDataReader reader)
     {
-        return new Registro()
+        return new Registro
         {
             Id = reader.GetInt64(0),
             Debe = reader.GetDecimal(1),

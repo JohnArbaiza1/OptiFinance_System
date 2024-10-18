@@ -8,18 +8,17 @@ namespace OptiFinance_System.database.query;
 
 public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
 {
-    
-    private static readonly Lazy<TipoUsuarioQuery> _instance = 
-        new Lazy<TipoUsuarioQuery>(() => new TipoUsuarioQuery());
-    
+    private static readonly Lazy<TipoUsuarioQuery> _instance = new(() => new TipoUsuarioQuery());
+
     private readonly Connection _connectionInstance;
-    
+
     private TipoUsuarioQuery()
     {
         _connectionInstance = Connection.Instance;
     }
-    
+
     public static TipoUsuarioQuery Instance => _instance.Value;
+
     public bool Insert(TipoUsuario entity, SqlTransaction? transaction = null)
     {
         throw new NotImplementedException();
@@ -65,7 +64,7 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
         string query = "SELECT id, nombre FROM tipo_usuario WHERE id = @id";
         List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new SqlParameter("@id", id)
+            new("@id", id)
         };
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
@@ -78,7 +77,7 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
 
     public TipoUsuario MapEntity(SqlDataReader reader)
     {
-        return new TipoUsuario()
+        return new TipoUsuario
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1)

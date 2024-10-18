@@ -8,54 +8,55 @@ namespace OptiFinance_System.database.query;
 
 public class CuentaQuery : IQueryEstandar<Cuenta>
 {
-    private static readonly Lazy<CuentaQuery> _instance =
-        new Lazy<CuentaQuery>(() => new CuentaQuery());
-    
+    private static readonly Lazy<CuentaQuery> _instance = new(() => new CuentaQuery());
+
     private readonly Connection _connectionInstance;
-    
+
     private CuentaQuery()
     {
         _connectionInstance = Connection.Instance;
         _connectionInstance.OpenConnection();
     }
-    
+
     public static CuentaQuery Instance => _instance.Value;
+
     public bool Insert(Cuenta entity, SqlTransaction? transaction = null)
     {
-        string query = "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta) VALUES (@codigo, @nombre, @id_tipo_cuenta)";
-        
+        string query =
+            "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta) VALUES (@codigo, @nombre, @id_tipo_cuenta)";
+
         List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new SqlParameter("@codigo", entity.Codigo),
-            new SqlParameter("@nombre", entity.Nombre),
-            new SqlParameter("@id_tipo_cuenta", entity.TipoCuenta.Id)
+            new("@codigo", entity.Codigo),
+            new("@nombre", entity.Nombre),
+            new("@id_tipo_cuenta", entity.TipoCuenta.Id)
         };
-        
+
         bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
         return result;
     }
 
     public bool Insert(List<Cuenta> entities)
     {
-        string query = "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta) VALUES (@codigo, @nombre, @id_tipo_cuenta)";
+        string query =
+            "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta) VALUES (@codigo, @nombre, @id_tipo_cuenta)";
         _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (var entity in entities)
+            foreach (Cuenta entity in entities)
             {
                 List<SqlParameter> parameters = new List<SqlParameter>
                 {
-                    new SqlParameter("@codigo", entity.Codigo),
-                    new SqlParameter("@nombre", entity.Nombre),
-                    new SqlParameter("@id_tipo_cuenta", entity.TipoCuenta.Id)
+                    new("@codigo", entity.Codigo),
+                    new("@nombre", entity.Nombre),
+                    new("@id_tipo_cuenta", entity.TipoCuenta.Id)
                 };
-                
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-                if (!result)
-                {
-                    return false;
-                }
+
+                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
+                    transaction);
+                if (!result) return false;
             }
+
             return true;
         });
     }
@@ -95,9 +96,9 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
         string query = "SELECT id, codigo, nombre, id_tipo_cuenta FROM cuentas WHERE id = @id";
         List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new SqlParameter("@id", id)
+            new("@id", id)
         };
-        
+
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
@@ -109,7 +110,7 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
 
     public Cuenta MapEntity(SqlDataReader reader)
     {
-        return new Cuenta()
+        return new Cuenta
         {
             Id = reader.GetInt64(0),
             Codigo = reader.GetString(1),

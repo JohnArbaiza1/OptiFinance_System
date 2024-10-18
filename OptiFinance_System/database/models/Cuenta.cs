@@ -5,7 +5,7 @@ public class Cuenta
     public long Id { get; set; }
     public string Nombre { get; set; } = string.Empty;
     public string Codigo { get; set; } = string.Empty;
-    public TipoCuenta TipoCuenta { get; set; } = new TipoCuenta();
+    public TipoCuenta TipoCuenta { get; set; } = new();
 
     public override string ToString()
     {

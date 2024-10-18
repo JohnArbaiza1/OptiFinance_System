@@ -1,19 +1,20 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace OptiFinance_System.database.connection;
 
 public class Connection
 {
-    private static readonly Lazy<Connection> _instance = new Lazy<Connection>(() => new Connection());
+    private static readonly Lazy<Connection> _instance = new(() => new Connection());
     private readonly string? _connectionString;
     private readonly SqlConnection _sql_connection;
 
     private Connection()
     {
-        var builder = new ConfigurationBuilder()
+        IConfigurationBuilder builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            .AddJsonFile("appsettings.json", false, true);
 
         IConfigurationRoot configuration = builder.Build();
         _connectionString = configuration.GetConnectionString("DefaultConnection")
@@ -34,10 +35,7 @@ public class Connection
     {
         try
         {
-            if (_sql_connection.State == System.Data.ConnectionState.Closed)
-            {
-                _sql_connection.Open();
-            }
+            if (_sql_connection.State == ConnectionState.Closed) _sql_connection.Open();
         }
         catch (SqlException ex)
         {
@@ -49,10 +47,7 @@ public class Connection
     {
         try
         {
-            if (_sql_connection.State == System.Data.ConnectionState.Open)
-            {
-                _sql_connection.Close();
-            }
+            if (_sql_connection.State == ConnectionState.Open) _sql_connection.Close();
         }
         catch (SqlException ex)
         {

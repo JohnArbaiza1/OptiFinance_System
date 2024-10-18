@@ -10,8 +10,8 @@ public class Empresa
     public string? Direccion { get; set; } = string.Empty;
     public string Telefono { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    public Usuario Usuario { get; set; } = new Usuario();
-    public Distrito? Distrito { get; set; } = new Distrito();
+    public Usuario Usuario { get; set; } = new();
+    public Distrito? Distrito { get; set; } = new();
 
     public override string ToString()
     {
