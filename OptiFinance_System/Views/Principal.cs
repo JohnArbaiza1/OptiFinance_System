@@ -16,6 +16,7 @@ namespace OptiFinance_System.Views
     {
         public Principal()
         {
+            AutoScaleMode = AutoScaleMode.Dpi;
             InitializeComponent();
             // Establecemos el estilo del borde del formulario a ninguno
             this.FormBorderStyle = FormBorderStyle.None;
