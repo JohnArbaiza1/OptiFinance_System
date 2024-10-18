@@ -3,9 +3,9 @@ using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 
-namespace OptiFinance_System.database.generalities.queries;
+namespace OptiFinance_System.database.generalities.parameters;
 
-public class EmpresaQueries : IQueriesString<Empresa>
+public class EmpresaParams : IQueriesString<Empresa>
 {
     public string Insert { get; } = "INSERT INTO empresas " +
                                     "(nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +

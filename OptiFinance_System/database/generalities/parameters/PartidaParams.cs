@@ -3,9 +3,9 @@ using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 
-namespace OptiFinance_System.database.generalities.queries;
+namespace OptiFinance_System.database.generalities.parameters;
 
-public class PartidaQueries : IQueriesString<Partida>
+public class PartidaParams : IQueriesString<Partida>
 {
     public string Insert { get; } =
         "INSERT INTO partidas (detalles, fecha, id_empresa) VALUES (@detalles, @fecha, @id_empresa)";

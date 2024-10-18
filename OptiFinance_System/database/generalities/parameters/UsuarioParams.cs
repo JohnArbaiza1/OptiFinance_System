@@ -3,9 +3,9 @@ using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 
-namespace OptiFinance_System.database.generalities.queries;
+namespace OptiFinance_System.database.generalities.parameters;
 
-public class UsuarioQueries : IQueriesString<Usuario>
+public class UsuarioParams : IQueriesString<Usuario>
 {
     public string Insert { get; } = "INSERT INTO usuarios " +
                                     "(nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario) " +

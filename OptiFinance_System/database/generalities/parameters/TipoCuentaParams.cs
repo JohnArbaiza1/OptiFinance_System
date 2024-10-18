@@ -2,9 +2,9 @@
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
-namespace OptiFinance_System.database.generalities.queries;
+namespace OptiFinance_System.database.generalities.parameters;
 
-public class TipoCuentaQueries : IQueriesString<TipoCuenta>
+public class TipoCuentaParams : IQueriesString<TipoCuenta>
 {
     public string Insert { get; } = "INSERT INTO tipo_cuenta (nombre) VALUES (@nombre)";
     public string Update { get; } = "UPDATE tipo_cuenta SET nombre = @nombre WHERE id = @id";   

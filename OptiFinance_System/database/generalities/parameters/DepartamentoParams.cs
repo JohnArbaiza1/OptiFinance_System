@@ -2,9 +2,9 @@
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
-namespace OptiFinance_System.database.generalities.queries;
+namespace OptiFinance_System.database.generalities.parameters;
 
-public class DepartamentoQueries : IQueriesString<Departamento>
+public class DepartamentoParams : IQueriesString<Departamento>
 {
     public string Insert { get; } = "INSERT INTO departamentos (nombre, codigo) VALUES (@Nombre, @Codigo)";
     public string Update { get; } = "UPDATE departamentos SET nombre = @Nombre, codigo = @Codigo WHERE id = @Id";

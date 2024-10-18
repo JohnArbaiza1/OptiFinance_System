@@ -3,35 +3,36 @@ using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 
-namespace OptiFinance_System.database.generalities.queries;
+namespace OptiFinance_System.database.generalities.parameters;
 
-public class DistritoQueries : IQueriesString<Distrito>
+public class MunicipiosParams : IQueriesString<Municipio>
 {
-    public string Insert { get; } = "INSERT INTO distritos (nombre, id_municipio) VALUES (@nombre, @id_municipio)";
+    public string Insert { get; } =
+        "INSERT INTO municipios (nombre, id_departamento) VALUES (@nombre, @id_departamento)";
 
     public string Update { get; } =
-        "UPDATE distritos SET nombre = @nombre, id_municipio = @id_municipio WHERE id = @id";
+        "UPDATE municipios SET nombre = @nombre, id_departamento = @id_departamento WHERE id = @id";
 
-    public string Delete { get; } = "DELETE FROM distritos WHERE id = @id";
-    public string FindById { get; } = "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
-    public string SelectAll { get; } = "SELECT id, nombre, id_municipio FROM distritos";
+    public string Delete { get; } = "DELETE FROM municipios WHERE id = @id";
+    public string FindById { get; } = "SELECT id, nombre, id_departamento FROM municipios WHERE id = @id";
+    public string SelectAll { get; } = "SELECT id, nombre, id_departamento FROM municipios";
 
-    public List<SqlParameter> InsertParameters(Distrito entity)
+    public List<SqlParameter> InsertParameters(Municipio entity)
     {
         List<SqlParameter> parameters = new List<SqlParameter>
         {
             new("@nombre", entity.Nombre),
-            new("@id_municipio", entity.Municipio.Id)
+            new("@id_departamento", entity.Departamento.Id)
         };
         return parameters;
     }
 
-    public List<SqlParameter> UpdateParameters(Distrito entity)
+    public List<SqlParameter> UpdateParameters(Municipio entity)
     {
         List<SqlParameter> parameters = new List<SqlParameter>
         {
             new("@nombre", entity.Nombre),
-            new("@id_municipio", entity.Municipio.Id),
+            new("@id_departamento", entity.Departamento.Id),
             new("@id", entity.Id)
         };
         return parameters;
@@ -55,14 +56,13 @@ public class DistritoQueries : IQueriesString<Distrito>
         return parameters;
     }
 
-    public Distrito Map(SqlDataReader reader)
+    public Municipio Map(SqlDataReader reader)
     {
-        Distrito distrito = new Distrito
+        return new Municipio
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),
-            Municipio = MunicipioQuery.Instance.FindById(reader.GetInt64(2))
+            Departamento = DepartamentoQuery.Instance.FindById(reader.GetInt64(2))
         };
-        return distrito;
     }
 }

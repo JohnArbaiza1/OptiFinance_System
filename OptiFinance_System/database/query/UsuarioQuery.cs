@@ -22,9 +22,9 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public bool Insert(Usuario entity, SqlTransaction? transaction = null)
     {
-        string query = Queries.UsuarioQueries.Insert;
+        string query = Queries.UsuarioParams.Insert;
 
-        List<SqlParameter> parameters = Queries.UsuarioQueries.InsertParameters(entity);
+        List<SqlParameter> parameters = Queries.UsuarioParams.InsertParameters(entity);
 
         bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
         return result;
@@ -32,14 +32,14 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public bool Insert(List<Usuario> entities)
     {
-        string query = Queries.UsuarioQueries.Insert;
+        string query = Queries.UsuarioParams.Insert;
 
         _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
             foreach (Usuario entity in entities)
             {
-                List<SqlParameter> parameters = Queries.UsuarioQueries.InsertParameters(entity);
+                List<SqlParameter> parameters = Queries.UsuarioParams.InsertParameters(entity);
                 bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
                     transaction);
                 if (!result) return false;
@@ -81,14 +81,14 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public Usuario? FindById(long id)
     {
-        string query = Queries.UsuarioQueries.FindById;
-        List<SqlParameter> parameters = Queries.UsuarioQueries.FindByIdParameters(id);
+        string query = Queries.UsuarioParams.FindById;
+        List<SqlParameter> parameters = Queries.UsuarioParams.FindByIdParameters(id);
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 
     public List<Usuario> SelectAll()
     {
-        string query = Queries.UsuarioQueries.SelectAll;
+        string query = Queries.UsuarioParams.SelectAll;
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
     }
 

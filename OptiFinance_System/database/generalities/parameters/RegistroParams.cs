@@ -3,9 +3,9 @@ using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 
-namespace OptiFinance_System.database.generalities.queries;
+namespace OptiFinance_System.database.generalities.parameters;
 
-public class RegistroQueries : IQueriesString<Registro>
+public class RegistroParams : IQueriesString<Registro>
 {
     public string Insert { get; } = "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
     public string Update { get; } = "UPDATE registros SET debe = @debe, haber = @haber, id_cuenta = @id_cuenta, id_partida = @id_partida WHERE id = @id";
