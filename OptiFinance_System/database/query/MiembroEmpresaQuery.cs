@@ -61,8 +61,8 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
         return new MiembroEmpresa
         {
             Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1),
-            Apellido = reader.GetString(2),
+            Nombres = reader.GetString(1),
+            Apellidos = reader.GetString(2),
             Alias = reader.GetString(3),
             Dui = reader.GetString(4),
             Correo = reader.IsDBNull(5) ? null : reader.GetString(5),

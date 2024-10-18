@@ -5,7 +5,7 @@ public class Partida
     public long Id { get; set; }
     public string Detalles { get; set; } = string.Empty;
     public DateTime Fecha { get; set; } = DateTime.Now;
-    public Empresa Empresa { get; set; } = new();
+    public Empresa? Empresa { get; set; } = null;
 
     public override string ToString()
     {

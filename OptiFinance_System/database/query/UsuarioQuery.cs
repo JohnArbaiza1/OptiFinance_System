@@ -28,8 +28,8 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
         List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new("@nombres", entity.Nombre),
-            new("@apellidos", entity.Apellido),
+            new("@nombres", entity.Nombres),
+            new("@apellidos", entity.Apellidos),
             new("@alias", entity.Alias),
             new("@email", entity.Email),
             new("@password", entity.Password),
@@ -55,8 +55,8 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
             {
                 List<SqlParameter> parameters = new List<SqlParameter>
                 {
-                    new("@nombres", entity.Nombre),
-                    new("@apellidos", entity.Apellido),
+                    new("@nombres", entity.Nombres),
+                    new("@apellidos", entity.Apellidos),
                     new("@alias", entity.Alias),
                     new("@email", entity.Email),
                     new("@password", entity.Password),
@@ -128,8 +128,8 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
         return new Usuario
         {
             Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1),
-            Apellido = reader.GetString(2),
+            Nombres = reader.GetString(1),
+            Apellidos = reader.GetString(2),
             Alias = reader.GetString(3),
             Email = reader.IsDBNull(4) ? null : reader.GetString(4),
             Password = reader.GetString(5),
