@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
+using OptiFinance_System.database.query;
 
 namespace OptiFinance_System.database.generalities.queries;
 
@@ -65,6 +66,13 @@ public class RegistroQueries : IQueriesString<Registro>
 
     public Registro Map(SqlDataReader reader)
     {
-        throw new NotImplementedException();
+        return new()
+        {
+            Id = reader.GetInt64(0),
+            Debe = reader.GetDecimal(1),
+            Haber = reader.GetDecimal(2),
+            Cuenta = CuentaQuery.Instance.FindById(reader.GetInt64(3)),
+            Partida = PartidaQuery.Instance.FindById(reader.GetInt64(4))
+        };
     }
 }
