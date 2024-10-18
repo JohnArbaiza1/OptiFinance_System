@@ -7,7 +7,7 @@ using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.database.query;
 
-public class DepartamentoQuery : IQueryEstandar<Departamento>
+public class DepartamentoQuery : TableQuery, IQueryEstandar<Departamento>
 {
     private static readonly Lazy<DepartamentoQuery> _instance = new(() => new DepartamentoQuery());
 

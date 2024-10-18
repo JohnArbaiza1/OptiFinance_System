@@ -7,7 +7,7 @@ using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.database.query;
 
-public class MunicipioQuery : IQueryEstandar<Municipio>
+public class MunicipioQuery : TableQuery, IQueryEstandar<Municipio>
 {
     private static readonly Lazy<MunicipioQuery> _instance = new(() => new MunicipioQuery());
     private readonly Connection _connectionInstance;

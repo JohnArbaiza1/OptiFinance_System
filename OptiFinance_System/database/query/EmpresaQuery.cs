@@ -6,7 +6,7 @@ using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
-public class EmpresaQuery : IQueryEstandar<Empresa>
+public class EmpresaQuery : TableQuery, IQueryEstandar<Empresa>
 {
     private static readonly Lazy<EmpresaQuery> _instance = new(() => new EmpresaQuery());
 

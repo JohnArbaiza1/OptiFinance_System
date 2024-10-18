@@ -4,7 +4,7 @@ using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
-public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
+public class MiembroEmpresaQuery : TableQuery, IQueryEstandar<MiembroEmpresa>
 {
     public bool Insert(MiembroEmpresa entity, SqlTransaction? transaction = null)
     {

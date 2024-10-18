@@ -6,7 +6,7 @@ using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
-public class PartidaQuery : IQueryEstandar<Partida>
+public class PartidaQuery : TableQuery, IQueryEstandar<Partida>
 {
     private static readonly Lazy<PartidaQuery> _instance = new(() => new PartidaQuery());
 
