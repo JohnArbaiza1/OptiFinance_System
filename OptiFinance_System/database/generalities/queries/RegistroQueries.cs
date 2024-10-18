@@ -18,8 +18,8 @@ public class RegistroQueries : IQueriesString<Registro>
         {
             new("@debe", entity.Debe),
             new("@haber", entity.Haber),
-            new("@id_cuenta", entity.Cuenta.Id),
-            new("@id_partida", entity.Partida.Id)
+            new("@id_cuenta", entity.Cuenta?.Id),
+            new("@id_partida", entity.Partida?.Id)
         };
         return parameters;
     }
@@ -30,8 +30,8 @@ public class RegistroQueries : IQueriesString<Registro>
         {
             new("@debe", entity.Debe),
             new("@haber", entity.Haber),
-            new("@id_cuenta", entity.Cuenta.Id),
-            new("@id_partida", entity.Partida.Id),
+            new("@id_cuenta", entity.Cuenta?.Id),
+            new("@id_partida", entity.Partida?.Id),
             new("@id", entity.Id)
         };
         return parameters;
