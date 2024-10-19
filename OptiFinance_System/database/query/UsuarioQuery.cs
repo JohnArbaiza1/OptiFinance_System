@@ -1,15 +1,17 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.generalities;
+using OptiFinance_System.database.generalities.parameters;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
+using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.database.query;
 
 public class UsuarioQuery : IQueryEstandar<Usuario>
 {
-    private static readonly Lazy<UsuarioQuery> _instance = new(() => new UsuarioQuery());
+    private static readonly Lazy<UsuarioQuery> _instance = new(() => new());
     private readonly Connection _connectionInstance;
 
     private UsuarioQuery()
@@ -20,48 +22,47 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public static UsuarioQuery Instance => _instance.Value;
 
+    private static UsuarioParams Parameters => Queries.UsuarioParams;
+
     public bool Insert(Usuario entity, SqlTransaction? transaction = null)
     {
-        string query = Queries.UsuarioParams.Insert;
-
-        List<SqlParameter> parameters = Queries.UsuarioParams.InsertParameters(entity);
-
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Parameters.InsertSql,
+            Parameters.InsertParameters(entity), transaction);
     }
 
     public bool Insert(List<Usuario> entities)
     {
-        string query = Queries.UsuarioParams.Insert;
-
-        _connectionInstance.OpenConnection();
-        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
-        {
-            foreach (Usuario entity in entities)
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(),
+            transaction =>
             {
-                List<SqlParameter> parameters = Queries.UsuarioParams.InsertParameters(entity);
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
-                    transaction);
-                if (!result) return false;
-            }
-
-            return true;
-        });
+                return entities.Select(entity => Parameters.InsertParameters(entity)).Select(parameters =>
+                        QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(),
+                            Parameters.InsertSql, parameters, transaction))
+                    .All(result => result);
+            });
     }
 
     public bool Update(Usuario entity, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Parameters.UpdateSql,
+            Parameters.UpdateParameters(entity), transaction);
     }
 
     public bool Update(List<Usuario> entities)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return entities.Select(usuario => Queries.UsuarioParams.UpdateParameters(usuario))
+                .Select(list => QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(),
+                    Queries.UsuarioParams.UpdateSql, list, transaction))
+                .All(result => result);
+        });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Queries.UsuarioParams.DeleteSql,
+            Queries.UsuarioParams.DeleteParameters(id), transaction);
     }
 
     public bool Delete(Usuario entity)
@@ -71,7 +72,13 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public bool Delete(List<long> ids)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return ids.Select(id => Parameters.DeleteParameters(id))
+                .Select(list => QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(),
+                    Parameters.InsertSql, list, transaction))
+                .All(result => result);
+        });
     }
 
     public bool Delete(List<Usuario> entities)
@@ -81,38 +88,23 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public Usuario? FindById(long id)
     {
-        string query = Queries.UsuarioParams.FindById;
-        List<SqlParameter> parameters = Queries.UsuarioParams.FindByIdParameters(id);
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Parameters.FindByIdSql, MapEntity,
+            Parameters.FindByIdParameters(id));
     }
 
     public List<Usuario> SelectAll()
     {
-        string query = Queries.UsuarioParams.SelectAll;
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Parameters.SelectAllSql, MapEntity);
     }
 
     public Usuario MapEntity(SqlDataReader reader)
     {
-        return new Usuario
-        {
-            Id = reader.GetInt64(0),
-            Nombres = reader.GetString(1),
-            Apellidos = reader.GetString(2),
-            Alias = reader.GetString(3),
-            Email = reader.IsDBNull(4) ? null : reader.GetString(4),
-            Password = reader.GetString(5),
-            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
-            Direccion = reader.IsDBNull(7) ? null : reader.GetString(7),
-            TipoUsuario = TipoUsuarioQuery.Instance.FindById(reader.GetInt64(8))!
-        };
+        return Parameters.Map(reader);
     }
 
     public Usuario? FindByUsername(string username)
     {
-        string query =
-            "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE alias = @alias";
-        List<SqlParameter> parameters = new List<SqlParameter> { new("@alias", username) };
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Parameters.FindByUsernameSql, MapEntity,
+            Parameters.FindByUsernameParameters(username));
     }
 }

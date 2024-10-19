@@ -7,14 +7,14 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class DistritoParams : IQueriesString<Distrito>
 {
-    public string Insert { get; } = "INSERT INTO distritos (nombre, id_municipio) VALUES (@nombre, @id_municipio)";
+    public string InsertSql { get; } = "INSERT INTO distritos (nombre, id_municipio) VALUES (@nombre, @id_municipio)";
 
-    public string Update { get; } =
+    public string UpdateSql { get; } =
         "UPDATE distritos SET nombre = @nombre, id_municipio = @id_municipio WHERE id = @id";
 
-    public string Delete { get; } = "DELETE FROM distritos WHERE id = @id";
-    public string FindById { get; } = "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
-    public string SelectAll { get; } = "SELECT id, nombre, id_municipio FROM distritos";
+    public string DeleteSql { get; } = "DELETE FROM distritos WHERE id = @id";
+    public string FindByIdSql { get; } = "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
+    public string SelectAllSql { get; } = "SELECT id, nombre, id_municipio FROM distritos";
 
     public List<SqlParameter> InsertParameters(Distrito entity)
     {

@@ -6,11 +6,11 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class DepartamentoParams : IQueriesString<Departamento>
 {
-    public string Insert { get; } = "INSERT INTO departamentos (nombre, codigo) VALUES (@Nombre, @Codigo)";
-    public string Update { get; } = "UPDATE departamentos SET nombre = @Nombre, codigo = @Codigo WHERE id = @Id";
-    public string Delete { get; } = "DELETE FROM departamentos WHERE id = @Id";
-    public string FindById { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
-    public string SelectAll { get; } = "SELECT id, nombre, codigo FROM departamentos";
+    public string InsertSql { get; } = "INSERT INTO departamentos (nombre, codigo) VALUES (@Nombre, @Codigo)";
+    public string UpdateSql { get; } = "UPDATE departamentos SET nombre = @Nombre, codigo = @Codigo WHERE id = @Id";
+    public string DeleteSql { get; } = "DELETE FROM departamentos WHERE id = @Id";
+    public string FindByIdSql { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
+    public string SelectAllSql { get; } = "SELECT id, nombre, codigo FROM departamentos";
 
     public List<SqlParameter> InsertParameters(Departamento entity)
     {

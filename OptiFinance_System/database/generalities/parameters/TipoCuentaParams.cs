@@ -6,11 +6,11 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class TipoCuentaParams : IQueriesString<TipoCuenta>
 {
-    public string Insert { get; } = "INSERT INTO tipo_cuenta (nombre) VALUES (@nombre)";
-    public string Update { get; } = "UPDATE tipo_cuenta SET nombre = @nombre WHERE id = @id";   
-    public string Delete { get; } = "DELETE FROM tipo_cuenta WHERE id = @id";
-    public string FindById { get; } = "SELECT id, nombre FROM tipo_cuenta WHERE id = @id";
-    public string SelectAll { get; } = "SELECT id, nombre FROM tipo_cuenta";
+    public string InsertSql { get; } = "INSERT INTO tipo_cuenta (nombre) VALUES (@nombre)";
+    public string UpdateSql { get; } = "UPDATE tipo_cuenta SET nombre = @nombre WHERE id = @id";   
+    public string DeleteSql { get; } = "DELETE FROM tipo_cuenta WHERE id = @id";
+    public string FindByIdSql { get; } = "SELECT id, nombre FROM tipo_cuenta WHERE id = @id";
+    public string SelectAllSql { get; } = "SELECT id, nombre FROM tipo_cuenta";
     public List<SqlParameter> InsertParameters(TipoCuenta entity)
     {
         List<SqlParameter> parameters = new List<SqlParameter>

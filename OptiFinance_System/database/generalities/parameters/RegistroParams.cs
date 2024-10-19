@@ -7,11 +7,11 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class RegistroParams : IQueriesString<Registro>
 {
-    public string Insert { get; } = "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
-    public string Update { get; } = "UPDATE registros SET debe = @debe, haber = @haber, id_cuenta = @id_cuenta, id_partida = @id_partida WHERE id = @id";
-    public string Delete { get; } = "DELETE FROM registros WHERE id = @id";
-    public string FindById { get; } = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id = @id";
-    public string SelectAll { get; } = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id_partida = @id_partida";
+    public string InsertSql { get; } = "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
+    public string UpdateSql { get; } = "UPDATE registros SET debe = @debe, haber = @haber, id_cuenta = @id_cuenta, id_partida = @id_partida WHERE id = @id";
+    public string DeleteSql { get; } = "DELETE FROM registros WHERE id = @id";
+    public string FindByIdSql { get; } = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id = @id";
+    public string SelectAllSql { get; } = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id_partida = @id_partida";
     public List<SqlParameter> InsertParameters(Registro entity)
     {
         List<SqlParameter> parameters = new()

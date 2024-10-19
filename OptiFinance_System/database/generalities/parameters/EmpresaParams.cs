@@ -7,16 +7,16 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class EmpresaParams : IQueriesString<Empresa>
 {
-    public string Insert { get; } = "INSERT INTO empresas " +
+    public string InsertSql { get; } = "INSERT INTO empresas " +
                                     "(nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +
                                     "VALUES (@nombre, @nit, @giro_economico, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito)";
-    public string Update { get; } = "UPDATE empresas SET " +
+    public string UpdateSql { get; } = "UPDATE empresas SET " +
                                     "nombre = @nombre, nit = @nit, giro_economico = @giro_economico, representante_legal = @representante_legal, " +
                                     "direccion = @direccion, telefono = @telefono, email = @email, id_usuario = @id_usuario, id_distrito = @id_distrito " +
                                     "WHERE id = @id";
-    public string Delete { get; } = "DELETE FROM empresas WHERE id = @id";
-    public string FindById { get; } = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
-    public string SelectAll { get; } = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas";
+    public string DeleteSql { get; } = "DELETE FROM empresas WHERE id = @id";
+    public string FindByIdSql { get; } = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
+    public string SelectAllSql { get; } = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas";
     public List<SqlParameter> InsertParameters(Empresa entity)
     {
         List<SqlParameter> parameters = new List<SqlParameter>

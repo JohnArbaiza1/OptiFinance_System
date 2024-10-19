@@ -54,7 +54,6 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
                     transaction);
                 if (!result)
                 {
-                    Message.MessageViewError(@"Error al insertar una de las entidades.");
                     return false;
                 }
             }

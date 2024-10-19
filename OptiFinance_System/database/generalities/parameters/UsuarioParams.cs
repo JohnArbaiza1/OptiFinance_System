@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -7,18 +8,20 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class UsuarioParams : IQueriesString<Usuario>
 {
-    public string Insert { get; } = "INSERT INTO usuarios " +
+    public string InsertSql { get; } = "INSERT INTO usuarios " +
                                     "(nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario) " +
                                     "VALUES (@nombres, @apellidos, @alias, @email, @password, @telefono, @direccion, @id_tipo_usuario)";
 
-    public string Update { get; } = "UPDATE usuarios SET " +
+    public string UpdateSql { get; } = "UPDATE usuarios SET " +
                                     "nombres = @nombres, apellidos = @apellidos, alias = @alias, email = @email, " +
                                     "password = @password, telefono = @telefono, direccion = @direccion, id_tipo_usuario = @id_tipo_usuario " +
                                     "WHERE id = @id";
 
-    public string Delete { get; } = "DELETE FROM usuarios WHERE id = @id";
-    public string FindById { get; } = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE id = @id";
-    public string SelectAll { get; } = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios";
+    public string DeleteSql { get; } = "DELETE FROM usuarios WHERE id = @id";
+    public string FindByIdSql { get; } = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE id = @id";
+    public string SelectAllSql { get; } = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios";
+    
+    public string FindByUsernameSql { get; } = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE alias = @alias";
 
     public List<SqlParameter> InsertParameters(Usuario entity)
     {
@@ -70,7 +73,15 @@ public class UsuarioParams : IQueriesString<Usuario>
         };
         return parameters;
     }
-
+    
+    public List<SqlParameter> FindByUsernameParameters(string username)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@alias", username)
+        };
+        return parameters;
+    }
     public Usuario Map(SqlDataReader reader)
     {
         return new()
@@ -79,10 +90,10 @@ public class UsuarioParams : IQueriesString<Usuario>
             Nombres = reader.GetString(1),
             Apellidos = reader.GetString(2),
             Alias = reader.GetString(3),
-            Email = reader.GetString(4),
+            Email = reader.IsDBNull(4) ? null : reader.GetString(4),
             Password = reader.GetString(5),
-            Telefono = reader.GetString(6),
-            Direccion = reader.GetString(7),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
+            Direccion = reader.IsDBNull(7) ? null : reader.GetString(7),
             TipoUsuario = TipoUsuarioQuery.Instance.FindById(reader.GetInt64(8))
         };
     }
