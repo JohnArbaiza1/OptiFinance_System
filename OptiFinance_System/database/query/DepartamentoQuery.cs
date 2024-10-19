@@ -94,8 +94,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public List<Departamento> SelectAll()
     {
-        string query = "SELECT id, nombre, codigo FROM departamentos";
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
     public Departamento MapEntity(SqlDataReader reader)
@@ -105,13 +104,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public Departamento? FindByName(string name)
     {
-        string query = "SELECT id, nombre, codigo FROM departamentos WHERE nombre = @nombre";
-
-        List<SqlParameter> parameters = new()
-        {
-            new("@nombre", name)
-        };
-
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindName, MapEntity,
+            Params.ParametersFindByName(name));
     }
 }

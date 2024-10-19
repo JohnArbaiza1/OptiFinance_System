@@ -11,6 +11,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
     public string SqlUpdate { get; } = "UPDATE departamentos SET nombre = @Nombre, codigo = @Codigo WHERE id = @Id";
     public string SqlDelete { get; } = "DELETE FROM departamentos WHERE id = @Id";
     public string SqlFindById { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
+    public string SqlFindName { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE nombre = @Nombre";
     public string SqlSelectAll { get; } = "SELECT id, nombre, codigo FROM departamentos";
 
     public List<SqlParameter> ParametersInsert(Departamento entity)
@@ -48,6 +49,15 @@ public class DepartamentoParams : IQueriesString<Departamento>
         List<SqlParameter> parameters = new()
         {
             new("@Id", id)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByName(string name)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@Nombre", name)
         };
         return parameters;
     }
