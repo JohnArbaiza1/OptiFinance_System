@@ -8,7 +8,7 @@ namespace OptiFinance_System.database.query;
 
 public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
 {
-    private static readonly Lazy<TipoUsuarioQuery> _instance = new(() => new TipoUsuarioQuery());
+    private static readonly Lazy<TipoUsuarioQuery> _instance = new(() => new());
 
     private readonly Connection _connectionInstance;
 
@@ -62,7 +62,7 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
     public TipoUsuario? FindById(long id)
     {
         string query = "SELECT id, nombre FROM tipo_usuario WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -77,7 +77,7 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
 
     public TipoUsuario MapEntity(SqlDataReader reader)
     {
-        return new TipoUsuario
+        return new()
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1)

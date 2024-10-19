@@ -58,7 +58,7 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
 
     public MiembroEmpresa MapEntity(SqlDataReader reader)
     {
-        return new MiembroEmpresa
+        return new()
         {
             Id = reader.GetInt64(0),
             Nombres = reader.GetString(1),

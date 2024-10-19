@@ -8,18 +8,25 @@ namespace OptiFinance_System.database.generalities.parameters;
 public class EmpresaParams : IQueriesString<Empresa>
 {
     public string InsertSql { get; } = "INSERT INTO empresas " +
-                                    "(nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +
-                                    "VALUES (@nombre, @nit, @giro_economico, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito)";
+                                       "(nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +
+                                       "VALUES (@nombre, @nit, @giro_economico, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito)";
+
     public string UpdateSql { get; } = "UPDATE empresas SET " +
-                                    "nombre = @nombre, nit = @nit, giro_economico = @giro_economico, representante_legal = @representante_legal, " +
-                                    "direccion = @direccion, telefono = @telefono, email = @email, id_usuario = @id_usuario, id_distrito = @id_distrito " +
-                                    "WHERE id = @id";
+                                       "nombre = @nombre, nit = @nit, giro_economico = @giro_economico, representante_legal = @representante_legal, " +
+                                       "direccion = @direccion, telefono = @telefono, email = @email, id_usuario = @id_usuario, id_distrito = @id_distrito " +
+                                       "WHERE id = @id";
+
     public string DeleteSql { get; } = "DELETE FROM empresas WHERE id = @id";
-    public string FindByIdSql { get; } = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
-    public string SelectAllSql { get; } = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas";
+
+    public string FindByIdSql { get; } =
+        "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
+
+    public string SelectAllSql { get; } =
+        "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas";
+
     public List<SqlParameter> InsertParameters(Empresa entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@nit", entity.Nit),
@@ -36,7 +43,7 @@ public class EmpresaParams : IQueriesString<Empresa>
 
     public List<SqlParameter> UpdateParameters(Empresa entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@nit", entity.Nit),
@@ -54,7 +61,7 @@ public class EmpresaParams : IQueriesString<Empresa>
 
     public List<SqlParameter> DeleteParameters(long id)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -63,7 +70,7 @@ public class EmpresaParams : IQueriesString<Empresa>
 
     public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };

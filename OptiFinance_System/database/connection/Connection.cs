@@ -6,7 +6,7 @@ namespace OptiFinance_System.database.connection;
 
 public class Connection
 {
-    private static readonly Lazy<Connection> _instance = new(() => new Connection());
+    private static readonly Lazy<Connection> _instance = new(() => new());
     private readonly string? _connectionString;
     private readonly SqlConnection _sql_connection;
 
@@ -21,7 +21,7 @@ public class Connection
                             ?? throw new InvalidOperationException("Connection string not found.");
 
         // Inicializar el objeto SqlConnection
-        _sql_connection = new SqlConnection(_connectionString);
+        _sql_connection = new(_connectionString);
     }
 
     public static Connection Instance => _instance.Value;
@@ -39,7 +39,7 @@ public class Connection
         }
         catch (SqlException ex)
         {
-            throw new Exception("Error al abrir la conexión", ex);
+            throw new("Error al abrir la conexión", ex);
         }
     }
 
@@ -51,7 +51,7 @@ public class Connection
         }
         catch (SqlException ex)
         {
-            throw new Exception("Error al cerrar la conexión", ex);
+            throw new("Error al cerrar la conexión", ex);
         }
     }
 }

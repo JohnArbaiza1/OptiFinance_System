@@ -14,7 +14,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
 
     public List<SqlParameter> InsertParameters(Departamento entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@Nombre", entity.Nombre),
             new("@Codigo", entity.Codigo)
@@ -24,7 +24,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
 
     public List<SqlParameter> UpdateParameters(Departamento entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@Nombre", entity.Nombre),
             new("@Codigo", entity.Codigo),
@@ -35,7 +35,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
 
     public List<SqlParameter> DeleteParameters(long id)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@Id", id)
         };
@@ -44,7 +44,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
 
     public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@Id", id)
         };
@@ -53,7 +53,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
 
     public Departamento Map(SqlDataReader reader)
     {
-        Departamento departamento = new Departamento
+        Departamento departamento = new()
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),

@@ -19,7 +19,7 @@ public partial class Registro : Form
 
     private void lblLogin_Click(object sender, EventArgs e)
     {
-        Form1 form = new Form1();
+        Form1 form = new();
         form.Show();
         Hide();
     }
@@ -32,7 +32,7 @@ public partial class Registro : Form
         string nombres = txtNombre.Text.Trim();
         string apellidos = txtApellido.Text.Trim();
         string email = txtCorreo.Text.Trim();
-        
+
         if (password != confirmPassword)
         {
             Message.MessageViewError(@"Las contraseñas no coinciden");
@@ -45,7 +45,8 @@ public partial class Registro : Form
             txtUsuario.Clear();
             return;
         }
-        Usuario user = new Usuario
+
+        Usuario user = new()
         {
             Alias = username,
             Password = Utilities.HashPassword(password),
@@ -54,14 +55,11 @@ public partial class Registro : Form
             Email = email,
             TipoUsuario = TipoUsuarioQuery.Instance.FindById(2)
         };
-        
+
         bool result = UsuarioQuery.Instance.Insert(user);
         if (result)
-        {
             Message.MessageViewSuccess(@"Usuario registrado correctamente");
-        }else
-        {
+        else
             Message.MessageViewError(@"Error al registrar usuario");
-        }
     }
 }

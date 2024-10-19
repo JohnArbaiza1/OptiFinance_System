@@ -9,7 +9,7 @@ namespace OptiFinance_System.database.query;
 
 public class DepartamentoQuery : IQueryEstandar<Departamento>
 {
-    private static readonly Lazy<DepartamentoQuery> _instance = new(() => new DepartamentoQuery());
+    private static readonly Lazy<DepartamentoQuery> _instance = new(() => new());
 
     private readonly Connection _connectionInstance;
 
@@ -26,7 +26,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
     public bool Insert(Departamento entity, SqlTransaction? transaction = null)
     {
         string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@codigo", entity.Codigo)
@@ -44,7 +44,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
         {
             foreach (Departamento entity in entities)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@nombre", entity.Nombre),
                     new("@codigo", entity.Codigo)
@@ -52,10 +52,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
                 bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
                     transaction);
-                if (!result)
-                {
-                    return false;
-                }
+                if (!result) return false;
             }
 
             return true;
@@ -66,7 +63,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
     public bool Update(Departamento entity, SqlTransaction? transaction = null)
     {
         string query = "UPDATE departamentos SET nombre = @nombre, codigo = @codigo WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@codigo", entity.Codigo),
@@ -85,7 +82,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
             {
                 foreach (Departamento entity in entities)
                 {
-                    List<SqlParameter> parameters = new List<SqlParameter>
+                    List<SqlParameter> parameters = new()
                     {
                         new("@nombre", entity.Nombre),
                         new("@codigo", entity.Codigo),
@@ -110,7 +107,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
     {
         string query = "DELETE FROM departamentos WHERE id = @id";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -134,7 +131,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
         {
             foreach (long id in ids)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@id", id)
                 };
@@ -160,7 +157,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
     public Departamento? FindById(long id)
     {
         string query = "SELECT id, nombre, codigo FROM departamentos WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -176,7 +173,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public Departamento MapEntity(SqlDataReader reader)
     {
-        return new Departamento
+        return new()
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),
@@ -188,7 +185,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
     {
         string query = "SELECT id, nombre, codigo FROM departamentos WHERE nombre = @nombre";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", name)
         };

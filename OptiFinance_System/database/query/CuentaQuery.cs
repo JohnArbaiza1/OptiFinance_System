@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
+using OptiFinance_System.database.generalities;
+using OptiFinance_System.database.generalities.parameters;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -8,7 +10,7 @@ namespace OptiFinance_System.database.query;
 
 public class CuentaQuery : IQueryEstandar<Cuenta>
 {
-    private static readonly Lazy<CuentaQuery> _instance = new(() => new CuentaQuery());
+    private static readonly Lazy<CuentaQuery> _instance = new(() => new());
 
     private readonly Connection _connectionInstance;
 
@@ -20,60 +22,46 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
 
     public static CuentaQuery Instance => _instance.Value;
 
+    private static CuentaParams Params => Queries.CuentaParams;
+
     public bool Insert(Cuenta entity, SqlTransaction? transaction = null)
     {
-        string query =
-            "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta) VALUES (@codigo, @nombre, @id_tipo_cuenta)";
-
-        List<SqlParameter> parameters = new List<SqlParameter>
-        {
-            new("@codigo", entity.Codigo),
-            new("@nombre", entity.Nombre),
-            new("@id_tipo_cuenta", entity.TipoCuenta.Id)
-        };
-
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.InsertSql,
+            Params.InsertParameters(entity), transaction);
     }
 
     public bool Insert(List<Cuenta> entities)
     {
-        string query =
-            "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta) VALUES (@codigo, @nombre, @id_tipo_cuenta)";
-        _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (Cuenta entity in entities)
-            {
-                List<SqlParameter> parameters = new List<SqlParameter>
-                {
-                    new("@codigo", entity.Codigo),
-                    new("@nombre", entity.Nombre),
-                    new("@id_tipo_cuenta", entity.TipoCuenta.Id)
-                };
-
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
-                    transaction);
-                if (!result) return false;
-            }
-
-            return true;
+            return entities.Select(entity => Params.InsertParameters(entity)).Select(parameters =>
+                    QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(),
+                        Params.InsertSql, parameters, transaction))
+                .All(result => result);
         });
     }
 
     public bool Update(Cuenta entity, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.UpdateSql,
+            Params.UpdateParameters(entity), transaction);
     }
 
     public bool Update(List<Cuenta> entities)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return entities.Select(cuenta => Params.UpdateParameters(cuenta))
+                .Select(list => QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(),
+                    Params.UpdateSql, list, transaction))
+                .All(result => result);
+        });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.DeleteSql,
+            Params.DeleteParameters(id), transaction);
     }
 
     public bool Delete(Cuenta entity)
@@ -83,7 +71,13 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
 
     public bool Delete(List<long> ids)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return ids.Select(id => Params.DeleteParameters(id))
+                .Select(list => QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(),
+                    Params.DeleteSql, list, transaction))
+                .All(result => result);
+        });
     }
 
     public bool Delete(List<Cuenta> entities)
@@ -93,29 +87,23 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
 
     public Cuenta? FindById(long id)
     {
-        string query = "SELECT id, codigo, nombre, id_tipo_cuenta FROM cuentas WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
-        {
-            new("@id", id)
-        };
-
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.FindByIdSql, MapEntity,
+            Params.FindByIdParameters(id));
     }
 
     public List<Cuenta> SelectAll()
     {
-        string query = "SELECT id, codigo, nombre, id_tipo_cuenta FROM cuentas";
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SelectAllSql, MapEntity);
     }
 
     public Cuenta MapEntity(SqlDataReader reader)
     {
-        return new Cuenta
+        return new()
         {
             Id = reader.GetInt64(0),
             Codigo = reader.GetString(1),
             Nombre = reader.GetString(2),
-            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3))!
+            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3))
         };
     }
 }

@@ -9,7 +9,7 @@ namespace OptiFinance_System.database.query;
 
 public class MunicipioQuery : IQueryEstandar<Municipio>
 {
-    private static readonly Lazy<MunicipioQuery> _instance = new(() => new MunicipioQuery());
+    private static readonly Lazy<MunicipioQuery> _instance = new(() => new());
     private readonly Connection _connectionInstance;
 
     private MunicipioQuery()
@@ -23,7 +23,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
     public bool Insert(Municipio entity, SqlTransaction? transaction = null)
     {
         string query = "INSERT INTO municipios (nombre, id_departamento) VALUES (@nombre, @id_departamento)";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@id_departamento", entity.Departamento.Id)
@@ -41,7 +41,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         {
             foreach (Municipio entity in entities)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@nombre", entity.Nombre),
                     new("@id_departamento", entity.Departamento.Id)
@@ -59,7 +59,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
     {
         string query = "UPDATE municipios SET nombre = @nombre, id_departamento = @id_departamento WHERE id = @id";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@id_departamento", entity.Departamento.Id),
@@ -78,7 +78,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         {
             foreach (Municipio entity in entities)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@nombre", entity.Nombre),
                     new("@id_departamento", entity.Departamento.Id),
@@ -96,7 +96,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
         string query = "DELETE FROM municipios WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -120,7 +120,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
         {
             foreach (long id in ids)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@id", id)
                 };
@@ -145,7 +145,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
     public Municipio? FindById(long id)
     {
         string query = "SELECT id, nombre, id_departamento FROM municipios WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -161,7 +161,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
 
     public Municipio MapEntity(SqlDataReader reader)
     {
-        return new Municipio
+        return new()
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),
@@ -172,7 +172,7 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
     public Municipio? FindByName(string name)
     {
         string query = "SELECT id, nombre, id_departamento FROM municipios WHERE nombre = @nombre";
-        List<SqlParameter> parameters = new List<SqlParameter> { new("@nombre", name) };
+        List<SqlParameter> parameters = new() { new("@nombre", name) };
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
     }
 }

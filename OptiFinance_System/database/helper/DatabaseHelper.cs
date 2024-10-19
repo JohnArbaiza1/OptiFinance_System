@@ -17,7 +17,7 @@ public class DatabaseHelper
     {
         using (SqlConnection connection = Connection.Instance.GetSqlConnection())
         {
-            SqlCommand command = new SqlCommand(query, connection);
+            SqlCommand command = new(query, connection);
             connection.Open();
             command.ExecuteNonQuery();
             return 1;
@@ -27,7 +27,7 @@ public class DatabaseHelper
     public SqlDataReader ExecuteReader(string query, SqlConnection connection)
     {
         SqlConnection connectionLocal = connection;
-        SqlCommand command = new SqlCommand(query, connectionLocal);
+        SqlCommand command = new(query, connectionLocal);
         connectionLocal.Open();
         return command.ExecuteReader(CommandBehavior.CloseConnection);
     }

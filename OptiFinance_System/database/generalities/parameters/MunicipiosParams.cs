@@ -19,7 +19,7 @@ public class MunicipiosParams : IQueriesString<Municipio>
 
     public List<SqlParameter> InsertParameters(Municipio entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@id_departamento", entity.Departamento.Id)
@@ -29,7 +29,7 @@ public class MunicipiosParams : IQueriesString<Municipio>
 
     public List<SqlParameter> UpdateParameters(Municipio entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@id_departamento", entity.Departamento.Id),
@@ -40,7 +40,7 @@ public class MunicipiosParams : IQueriesString<Municipio>
 
     public List<SqlParameter> DeleteParameters(long id)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -49,7 +49,7 @@ public class MunicipiosParams : IQueriesString<Municipio>
 
     public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -58,7 +58,7 @@ public class MunicipiosParams : IQueriesString<Municipio>
 
     public Municipio Map(SqlDataReader reader)
     {
-        return new Municipio
+        return new()
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),

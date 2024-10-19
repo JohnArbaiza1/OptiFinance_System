@@ -15,7 +15,9 @@ public class PartidaParams : IQueriesString<Partida>
 
     public string DeleteSql { get; } = "DELETE FROM partidas WHERE id = @id";
     public string FindByIdSql { get; } = "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id = @id";
-    public string SelectAllSql { get; } = "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id_empresa = @id_empresa";
+
+    public string SelectAllSql { get; } =
+        "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id_empresa = @id_empresa";
 
     public List<SqlParameter> InsertParameters(Partida entity)
     {

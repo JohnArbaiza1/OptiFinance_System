@@ -7,16 +7,23 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
 {
-    public string InsertSql { get; } = "INSERT INTO miembros_empresa " + 
-                                    "(nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) " +
-                                    "VALUES (@nombres, @apellidos, @alias, @dui, @correo_electronico, @telefono, @direccion, @id_empresa)";
+    public string InsertSql { get; } = "INSERT INTO miembros_empresa " +
+                                       "(nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) " +
+                                       "VALUES (@nombres, @apellidos, @alias, @dui, @correo_electronico, @telefono, @direccion, @id_empresa)";
+
     public string UpdateSql { get; } = "UPDATE miembros_empresa SET " +
-                                    "nombres = @nombres, apellidos = @apellidos, alias = @alias, dui = @dui, " +
-                                    "correo_electronico = @correo_electronico, telefono = @telefono, direccion = @direccion, id_empresa = @id_empresa " +
-                                    "WHERE id = @id";
+                                       "nombres = @nombres, apellidos = @apellidos, alias = @alias, dui = @dui, " +
+                                       "correo_electronico = @correo_electronico, telefono = @telefono, direccion = @direccion, id_empresa = @id_empresa " +
+                                       "WHERE id = @id";
+
     public string DeleteSql { get; } = "DELETE FROM miembros_empresa WHERE id = @id";
-    public string FindByIdSql { get; } = "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa WHERE id = @id";
-    public string SelectAllSql { get; } = "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa WHERE id_empresa = @id_empresa";
+
+    public string FindByIdSql { get; } =
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa WHERE id = @id";
+
+    public string SelectAllSql { get; } =
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa WHERE id_empresa = @id_empresa";
+
     public List<SqlParameter> InsertParameters(MiembroEmpresa entity)
     {
         List<SqlParameter> parameters = new()

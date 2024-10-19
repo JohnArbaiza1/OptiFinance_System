@@ -8,7 +8,7 @@ namespace OptiFinance_System.database.query;
 
 public class EmpresaQuery : IQueryEstandar<Empresa>
 {
-    private static readonly Lazy<EmpresaQuery> _instance = new(() => new EmpresaQuery());
+    private static readonly Lazy<EmpresaQuery> _instance = new(() => new());
 
     private readonly Connection _connectionInstance;
 
@@ -26,7 +26,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
             "INSERT INTO empresas (nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +
             "VALUES (@nombre, @nit, @giro_economico, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito)";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@nit", entity.Nit),
@@ -53,7 +53,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         {
             foreach (Empresa entity in entities)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@nombre", entity.Nombre),
                     new("@nit", entity.Nit),
@@ -110,7 +110,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         string query = "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, " +
                        "telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -128,7 +128,7 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
 
     public Empresa MapEntity(SqlDataReader reader)
     {
-        return new Empresa
+        return new()
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),

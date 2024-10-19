@@ -7,13 +7,14 @@ namespace OptiFinance_System.database.generalities.parameters;
 public class TipoCuentaParams : IQueriesString<TipoCuenta>
 {
     public string InsertSql { get; } = "INSERT INTO tipo_cuenta (nombre) VALUES (@nombre)";
-    public string UpdateSql { get; } = "UPDATE tipo_cuenta SET nombre = @nombre WHERE id = @id";   
+    public string UpdateSql { get; } = "UPDATE tipo_cuenta SET nombre = @nombre WHERE id = @id";
     public string DeleteSql { get; } = "DELETE FROM tipo_cuenta WHERE id = @id";
     public string FindByIdSql { get; } = "SELECT id, nombre FROM tipo_cuenta WHERE id = @id";
     public string SelectAllSql { get; } = "SELECT id, nombre FROM tipo_cuenta";
+
     public List<SqlParameter> InsertParameters(TipoCuenta entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre)
         };
@@ -22,7 +23,7 @@ public class TipoCuentaParams : IQueriesString<TipoCuenta>
 
     public List<SqlParameter> UpdateParameters(TipoCuenta entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@id", entity.Id)
@@ -32,7 +33,7 @@ public class TipoCuentaParams : IQueriesString<TipoCuenta>
 
     public List<SqlParameter> DeleteParameters(long id)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -41,7 +42,7 @@ public class TipoCuentaParams : IQueriesString<TipoCuenta>
 
     public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };

@@ -9,23 +9,28 @@ namespace OptiFinance_System.database.generalities.parameters;
 public class UsuarioParams : IQueriesString<Usuario>
 {
     public string InsertSql { get; } = "INSERT INTO usuarios " +
-                                    "(nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario) " +
-                                    "VALUES (@nombres, @apellidos, @alias, @email, @password, @telefono, @direccion, @id_tipo_usuario)";
+                                       "(nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario) " +
+                                       "VALUES (@nombres, @apellidos, @alias, @email, @password, @telefono, @direccion, @id_tipo_usuario)";
 
     public string UpdateSql { get; } = "UPDATE usuarios SET " +
-                                    "nombres = @nombres, apellidos = @apellidos, alias = @alias, email = @email, " +
-                                    "password = @password, telefono = @telefono, direccion = @direccion, id_tipo_usuario = @id_tipo_usuario " +
-                                    "WHERE id = @id";
+                                       "nombres = @nombres, apellidos = @apellidos, alias = @alias, email = @email, " +
+                                       "password = @password, telefono = @telefono, direccion = @direccion, id_tipo_usuario = @id_tipo_usuario " +
+                                       "WHERE id = @id";
 
     public string DeleteSql { get; } = "DELETE FROM usuarios WHERE id = @id";
-    public string FindByIdSql { get; } = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE id = @id";
-    public string SelectAllSql { get; } = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios";
-    
-    public string FindByUsernameSql { get; } = "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE alias = @alias";
+
+    public string FindByIdSql { get; } =
+        "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE id = @id";
+
+    public string SelectAllSql { get; } =
+        "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios";
+
+    public string FindByUsernameSql { get; } =
+        "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE alias = @alias";
 
     public List<SqlParameter> InsertParameters(Usuario entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombres", entity.Nombres),
             new("@apellidos", entity.Apellidos),
@@ -41,7 +46,7 @@ public class UsuarioParams : IQueriesString<Usuario>
 
     public List<SqlParameter> UpdateParameters(Usuario entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombres", entity.Nombres),
             new("@apellidos", entity.Apellidos),
@@ -58,7 +63,7 @@ public class UsuarioParams : IQueriesString<Usuario>
 
     public List<SqlParameter> DeleteParameters(long id)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -67,13 +72,13 @@ public class UsuarioParams : IQueriesString<Usuario>
 
     public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
         return parameters;
     }
-    
+
     public List<SqlParameter> FindByUsernameParameters(string username)
     {
         List<SqlParameter> parameters = new()
@@ -82,6 +87,7 @@ public class UsuarioParams : IQueriesString<Usuario>
         };
         return parameters;
     }
+
     public Usuario Map(SqlDataReader reader)
     {
         return new()

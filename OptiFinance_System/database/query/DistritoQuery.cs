@@ -9,7 +9,7 @@ namespace OptiFinance_System.database.query;
 
 public class DistritoQuery : IQueryEstandar<Distrito>
 {
-    private static readonly Lazy<DistritoQuery> _instance = new(() => new DistritoQuery());
+    private static readonly Lazy<DistritoQuery> _instance = new(() => new());
 
     private readonly Connection _connectionInstance;
 
@@ -25,7 +25,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
     {
         string query = "INSERT INTO distritos (nombre, id_municipio) VALUES (@nombre, @id_municipio)";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@id_municipio", entity.Municipio.Id)
@@ -43,7 +43,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
         {
             foreach (Distrito entity in entities)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@nombre", entity.Nombre),
                     new("@id_municipio", entity.Municipio.Id)
@@ -66,7 +66,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
     {
         string query = "UPDATE distritos SET nombre = @nombre, id_municipio = @id_municipio WHERE id = @id";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@id_municipio", entity.Municipio.Id),
@@ -85,7 +85,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
         {
             foreach (Distrito entity in entities)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@nombre", entity.Nombre),
                     new("@id_municipio", entity.Municipio.Id),
@@ -108,7 +108,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
         string query = "DELETE FROM distritos WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -129,7 +129,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
         {
             foreach (long id in ids)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@id", id)
                 };
@@ -155,7 +155,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
     public Distrito? FindById(long id)
     {
         string query = "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -171,7 +171,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
 
     public Distrito MapEntity(SqlDataReader reader)
     {
-        return new Distrito
+        return new()
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),

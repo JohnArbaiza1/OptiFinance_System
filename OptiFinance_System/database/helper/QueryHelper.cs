@@ -10,7 +10,7 @@ public static class QueryHelper
     {
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection, transaction))
+            using (SqlCommand command = new(query, connection, transaction))
             {
                 command.Parameters.AddRange(parameters.ToArray());
                 return command.ExecuteNonQuery() > 0;
@@ -76,10 +76,10 @@ public static class QueryHelper
     public static List<T> ExecuteSelect<T>(SqlConnection connection, string query, Func<SqlDataReader, T> func,
         List<SqlParameter>? parameters = null)
     {
-        List<T> resultList = new List<T>();
+        List<T> resultList = new();
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = new(query, connection))
             {
                 if (parameters != null) command.Parameters.AddRange(parameters.ToArray());
 
@@ -91,7 +91,7 @@ public static class QueryHelper
         }
         catch (Exception e)
         {
-            throw new Exception(@"Error en la consulta SQL: " + e.Message);
+            throw new(@"Error en la consulta SQL: " + e.Message);
         }
 
         return resultList;
@@ -105,7 +105,7 @@ public static class QueryHelper
 
         try
         {
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = new(query, connection))
             {
                 command.Parameters.AddRange(parameters.ToArray());
 
@@ -118,7 +118,7 @@ public static class QueryHelper
         catch (Exception e)
         {
             // Message.MessageViewError(@"Error en la consulta SQL refdgdf: " + e.Message);
-            throw new Exception(e.Message);
+            throw new(e.Message);
         }
 
         return entity;

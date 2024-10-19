@@ -14,7 +14,7 @@ public class TipoUsuarioParams : IQueriesString<TipoUsuario>
 
     public List<SqlParameter> InsertParameters(TipoUsuario entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre)
         };
@@ -23,7 +23,7 @@ public class TipoUsuarioParams : IQueriesString<TipoUsuario>
 
     public List<SqlParameter> UpdateParameters(TipoUsuario entity)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@nombre", entity.Nombre),
             new("@id", entity.Id)
@@ -33,7 +33,7 @@ public class TipoUsuarioParams : IQueriesString<TipoUsuario>
 
     public List<SqlParameter> DeleteParameters(long id)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -42,7 +42,7 @@ public class TipoUsuarioParams : IQueriesString<TipoUsuario>
 
     public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
     {
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };

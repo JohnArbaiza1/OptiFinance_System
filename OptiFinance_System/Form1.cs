@@ -24,7 +24,7 @@ public partial class Form1 : Form
 
     private void InsertarUsuarios()
     {
-        DatabaseHelper databaseHelper = new DatabaseHelper("");
+        DatabaseHelper databaseHelper = new("");
         string? password = BCrypt.Net.BCrypt.HashPassword("admin");
         string query = "INSERT INTO usuarios (nombres, apellidos, alias, email, password, id_tipo_usuario) " +
                        $@"VALUES ('admin', 'admin', 'admin', 'admin@gmail.com', '{password}', '1')";
@@ -175,7 +175,7 @@ public partial class Form1 : Form
 
         currentUser = usuario!;
         Hide();
-        Principal menu = new Principal();
+        Principal menu = new();
         menu.Show();
         //evento que se dispara cuando el formulario Principal se cierra.
         menu.FormClosed += (s, args) => Close();
@@ -183,7 +183,7 @@ public partial class Form1 : Form
 
     private void lblRegistro_Click(object sender, EventArgs e)
     {
-        Registro registro = new Registro();
+        Registro registro = new();
         registro.Show();
         Hide();
     }

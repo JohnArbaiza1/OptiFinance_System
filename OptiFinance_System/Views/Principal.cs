@@ -11,7 +11,7 @@ public partial class Principal : Form
         // Establecemos el estilo del borde del formulario a ninguno
         FormBorderStyle = FormBorderStyle.None;
         //Indicamos el tamaño mínimo del formulario
-        MinimumSize = new Size(300, 200);
+        MinimumSize = new(300, 200);
 
         // Asociamos los eventos del mouse con los métodos manejadores
         MouseDown += panelContenedor_MouseDown;
@@ -77,19 +77,19 @@ public partial class Principal : Form
         btnInicio_Click(null, e);
         //========================================================
         //Para la opcion de cuentas
-        btnCuentas.Location = new Point(0, 190);
-        btnLibros.Location = new Point(0, 260);
+        btnCuentas.Location = new(0, 190);
+        btnLibros.Location = new(0, 260);
         PanelCuentas.Hide();
         //Para la opcion de libros
-        btnEstados.Location = new Point(0, 330);
+        btnEstados.Location = new(0, 330);
         panelLibros.Hide();
         //Para la opcion de estados
-        btnRLiquidez.Location = new Point(0, 400);
+        btnRLiquidez.Location = new(0, 400);
         panelEstados.Hide();
-        btnIngresarPartida.Location = new Point(0, 470);
-        btnUsuarios.Location = new Point(0, 540);
-        btnInfo.Location = new Point(0, 610);
-        btnSalir.Location = new Point(0, 830);
+        btnIngresarPartida.Location = new(0, 470);
+        btnUsuarios.Location = new(0, 540);
+        btnInfo.Location = new(0, 610);
+        btnSalir.Location = new(0, 830);
     }
 
     private void btnIngresarPartida_Click(object sender, EventArgs e)
@@ -191,7 +191,7 @@ public partial class Principal : Form
             int dx = e.X - lastMousePos.X;
             int dy = e.Y - lastMousePos.Y;
             // Ajusta el tamaño del formulario según el movimiento del mouse
-            Size = new Size(Width + dx, Height + dy);
+            Size = new(Width + dx, Height + dy);
             // Actualiza la posición del mouse
             lastMousePos = e.Location;
         }
@@ -227,7 +227,7 @@ public partial class Principal : Form
             int dx = e.X - lastMousePos.X;
             int dy = e.Y - lastMousePos.Y;
             // Ajusta el tamaño del formulario según el movimiento del mouse
-            Size = new Size(Width + dx, Height + dy);
+            Size = new(Width + dx, Height + dy);
             // Actualiza la posición del mouse
             lastMousePos = e.Location;
         }
@@ -267,26 +267,26 @@ public partial class Principal : Form
         if (PanelCuentas.Visible)
         {
             PanelCuentas.Visible = false;
-            btnLibros.Location = new Point(0, 257);
-            btnEstados.Location = new Point(0, 330);
-            btnRLiquidez.Location = new Point(0, 400);
-            btnIngresarPartida.Location = new Point(0, 470);
-            btnUsuarios.Location = new Point(0, 540);
-            btnInfo.Location = new Point(0, 610);
+            btnLibros.Location = new(0, 257);
+            btnEstados.Location = new(0, 330);
+            btnRLiquidez.Location = new(0, 400);
+            btnIngresarPartida.Location = new(0, 470);
+            btnUsuarios.Location = new(0, 540);
+            btnInfo.Location = new(0, 610);
         }
         else
         {
             PanelCuentas.Visible = true;
-            btnLibros.Location = new Point(0, 392);
-            btnEstados.Location = new Point(0, 465);
-            btnRLiquidez.Location = new Point(0, 535);
-            btnIngresarPartida.Location = new Point(0, 604);
-            btnUsuarios.Location = new Point(0, 674);
-            btnInfo.Location = new Point(0, 738);
+            btnLibros.Location = new(0, 392);
+            btnEstados.Location = new(0, 465);
+            btnRLiquidez.Location = new(0, 535);
+            btnIngresarPartida.Location = new(0, 604);
+            btnUsuarios.Location = new(0, 674);
+            btnInfo.Location = new(0, 738);
         }
 
-        btnCuentas.Location = new Point(0, 190);
-        PanelCuentas.Location = new Point(0, 263);
+        btnCuentas.Location = new(0, 190);
+        PanelCuentas.Location = new(0, 263);
     }
 
     //=================================================================================
@@ -296,24 +296,24 @@ public partial class Principal : Form
         if (panelLibros.Visible)
         {
             panelLibros.Visible = false;
-            btnEstados.Location = new Point(0, 330);
-            btnRLiquidez.Location = new Point(0, 400);
-            btnIngresarPartida.Location = new Point(0, 470);
-            btnUsuarios.Location = new Point(0, 540);
-            btnInfo.Location = new Point(0, 610);
+            btnEstados.Location = new(0, 330);
+            btnRLiquidez.Location = new(0, 400);
+            btnIngresarPartida.Location = new(0, 470);
+            btnUsuarios.Location = new(0, 540);
+            btnInfo.Location = new(0, 610);
         }
         else
         {
             panelLibros.Visible = true;
-            btnEstados.Location = new Point(0, 465);
-            btnRLiquidez.Location = new Point(0, 530);
-            btnIngresarPartida.Location = new Point(0, 600);
-            btnUsuarios.Location = new Point(0, 665);
-            btnInfo.Location = new Point(0, 735);
+            btnEstados.Location = new(0, 465);
+            btnRLiquidez.Location = new(0, 530);
+            btnIngresarPartida.Location = new(0, 600);
+            btnUsuarios.Location = new(0, 665);
+            btnInfo.Location = new(0, 735);
         }
 
-        btnLibros.Location = new Point(0, 257);
-        panelLibros.Location = new Point(0, 330);
+        btnLibros.Location = new(0, 257);
+        panelLibros.Location = new(0, 330);
     }
 
     //=================================================================================
@@ -323,23 +323,23 @@ public partial class Principal : Form
         if (panelEstados.Visible)
         {
             panelEstados.Visible = false;
-            btnRLiquidez.Location = new Point(0, 400);
-            btnIngresarPartida.Location = new Point(0, 470);
-            btnUsuarios.Location = new Point(0, 540);
-            btnInfo.Location = new Point(0, 610);
+            btnRLiquidez.Location = new(0, 400);
+            btnIngresarPartida.Location = new(0, 470);
+            btnUsuarios.Location = new(0, 540);
+            btnInfo.Location = new(0, 610);
         }
         else
         {
             panelEstados.Visible = true;
-            btnRLiquidez.Location = new Point(0, 545);
-            btnIngresarPartida.Location = new Point(0, 610);
-            btnUsuarios.Location = new Point(0, 680);
-            btnInfo.Location = new Point(0, 750);
-            btnSalir.Location = new Point(0, 830);
+            btnRLiquidez.Location = new(0, 545);
+            btnIngresarPartida.Location = new(0, 610);
+            btnUsuarios.Location = new(0, 680);
+            btnInfo.Location = new(0, 750);
+            btnSalir.Location = new(0, 830);
         }
 
-        btnEstados.Location = new Point(0, 332);
-        panelEstados.Location = new Point(0, 400);
+        btnEstados.Location = new(0, 332);
+        panelEstados.Location = new(0, 400);
     }
 
     private void btnUsuarios_Click(object sender, EventArgs e)

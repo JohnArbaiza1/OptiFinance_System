@@ -14,6 +14,6 @@ public interface IQueriesString<T>
     List<SqlParameter> UpdateParameters(T entity);
     List<SqlParameter> DeleteParameters(long id);
     List<SqlParameter> FindByIdParameters(long id, Usuario? user = null);
-    
+
     T Map(SqlDataReader reader);
 }

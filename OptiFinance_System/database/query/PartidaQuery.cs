@@ -8,7 +8,7 @@ namespace OptiFinance_System.database.query;
 
 public class PartidaQuery : IQueryEstandar<Partida>
 {
-    private static readonly Lazy<PartidaQuery> _instance = new(() => new PartidaQuery());
+    private static readonly Lazy<PartidaQuery> _instance = new(() => new());
 
     private readonly Connection _connectionInstance;
 
@@ -24,7 +24,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
     {
         string query = "INSERT INTO partidas (detalles, fecha, id_empresa) VALUES (@detalles, @fecha, @id_empresa)";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@detalles", entity.Detalles),
             new("@fecha", entity.Fecha),
@@ -73,7 +73,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
     public Partida? FindById(long id)
     {
         string query = "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -89,7 +89,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
 
     public Partida MapEntity(SqlDataReader reader)
     {
-        return new Partida
+        return new()
         {
             Id = reader.GetInt64(0),
             Detalles = reader.GetString(1),

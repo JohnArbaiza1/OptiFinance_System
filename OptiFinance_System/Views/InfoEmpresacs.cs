@@ -18,7 +18,7 @@ public partial class InfoEmpresacs : Form
 
     private void btnRegistrar_Click(object sender, EventArgs e)
     {
-        Empresa empresa = new Empresa();
+        Empresa empresa = new();
 
         empresa.Nombre = txtNombreEmpresa.Text;
         empresa.GiroEconomico = txtGiro.Text;

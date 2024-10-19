@@ -8,7 +8,7 @@ namespace OptiFinance_System.database.query;
 
 public class RegistroQuery : IQueryEstandar<Registro>
 {
-    private static readonly Lazy<RegistroQuery> _instance = new(() => new RegistroQuery());
+    private static readonly Lazy<RegistroQuery> _instance = new(() => new());
 
     private readonly Connection _connectionInstance;
 
@@ -25,7 +25,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
         string query =
             "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
 
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@debe", entity.Debe),
             new("@haber", entity.Haber),
@@ -46,7 +46,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
         {
             foreach (Registro entity in entities)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>
+                List<SqlParameter> parameters = new()
                 {
                     new("@debe", entity.Debe),
                     new("@haber", entity.Haber),
@@ -96,7 +96,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
     public Registro? FindById(long id)
     {
         string query = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id = @id";
-        List<SqlParameter> parameters = new List<SqlParameter>
+        List<SqlParameter> parameters = new()
         {
             new("@id", id)
         };
@@ -112,7 +112,7 @@ public class RegistroQuery : IQueryEstandar<Registro>
 
     public Registro MapEntity(SqlDataReader reader)
     {
-        return new Registro
+        return new()
         {
             Id = reader.GetInt64(0),
             Debe = reader.GetDecimal(1),
