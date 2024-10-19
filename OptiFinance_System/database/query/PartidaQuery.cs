@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
+using OptiFinance_System.database.generalities;
+using OptiFinance_System.database.generalities.parameters;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -9,7 +11,6 @@ namespace OptiFinance_System.database.query;
 public class PartidaQuery : IQueryEstandar<Partida>
 {
     private static readonly Lazy<PartidaQuery> _instance = new(() => new());
-
     private readonly Connection _connectionInstance;
 
     private PartidaQuery()
@@ -19,40 +20,44 @@ public class PartidaQuery : IQueryEstandar<Partida>
     }
 
     public static PartidaQuery Instance => _instance.Value;
+    private static PartidaParams Params => Queries.PartidaParams;
 
     public bool Insert(Partida entity, SqlTransaction? transaction = null)
     {
-        string query = "INSERT INTO partidas (detalles, fecha, id_empresa) VALUES (@detalles, @fecha, @id_empresa)";
-
-        List<SqlParameter> parameters = new()
-        {
-            new("@detalles", entity.Detalles),
-            new("@fecha", entity.Fecha),
-            new("@id_empresa", entity.Empresa.Id)
-        };
-
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
+            Params.ParametersInsert(entity), transaction);
     }
 
     public bool Insert(List<Partida> entities)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
+                QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert, parameters,
+                    transaction)).All(result => result);
+        });
     }
 
     public bool Update(Partida entity, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate,
+            Params.ParametersUpdate(entity), transaction);
     }
 
     public bool Update(List<Partida> entities)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return entities.Select(entity => Params.ParametersUpdate(entity)).Select(parameters =>
+                QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate, parameters,
+                    transaction)).All(result => result);
+        });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete,
+            Params.ParametersDelete(id), transaction);
     }
 
     public bool Delete(Partida entity)
@@ -62,7 +67,12 @@ public class PartidaQuery : IQueryEstandar<Partida>
 
     public bool Delete(List<long> ids)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return ids.Select(id => Params.ParametersDelete(id)).Select(parameters =>
+                QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete, parameters,
+                    transaction)).All(result => result);
+        });
     }
 
     public bool Delete(List<Partida> entities)
@@ -72,29 +82,17 @@ public class PartidaQuery : IQueryEstandar<Partida>
 
     public Partida? FindById(long id)
     {
-        string query = "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id = @id";
-        List<SqlParameter> parameters = new()
-        {
-            new("@id", id)
-        };
-
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
+            Params.ParametersFindById(id));
     }
 
     public List<Partida> SelectAll()
     {
-        string query = "SELECT id, detalles, fecha, id_empresa FROM partidas";
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
     public Partida MapEntity(SqlDataReader reader)
     {
-        return new()
-        {
-            Id = reader.GetInt64(0),
-            Detalles = reader.GetString(1),
-            Fecha = reader.GetDateTime(2),
-            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(3))!
-        };
+        return Params.Map(reader);
     }
 }

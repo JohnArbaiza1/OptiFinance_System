@@ -7,17 +7,16 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class PartidaParams : IQueriesString<Partida>
 {
-    public string SqlInsert { get; } =
+    public string SqlInsert =>
         "INSERT INTO partidas (detalles, fecha, id_empresa) VALUES (@detalles, @fecha, @id_empresa)";
 
-    public string SqlUpdate { get; } =
+    public string SqlUpdate =>
         "UPDATE partidas SET detalles = @detalles, fecha = @fecha, id_empresa = @id_empresa WHERE id = @id";
 
-    public string SqlDelete { get; } = "DELETE FROM partidas WHERE id = @id";
-    public string SqlFindById { get; } = "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id = @id";
+    public string SqlDelete => "DELETE FROM partidas WHERE id = @id";
+    public string SqlFindById => "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id = @id";
 
-    public string SqlSelectAll { get; } =
-        "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id_empresa = @id_empresa";
+    public string SqlSelectAll => "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersInsert(Partida entity)
     {
@@ -25,7 +24,7 @@ public class PartidaParams : IQueriesString<Partida>
         {
             new("@detalles", entity.Detalles),
             new("@fecha", entity.Fecha),
-            new("@id_empresa", entity.Empresa.Id)
+            new("@id_empresa", entity.Empresa?.Id)
         };
         return parameters;
     }
