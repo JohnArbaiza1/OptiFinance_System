@@ -7,21 +7,23 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class EmpresaParams : IQueriesString<Empresa>
 {
-    public string SqlInsert { get; } = "INSERT INTO empresas " +
-                                       "(nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +
-                                       "VALUES (@nombre, @nit, @giro_economico, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito)";
+    public string SqlInsert =>
+        "INSERT INTO empresas " +
+        "(nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) " +
+        "VALUES (@nombre, @nit, @giro_economico, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito)";
 
-    public string SqlUpdate { get; } = "UPDATE empresas SET " +
-                                       "nombre = @nombre, nit = @nit, giro_economico = @giro_economico, representante_legal = @representante_legal, " +
-                                       "direccion = @direccion, telefono = @telefono, email = @email, id_usuario = @id_usuario, id_distrito = @id_distrito " +
-                                       "WHERE id = @id";
+    public string SqlUpdate =>
+        "UPDATE empresas SET " +
+        "nombre = @nombre, nit = @nit, giro_economico = @giro_economico, representante_legal = @representante_legal, " +
+        "direccion = @direccion, telefono = @telefono, email = @email, id_usuario = @id_usuario, id_distrito = @id_distrito " +
+        "WHERE id = @id";
 
-    public string SqlDelete { get; } = "DELETE FROM empresas WHERE id = @id";
+    public string SqlDelete => "DELETE FROM empresas WHERE id = @id";
 
-    public string SqlFindById { get; } =
+    public string SqlFindById =>
         "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
 
-    public string SqlSelectAll { get; } =
+    public string SqlSelectAll =>
         "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas";
 
     public List<SqlParameter> ParametersInsert(Empresa entity)
@@ -35,7 +37,7 @@ public class EmpresaParams : IQueriesString<Empresa>
             new("@direccion", entity.Direccion),
             new("@telefono", entity.Telefono),
             new("@email", entity.Email),
-            new("@id_usuario", entity.Usuario.Id),
+            new("@id_usuario", entity.Usuario?.Id),
             new("@id_distrito", entity.Distrito?.Id)
         };
         return parameters;
@@ -52,7 +54,7 @@ public class EmpresaParams : IQueriesString<Empresa>
             new("@direccion", entity.Direccion),
             new("@telefono", entity.Telefono),
             new("@email", entity.Email),
-            new("@id_usuario", entity.Usuario.Id),
+            new("@id_usuario", entity.Usuario?.Id),
             new("@id_distrito", entity.Distrito?.Id),
             new("@id", entity.Id)
         };
