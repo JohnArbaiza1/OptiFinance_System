@@ -32,14 +32,13 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public bool Insert(List<Usuario> entities)
     {
-        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(),
-            transaction =>
-            {
-                return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
-                        QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(),
-                            Params.SqlInsert, parameters, transaction))
-                    .All(result => result);
-            });
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
+                    QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(),
+                        Params.SqlInsert, parameters, transaction))
+                .All(result => result);
+        });
     }
 
     public bool Update(Usuario entity, SqlTransaction? transaction = null)
@@ -52,9 +51,9 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
     {
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            return entities.Select(usuario => Queries.UsuarioParams.ParametersUpdate(usuario))
-                .Select(list => QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(),
-                    Queries.UsuarioParams.SqlUpdate, list, transaction))
+            return entities.Select(entity => Params.ParametersUpdate(entity)).Select(parameters =>
+                    QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(),
+                        Params.SqlUpdate, parameters, transaction))
                 .All(result => result);
         });
     }
