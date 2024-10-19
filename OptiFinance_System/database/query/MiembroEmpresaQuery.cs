@@ -1,4 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.connection;
+using OptiFinance_System.database.generalities;
+using OptiFinance_System.database.generalities.parameters;
+using OptiFinance_System.database.helper;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
@@ -6,29 +10,54 @@ namespace OptiFinance_System.database.query;
 
 public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
 {
+    private static readonly Lazy<MiembroEmpresaQuery> _instance = new(() => new());
+    private readonly Connection _connectionInstance;
+
+    private MiembroEmpresaQuery()
+    {
+        _connectionInstance = Connection.Instance;
+        _connectionInstance.OpenConnection();
+    }
+
+    public static MiembroEmpresaQuery Instance => _instance.Value;
+    private static MiembroEmpresaParams Params => Queries.MiembroEmpresaParams;
+
     public bool Insert(MiembroEmpresa entity, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
+            Params.ParametersInsert(entity), transaction);
     }
 
     public bool Insert(List<MiembroEmpresa> entities)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
+                QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert, parameters,
+                    transaction)).All(result => result);
+        });
     }
 
     public bool Update(MiembroEmpresa entity, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate,
+            Params.ParametersUpdate(entity), transaction);
     }
 
     public bool Update(List<MiembroEmpresa> entities)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return entities.Select(entity => Params.ParametersUpdate(entity)).Select(parameters =>
+                QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate, parameters,
+                    transaction)).All(result => result);
+        });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete,
+            Params.ParametersDelete(id), transaction);
     }
 
     public bool Delete(MiembroEmpresa entity)
@@ -38,7 +67,12 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
 
     public bool Delete(List<long> ids)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return ids.Select(id => Params.ParametersDelete(id)).Select(parameters =>
+                QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete, parameters,
+                    transaction)).All(result => result);
+        });
     }
 
     public bool Delete(List<MiembroEmpresa> entities)
@@ -48,27 +82,17 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
 
     public MiembroEmpresa? FindById(long id)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
+            Params.ParametersFindById(id));
     }
 
     public List<MiembroEmpresa> SelectAll()
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
     public MiembroEmpresa MapEntity(SqlDataReader reader)
     {
-        return new()
-        {
-            Id = reader.GetInt64(0),
-            Nombres = reader.GetString(1),
-            Apellidos = reader.GetString(2),
-            Alias = reader.GetString(3),
-            Dui = reader.GetString(4),
-            Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
-            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
-            Direccion = reader.GetString(7),
-            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(8))
-        };
+        return Params.Map(reader);
     }
 }

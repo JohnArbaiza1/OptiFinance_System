@@ -11,7 +11,6 @@ namespace OptiFinance_System.database.query;
 public class EmpresaQuery : IQueryEstandar<Empresa>
 {
     private static readonly Lazy<EmpresaQuery> _instance = new(() => new());
-
     private readonly Connection _connectionInstance;
 
     private EmpresaQuery()

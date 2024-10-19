@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -93,8 +94,8 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Apellidos = reader.GetString(2),
             Alias = reader.GetString(3),
             Dui = reader.GetString(4),
-            Correo = reader.GetString(5),
-            Telefono = reader.GetString(6),
+            Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
             Direccion = reader.GetString(7),
             Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(8))
         };
