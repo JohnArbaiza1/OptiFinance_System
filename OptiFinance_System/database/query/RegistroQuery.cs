@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
+using OptiFinance_System.database.generalities;
+using OptiFinance_System.database.generalities.parameters;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -9,7 +11,6 @@ namespace OptiFinance_System.database.query;
 public class RegistroQuery : IQueryEstandar<Registro>
 {
     private static readonly Lazy<RegistroQuery> _instance = new(() => new());
-
     private readonly Connection _connectionInstance;
 
     private RegistroQuery()
@@ -19,63 +20,46 @@ public class RegistroQuery : IQueryEstandar<Registro>
     }
 
     public static RegistroQuery Instance => _instance.Value;
+    private static RegistroParams Params => Queries.RegistroParams;
 
     public bool Insert(Registro entity, SqlTransaction? transaction = null)
     {
-        string query =
-            "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
-
-        List<SqlParameter> parameters = new()
-        {
-            new("@debe", entity.Debe),
-            new("@haber", entity.Haber),
-            new("@id_cuenta", entity.Cuenta.Id),
-            new("@id_partida", entity.Partida.Id)
-        };
-
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
+            Params.ParametersInsert(entity), transaction);
     }
 
     public bool Insert(List<Registro> entities)
     {
-        string query =
-            "INSERT INTO registros (debe, haber, id_cuenta, id_partida) VALUES (@debe, @haber, @id_cuenta, @id_partida)";
-        _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (Registro entity in entities)
-            {
-                List<SqlParameter> parameters = new()
-                {
-                    new("@debe", entity.Debe),
-                    new("@haber", entity.Haber),
-                    new("@id_cuenta", entity.Cuenta.Id),
-                    new("@id_partida", entity.Partida.Id)
-                };
-
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
-                    transaction);
-                if (!result) return false;
-            }
-
-            return true;
+            return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
+                    QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert, parameters,
+                        transaction))
+                .All(result => result);
         });
     }
 
     public bool Update(Registro entity, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate,
+            Params.ParametersUpdate(entity), transaction);
     }
 
     public bool Update(List<Registro> entities)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return entities.Select(entity => Params.ParametersUpdate(entity)).Select(parameters =>
+                    QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate, parameters,
+                        transaction))
+                .All(result => result);
+        });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete,
+            Params.ParametersDelete(id), transaction);
     }
 
     public bool Delete(Registro entity)
@@ -85,7 +69,13 @@ public class RegistroQuery : IQueryEstandar<Registro>
 
     public bool Delete(List<long> ids)
     {
-        throw new NotImplementedException();
+        return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
+        {
+            return ids.Select(id => Params.ParametersDelete(id)).Select(parameters =>
+                    QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete, parameters,
+                        transaction))
+                .All(result => result);
+        });
     }
 
     public bool Delete(List<Registro> entities)
@@ -95,30 +85,17 @@ public class RegistroQuery : IQueryEstandar<Registro>
 
     public Registro? FindById(long id)
     {
-        string query = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id = @id";
-        List<SqlParameter> parameters = new()
-        {
-            new("@id", id)
-        };
-
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
+            Params.ParametersFindById(id));
     }
 
     public List<Registro> SelectAll()
     {
-        string query = "SELECT id, debe, haber, id_cuenta, id_partida FROM registros";
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
     public Registro MapEntity(SqlDataReader reader)
     {
-        return new()
-        {
-            Id = reader.GetInt64(0),
-            Debe = reader.GetDecimal(1),
-            Haber = reader.GetDecimal(2),
-            Cuenta = CuentaQuery.Instance.FindById(reader.GetInt64(3))!,
-            Partida = PartidaQuery.Instance.FindById(reader.GetInt64(4))!
-        };
+        return Params.Map(reader);
     }
 }
