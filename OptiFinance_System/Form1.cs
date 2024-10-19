@@ -1,5 +1,8 @@
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using OptiFinance_System.database.connection;
+using OptiFinance_System.database.generalities;
+using OptiFinance_System.database.generalities.parameters;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -20,6 +23,19 @@ public partial class Form1 : Form
     public Form1()
     {
         InitializeComponent();
+    }
+
+    private static void CargarDatos()
+    {
+        var queryBuilder = new QueryBuilder<Empresa>()
+            .SelectAll()
+            .Where("nombre", "nose" );
+
+        Connection.Instance.OpenConnection();
+        List<Empresa> departamentos = queryBuilder.ExecuteQuery(Connection.Instance.GetSqlConnection(), Queries.EmpresaParams.Map);
+        
+        departamentos.ForEach(Console.WriteLine);
+
     }
 
     private void InsertarUsuarios()
@@ -121,10 +137,7 @@ public partial class Form1 : Form
 
     private void Form1_Load(object sender, EventArgs e)
     {
-        // InsertarUsuarios();
-        // InsertarDepartamentos();
-        // InsertarMunicipios();
-        // InsertarDistritos();
+        CargarDatos();
     }
 
     private void txtUser_Enter(object sender, EventArgs e)
