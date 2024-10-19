@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
+using OptiFinance_System.database.generalities;
+using OptiFinance_System.database.generalities.parameters;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -19,90 +21,44 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
     }
 
     public static MunicipioQuery Instance => _instance.Value;
+    private static MunicipiosParams Params => Queries.MunicipiosParams;
 
     public bool Insert(Municipio entity, SqlTransaction? transaction = null)
     {
-        string query = "INSERT INTO municipios (nombre, id_departamento) VALUES (@nombre, @id_departamento)";
-        List<SqlParameter> parameters = new()
-        {
-            new("@nombre", entity.Nombre),
-            new("@id_departamento", entity.Departamento.Id)
-        };
-
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
+            Params.ParametersInsert(entity), transaction);
     }
 
     public bool Insert(List<Municipio> entities)
     {
-        string query = "INSERT INTO municipios (nombre, id_departamento) VALUES (@nombre, @id_departamento)";
-        _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (Municipio entity in entities)
-            {
-                List<SqlParameter> parameters = new()
-                {
-                    new("@nombre", entity.Nombre),
-                    new("@id_departamento", entity.Departamento.Id)
-                };
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
-                    transaction);
-                if (!result) return false;
-            }
-
-            return true;
+            return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
+                QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert, parameters,
+                    transaction)).All(result => result);
         });
     }
 
     public bool Update(Municipio entity, SqlTransaction? transaction = null)
     {
-        string query = "UPDATE municipios SET nombre = @nombre, id_departamento = @id_departamento WHERE id = @id";
-
-        List<SqlParameter> parameters = new()
-        {
-            new("@nombre", entity.Nombre),
-            new("@id_departamento", entity.Departamento.Id),
-            new("@id", entity.Id)
-        };
-
-        bool result = QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate,
+            Params.ParametersUpdate(entity), transaction);
     }
 
     public bool Update(List<Municipio> entities)
     {
-        string query = "UPDATE municipios SET nombre = @nombre, id_departamento = @id_departamento WHERE id = @id";
-        _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (Municipio entity in entities)
-            {
-                List<SqlParameter> parameters = new()
-                {
-                    new("@nombre", entity.Nombre),
-                    new("@id_departamento", entity.Departamento.Id),
-                    new("@id", entity.Id)
-                };
-                bool result = QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), query, parameters,
-                    transaction);
-                if (!result) return false;
-            }
-
-            return true;
+            return entities.Select(entity => Params.ParametersUpdate(entity)).Select(parameters =>
+                QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate, parameters,
+                    transaction)).All(result => result);
         });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        string query = "DELETE FROM municipios WHERE id = @id";
-        List<SqlParameter> parameters = new()
-        {
-            new("@id", id)
-        };
-
-        bool result = QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete,
+            Params.ParametersDelete(id), transaction);
     }
 
     public bool Delete(Municipio entity)
@@ -112,28 +68,11 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
 
     public bool Delete(List<long> ids)
     {
-        string query = "DELETE FROM municipios WHERE id = @id";
-
-        _connectionInstance.OpenConnection();
-
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (long id in ids)
-            {
-                List<SqlParameter> parameters = new()
-                {
-                    new("@id", id)
-                };
-                bool result = QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), query, parameters,
-                    transaction);
-                if (!result)
-                {
-                    Message.MessageViewError(@"Error al eliminar una de las entidades.");
-                    return false;
-                }
-            }
-
-            return true;
+            return ids.Select(id => Params.ParametersDelete(id)).Select(parameters =>
+                QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete, parameters,
+                    transaction)).All(result => result);
         });
     }
 
@@ -144,35 +83,23 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
 
     public Municipio? FindById(long id)
     {
-        string query = "SELECT id, nombre, id_departamento FROM municipios WHERE id = @id";
-        List<SqlParameter> parameters = new()
-        {
-            new("@id", id)
-        };
-
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
+            Params.ParametersFindById(id));
     }
 
     public List<Municipio> SelectAll()
     {
-        string query = "SELECT id, nombre, id_departamento FROM municipios";
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), query, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
     public Municipio MapEntity(SqlDataReader reader)
     {
-        return new()
-        {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1),
-            Departamento = DepartamentoQuery.Instance.FindById(reader.GetInt64(2))!
-        };
+        return Params.Map(reader);
     }
 
     public Municipio? FindByName(string name)
     {
-        string query = "SELECT id, nombre, id_departamento FROM municipios WHERE nombre = @nombre";
-        List<SqlParameter> parameters = new() { new("@nombre", name) };
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByName, MapEntity,
+            Params.ParametersFindByName(name));
     }
 }

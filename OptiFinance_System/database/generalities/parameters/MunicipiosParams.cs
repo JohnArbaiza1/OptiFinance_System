@@ -16,6 +16,8 @@ public class MunicipiosParams : IQueriesString<Municipio>
     public string SqlDelete { get; } = "DELETE FROM municipios WHERE id = @id";
     public string SqlFindById { get; } = "SELECT id, nombre, id_departamento FROM municipios WHERE id = @id";
     public string SqlSelectAll { get; } = "SELECT id, nombre, id_departamento FROM municipios";
+    
+    public string SqlFindByName { get; } = "SELECT id, nombre, id_departamento FROM municipios WHERE nombre = @nombre";
 
     public List<SqlParameter> ParametersInsert(Municipio entity)
     {
@@ -64,5 +66,14 @@ public class MunicipiosParams : IQueriesString<Municipio>
             Nombre = reader.GetString(1),
             Departamento = DepartamentoQuery.Instance.FindById(reader.GetInt64(2))
         };
+    }
+    
+    public List<SqlParameter> ParametersFindByName(string name)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@nombre", name)
+        };
+        return parameters;
     }
 }
