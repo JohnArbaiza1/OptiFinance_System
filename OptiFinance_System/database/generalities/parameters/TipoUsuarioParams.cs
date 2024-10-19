@@ -6,13 +6,13 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class TipoUsuarioParams : IQueriesString<TipoUsuario>
 {
-    public string InsertSql { get; } = "INSERT INTO tipo_usuario (nombre) VALUES (@nombre)";
-    public string UpdateSql { get; } = "UPDATE tipo_usuario SET nombre = @nombre WHERE id = @id";
-    public string DeleteSql { get; } = "DELETE FROM tipo_usuario WHERE id = @id";
-    public string FindByIdSql { get; } = "SELECT id, nombre FROM tipo_usuario WHERE id = @id";
-    public string SelectAllSql { get; } = "SELECT id, nombre FROM tipo_usuario";
+    public string SqlInsert { get; } = "INSERT INTO tipo_usuario (nombre) VALUES (@nombre)";
+    public string SqlUpdate { get; } = "UPDATE tipo_usuario SET nombre = @nombre WHERE id = @id";
+    public string SqlDelete { get; } = "DELETE FROM tipo_usuario WHERE id = @id";
+    public string SqlFindById { get; } = "SELECT id, nombre FROM tipo_usuario WHERE id = @id";
+    public string SqlSelectAll { get; } = "SELECT id, nombre FROM tipo_usuario";
 
-    public List<SqlParameter> InsertParameters(TipoUsuario entity)
+    public List<SqlParameter> ParametersInsert(TipoUsuario entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -21,7 +21,7 @@ public class TipoUsuarioParams : IQueriesString<TipoUsuario>
         return parameters;
     }
 
-    public List<SqlParameter> UpdateParameters(TipoUsuario entity)
+    public List<SqlParameter> ParametersUpdate(TipoUsuario entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -31,7 +31,7 @@ public class TipoUsuarioParams : IQueriesString<TipoUsuario>
         return parameters;
     }
 
-    public List<SqlParameter> DeleteParameters(long id)
+    public List<SqlParameter> ParametersDelete(long id)
     {
         List<SqlParameter> parameters = new()
         {
@@ -40,7 +40,7 @@ public class TipoUsuarioParams : IQueriesString<TipoUsuario>
         return parameters;
     }
 
-    public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
+    public List<SqlParameter> ParametersFindById(long id, Usuario? user = null)
     {
         List<SqlParameter> parameters = new()
         {

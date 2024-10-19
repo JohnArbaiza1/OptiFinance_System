@@ -7,24 +7,24 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
 {
-    public string InsertSql { get; } = "INSERT INTO miembros_empresa " +
+    public string SqlInsert { get; } = "INSERT INTO miembros_empresa " +
                                        "(nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) " +
                                        "VALUES (@nombres, @apellidos, @alias, @dui, @correo_electronico, @telefono, @direccion, @id_empresa)";
 
-    public string UpdateSql { get; } = "UPDATE miembros_empresa SET " +
+    public string SqlUpdate { get; } = "UPDATE miembros_empresa SET " +
                                        "nombres = @nombres, apellidos = @apellidos, alias = @alias, dui = @dui, " +
                                        "correo_electronico = @correo_electronico, telefono = @telefono, direccion = @direccion, id_empresa = @id_empresa " +
                                        "WHERE id = @id";
 
-    public string DeleteSql { get; } = "DELETE FROM miembros_empresa WHERE id = @id";
+    public string SqlDelete { get; } = "DELETE FROM miembros_empresa WHERE id = @id";
 
-    public string FindByIdSql { get; } =
+    public string SqlFindById { get; } =
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa WHERE id = @id";
 
-    public string SelectAllSql { get; } =
+    public string SqlSelectAll { get; } =
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa WHERE id_empresa = @id_empresa";
 
-    public List<SqlParameter> InsertParameters(MiembroEmpresa entity)
+    public List<SqlParameter> ParametersInsert(MiembroEmpresa entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -40,7 +40,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         return parameters;
     }
 
-    public List<SqlParameter> UpdateParameters(MiembroEmpresa entity)
+    public List<SqlParameter> ParametersUpdate(MiembroEmpresa entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -57,7 +57,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         return parameters;
     }
 
-    public List<SqlParameter> DeleteParameters(long id)
+    public List<SqlParameter> ParametersDelete(long id)
     {
         List<SqlParameter> parameters = new()
         {
@@ -66,7 +66,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         return parameters;
     }
 
-    public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
+    public List<SqlParameter> ParametersFindById(long id, Usuario? user = null)
     {
         List<SqlParameter> parameters = new()
         {

@@ -26,8 +26,8 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public bool Insert(Usuario entity, SqlTransaction? transaction = null)
     {
-        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.InsertSql,
-            Params.InsertParameters(entity), transaction);
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
+            Params.ParametersInsert(entity), transaction);
     }
 
     public bool Insert(List<Usuario> entities)
@@ -35,34 +35,34 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(),
             transaction =>
             {
-                return entities.Select(entity => Params.InsertParameters(entity)).Select(parameters =>
+                return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
                         QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(),
-                            Params.InsertSql, parameters, transaction))
+                            Params.SqlInsert, parameters, transaction))
                     .All(result => result);
             });
     }
 
     public bool Update(Usuario entity, SqlTransaction? transaction = null)
     {
-        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.UpdateSql,
-            Params.UpdateParameters(entity), transaction);
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate,
+            Params.ParametersUpdate(entity), transaction);
     }
 
     public bool Update(List<Usuario> entities)
     {
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            return entities.Select(usuario => Queries.UsuarioParams.UpdateParameters(usuario))
+            return entities.Select(usuario => Queries.UsuarioParams.ParametersUpdate(usuario))
                 .Select(list => QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(),
-                    Queries.UsuarioParams.UpdateSql, list, transaction))
+                    Queries.UsuarioParams.SqlUpdate, list, transaction))
                 .All(result => result);
         });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Queries.UsuarioParams.DeleteSql,
-            Queries.UsuarioParams.DeleteParameters(id), transaction);
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Queries.UsuarioParams.SqlDelete,
+            Queries.UsuarioParams.ParametersDelete(id), transaction);
     }
 
     public bool Delete(Usuario entity)
@@ -74,9 +74,9 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
     {
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            return ids.Select(id => Params.DeleteParameters(id))
+            return ids.Select(id => Params.ParametersDelete(id))
                 .Select(list => QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(),
-                    Params.InsertSql, list, transaction))
+                    Params.SqlInsert, list, transaction))
                 .All(result => result);
         });
     }
@@ -88,13 +88,13 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public Usuario? FindById(long id)
     {
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.FindByIdSql, MapEntity,
-            Params.FindByIdParameters(id));
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
+            Params.ParametersFindById(id));
     }
 
     public List<Usuario> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SelectAllSql, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
     public Usuario MapEntity(SqlDataReader reader)

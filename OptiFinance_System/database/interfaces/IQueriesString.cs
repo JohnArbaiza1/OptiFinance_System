@@ -5,15 +5,15 @@ namespace OptiFinance_System.database.interfaces;
 
 public interface IQueriesString<T>
 {
-    string InsertSql { get; }
-    string UpdateSql { get; }
-    string DeleteSql { get; }
-    string FindByIdSql { get; }
-    string SelectAllSql { get; }
-    List<SqlParameter> InsertParameters(T entity);
-    List<SqlParameter> UpdateParameters(T entity);
-    List<SqlParameter> DeleteParameters(long id);
-    List<SqlParameter> FindByIdParameters(long id, Usuario? user = null);
+    string SqlInsert { get; }
+    string SqlUpdate { get; }
+    string SqlDelete { get; }
+    string SqlFindById { get; }
+    string SqlSelectAll { get; }
+    List<SqlParameter> ParametersInsert(T entity);
+    List<SqlParameter> ParametersUpdate(T entity);
+    List<SqlParameter> ParametersDelete(long id);
+    List<SqlParameter> ParametersFindById(long id, Usuario? user = null);
 
     T Map(SqlDataReader reader);
 }

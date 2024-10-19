@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.connection;
+using OptiFinance_System.database.generalities;
+using OptiFinance_System.database.generalities.parameters;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -10,110 +12,57 @@ namespace OptiFinance_System.database.query;
 public class DepartamentoQuery : IQueryEstandar<Departamento>
 {
     private static readonly Lazy<DepartamentoQuery> _instance = new(() => new());
-
     private readonly Connection _connectionInstance;
 
     private DepartamentoQuery()
     {
-        _connectionInstance = connection.Connection.Instance;
+        _connectionInstance = Connection.Instance;
         _connectionInstance.OpenConnection();
     }
 
     public static DepartamentoQuery Instance => _instance.Value;
 
-    public SqlConnection Connection { get; set; }
+    private static DepartamentoParams Params => Queries.DepartamentoParams;
 
     public bool Insert(Departamento entity, SqlTransaction? transaction = null)
     {
-        string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
-        List<SqlParameter> parameters = new()
-        {
-            new("@nombre", entity.Nombre),
-            new("@codigo", entity.Codigo)
-        };
-
-        bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
+            Params.ParametersInsert(entity), transaction);
     }
 
     public bool Insert(List<Departamento> entities)
     {
-        string query = "INSERT INTO departamentos (nombre, codigo) VALUES (@nombre, @codigo)";
-        _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (Departamento entity in entities)
-            {
-                List<SqlParameter> parameters = new()
-                {
-                    new("@nombre", entity.Nombre),
-                    new("@codigo", entity.Codigo)
-                };
-
-                bool result = QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), query, parameters,
-                    transaction);
-                if (!result) return false;
-            }
-
-            return true;
+            return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
+                    QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(),
+                        Params.SqlInsert, parameters, transaction))
+                .All(result => result);
         });
     }
 
 
     public bool Update(Departamento entity, SqlTransaction? transaction = null)
     {
-        string query = "UPDATE departamentos SET nombre = @nombre, codigo = @codigo WHERE id = @id";
-        List<SqlParameter> parameters = new()
-        {
-            new("@nombre", entity.Nombre),
-            new("@codigo", entity.Codigo),
-            new("@id", entity.Id)
-        };
-
-        bool result = QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate,
+            Params.ParametersUpdate(entity), transaction);
     }
 
     public bool Update(List<Departamento> entities)
     {
-        string query = "UPDATE departamentos SET nombre = @nombre, codigo = @codigo WHERE id = @id";
-        _connectionInstance.OpenConnection();
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
-            {
-                foreach (Departamento entity in entities)
-                {
-                    List<SqlParameter> parameters = new()
-                    {
-                        new("@nombre", entity.Nombre),
-                        new("@codigo", entity.Codigo),
-                        new("@id", entity.Id)
-                    };
-
-                    bool result = QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), query, parameters,
-                        transaction);
-                    if (!result)
-                    {
-                        Message.MessageViewError(@"Error al actualizar una de las entidades.");
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-        );
+        {
+            return entities.Select(entity => Params.ParametersUpdate(entity))
+                .Select(parameters => QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(),
+                    Params.SqlUpdate, parameters, transaction))
+                .All(result => result);
+        });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        string query = "DELETE FROM departamentos WHERE id = @id";
-
-        List<SqlParameter> parameters = new()
-        {
-            new("@id", id)
-        };
-
-        bool result = QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), query, parameters, transaction);
-        return result;
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete,
+            Params.ParametersDelete(id), transaction);
     }
 
     public bool Delete(Departamento entity)
@@ -123,29 +72,12 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public bool Delete(List<long> ids)
     {
-        string query = "DELETE FROM departamentos WHERE id = @id";
-
-        _connectionInstance.OpenConnection();
-
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            foreach (long id in ids)
-            {
-                List<SqlParameter> parameters = new()
-                {
-                    new("@id", id)
-                };
-
-                bool result = QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), query, parameters,
-                    transaction);
-                if (!result)
-                {
-                    Message.MessageViewError(@"Error al eliminar una de las entidades.");
-                    return false;
-                }
-            }
-
-            return true;
+            return ids.Select(id => Params.ParametersDelete(id))
+                .Select(parameters => QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(),
+                    Params.SqlDelete, parameters, transaction))
+                .All(result => result);
         });
     }
 
@@ -156,13 +88,8 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public Departamento? FindById(long id)
     {
-        string query = "SELECT id, nombre, codigo FROM departamentos WHERE id = @id";
-        List<SqlParameter> parameters = new()
-        {
-            new("@id", id)
-        };
-
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), query, MapEntity, parameters);
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
+            Params.ParametersFindById(id));
     }
 
     public List<Departamento> SelectAll()
@@ -173,12 +100,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public Departamento MapEntity(SqlDataReader reader)
     {
-        return new()
-        {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1),
-            Codigo = reader.IsDBNull(2) ? null : reader.GetString(2)
-        };
+        return Params.Map(reader);
     }
 
     public Departamento? FindByName(string name)

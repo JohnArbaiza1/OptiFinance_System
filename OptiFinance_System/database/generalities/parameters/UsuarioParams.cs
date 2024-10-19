@@ -8,27 +8,27 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class UsuarioParams : IQueriesString<Usuario>
 {
-    public string InsertSql { get; } = "INSERT INTO usuarios " +
+    public string SqlInsert { get; } = "INSERT INTO usuarios " +
                                        "(nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario) " +
                                        "VALUES (@nombres, @apellidos, @alias, @email, @password, @telefono, @direccion, @id_tipo_usuario)";
 
-    public string UpdateSql { get; } = "UPDATE usuarios SET " +
+    public string SqlUpdate { get; } = "UPDATE usuarios SET " +
                                        "nombres = @nombres, apellidos = @apellidos, alias = @alias, email = @email, " +
                                        "password = @password, telefono = @telefono, direccion = @direccion, id_tipo_usuario = @id_tipo_usuario " +
                                        "WHERE id = @id";
 
-    public string DeleteSql { get; } = "DELETE FROM usuarios WHERE id = @id";
+    public string SqlDelete { get; } = "DELETE FROM usuarios WHERE id = @id";
 
-    public string FindByIdSql { get; } =
+    public string SqlFindById { get; } =
         "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE id = @id";
 
-    public string SelectAllSql { get; } =
+    public string SqlSelectAll { get; } =
         "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios";
 
     public string FindByUsernameSql { get; } =
         "SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios WHERE alias = @alias";
 
-    public List<SqlParameter> InsertParameters(Usuario entity)
+    public List<SqlParameter> ParametersInsert(Usuario entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -44,7 +44,7 @@ public class UsuarioParams : IQueriesString<Usuario>
         return parameters;
     }
 
-    public List<SqlParameter> UpdateParameters(Usuario entity)
+    public List<SqlParameter> ParametersUpdate(Usuario entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -61,7 +61,7 @@ public class UsuarioParams : IQueriesString<Usuario>
         return parameters;
     }
 
-    public List<SqlParameter> DeleteParameters(long id)
+    public List<SqlParameter> ParametersDelete(long id)
     {
         List<SqlParameter> parameters = new()
         {
@@ -70,7 +70,7 @@ public class UsuarioParams : IQueriesString<Usuario>
         return parameters;
     }
 
-    public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
+    public List<SqlParameter> ParametersFindById(long id, Usuario? user = null)
     {
         List<SqlParameter> parameters = new()
         {

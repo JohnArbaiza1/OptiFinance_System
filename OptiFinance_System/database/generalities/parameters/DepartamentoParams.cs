@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
@@ -6,13 +7,13 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class DepartamentoParams : IQueriesString<Departamento>
 {
-    public string InsertSql { get; } = "INSERT INTO departamentos (nombre, codigo) VALUES (@Nombre, @Codigo)";
-    public string UpdateSql { get; } = "UPDATE departamentos SET nombre = @Nombre, codigo = @Codigo WHERE id = @Id";
-    public string DeleteSql { get; } = "DELETE FROM departamentos WHERE id = @Id";
-    public string FindByIdSql { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
-    public string SelectAllSql { get; } = "SELECT id, nombre, codigo FROM departamentos";
+    public string SqlInsert { get; } = "INSERT INTO departamentos (nombre, codigo) VALUES (@Nombre, @Codigo)";
+    public string SqlUpdate { get; } = "UPDATE departamentos SET nombre = @Nombre, codigo = @Codigo WHERE id = @Id";
+    public string SqlDelete { get; } = "DELETE FROM departamentos WHERE id = @Id";
+    public string SqlFindById { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
+    public string SqlSelectAll { get; } = "SELECT id, nombre, codigo FROM departamentos";
 
-    public List<SqlParameter> InsertParameters(Departamento entity)
+    public List<SqlParameter> ParametersInsert(Departamento entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -22,7 +23,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
         return parameters;
     }
 
-    public List<SqlParameter> UpdateParameters(Departamento entity)
+    public List<SqlParameter> ParametersUpdate(Departamento entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -33,7 +34,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
         return parameters;
     }
 
-    public List<SqlParameter> DeleteParameters(long id)
+    public List<SqlParameter> ParametersDelete(long id)
     {
         List<SqlParameter> parameters = new()
         {
@@ -42,7 +43,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
         return parameters;
     }
 
-    public List<SqlParameter> FindByIdParameters(long id, Usuario? user = null)
+    public List<SqlParameter> ParametersFindById(long id, Usuario? user = null)
     {
         List<SqlParameter> parameters = new()
         {
@@ -57,7 +58,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
         {
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),
-            Codigo = reader.GetString(2)
+            Codigo = reader.IsDBNull(2) ? null : reader.GetString(2)
         };
         return departamento;
     }

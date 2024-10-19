@@ -26,42 +26,42 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
 
     public bool Insert(Cuenta entity, SqlTransaction? transaction = null)
     {
-        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.InsertSql,
-            Params.InsertParameters(entity), transaction);
+        return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
+            Params.ParametersInsert(entity), transaction);
     }
 
     public bool Insert(List<Cuenta> entities)
     {
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            return entities.Select(entity => Params.InsertParameters(entity)).Select(parameters =>
+            return entities.Select(entity => Params.ParametersInsert(entity)).Select(parameters =>
                     QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(),
-                        Params.InsertSql, parameters, transaction))
+                        Params.SqlInsert, parameters, transaction))
                 .All(result => result);
         });
     }
 
     public bool Update(Cuenta entity, SqlTransaction? transaction = null)
     {
-        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.UpdateSql,
-            Params.UpdateParameters(entity), transaction);
+        return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate,
+            Params.ParametersUpdate(entity), transaction);
     }
 
     public bool Update(List<Cuenta> entities)
     {
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            return entities.Select(cuenta => Params.UpdateParameters(cuenta))
+            return entities.Select(cuenta => Params.ParametersUpdate(cuenta))
                 .Select(list => QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(),
-                    Params.UpdateSql, list, transaction))
+                    Params.SqlUpdate, list, transaction))
                 .All(result => result);
         });
     }
 
     public bool Delete(long id, SqlTransaction? transaction = null)
     {
-        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.DeleteSql,
-            Params.DeleteParameters(id), transaction);
+        return QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(), Params.SqlDelete,
+            Params.ParametersDelete(id), transaction);
     }
 
     public bool Delete(Cuenta entity)
@@ -73,9 +73,9 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
     {
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
-            return ids.Select(id => Params.DeleteParameters(id))
+            return ids.Select(id => Params.ParametersDelete(id))
                 .Select(list => QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(),
-                    Params.DeleteSql, list, transaction))
+                    Params.SqlDelete, list, transaction))
                 .All(result => result);
         });
     }
@@ -87,23 +87,17 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
 
     public Cuenta? FindById(long id)
     {
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.FindByIdSql, MapEntity,
-            Params.FindByIdParameters(id));
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
+            Params.ParametersFindById(id));
     }
 
     public List<Cuenta> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SelectAllSql, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
     public Cuenta MapEntity(SqlDataReader reader)
     {
-        return new()
-        {
-            Id = reader.GetInt64(0),
-            Codigo = reader.GetString(1),
-            Nombre = reader.GetString(2),
-            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3))
-        };
+        return Params.Map(reader);
     }
 }
