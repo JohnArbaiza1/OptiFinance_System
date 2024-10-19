@@ -6,7 +6,7 @@ using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
-public class TipoCuentaQuery : TableQuery, IQueryEstandar<TipoCuenta>
+public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
 {
     private static readonly Lazy<TipoCuentaQuery> _instance = new(() => new TipoCuentaQuery());
 

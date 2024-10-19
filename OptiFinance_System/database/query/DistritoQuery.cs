@@ -7,7 +7,7 @@ using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.database.query;
 
-public class DistritoQuery : TableQuery, IQueryEstandar<Distrito>
+public class DistritoQuery : IQueryEstandar<Distrito>
 {
     private static readonly Lazy<DistritoQuery> _instance = new(() => new DistritoQuery());
 

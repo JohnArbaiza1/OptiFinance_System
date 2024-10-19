@@ -6,7 +6,7 @@ using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
-public class RegistroQuery : TableQuery, IQueryEstandar<Registro>
+public class RegistroQuery : IQueryEstandar<Registro>
 {
     private static readonly Lazy<RegistroQuery> _instance = new(() => new RegistroQuery());
 
