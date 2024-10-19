@@ -56,8 +56,8 @@
             panel4 = new Panel();
             panel2 = new Panel();
             panel1 = new Panel();
-            button2 = new Button();
-            button1 = new Button();
+            btnCatalogo = new Button();
+            btnIngresarCuenta = new Button();
             panelLibros = new Panel();
             panel6 = new Panel();
             panel5 = new Panel();
@@ -267,6 +267,7 @@
             btnIngresarPartida.TextAlign = ContentAlignment.MiddleLeft;
             btnIngresarPartida.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnIngresarPartida.UseVisualStyleBackColor = true;
+            btnIngresarPartida.Click += btnIngresarPartida_Click;
             // 
             // btnRLiquidez
             // 
@@ -434,8 +435,8 @@
             PanelCuentas.Controls.Add(panel4);
             PanelCuentas.Controls.Add(panel2);
             PanelCuentas.Controls.Add(panel1);
-            PanelCuentas.Controls.Add(button2);
-            PanelCuentas.Controls.Add(button1);
+            PanelCuentas.Controls.Add(btnCatalogo);
+            PanelCuentas.Controls.Add(btnIngresarCuenta);
             PanelCuentas.Location = new Point(0, 257);
             PanelCuentas.Name = "PanelCuentas";
             PanelCuentas.Size = new Size(377, 139);
@@ -473,44 +474,46 @@
             panel1.Size = new Size(0, 0);
             panel1.TabIndex = 11;
             // 
-            // button2
+            // btnCatalogo
             // 
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(9, 67);
-            button2.Name = "button2";
-            button2.Padding = new Padding(16, 0, 0, 0);
-            button2.Size = new Size(377, 67);
-            button2.TabIndex = 6;
-            button2.Text = "   Catalogo de cuentas";
-            button2.TextAlign = ContentAlignment.MiddleLeft;
-            button2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button2.UseVisualStyleBackColor = true;
+            btnCatalogo.FlatAppearance.BorderSize = 0;
+            btnCatalogo.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnCatalogo.FlatStyle = FlatStyle.Flat;
+            btnCatalogo.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCatalogo.ForeColor = Color.White;
+            btnCatalogo.Image = (Image)resources.GetObject("btnCatalogo.Image");
+            btnCatalogo.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCatalogo.Location = new Point(9, 67);
+            btnCatalogo.Name = "btnCatalogo";
+            btnCatalogo.Padding = new Padding(16, 0, 0, 0);
+            btnCatalogo.Size = new Size(377, 67);
+            btnCatalogo.TabIndex = 6;
+            btnCatalogo.Text = "   Catalogo de cuentas";
+            btnCatalogo.TextAlign = ContentAlignment.MiddleLeft;
+            btnCatalogo.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCatalogo.UseVisualStyleBackColor = true;
+            btnCatalogo.Click += btnCatalogo_Click;
             // 
-            // button1
+            // btnIngresarCuenta
             // 
-            button1.Dock = DockStyle.Top;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Padding = new Padding(16, 0, 0, 0);
-            button1.Size = new Size(377, 67);
-            button1.TabIndex = 5;
-            button1.Text = "   Ingresar Cuenta";
-            button1.TextAlign = ContentAlignment.MiddleLeft;
-            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = true;
+            btnIngresarCuenta.Dock = DockStyle.Top;
+            btnIngresarCuenta.FlatAppearance.BorderSize = 0;
+            btnIngresarCuenta.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnIngresarCuenta.FlatStyle = FlatStyle.Flat;
+            btnIngresarCuenta.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnIngresarCuenta.ForeColor = Color.White;
+            btnIngresarCuenta.Image = (Image)resources.GetObject("btnIngresarCuenta.Image");
+            btnIngresarCuenta.ImageAlign = ContentAlignment.MiddleLeft;
+            btnIngresarCuenta.Location = new Point(0, 0);
+            btnIngresarCuenta.Name = "btnIngresarCuenta";
+            btnIngresarCuenta.Padding = new Padding(16, 0, 0, 0);
+            btnIngresarCuenta.Size = new Size(377, 67);
+            btnIngresarCuenta.TabIndex = 5;
+            btnIngresarCuenta.Text = "   Ingresar Cuenta";
+            btnIngresarCuenta.TextAlign = ContentAlignment.MiddleLeft;
+            btnIngresarCuenta.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnIngresarCuenta.UseVisualStyleBackColor = true;
+            btnIngresarCuenta.Click += btnIngresarCuenta_Click;
             // 
             // panelLibros
             // 
@@ -655,8 +658,8 @@
         private Panel panelContenedor;
         private Panel panelRedireccion;
         private Panel PanelCuentas;
-        private Button button2;
-        private Button button1;
+        private Button btnCatalogo;
+        private Button btnIngresarCuenta;
         private Button btnLibros;
         private Panel panel1;
         private Panel panel2;

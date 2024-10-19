@@ -72,8 +72,9 @@
             Container.Controls.Add(pictureBox1);
             Container.Dock = DockStyle.Fill;
             Container.Location = new Point(0, 0);
+            Container.Margin = new Padding(3, 2, 3, 2);
             Container.Name = "Container";
-            Container.Size = new Size(1039, 589);
+            Container.Size = new Size(909, 442);
             Container.TabIndex = 0;
             // 
             // lblLogin
@@ -81,9 +82,9 @@
             lblLogin.AutoSize = true;
             lblLogin.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             lblLogin.ForeColor = SystemColors.Highlight;
-            lblLogin.Location = new Point(888, 549);
+            lblLogin.Location = new Point(777, 412);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(122, 20);
+            lblLogin.Size = new Size(100, 17);
             lblLogin.TabIndex = 19;
             lblLogin.Text = "Inicia Sesión";
             lblLogin.Click += lblLogin_Click;
@@ -93,9 +94,9 @@
             label8.AutoSize = true;
             label8.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label8.ForeColor = SystemColors.ControlDarkDark;
-            label8.Location = new Point(713, 549);
+            label8.Location = new Point(624, 412);
             label8.Name = "label8";
-            label8.Size = new Size(185, 20);
+            label8.Size = new Size(150, 17);
             label8.TabIndex = 18;
             label8.Text = "¿Ya tienes cuenta? ";
             // 
@@ -106,19 +107,22 @@
             btnRegistrar.FlatStyle = FlatStyle.Flat;
             btnRegistrar.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnRegistrar.ForeColor = Color.White;
-            btnRegistrar.Location = new Point(626, 483);
+            btnRegistrar.Location = new Point(548, 362);
+            btnRegistrar.Margin = new Padding(3, 2, 3, 2);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(358, 49);
+            btnRegistrar.Size = new Size(313, 37);
             btnRegistrar.TabIndex = 17;
             btnRegistrar.Text = "Registrar";
             btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(599, 477);
+            pictureBox3.Location = new Point(524, 358);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(406, 59);
+            pictureBox3.Size = new Size(355, 44);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 16;
             pictureBox3.TabStop = false;
@@ -128,9 +132,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(697, 126);
+            label1.Location = new Point(610, 94);
             label1.Name = "label1";
-            label1.Size = new Size(222, 28);
+            label1.Size = new Size(184, 22);
             label1.TabIndex = 15;
             label1.Text = "Regístrate Ahora ";
             // 
@@ -151,7 +155,8 @@
             tableLayoutPanel1.Controls.Add(label5, 0, 4);
             tableLayoutPanel1.Controls.Add(txtUsuario, 1, 0);
             tableLayoutPanel1.Controls.Add(label7, 0, 3);
-            tableLayoutPanel1.Location = new Point(593, 167);
+            tableLayoutPanel1.Location = new Point(519, 125);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 6;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
@@ -160,45 +165,49 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.Size = new Size(418, 295);
+            tableLayoutPanel1.Size = new Size(366, 221);
             tableLayoutPanel1.TabIndex = 14;
             // 
             // txtConfirmPass
             // 
             txtConfirmPass.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtConfirmPass.Location = new Point(139, 248);
+            txtConfirmPass.Location = new Point(121, 182);
+            txtConfirmPass.Margin = new Padding(3, 2, 3, 2);
             txtConfirmPass.Name = "txtConfirmPass";
             txtConfirmPass.PasswordChar = '*';
             txtConfirmPass.PlaceholderText = "****";
-            txtConfirmPass.Size = new Size(276, 34);
+            txtConfirmPass.Size = new Size(242, 29);
             txtConfirmPass.TabIndex = 27;
             // 
             // txtPass
             // 
             txtPass.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPass.Location = new Point(139, 199);
+            txtPass.Location = new Point(121, 146);
+            txtPass.Margin = new Padding(3, 2, 3, 2);
             txtPass.Name = "txtPass";
             txtPass.PasswordChar = '*';
             txtPass.PlaceholderText = "****";
-            txtPass.Size = new Size(276, 34);
+            txtPass.Size = new Size(242, 29);
             txtPass.TabIndex = 26;
             // 
             // txtCorreo
             // 
             txtCorreo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCorreo.Location = new Point(139, 150);
+            txtCorreo.Location = new Point(121, 110);
+            txtCorreo.Margin = new Padding(3, 2, 3, 2);
             txtCorreo.Name = "txtCorreo";
             txtCorreo.PlaceholderText = "carlos@gmail.com";
-            txtCorreo.Size = new Size(276, 34);
+            txtCorreo.Size = new Size(242, 29);
             txtCorreo.TabIndex = 25;
             // 
             // txtApellido
             // 
             txtApellido.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtApellido.Location = new Point(139, 101);
+            txtApellido.Location = new Point(121, 74);
+            txtApellido.Margin = new Padding(3, 2, 3, 2);
             txtApellido.Name = "txtApellido";
             txtApellido.PlaceholderText = "Martínez";
-            txtApellido.Size = new Size(276, 34);
+            txtApellido.Size = new Size(242, 29);
             txtApellido.TabIndex = 24;
             // 
             // label3
@@ -206,9 +215,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(3, 49);
+            label3.Location = new Point(3, 36);
             label3.Name = "label3";
-            label3.Size = new Size(96, 24);
+            label3.Size = new Size(78, 19);
             label3.TabIndex = 17;
             label3.Text = "Nombre:";
             // 
@@ -219,7 +228,7 @@
             label2.ForeColor = Color.FromArgb(64, 64, 64);
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(95, 24);
+            label2.Size = new Size(77, 19);
             label2.TabIndex = 16;
             label2.Text = "Usuario:";
             // 
@@ -228,9 +237,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(3, 98);
+            label4.Location = new Point(3, 72);
             label4.Name = "label4";
-            label4.Size = new Size(99, 24);
+            label4.Size = new Size(81, 19);
             label4.TabIndex = 18;
             label4.Text = "Apellido:";
             // 
@@ -239,19 +248,20 @@
             label6.AutoSize = true;
             label6.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(64, 64, 64);
-            label6.Location = new Point(3, 245);
+            label6.Location = new Point(3, 180);
             label6.Name = "label6";
-            label6.Size = new Size(119, 42);
+            label6.Size = new Size(102, 36);
             label6.TabIndex = 20;
             label6.Text = "Confirmar Contraseña:";
             // 
             // txtNombre
             // 
             txtNombre.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNombre.Location = new Point(139, 52);
+            txtNombre.Location = new Point(121, 38);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
             txtNombre.PlaceholderText = "Carlos";
-            txtNombre.Size = new Size(276, 34);
+            txtNombre.Size = new Size(242, 29);
             txtNombre.TabIndex = 23;
             // 
             // label5
@@ -259,19 +269,20 @@
             label5.AutoSize = true;
             label5.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(3, 196);
+            label5.Location = new Point(3, 144);
             label5.Name = "label5";
-            label5.Size = new Size(119, 21);
+            label5.Size = new Size(102, 18);
             label5.TabIndex = 19;
             label5.Text = "Contraseña:";
             // 
             // txtUsuario
             // 
             txtUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUsuario.Location = new Point(139, 3);
+            txtUsuario.Location = new Point(121, 2);
+            txtUsuario.Margin = new Padding(3, 2, 3, 2);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Carlos026";
-            txtUsuario.Size = new Size(276, 34);
+            txtUsuario.Size = new Size(242, 29);
             txtUsuario.TabIndex = 22;
             // 
             // label7
@@ -279,16 +290,17 @@
             label7.AutoSize = true;
             label7.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label7.ForeColor = Color.FromArgb(64, 64, 64);
-            label7.Location = new Point(3, 147);
+            label7.Location = new Point(3, 108);
             label7.Name = "label7";
-            label7.Size = new Size(85, 24);
+            label7.Size = new Size(69, 19);
             label7.TabIndex = 21;
             label7.Text = "Correo:";
             // 
             // btnSalir
             // 
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(972, 0);
+            btnSalir.Location = new Point(850, 0);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(64, 64);
             btnSalir.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -299,9 +311,10 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(743, 0);
+            pictureBox2.Location = new Point(650, 0);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(124, 123);
+            pictureBox2.Size = new Size(108, 92);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -311,20 +324,22 @@
             pictureBox1.Dock = DockStyle.Left;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(603, 589);
+            pictureBox1.Size = new Size(528, 442);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // Registro
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1039, 589);
+            ClientSize = new Size(909, 442);
             Controls.Add(Container);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Registro";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registro";

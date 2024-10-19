@@ -1,32 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using OptiFinance_System.database.models;
+using OptiFinance_System.database.query;
+using OptiFinance_System.utils;
+using Message = OptiFinance_System.utils.Message;
 
-namespace OptiFinance_System.Views
+namespace OptiFinance_System.Views;
+
+public partial class Registro : Form
 {
-    public partial class Registro : Form
+    public Registro()
     {
-        public Registro()
+        InitializeComponent();
+    }
+
+    private void btnSalir_Click(object sender, EventArgs e)
+    {
+        Application.Exit();
+    }
+
+    private void lblLogin_Click(object sender, EventArgs e)
+    {
+        Form1 form = new();
+        form.Show();
+        Hide();
+    }
+
+    private void btnRegistrar_Click(object sender, EventArgs e)
+    {
+        string username = txtUsuario.Text.Trim();
+        string password = txtPass.Text.Trim();
+        string confirmPassword = txtConfirmPass.Text.Trim();
+        string nombres = txtNombre.Text.Trim();
+        string apellidos = txtApellido.Text.Trim();
+        string email = txtCorreo.Text.Trim();
+
+        if (password != confirmPassword)
         {
-            InitializeComponent();
+            Message.MessageViewError(@"Las contraseñas no coinciden");
+            return;
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        if (Validations.UserExist(UsuarioQuery.Instance.FindByUsername(username)))
         {
-            Application.Exit();
+            Message.MessageViewError(@"El usuario ya existe");
+            txtUsuario.Clear();
+            return;
         }
 
-        private void lblLogin_Click(object sender, EventArgs e)
+        Usuario user = new()
         {
-            Form1 form = new Form1();
-            form.Show();
-            this.Hide();
-        }
+            Alias = username,
+            Password = Utilities.HashPassword(password),
+            Nombres = nombres,
+            Apellidos = apellidos,
+            Email = email,
+            TipoUsuario = TipoUsuarioQuery.Instance.FindById(2)
+        };
+
+        bool result = UsuarioQuery.Instance.Insert(user);
+        if (result)
+            Message.MessageViewSuccess(@"Usuario registrado correctamente");
+        else
+            Message.MessageViewError(@"Error al registrar usuario");
     }
 }
