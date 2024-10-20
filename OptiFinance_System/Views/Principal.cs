@@ -68,6 +68,7 @@ public partial class Principal : Form
         if (Application.OpenForms["IngresarCuentas"] == null) btnIngresarCuenta.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["CatalogoCuentas"] == null) btnCatalogo.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["libroMayor"] == null) btnMayor.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["balanceGeneral"] == null) btnBGeneral.BackColor = Color.FromArgb(34, 53, 80);
     }
 
     #endregion
@@ -89,26 +90,9 @@ public partial class Principal : Form
         panelEstados.Hide();
         btnIngresarPartida.Location = new(0, 470);
         btnUsuarios.Location = new(0, 540);
-        btnInfo.Location = new(0, 610);
+        btnEmpresas.Location = new(0, 610);
         btnSalir.Location = new(0, 830);
-    }
-
-    private void btnIngresarPartida_Click(object sender, EventArgs e)
-    {
-        abrirF<RegistrarPartidas>();
-        btnIngresarPartida.BackColor = Color.FromArgb(215, 143, 35);
-    }
-
-    private void btnIngresarCuenta_Click(object sender, EventArgs e)
-    {
-        abrirF<IngresarCuentas>();
-        btnIngresarCuenta.BackColor = Color.FromArgb(215, 143, 35);
-    }
-
-    private void btnCatalogo_Click(object sender, EventArgs e)
-    {
-        abrirF<CatalogoCuentas>();
-        btnCatalogo.BackColor = Color.FromArgb(215, 143, 35);
+        panelEmpresa.Hide();
     }
 
     #region Varibles Empleadas
@@ -245,12 +229,12 @@ public partial class Principal : Form
     #endregion
 
     #region Buttons del menu
-
+    //=================================| Inicio |===================================
     private void btnInicio_Click(object sender, EventArgs e)
     {
         abrirF<Inicio>();
     }
-
+    //=================================| Salir |===================================
     private void btnSalir_Click(object sender, EventArgs e)
     {
         //Almacenamos la respuesta del usuario en una variable
@@ -273,7 +257,7 @@ public partial class Principal : Form
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
             btnUsuarios.Location = new(0, 540);
-            btnInfo.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 610);
         }
         else
         {
@@ -283,7 +267,7 @@ public partial class Principal : Form
             btnRLiquidez.Location = new(0, 535);
             btnIngresarPartida.Location = new(0, 604);
             btnUsuarios.Location = new(0, 674);
-            btnInfo.Location = new(0, 738);
+            btnEmpresas.Location = new(0, 738);
         }
 
         btnCuentas.Location = new(0, 190);
@@ -301,7 +285,7 @@ public partial class Principal : Form
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
             btnUsuarios.Location = new(0, 540);
-            btnInfo.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 610);
         }
         else
         {
@@ -310,7 +294,7 @@ public partial class Principal : Form
             btnRLiquidez.Location = new(0, 530);
             btnIngresarPartida.Location = new(0, 600);
             btnUsuarios.Location = new(0, 665);
-            btnInfo.Location = new(0, 735);
+            btnEmpresas.Location = new(0, 735);
         }
 
         btnLibros.Location = new(0, 257);
@@ -327,7 +311,7 @@ public partial class Principal : Form
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
             btnUsuarios.Location = new(0, 540);
-            btnInfo.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 610);
         }
         else
         {
@@ -335,37 +319,78 @@ public partial class Principal : Form
             btnRLiquidez.Location = new(0, 545);
             btnIngresarPartida.Location = new(0, 610);
             btnUsuarios.Location = new(0, 680);
-            btnInfo.Location = new(0, 750);
-            btnSalir.Location = new(0, 830);
+            btnEmpresas.Location = new(0, 750);
         }
 
         btnEstados.Location = new(0, 332);
         panelEstados.Location = new(0, 400);
     }
 
+    //=================================| Empresas |===================================
+    private void btnEmpresas_Click(object sender, EventArgs e)
+    {
+        if(panelEmpresa.Visible)
+        {
+            panelEmpresa.Visible = false;
+        }
+        else
+        {
+            panelEmpresa.Visible = true;
+            btnSalir.Location = new(0, 830);
+        }
+        btnEmpresas.Location = new(0, 610);
+        panelEmpresa.Location = new(0, 680);
+    }
+    //=================================| Partidas |===================================
+    private void btnIngresarPartida_Click(object sender, EventArgs e)
+    {
+        abrirF<RegistrarPartidas>();
+        btnIngresarPartida.BackColor = Color.FromArgb(215, 143, 35);
+    }
+    //=================================| Cuentas |===================================
+    private void btnIngresarCuenta_Click(object sender, EventArgs e)
+    {
+        abrirF<IngresarCuentas>();
+        btnIngresarCuenta.BackColor = Color.FromArgb(215, 143, 35);
+    }
+    //=================================| Catalogo |===================================
+    private void btnCatalogo_Click(object sender, EventArgs e)
+    {
+        abrirF<CatalogoCuentas>();
+        btnCatalogo.BackColor = Color.FromArgb(215, 143, 35);
+    }
+
+    //=================================| Usuarios |===================================
+
     private void btnUsuarios_Click(object sender, EventArgs e)
     {
         abrirF<Usuarios>();
         btnUsuarios.BackColor = Color.FromArgb(215, 143, 35);
     }
-
+    //=================================| Info Empresa |================================
     private void btnInfo_Click(object sender, EventArgs e)
     {
         abrirF<InfoEmpresacs>();
-        btnInfo.BackColor = Color.FromArgb(215, 143, 35);
+        btnInfo.BackColor = Color.FromArgb(254, 214, 0);
     }
-
+    //==============================| Libro Diario |===================================
     private void btnDiario_Click(object sender, EventArgs e)
     {
         abrirF<libriDiario>();
         btnDiario.BackColor = Color.FromArgb(254, 214, 0);
     }
-
-    #endregion
-
+    //===============================| Libro Mayor |===================================
     private void btnMayor_Click(object sender, EventArgs e)
     {
         abrirF<libroMayor>();
         btnMayor.BackColor = Color.FromArgb(254, 214, 0);
     }
+    //==============================| Balance General |================================
+    private void btnBGeneral_Click(object sender, EventArgs e)
+    {
+        abrirF<balanceGeneral>();
+        btnBGeneral.BackColor = Color.FromArgb(254, 214, 0);
+    }
+    #endregion
+
 }
