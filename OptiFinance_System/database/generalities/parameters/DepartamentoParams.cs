@@ -56,7 +56,11 @@ public class DepartamentoParams : IQueriesString<Departamento>
 
     public List<SqlParameter> ParametersSearchAll(string search)
     {
-        throw new NotImplementedException();
+        List<SqlParameter> parameters = new()
+        {
+            new("@search", $"%{search}%")
+        };
+        return parameters;
     }
 
     public List<SqlParameter> ParametersFindByName(string name)
