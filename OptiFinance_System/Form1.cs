@@ -182,7 +182,7 @@ public partial class Form1 : Form
         Console.WriteLine(usuario);
         if (!SigningSucces(usuario, _pass))
         {
-            MessageBox.Show(@"Usuario o contraseña incorrectos");
+            MessageBox.Show(@"Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 

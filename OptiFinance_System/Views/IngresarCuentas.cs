@@ -5,6 +5,7 @@ public partial class IngresarCuentas : Form
     public IngresarCuentas()
     {
         InitializeComponent();
+        comboBoxSubCuenta.Enabled = false;
     }
 
     private void btnAtras_Click(object sender, EventArgs e)
@@ -48,5 +49,17 @@ public partial class IngresarCuentas : Form
     {
         // Limpiar el contenido del RichTextBox
         richTextBoxCuentas.Clear();
+    }
+
+    private void checkBoxSubCuenta_CheckedChanged(object sender, EventArgs e)
+    {
+        if (checkBoxSubCuenta.Checked)
+        {
+            comboBoxSubCuenta.Enabled = true;
+        }
+        else
+        {
+            comboBoxSubCuenta.Enabled = false;
+        }
     }
 }

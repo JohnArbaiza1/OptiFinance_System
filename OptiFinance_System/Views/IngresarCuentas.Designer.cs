@@ -49,6 +49,8 @@
             label1 = new Label();
             btnAtras = new PictureBox();
             openFileDialog1 = new OpenFileDialog();
+            checkBoxSubCuenta = new CheckBox();
+            comboBoxSubCuenta = new ComboBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -114,6 +116,8 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            groupBox1.Controls.Add(comboBoxSubCuenta);
+            groupBox1.Controls.Add(checkBoxSubCuenta);
             groupBox1.Controls.Add(btnCamcelar);
             groupBox1.Controls.Add(btnGuardarCuentas);
             groupBox1.Controls.Add(comboTipoCuenta);
@@ -138,7 +142,7 @@
             btnCamcelar.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnCamcelar.ForeColor = Color.White;
             btnCamcelar.Image = (Image)resources.GetObject("btnCamcelar.Image");
-            btnCamcelar.Location = new Point(78, 417);
+            btnCamcelar.Location = new Point(78, 465);
             btnCamcelar.Name = "btnCamcelar";
             btnCamcelar.Padding = new Padding(90, 0, 0, 0);
             btnCamcelar.Size = new Size(488, 51);
@@ -153,7 +157,7 @@
             btnGuardarCuentas.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnGuardarCuentas.ForeColor = Color.White;
             btnGuardarCuentas.Image = (Image)resources.GetObject("btnGuardarCuentas.Image");
-            btnGuardarCuentas.Location = new Point(78, 348);
+            btnGuardarCuentas.Location = new Point(78, 396);
             btnGuardarCuentas.Name = "btnGuardarCuentas";
             btnGuardarCuentas.Padding = new Padding(64, 0, 0, 0);
             btnGuardarCuentas.Size = new Size(488, 51);
@@ -191,7 +195,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(18, 259);
+            label5.Location = new Point(18, 307);
             label5.Name = "label5";
             label5.Size = new Size(229, 23);
             label5.TabIndex = 12;
@@ -201,7 +205,7 @@
             // 
             btnSubir.BackColor = Color.FromArgb(44, 161, 232);
             btnSubir.Image = (Image)resources.GetObject("btnSubir.Image");
-            btnSubir.Location = new Point(272, 244);
+            btnSubir.Location = new Point(272, 292);
             btnSubir.Name = "btnSubir";
             btnSubir.Size = new Size(331, 51);
             btnSubir.TabIndex = 11;
@@ -277,6 +281,27 @@
             openFileDialog1.Filter = "Archivos JSON|*.json";
             openFileDialog1.Title = "Seleccione un archivo JSON con las cuentas";
             // 
+            // checkBoxSubCuenta
+            // 
+            checkBoxSubCuenta.AutoSize = true;
+            checkBoxSubCuenta.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSubCuenta.Location = new Point(18, 237);
+            checkBoxSubCuenta.Name = "checkBoxSubCuenta";
+            checkBoxSubCuenta.Size = new Size(145, 27);
+            checkBoxSubCuenta.TabIndex = 19;
+            checkBoxSubCuenta.Text = "Subcuenta:";
+            checkBoxSubCuenta.UseVisualStyleBackColor = true;
+            checkBoxSubCuenta.CheckedChanged += checkBoxSubCuenta_CheckedChanged;
+            // 
+            // comboBoxSubCuenta
+            // 
+            comboBoxSubCuenta.BackColor = Color.FromArgb(245, 245, 242);
+            comboBoxSubCuenta.FormattingEnabled = true;
+            comboBoxSubCuenta.Location = new Point(272, 232);
+            comboBoxSubCuenta.Name = "comboBoxSubCuenta";
+            comboBoxSubCuenta.Size = new Size(331, 34);
+            comboBoxSubCuenta.TabIndex = 20;
+            // 
             // IngresarCuentas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -319,5 +344,7 @@
         private RichTextBox richTextBoxCuentas;
         private OpenFileDialog openFileDialog1;
         private Button btnLimpiar;
+        private ComboBox comboBoxSubCuenta;
+        private CheckBox checkBoxSubCuenta;
     }
 }

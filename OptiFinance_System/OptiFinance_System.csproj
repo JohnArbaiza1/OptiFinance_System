@@ -9,9 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Formularios\**"/>
-        <EmbeddedResource Remove="Formularios\**"/>
-        <None Remove="Formularios\**"/>
+        <Compile Remove="Formularios\**" />
+        <EmbeddedResource Remove="Formularios\**" />
+        <None Remove="Formularios\**" />
         <None Update="database\resources\departamentos.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
@@ -30,9 +30,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3"/>
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>

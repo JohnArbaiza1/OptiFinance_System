@@ -35,6 +35,7 @@
             groupBox1 = new GroupBox();
             btnGuardar = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
+            label4 = new Label();
             txtEmail = new TextBox();
             txtAlias = new TextBox();
             txtLastName = new TextBox();
@@ -43,15 +44,19 @@
             label2 = new Label();
             label3 = new Label();
             txtName = new TextBox();
+            label6 = new Label();
+            txtTelefonos = new TextBox();
+            txtAddress = new TextBox();
             btnEliminar = new Button();
             btnEditar = new Button();
             panelTabla = new Panel();
-            dataGridView1 = new DataGridView();
-            Id = new DataGridViewTextBoxColumn();
-            Nombre = new DataGridViewTextBoxColumn();
-            Apellido = new DataGridViewTextBoxColumn();
-            Alias = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
+            dataGridViewUsuarios = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column6 = new DataGridViewTextBoxColumn();
             txtBusqueda = new TextBox();
             btnBuscar = new Button();
             panelHeader = new Panel();
@@ -62,7 +67,7 @@
             groupBox1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panelTabla.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUsuarios).BeginInit();
             panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
             SuspendLayout();
@@ -101,7 +106,7 @@
             groupBox1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(14, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(413, 428);
+            groupBox1.Size = new Size(413, 581);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Control de Usuarios";
@@ -111,7 +116,7 @@
             btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(31, 58, 93);
             btnGuardar.ForeColor = Color.White;
-            btnGuardar.Location = new Point(13, 299);
+            btnGuardar.Location = new Point(10, 455);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(389, 51);
             btnGuardar.TabIndex = 6;
@@ -124,6 +129,7 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.7681923F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 73.2318039F));
+            tableLayoutPanel1.Controls.Add(label4, 0, 4);
             tableLayoutPanel1.Controls.Add(txtEmail, 1, 3);
             tableLayoutPanel1.Controls.Add(txtAlias, 1, 2);
             tableLayoutPanel1.Controls.Add(txtLastName, 1, 1);
@@ -132,23 +138,39 @@
             tableLayoutPanel1.Controls.Add(label2, 0, 1);
             tableLayoutPanel1.Controls.Add(label3, 0, 2);
             tableLayoutPanel1.Controls.Add(txtName, 1, 0);
+            tableLayoutPanel1.Controls.Add(label6, 0, 5);
+            tableLayoutPanel1.Controls.Add(txtTelefonos, 1, 4);
+            tableLayoutPanel1.Controls.Add(txtAddress, 1, 5);
             tableLayoutPanel1.Location = new Point(6, 51);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.9981289F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.0006237F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.0006275F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.0006275F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(399, 229);
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6654167F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66708F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6670856F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6670856F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666641F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.Size = new Size(399, 357);
             tableLayoutPanel1.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.FromArgb(35, 55, 80);
+            label4.Location = new Point(7, 236);
+            label4.Name = "label4";
+            label4.Size = new Size(96, 21);
+            label4.TabIndex = 9;
+            label4.Text = "Telefono:";
             // 
             // txtEmail
             // 
             txtEmail.BackColor = Color.FromArgb(245, 245, 242);
             txtEmail.Dock = DockStyle.Fill;
             txtEmail.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtEmail.Location = new Point(109, 174);
+            txtEmail.Location = new Point(109, 180);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(287, 31);
             txtEmail.TabIndex = 8;
@@ -158,7 +180,7 @@
             txtAlias.BackColor = Color.FromArgb(245, 245, 242);
             txtAlias.Dock = DockStyle.Fill;
             txtAlias.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtAlias.Location = new Point(109, 117);
+            txtAlias.Location = new Point(109, 121);
             txtAlias.Name = "txtAlias";
             txtAlias.Size = new Size(287, 31);
             txtAlias.TabIndex = 7;
@@ -168,7 +190,7 @@
             txtLastName.BackColor = Color.FromArgb(245, 245, 242);
             txtLastName.Dock = DockStyle.Fill;
             txtLastName.Font = new Font("Bookman Old Style", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point);
-            txtLastName.Location = new Point(109, 60);
+            txtLastName.Location = new Point(109, 62);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(287, 33);
             txtLastName.TabIndex = 6;
@@ -191,7 +213,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(35, 55, 80);
-            label5.Location = new Point(18, 171);
+            label5.Location = new Point(18, 177);
             label5.Name = "label5";
             label5.Size = new Size(85, 24);
             label5.TabIndex = 4;
@@ -203,7 +225,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(35, 55, 80);
-            label2.Location = new Point(4, 57);
+            label2.Location = new Point(4, 59);
             label2.Name = "label2";
             label2.Size = new Size(99, 24);
             label2.TabIndex = 1;
@@ -215,7 +237,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(35, 55, 80);
-            label3.Location = new Point(36, 114);
+            label3.Location = new Point(36, 118);
             label3.Name = "label3";
             label3.Size = new Size(67, 24);
             label3.TabIndex = 2;
@@ -232,6 +254,34 @@
             txtName.Size = new Size(287, 33);
             txtName.TabIndex = 5;
             // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label6.AutoSize = true;
+            label6.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(35, 55, 80);
+            label6.Location = new Point(4, 295);
+            label6.Name = "label6";
+            label6.Size = new Size(99, 20);
+            label6.TabIndex = 10;
+            label6.Text = "Dirección:";
+            // 
+            // txtTelefonos
+            // 
+            txtTelefonos.BackColor = Color.FromArgb(245, 245, 242);
+            txtTelefonos.Location = new Point(109, 239);
+            txtTelefonos.Name = "txtTelefonos";
+            txtTelefonos.Size = new Size(284, 31);
+            txtTelefonos.TabIndex = 11;
+            // 
+            // txtAddress
+            // 
+            txtAddress.BackColor = Color.FromArgb(245, 245, 242);
+            txtAddress.Location = new Point(109, 298);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(284, 31);
+            txtAddress.TabIndex = 12;
+            // 
             // btnEliminar
             // 
             btnEliminar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -242,7 +292,7 @@
             btnEliminar.ForeColor = Color.White;
             btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
             btnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEliminar.Location = new Point(251, 379);
+            btnEliminar.Location = new Point(251, 532);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Padding = new Padding(5, 0, 0, 0);
             btnEliminar.Size = new Size(150, 44);
@@ -261,7 +311,7 @@
             btnEditar.ForeColor = Color.White;
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditar.Location = new Point(96, 379);
+            btnEditar.Location = new Point(96, 532);
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(5, 0, 0, 0);
             btnEditar.Size = new Size(150, 44);
@@ -273,69 +323,83 @@
             // panelTabla
             // 
             panelTabla.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panelTabla.Controls.Add(dataGridView1);
+            panelTabla.Controls.Add(dataGridViewUsuarios);
             panelTabla.Location = new Point(34, 161);
             panelTabla.Name = "panelTabla";
             panelTabla.Size = new Size(787, 629);
             panelTabla.TabIndex = 5;
             // 
-            // dataGridView1
+            // dataGridViewUsuarios
             // 
-            dataGridView1.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewUsuarios.BackgroundColor = Color.FromArgb(245, 245, 242);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Apellido, Alias, Email });
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.GridColor = SystemColors.Control;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(787, 629);
-            dataGridView1.TabIndex = 4;
+            dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewUsuarios.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
+            dataGridViewUsuarios.Dock = DockStyle.Fill;
+            dataGridViewUsuarios.EnableHeadersVisualStyles = false;
+            dataGridViewUsuarios.GridColor = SystemColors.ActiveCaptionText;
+            dataGridViewUsuarios.Location = new Point(0, 0);
+            dataGridViewUsuarios.Name = "dataGridViewUsuarios";
+            dataGridViewUsuarios.ReadOnly = true;
+            dataGridViewUsuarios.RowHeadersWidth = 51;
+            dataGridViewUsuarios.RowTemplate.Height = 29;
+            dataGridViewUsuarios.Size = new Size(787, 629);
+            dataGridViewUsuarios.TabIndex = 4;
             // 
-            // Id
+            // Column1
             // 
-            Id.HeaderText = "Id";
-            Id.MinimumWidth = 6;
-            Id.Name = "Id";
-            Id.Width = 142;
+            Column1.HeaderText = "Nombre";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 125;
             // 
-            // Nombre
+            // Column2
             // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.MinimumWidth = 6;
-            Nombre.Name = "Nombre";
-            Nombre.Width = 145;
+            Column2.HeaderText = "Apellido";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Width = 125;
             // 
-            // Apellido
+            // Column3
             // 
-            Apellido.HeaderText = "Apellido";
-            Apellido.MinimumWidth = 6;
-            Apellido.Name = "Apellido";
-            Apellido.Width = 145;
+            Column3.HeaderText = "Alias";
+            Column3.MinimumWidth = 6;
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            Column3.Width = 125;
             // 
-            // Alias
+            // Column4
             // 
-            Alias.HeaderText = "Alias";
-            Alias.MinimumWidth = 6;
-            Alias.Name = "Alias";
-            Alias.Width = 140;
+            Column4.HeaderText = "Email";
+            Column4.MinimumWidth = 6;
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Width = 125;
             // 
-            // Email
+            // Column5
             // 
-            Email.HeaderText = "Correo Electronico";
-            Email.MinimumWidth = 6;
-            Email.Name = "Email";
-            Email.Width = 170;
+            Column5.HeaderText = "Telefono";
+            Column5.MinimumWidth = 6;
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            Column5.Width = 125;
+            // 
+            // Column6
+            // 
+            Column6.HeaderText = "Dirección";
+            Column6.MinimumWidth = 6;
+            Column6.Name = "Column6";
+            Column6.ReadOnly = true;
+            Column6.Width = 125;
             // 
             // txtBusqueda
             // 
@@ -409,6 +473,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Usuarios";
             Text = "Usuarios";
+            Load += Usuarios_Load;
             Container.ResumeLayout(false);
             Container.PerformLayout();
             panelControlUser.ResumeLayout(false);
@@ -416,7 +481,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             panelTabla.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUsuarios).EndInit();
             panelHeader.ResumeLayout(false);
             panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
@@ -434,7 +499,7 @@
         private Button btnEliminar;
         private Button btnEditar;
         private Panel panelTabla;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewUsuarios;
         private GroupBox groupBox1;
         private Panel panelControlUser;
         private Label lblNombre;
@@ -443,14 +508,19 @@
         private Label label3;
         private TableLayoutPanel tableLayoutPanel1;
         private TextBox txtName;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn Apellido;
-        private DataGridViewTextBoxColumn Alias;
-        private DataGridViewTextBoxColumn Email;
         private TextBox txtEmail;
         private TextBox txtAlias;
         private TextBox txtLastName;
         private Button btnGuardar;
+        private Label label4;
+        private Label label6;
+        private TextBox txtTelefonos;
+        private TextBox txtAddress;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column6;
     }
 }

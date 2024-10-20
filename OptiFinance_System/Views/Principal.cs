@@ -67,6 +67,7 @@ public partial class Principal : Form
             btnIngresarPartida.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["IngresarCuentas"] == null) btnIngresarCuenta.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["CatalogoCuentas"] == null) btnCatalogo.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["libroMayor"] == null) btnMayor.BackColor = Color.FromArgb(34, 53, 80);
     }
 
     #endregion
@@ -361,4 +362,10 @@ public partial class Principal : Form
     }
 
     #endregion
+
+    private void btnMayor_Click(object sender, EventArgs e)
+    {
+        abrirF<libroMayor>();
+        btnMayor.BackColor = Color.FromArgb(254, 214, 0);
+    }
 }

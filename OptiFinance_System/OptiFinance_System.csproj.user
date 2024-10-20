@@ -22,6 +22,9 @@
     <Compile Update="Views\libriDiario.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\libroMayor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\Principal.cs">
       <SubType>Form</SubType>
     </Compile>

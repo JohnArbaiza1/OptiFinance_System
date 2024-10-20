@@ -582,6 +582,7 @@
             btnMayor.TextAlign = ContentAlignment.MiddleLeft;
             btnMayor.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMayor.UseVisualStyleBackColor = true;
+            btnMayor.Click += btnMayor_Click;
             // 
             // panelContenedor
             // 
