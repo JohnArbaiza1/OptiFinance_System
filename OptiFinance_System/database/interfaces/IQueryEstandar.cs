@@ -17,6 +17,7 @@ public interface IQueryEstandar<T>
 
     T? FindById(long id);
     List<T> SelectAll();
-
+    
+    List<T> SearchAll(string search);
     T MapEntity(SqlDataReader reader);
 }

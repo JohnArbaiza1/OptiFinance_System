@@ -13,6 +13,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
     public string SqlFindById { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
     public string SqlFindName { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE nombre = @Nombre";
     public string SqlSelectAll { get; } = "SELECT id, nombre, codigo FROM departamentos";
+    public string SqlSearchAll { get; }
 
     public List<SqlParameter> ParametersInsert(Departamento entity)
     {
@@ -52,7 +53,12 @@ public class DepartamentoParams : IQueriesString<Departamento>
         };
         return parameters;
     }
-    
+
+    public List<SqlParameter> ParametersSearchAll(string search)
+    {
+        throw new NotImplementedException();
+    }
+
     public List<SqlParameter> ParametersFindByName(string name)
     {
         List<SqlParameter> parameters = new()

@@ -96,6 +96,12 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
+    public List<Cuenta> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
+    }
+
     public Cuenta MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);

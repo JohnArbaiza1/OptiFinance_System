@@ -7,15 +7,14 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class CuentaParams : IQueriesString<Cuenta>
 {
-    public string SqlInsert { get; } =
-        "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta) VALUES (@codigo, @nombre, @id_tipo_cuenta)";
+    public string SqlInsert => "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta) VALUES (@codigo, @nombre, @id_tipo_cuenta)";
 
-    public string SqlUpdate { get; } =
-        "UPDATE cuentas SET codigo = @codigo, nombre = @nombre, id_tipo_cuenta = @id_tipo_cuenta WHERE id = @id";
+    public string SqlUpdate => "UPDATE cuentas SET codigo = @codigo, nombre = @nombre, id_tipo_cuenta = @id_tipo_cuenta WHERE id = @id";
 
-    public string SqlDelete { get; } = "DELETE FROM cuentas WHERE id = @id";
-    public string SqlFindById { get; } = "SELECT id, codigo, nombre, id_tipo_cuenta FROM cuentas WHERE id = @id";
-    public string SqlSelectAll { get; } = "SELECT id, codigo, nombre, id_tipo_cuenta FROM cuentas";
+    public string SqlDelete => "DELETE FROM cuentas WHERE id = @id";
+    public string SqlFindById => "SELECT id, codigo, nombre, id_tipo_cuenta FROM cuentas WHERE id = @id";
+    public string SqlSelectAll => "SELECT id, codigo, nombre, id_tipo_cuenta FROM cuentas";
+    public string SqlSearchAll => "SELECT id, codigo, nombre, id_tipo_cuenta FROM cuentas WHERE CONCAT(id, codigo, nombre, id_tipo_cuenta) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(Cuenta entity)
     {
@@ -54,6 +53,15 @@ public class CuentaParams : IQueriesString<Cuenta>
         List<SqlParameter> parameters = new()
         {
             new("@id", id)
+        };
+        return parameters;
+    }
+
+    public List<SqlParameter> ParametersSearchAll(string search)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@search", $"%{search}%")
         };
         return parameters;
     }

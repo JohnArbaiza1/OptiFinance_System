@@ -92,6 +92,12 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
+    public List<Empresa> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
+    }
+
     public Empresa MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);

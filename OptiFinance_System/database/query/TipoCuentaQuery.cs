@@ -91,6 +91,12 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
+    public List<TipoCuenta> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
+    }
+
     public TipoCuenta MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);

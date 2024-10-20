@@ -26,6 +26,10 @@ public class EmpresaParams : IQueriesString<Empresa>
     public string SqlSelectAll =>
         "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas";
 
+    public string SqlSearchAll =>
+        "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas " +
+        "WHERE CONCAT(id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito) LIKE @search";
+
     public List<SqlParameter> ParametersInsert(Empresa entity)
     {
         List<SqlParameter> parameters = new()
@@ -75,6 +79,15 @@ public class EmpresaParams : IQueriesString<Empresa>
         List<SqlParameter> parameters = new()
         {
             new("@id", id)
+        };
+        return parameters;
+    }
+
+    public List<SqlParameter> ParametersSearchAll(string search)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@search", $"%{search}%")
         };
         return parameters;
     }

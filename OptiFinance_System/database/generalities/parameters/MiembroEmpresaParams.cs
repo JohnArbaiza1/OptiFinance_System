@@ -8,22 +8,30 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
 {
-    public string SqlInsert { get; } = "INSERT INTO miembros_empresa " +
-                                       "(nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) " +
-                                       "VALUES (@nombres, @apellidos, @alias, @dui, @correo_electronico, @telefono, @direccion, @id_empresa)";
+    public string SqlInsert =>
+        "INSERT INTO miembros_empresa " +
+        "(nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) " +
+        "VALUES (@nombres, @apellidos, @alias, @dui, @correo_electronico, @telefono, @direccion, @id_empresa)";
 
-    public string SqlUpdate { get; } = "UPDATE miembros_empresa SET " +
-                                       "nombres = @nombres, apellidos = @apellidos, alias = @alias, dui = @dui, " +
-                                       "correo_electronico = @correo_electronico, telefono = @telefono, direccion = @direccion, id_empresa = @id_empresa " +
-                                       "WHERE id = @id";
+    public string SqlUpdate =>
+        "UPDATE miembros_empresa SET " +
+        "nombres = @nombres, apellidos = @apellidos, alias = @alias, dui = @dui, " +
+        "correo_electronico = @correo_electronico, telefono = @telefono, direccion = @direccion, id_empresa = @id_empresa " +
+        "WHERE id = @id";
 
-    public string SqlDelete { get; } = "DELETE FROM miembros_empresa WHERE id = @id";
+    public string SqlDelete => "DELETE FROM miembros_empresa WHERE id = @id";
 
-    public string SqlFindById { get; } =
-        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa WHERE id = @id";
+    public string SqlFindById => 
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " + 
+        "FROM miembros_empresa WHERE id = @id";
 
-    public string SqlSelectAll { get; } =
-        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa WHERE id_empresa = @id_empresa";
+    public string SqlSelectAll => 
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " + 
+        "FROM miembros_empresa WHERE id_empresa = @id_empresa";
+
+    public string SqlSearchAll =>
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa " +
+        "WHERE CONCAT(id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(MiembroEmpresa entity)
     {
@@ -72,6 +80,15 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         List<SqlParameter> parameters = new()
         {
             new("@id", id)
+        };
+        return parameters;
+    }
+
+    public List<SqlParameter> ParametersSearchAll(string search)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@search", $"%{search}%")
         };
         return parameters;
     }
