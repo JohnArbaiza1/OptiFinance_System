@@ -81,7 +81,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.BackColor = Color.FromArgb(187, 45, 59);
+            btnLimpiar.BackColor = Color.FromArgb(234, 130, 6);
             btnLimpiar.Image = (Image)resources.GetObject("btnLimpiar.Image");
             btnLimpiar.Location = new Point(1160, 677);
             btnLimpiar.Name = "btnLimpiar";
@@ -134,7 +134,7 @@
             // 
             // btnCamcelar
             // 
-            btnCamcelar.BackColor = Color.FromArgb(187, 45, 59);
+            btnCamcelar.BackColor = Color.FromArgb(234, 130, 6);
             btnCamcelar.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnCamcelar.ForeColor = Color.White;
             btnCamcelar.Image = (Image)resources.GetObject("btnCamcelar.Image");
@@ -149,7 +149,7 @@
             // 
             // btnGuardarCuentas
             // 
-            btnGuardarCuentas.BackColor = Color.FromArgb(71, 102, 121);
+            btnGuardarCuentas.BackColor = Color.FromArgb(31, 58, 93);
             btnGuardarCuentas.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnGuardarCuentas.ForeColor = Color.White;
             btnGuardarCuentas.Image = (Image)resources.GetObject("btnGuardarCuentas.Image");
@@ -164,6 +164,7 @@
             // 
             // comboTipoCuenta
             // 
+            comboTipoCuenta.BackColor = Color.FromArgb(245, 245, 242);
             comboTipoCuenta.FormattingEnabled = true;
             comboTipoCuenta.Location = new Point(272, 172);
             comboTipoCuenta.Name = "comboTipoCuenta";
@@ -172,6 +173,7 @@
             // 
             // txtNombreCuenta
             // 
+            txtNombreCuenta.BackColor = Color.FromArgb(245, 245, 242);
             txtNombreCuenta.Location = new Point(272, 105);
             txtNombreCuenta.Name = "txtNombreCuenta";
             txtNombreCuenta.Size = new Size(331, 34);
@@ -179,6 +181,7 @@
             // 
             // txtCodigo
             // 
+            txtCodigo.BackColor = Color.FromArgb(245, 245, 242);
             txtCodigo.Location = new Point(272, 48);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(331, 34);
@@ -196,7 +199,7 @@
             // 
             // btnSubir
             // 
-            btnSubir.BackColor = Color.FromArgb(11, 94, 215);
+            btnSubir.BackColor = Color.FromArgb(44, 161, 232);
             btnSubir.Image = (Image)resources.GetObject("btnSubir.Image");
             btnSubir.Location = new Point(272, 244);
             btnSubir.Name = "btnSubir";

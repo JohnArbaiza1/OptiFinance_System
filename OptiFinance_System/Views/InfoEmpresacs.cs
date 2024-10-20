@@ -21,7 +21,7 @@ public partial class InfoEmpresacs : Form
         Empresa empresa = new();
 
         empresa.Nombre = txtNombreEmpresa.Text;
-        empresa.GiroEconomico = txtGiro.Text;
+        //empresa.GiroEconomico = txtGiro.Text;
         empresa.Nit = txtNit.Text;
         empresa.RepresentanteLegal = txtRepresentante.Text;
         empresa.Telefono = textBox1.Text;
@@ -41,5 +41,11 @@ public partial class InfoEmpresacs : Form
 
         if (distritos.Count == 0) return;
         comboDistrito.DataSource = distritos;
+    }
+
+    private void btnBuscarGiro_Click(object sender, EventArgs e)
+    {
+        busquedaGiro busqueda = new busquedaGiro();
+        busqueda.Show();
     }
 }

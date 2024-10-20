@@ -576,7 +576,7 @@
             btnMayor.Location = new Point(3, 67);
             btnMayor.Name = "btnMayor";
             btnMayor.Padding = new Padding(16, 0, 0, 0);
-            btnMayor.Size = new Size(348, 67);
+            btnMayor.Size = new Size(374, 67);
             btnMayor.TabIndex = 5;
             btnMayor.Text = "   Libro Mayor";
             btnMayor.TextAlign = ContentAlignment.MiddleLeft;
