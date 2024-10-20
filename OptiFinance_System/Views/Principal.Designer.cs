@@ -37,11 +37,12 @@
             btnBarraTituloCerrar = new PictureBox();
             panelMenu = new Panel();
             panelEmpresa = new Panel();
+            panel9 = new Panel();
             btnMiembros = new Button();
+            panel10 = new Panel();
+            panel11 = new Panel();
             btnSeleccionarEmpresa = new Button();
             btnInfo = new Button();
-            panel11 = new Panel();
-            panel10 = new Panel();
             btnEmpresas = new Button();
             btnUsuarios = new Button();
             btnSalir = new Button();
@@ -71,7 +72,6 @@
             btnMayor = new Button();
             panelContenedor = new Panel();
             panelRedireccion = new Panel();
-            panel9 = new Panel();
             barraTitulo.SuspendLayout();
             opcionesBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximo).BeginInit();
@@ -188,8 +188,16 @@
             panelEmpresa.Controls.Add(btnInfo);
             panelEmpresa.Location = new Point(3, 1106);
             panelEmpresa.Name = "panelEmpresa";
-            panelEmpresa.Size = new Size(374, 209);
+            panelEmpresa.Size = new Size(377, 209);
             panelEmpresa.TabIndex = 17;
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(254, 214, 0);
+            panel9.Location = new Point(0, 146);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(10, 64);
+            panel9.TabIndex = 20;
             // 
             // btnMiembros
             // 
@@ -210,6 +218,22 @@
             btnMiembros.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMiembros.UseVisualStyleBackColor = true;
             // 
+            // panel10
+            // 
+            panel10.BackColor = Color.FromArgb(254, 214, 0);
+            panel10.Location = new Point(0, 3);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(10, 64);
+            panel10.TabIndex = 15;
+            // 
+            // panel11
+            // 
+            panel11.BackColor = Color.FromArgb(254, 214, 0);
+            panel11.Location = new Point(0, 75);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(10, 64);
+            panel11.TabIndex = 16;
+            // 
             // btnSeleccionarEmpresa
             // 
             btnSeleccionarEmpresa.FlatAppearance.BorderSize = 0;
@@ -228,6 +252,7 @@
             btnSeleccionarEmpresa.TextAlign = ContentAlignment.MiddleLeft;
             btnSeleccionarEmpresa.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSeleccionarEmpresa.UseVisualStyleBackColor = true;
+            btnSeleccionarEmpresa.Click += btnSeleccionarEmpresa_Click;
             // 
             // btnInfo
             // 
@@ -248,22 +273,6 @@
             btnInfo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnInfo.UseVisualStyleBackColor = true;
             btnInfo.Click += btnInfo_Click;
-            // 
-            // panel11
-            // 
-            panel11.BackColor = Color.FromArgb(254, 214, 0);
-            panel11.Location = new Point(0, 75);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(10, 64);
-            panel11.TabIndex = 16;
-            // 
-            // panel10
-            // 
-            panel10.BackColor = Color.FromArgb(254, 214, 0);
-            panel10.Location = new Point(0, 3);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(10, 64);
-            panel10.TabIndex = 15;
             // 
             // btnEmpresas
             // 
@@ -705,14 +714,6 @@
             panelRedireccion.MouseDown += panelRedireccion_MouseDown;
             panelRedireccion.MouseMove += panelRedireccion_MouseMove;
             panelRedireccion.MouseUp += panelRedireccion_MouseUp;
-            // 
-            // panel9
-            // 
-            panel9.BackColor = Color.FromArgb(254, 214, 0);
-            panel9.Location = new Point(0, 146);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(10, 64);
-            panel9.TabIndex = 20;
             // 
             // Principal
             // 

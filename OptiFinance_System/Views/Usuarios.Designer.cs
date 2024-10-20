@@ -421,10 +421,10 @@
             btnBuscar.ForeColor = Color.White;
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(671, 100);
+            btnBuscar.Location = new Point(671, 101);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Padding = new Padding(5, 0, 0, 0);
-            btnBuscar.Size = new Size(150, 44);
+            btnBuscar.Size = new Size(150, 43);
             btnBuscar.TabIndex = 1;
             btnBuscar.Text = " Buscar";
             btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -456,7 +456,7 @@
             // btnAtras
             // 
             btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
-            btnAtras.Location = new Point(11, 0);
+            btnAtras.Location = new Point(0, 0);
             btnAtras.Name = "btnAtras";
             btnAtras.Size = new Size(64, 64);
             btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;

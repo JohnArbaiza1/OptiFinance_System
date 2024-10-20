@@ -69,6 +69,7 @@ public partial class Principal : Form
         if (Application.OpenForms["CatalogoCuentas"] == null) btnCatalogo.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["libroMayor"] == null) btnMayor.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["balanceGeneral"] == null) btnBGeneral.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["SeleccionEmpresa"] == null) btnSeleccionarEmpresa.BackColor = Color.FromArgb(34, 53, 80);
     }
 
     #endregion
@@ -329,7 +330,7 @@ public partial class Principal : Form
     //=================================| Empresas |===================================
     private void btnEmpresas_Click(object sender, EventArgs e)
     {
-        if(panelEmpresa.Visible)
+        if (panelEmpresa.Visible)
         {
             panelEmpresa.Visible = false;
         }
@@ -393,4 +394,10 @@ public partial class Principal : Form
     }
     #endregion
 
+    //=============================| Seleccionar Empresa |==============================
+    private void btnSeleccionarEmpresa_Click(object sender, EventArgs e)
+    {
+        abrirF<SeleccionEmpresa>();
+        btnSeleccionarEmpresa.BackColor = Color.FromArgb(254, 214, 0);
+    }
 }
