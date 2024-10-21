@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Miembros));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
@@ -37,7 +37,7 @@
             groupBox1 = new GroupBox();
             btnEditar = new Button();
             btnEliminar = new Button();
-            btnGuardar = new Button();
+            btnAgregar = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             txtAddress = new TextBox();
             txtTelefono = new TextBox();
@@ -122,7 +122,7 @@
             // 
             groupBox1.Controls.Add(btnEditar);
             groupBox1.Controls.Add(btnEliminar);
-            groupBox1.Controls.Add(btnGuardar);
+            groupBox1.Controls.Add(btnAgregar);
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.ForeColor = Color.FromArgb(31, 58, 93);
@@ -159,19 +159,19 @@
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
             // 
-            // btnGuardar
+            // btnAgregar
             // 
-            btnGuardar.BackColor = Color.FromArgb(31, 58, 93);
-            btnGuardar.ForeColor = Color.White;
-            btnGuardar.Image = (Image)resources.GetObject("btnGuardar.Image");
-            btnGuardar.Location = new Point(321, 422);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Padding = new Padding(10, 0, 0, 0);
-            btnGuardar.Size = new Size(146, 54);
-            btnGuardar.TabIndex = 2;
-            btnGuardar.Text = "Guardar";
-            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnGuardar.UseVisualStyleBackColor = false;
+            btnAgregar.BackColor = Color.FromArgb(31, 58, 93);
+            btnAgregar.ForeColor = Color.White;
+            btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
+            btnAgregar.Location = new Point(321, 422);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Padding = new Padding(10, 0, 0, 0);
+            btnAgregar.Size = new Size(146, 54);
+            btnAgregar.TabIndex = 2;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAgregar.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
@@ -341,14 +341,15 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6, Column7 });
             dataGridView1.Dock = DockStyle.Fill;
@@ -478,7 +479,7 @@
         private TextBox txtDui;
         private TextBox txtAlias;
         private TextBox txtApellido;
-        private Button btnGuardar;
+        private Button btnAgregar;
         private Button btnEditar;
         private Button btnEliminar;
         private DataGridViewTextBoxColumn Column1;

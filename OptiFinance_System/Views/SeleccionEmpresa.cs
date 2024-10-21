@@ -22,7 +22,7 @@ public partial class SeleccionEmpresa : Form
     private void checkSelectEmpresa_CheckedChanged(object sender, EventArgs e)
     {
         if (dataEmpresas.SelectedRows.Count <= 0) return;
-        Empresa empresaSelected = (Empresa) dataEmpresas.SelectedRows[0].Cells[0].Value;
+        Empresa empresaSelected = (Empresa)dataEmpresas.SelectedRows[0].Cells[0].Value;
         Global.SelectedEmpresa = empresaSelected;
         Close();
     }
@@ -43,5 +43,10 @@ public partial class SeleccionEmpresa : Form
             );
             Console.WriteLine(entity);
         });
+    }
+
+    private void btnSeleccionar_Click(object sender, EventArgs e)
+    {
+
     }
 }
