@@ -1,1187 +1,1162 @@
 ﻿[
     {
         "Codigo": "G",
-        "Descripcion": "COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS",
+        "Nombre": "COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS",
         "Orden": "812"
     },
     {
         "Codigo": "45",
-        "Descripcion": "COMERCIO AL POR MAYOR Y AL POR MENOR Y REPARACIÓN DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS",
+        "Nombre": "COMERCIO AL POR MAYOR Y AL POR MENOR Y REPARACIÓN DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS",
         "Orden": "813"
     },
     {
         "Codigo": "451",
-        "Descripcion": "VENTA DE VEHÍCULOS AUTOMOTORES",
+        "Nombre": "VENTA DE VEHÍCULOS AUTOMOTORES",
         "Orden": "814"
     },
     {
-        "Codigo": "4510",
-        "Descripcion": "VENTA DE VEHÍCULOS AUTOMOTORES",
-        "Orden": "815"
-    },
-    {
         "Codigo": "45101",
-        "Descripcion": "Comercio al por mayor y al por menor de vehículos automotores nuevos",
+        "Nombre": "Comercio al por mayor y al por menor de vehículos automotores nuevos",
         "Orden": "816"
     },
     {
         "Codigo": "45102",
-        "Descripcion": "Comercio al por mayor y al por menor de vehículos automotores usados",
+        "Nombre": "Comercio al por mayor y al por menor de vehículos automotores usados",
         "Orden": "817"
     },
     {
         "Codigo": "45109",
-        "Descripcion": "Comercio de vehículos automotores n.c.p.",
+        "Nombre": "Comercio de vehículos automotores n.c.p.",
         "Orden": "818"
     },
     {
         "Codigo": "452",
-        "Descripcion": "MANTENIMIENTO Y REPARACIÓN DE VEHÍCULOS AUTOMOTORES",
+        "Nombre": "MANTENIMIENTO Y REPARACIÓN DE VEHÍCULOS AUTOMOTORES",
         "Orden": "819"
     },
     {
-        "Codigo": "4520",
-        "Descripcion": "MANTENIMIENTO Y REPARACIÓN DE VEHÍCULOS AUTOMOTORES",
-        "Orden": "820"
-    },
-    {
-        "Codigo": "45201",
-        "Descripcion": "Mantenimiento y reparación mecánica de vehículos automotores",
-        "Orden": "821"
-    },
-    {
         "Codigo": "45202",
-        "Descripcion": "Mantenimiento y reparación eléctrica y electrónica de vehículos automotores",
+        "Nombre": "Mantenimiento y reparación eléctrica y electrónica de vehículos automotores",
         "Orden": "822"
     },
     {
         "Codigo": "45203",
-        "Descripcion": "Enderezado y pintura de vehículos automotores",
+        "Nombre": "Enderezado y pintura de vehículos automotores",
         "Orden": "823"
     },
     {
         "Codigo": "45204",
-        "Descripcion": "Reparaciones de radiadores, escapes y silenciadores de vehículos automotores",
+        "Nombre": "Reparaciones de radiadores, escapes y silenciadores de vehículos automotores",
         "Orden": "824"
     },
     {
         "Codigo": "45205",
-        "Descripcion": "Reparación y reconstrucción de vías, stop, bómper y otros artículos de fibra de vidrio para vehículos automotores",
+        "Nombre": "Reparación y reconstrucción de vías, stop, bómper y otros artículos de fibra de vidrio para vehículos automotores",
         "Orden": "825"
     },
     {
         "Codigo": "45206",
-        "Descripcion": "Reparación de llantas de vehículos automotores",
+        "Nombre": "Reparación de llantas de vehículos automotores",
         "Orden": "826"
     },
     {
         "Codigo": "45207",
-        "Descripcion": "Polarizado de vehículos automotores",
+        "Nombre": "Polarizado de vehículos automotores",
         "Orden": "827"
     },
     {
         "Codigo": "45208",
-        "Descripcion": "Lavado y pasteado de vehículos automotores (carwash)",
+        "Nombre": "Lavado y pasteado de vehículos automotores (carwash)",
         "Orden": "828"
     },
     {
         "Codigo": "45209",
-        "Descripcion": "Mantenimiento y reparación de vehículos automotores n.c.p., (incluye reparación y carga de baterías, alineado y balanceo, cambio de aceite, entre otros)",
+        "Nombre": "Mantenimiento y reparación de vehículos automotores n.c.p., (incluye reparación y carga de baterías, alineado y balanceo, cambio de aceite, entre otros)",
         "Orden": "829"
     },
     {
         "Codigo": "453",
-        "Descripcion": "VENTA DE PARTES, PIEZAS Y ACCESORIOS PARA VEHÍCULOS AUTOMOTORES",
+        "Nombre": "VENTA DE PARTES, PIEZAS Y ACCESORIOS PARA VEHÍCULOS AUTOMOTORES",
         "Orden": "830"
     },
     {
-        "Codigo": "4530",
-        "Descripcion": "VENTA DE PARTES, PIEZAS Y ACCESORIOS PARA VEHÍCULOS AUTOMOTORES",
-        "Orden": "831"
-    },
-    {
         "Codigo": "45301",
-        "Descripcion": "Comercio al por mayor y al por menor de repuestos, partes, piezas y accesorios nuevos para vehículos automotores",
+        "Nombre": "Comercio al por mayor y al por menor de repuestos, partes, piezas y accesorios nuevos para vehículos automotores",
         "Orden": "832"
     },
     {
         "Codigo": "45302",
-        "Descripcion": "Comercio al por mayor y al por menor de repuestos, partes, piezas y accesorios usados para vehículos automotores como cubiertas y cámaras de caucho, bujías, baterías, piezas eléctricas, entre otras",
+        "Nombre": "Comercio al por mayor y al por menor de repuestos, partes, piezas y accesorios usados para vehículos automotores como cubiertas y cámaras de caucho, bujías, baterías, piezas eléctricas, entre otras",
         "Orden": "833"
     },
     {
         "Codigo": "45309",
-        "Descripcion": "Comercio de partes, piezas y accesorios para vehículos automotores n.c.p.",
+        "Nombre": "Comercio de partes, piezas y accesorios para vehículos automotores n.c.p.",
         "Orden": "834"
     },
     {
         "Codigo": "454",
-        "Descripcion": "VENTA, MANTENIMIENTO Y REPARACIÓN DE MOTOCICLETAS Y SUS PARTES, PIEZAS Y ACCESORIOS",
+        "Nombre": "VENTA, MANTENIMIENTO Y REPARACIÓN DE MOTOCICLETAS Y SUS PARTES, PIEZAS Y ACCESORIOS",
         "Orden": "835"
     },
     {
-        "Codigo": "4540",
-        "Descripcion": "VENTA, MANTENIMIENTO Y REPARACIÓN DE MOTOCICLETAS Y SUS PARTES, PIEZAS Y ACCESORIOS",
-        "Orden": "836"
-    },
-    {
         "Codigo": "45401",
-        "Descripcion": "Comercio al por mayor y al por menor de motocicletas",
+        "Nombre": "Comercio al por mayor y al por menor de motocicletas",
         "Orden": "837"
     },
     {
         "Codigo": "45402",
-        "Descripcion": "Comercio de repuestos, partes, piezas y accesorios de motocicletas (incluye la venta realizada por correo y por comisionista)",
+        "Nombre": "Comercio de repuestos, partes, piezas y accesorios de motocicletas (incluye la venta realizada por correo y por comisionista)",
         "Orden": "838"
     },
     {
         "Codigo": "45403",
-        "Descripcion": "Mantenimiento y reparación de motocicletas",
+        "Nombre": "Mantenimiento y reparación de motocicletas",
         "Orden": "839"
     },
     {
         "Codigo": "45409",
-        "Descripcion": "Comercio, mantenimiento y reparación de motocicletas y sus partes, piezas y accesorios n.c.p.",
+        "Nombre": "Comercio, mantenimiento y reparación de motocicletas y sus partes, piezas y accesorios n.c.p.",
         "Orden": "840"
     },
     {
         "Codigo": "46",
-        "Descripcion": "COMERCIO AL POR MAYOR, EXCEPTO EL DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS",
+        "Nombre": "COMERCIO AL POR MAYOR, EXCEPTO EL DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS",
         "Orden": "841"
     },
     {
         "Codigo": "461",
-        "Descripcion": "VENTA AL POR MAYOR A CAMBIO DE UNA RETRIBUCIÓN O POR CONTRATA",
+        "Nombre": "VENTA AL POR MAYOR A CAMBIO DE UNA RETRIBUCIÓN O POR CONTRATA",
         "Orden": "842"
     },
     {
         "Codigo": "4610",
-        "Descripcion": "VENTA AL POR MAYOR A CAMBIO DE UNA RETRIBUCIÓN O POR CONTRATA",
+        "Nombre": "VENTA AL POR MAYOR A CAMBIO DE UNA RETRIBUCIÓN O POR CONTRATA",
         "Orden": "843"
     },
     {
         "Codigo": "46101",
-        "Descripcion": "Actividades de transacciones comerciales de distribuidores de mercancías (incluye las realizadas por Internet)",
+        "Nombre": "Actividades de transacciones comerciales de distribuidores de mercancías (incluye las realizadas por Internet)",
         "Orden": "844"
     },
     {
         "Codigo": "46102",
-        "Descripcion": "Comercio al por mayor a cambio de retribución o por contrata",
+        "Nombre": "Comercio al por mayor a cambio de retribución o por contrata",
         "Orden": "845"
     },
     {
         "Codigo": "46103",
-        "Descripcion": "Actividades de importación y exportación ",
+        "Nombre": "Actividades de importación y exportación ",
         "Orden": "846"
     },
     {
         "Codigo": "46109",
-        "Descripcion": "Comercio al por mayor a cambio de retribución o por contrata n.c.p., (incluye las casas subastadoras, cooperativas de comercialización, entre otras)",
+        "Nombre": "Comercio al por mayor a cambio de retribución o por contrata n.c.p., (incluye las casas subastadoras, cooperativas de comercialización, entre otras)",
         "Orden": "847"
     },
     {
         "Codigo": "462",
-        "Descripcion": "VENTA AL POR MAYOR DE MATERIAS PRIMAS AGROPECUARIAS Y ANIMALES VIVOS",
+        "Nombre": "VENTA AL POR MAYOR DE MATERIAS PRIMAS AGROPECUARIAS Y ANIMALES VIVOS",
         "Orden": "848"
     },
     {
         "Codigo": "4620",
-        "Descripcion": "VENTA AL POR MAYOR DE MATERIAS PRIMAS AGROPECUARIAS Y ANIMALES VIVOS",
+        "Nombre": "VENTA AL POR MAYOR DE MATERIAS PRIMAS AGROPECUARIAS Y ANIMALES VIVOS",
         "Orden": "849"
     },
     {
         "Codigo": "46201",
-        "Descripcion": "Comercio al por mayor de materias primas agrícolas como: granos básicos, café, cacao en grano, caña de azúcar, plantas, flores, desperdicios y subproductos agrícolas, entre otros",
+        "Nombre": "Comercio al por mayor de materias primas agrícolas como: granos básicos, café, cacao en grano, caña de azúcar, plantas, flores, desperdicios y subproductos agrícolas, entre otros",
         "Orden": "850"
     },
     {
         "Codigo": "46202",
-        "Descripcion": "Comercio al por mayor de productos de la silvicultura",
+        "Nombre": "Comercio al por mayor de productos de la silvicultura",
         "Orden": "851"
     },
     {
         "Codigo": "46203",
-        "Descripcion": "Comercio al por mayor de animales vivos como:   ganado bobino, ganado porcino, aves de corral, entre otros",
+        "Nombre": "Comercio al por mayor de animales vivos como:   ganado bobino, ganado porcino, aves de corral, entre otros",
         "Orden": "852"
     },
     {
         "Codigo": "46209",
-        "Descripcion": "Comercio al por mayor de materias primas agropecuarias y animales vivos n.c.p.",
+        "Nombre": "Comercio al por mayor de materias primas agropecuarias y animales vivos n.c.p.",
         "Orden": "853"
     },
     {
         "Codigo": "463",
-        "Descripcion": "VENTA AL POR MAYOR DE ALIMENTOS, BEBIDAS Y TABACO",
+        "Nombre": "VENTA AL POR MAYOR DE ALIMENTOS, BEBIDAS Y TABACO",
         "Orden": "854"
     },
     {
         "Codigo": "4630",
-        "Descripcion": "VENTA AL POR MAYOR DE ALIMENTOS, BEBIDAS Y TABACO",
+        "Nombre": "VENTA AL POR MAYOR DE ALIMENTOS, BEBIDAS Y TABACO",
         "Orden": "855"
     },
     {
         "Codigo": "46301",
-        "Descripcion": "Comercio al por mayor de: frutas, legumbres y hortalizas; carne y productos cárnicos; productos de la pesca; huevos y productos de huevo; productos lácteos",
+        "Nombre": "Comercio al por mayor de: frutas, legumbres y hortalizas; carne y productos cárnicos; productos de la pesca; huevos y productos de huevo; productos lácteos",
         "Orden": "856"
     },
     {
         "Codigo": "46302",
-        "Descripcion": "Comercio al por mayor de bebidas alcohólicas como: licores, cervezas, entre otros",
+        "Nombre": "Comercio al por mayor de bebidas alcohólicas como: licores, cervezas, entre otros",
         "Orden": "857"
     },
     {
         "Codigo": "46303",
-        "Descripcion": "Comercio al por mayor de tabaco (cigarrillos y puros)",
+        "Nombre": "Comercio al por mayor de tabaco (cigarrillos y puros)",
         "Orden": "858"
     },
     {
         "Codigo": "46304",
-        "Descripcion": "Comercio al por mayor de: productos de panadería; productos farináceos para panadería; productos de aceites y grasas comestibles de origen animal o vegetal; café, té, cacao y especias; sal comestible; azúcar; pastas alimenticias",
+        "Nombre": "Comercio al por mayor de: productos de panadería; productos farináceos para panadería; productos de aceites y grasas comestibles de origen animal o vegetal; café, té, cacao y especias; sal comestible; azúcar; pastas alimenticias",
         "Orden": "859"
     },
     {
         "Codigo": "46305",
-        "Descripcion": "Comercio al por mayor de bebidas no alcohólicas como: agua purificada, gaseosas, refrescos embotellados, entre otros",
+        "Nombre": "Comercio al por mayor de bebidas no alcohólicas como: agua purificada, gaseosas, refrescos embotellados, entre otros",
         "Orden": "860"
     },
     {
         "Codigo": "46309",
-        "Descripcion": "Comercio al por mayor de alimentos, bebidas y tabaco n.c.p., (incluye productos como: vinagre, alimento para mascotas, abarrotes, miel de abeja, jaleas, mermeladas, entre otros)",
+        "Nombre": "Comercio al por mayor de alimentos, bebidas y tabaco n.c.p., (incluye productos como: vinagre, alimento para mascotas, abarrotes, miel de abeja, jaleas, mermeladas, entre otros)",
         "Orden": "861"
     },
     {
         "Codigo": "464",
-        "Descripcion": "VENTA AL POR MAYOR DE ENSERES DOMÉSTICOS",
+        "Nombre": "VENTA AL POR MAYOR DE ENSERES DOMÉSTICOS",
         "Orden": "862"
     },
     {
         "Codigo": "4641",
-        "Descripcion": "VENTA AL POR MAYOR DE PRODUCTOS TEXTILES, PRENDAS DE VESTIR Y CALZADO",
+        "Nombre": "VENTA AL POR MAYOR DE PRODUCTOS TEXTILES, PRENDAS DE VESTIR Y CALZADO",
         "Orden": "863"
     },
     {
         "Codigo": "46411",
-        "Descripcion": "Comercio al por mayor de hilos, telas y artículos de mercería como: agujas, botones, encajes, entre otros",
+        "Nombre": "Comercio al por mayor de hilos, telas y artículos de mercería como: agujas, botones, encajes, entre otros",
         "Orden": "864"
     },
     {
         "Codigo": "46412",
-        "Descripcion": "Comercio al por mayor de artículos de fibras textiles  naturales y sintéticas",
+        "Nombre": "Comercio al por mayor de artículos de fibras textiles  naturales y sintéticas",
         "Orden": "865"
     },
     {
         "Codigo": "46413",
-        "Descripcion": "Comercio al por mayor de productos textiles para el hogar",
+        "Nombre": "Comercio al por mayor de productos textiles para el hogar",
         "Orden": "866"
     },
     {
         "Codigo": "46414",
-        "Descripcion": "Comercio al por mayor de prendas y accesorios de vestir",
+        "Nombre": "Comercio al por mayor de prendas y accesorios de vestir",
         "Orden": "867"
     },
     {
         "Codigo": "46415",
-        "Descripcion": "Comercio al por mayor de artículos usados como: ropa, calzado,  accesorios de vestir, artículos textiles para el hogar, entre otros",
+        "Nombre": "Comercio al por mayor de artículos usados como: ropa, calzado,  accesorios de vestir, artículos textiles para el hogar, entre otros",
         "Orden": "868"
     },
     {
         "Codigo": "46416",
-        "Descripcion": "Comercio al por mayor de calzado",
+        "Nombre": "Comercio al por mayor de calzado",
         "Orden": "869"
     },
     {
         "Codigo": "46419",
-        "Descripcion": "Comercio al por mayor de productos textiles, prendas de vestir y calzado n.c.p.",
+        "Nombre": "Comercio al por mayor de productos textiles, prendas de vestir y calzado n.c.p.",
         "Orden": "870"
     },
     {
         "Codigo": "4649",
-        "Descripcion": "VENTA AL POR MAYOR DE OTROS ENSERES DOMÉSTICOS",
+        "Nombre": "VENTA AL POR MAYOR DE OTROS ENSERES DOMÉSTICOS",
         "Orden": "871"
     },
     {
         "Codigo": "46491",
-        "Descripcion": "Comercio al por mayor de productos medicinales, cosméticos, perfumería y productos de limpieza",
+        "Nombre": "Comercio al por mayor de productos medicinales, cosméticos, perfumería y productos de limpieza",
         "Orden": "872"
     },
     {
         "Codigo": "46492",
-        "Descripcion": "Comercio al por mayor de relojes y artículos de joyería",
+        "Nombre": "Comercio al por mayor de relojes y artículos de joyería",
         "Orden": "873"
     },
     {
         "Codigo": "46493",
-        "Descripcion": "Comercio al por mayor de electrodomésticos, muebles y artículos de iluminación de uso doméstico",
+        "Nombre": "Comercio al por mayor de electrodomésticos, muebles y artículos de iluminación de uso doméstico",
         "Orden": "874"
     },
     {
         "Codigo": "46494",
-        "Descripcion": "Comercio al por mayor de artículos de bazar como: vajilla, cristalería, artículos plásticos para el hogar, entre otros",
+        "Nombre": "Comercio al por mayor de artículos de bazar como: vajilla, cristalería, artículos plásticos para el hogar, entre otros",
         "Orden": "875"
     },
     {
         "Codigo": "46495",
-        "Descripcion": "Comercio al por mayor de artículos fotográficos y ópticos como: lentes de sol, binoculares y lupas",
+        "Nombre": "Comercio al por mayor de artículos fotográficos y ópticos como: lentes de sol, binoculares y lupas",
         "Orden": "876"
     },
     {
         "Codigo": "46496",
-        "Descripcion": "Comercio al por mayor de artículos de papelería, librería, revistas y periódicos",
+        "Nombre": "Comercio al por mayor de artículos de papelería, librería, revistas y periódicos",
         "Orden": "877"
     },
     {
         "Codigo": "46497",
-        "Descripcion": "Comercio al por mayor de artículos deportivos, juegos y juguetes",
+        "Nombre": "Comercio al por mayor de artículos deportivos, juegos y juguetes",
         "Orden": "878"
     },
     {
         "Codigo": "46498",
-        "Descripcion": "Comercio al por mayor de artículos usados para el hogar",
+        "Nombre": "Comercio al por mayor de artículos usados para el hogar",
         "Orden": "879"
     },
     {
         "Codigo": "46499",
-        "Descripcion": "Comercio al por mayor de otros enseres domésticos n.c.p.",
+        "Nombre": "Comercio al por mayor de otros enseres domésticos n.c.p.",
         "Orden": "880"
     },
     {
         "Codigo": "465",
-        "Descripcion": "VENTA AL POR MAYOR DE MAQUINARIA, EQUIPO Y MATERIALES",
+        "Nombre": "VENTA AL POR MAYOR DE MAQUINARIA, EQUIPO Y MATERIALES",
         "Orden": "881"
     },
     {
         "Codigo": "4651",
-        "Descripcion": "VENTA AL POR MAYOR DE ORDENADORES, EQUIPO PERIFÉRICO Y PROGRAMAS INFORMÁTICOS",
+        "Nombre": "VENTA AL POR MAYOR DE ORDENADORES, EQUIPO PERIFÉRICO Y PROGRAMAS INFORMÁTICOS",
         "Orden": "882"
     },
     {
         "Codigo": "46510",
-        "Descripcion": "Comercio al por mayor de computadoras, equipo periférico y programas informáticos (software)",
+        "Nombre": "Comercio al por mayor de computadoras, equipo periférico y programas informáticos (software)",
         "Orden": "883"
     },
     {
         "Codigo": "4652",
-        "Descripcion": "VENTA AL POR MAYOR DE EQUIPO, PARTES Y PIEZAS ELECTRÓNICOS Y DE TELECOMUNICACIONES",
+        "Nombre": "VENTA AL POR MAYOR DE EQUIPO, PARTES Y PIEZAS ELECTRÓNICOS Y DE TELECOMUNICACIONES",
         "Orden": "884"
     },
     {
         "Codigo": "46520",
-        "Descripcion": "Comercio al por mayor de equipo, partes y piezas electrónicos y de telecomunicaciones",
+        "Nombre": "Comercio al por mayor de equipo, partes y piezas electrónicos y de telecomunicaciones",
         "Orden": "885"
     },
     {
         "Codigo": "4653",
-        "Descripcion": "VENTA AL POR MAYOR DE MAQUINARIA, EQUIPO Y MATERIALES AGROPECUARIOS",
+        "Nombre": "VENTA AL POR MAYOR DE MAQUINARIA, EQUIPO Y MATERIALES AGROPECUARIOS",
         "Orden": "886"
     },
     {
         "Codigo": "46530",
-        "Descripcion": "Comercio al por mayor de maquinaria, equipo y materiales agropecuarios",
+        "Nombre": "Comercio al por mayor de maquinaria, equipo y materiales agropecuarios",
         "Orden": "887"
     },
     {
         "Codigo": "4659",
-        "Descripcion": "VENTA AL POR MAYOR DE OTROS TIPOS DE MAQUINARIA Y EQUIPO",
+        "Nombre": "VENTA AL POR MAYOR DE OTROS TIPOS DE MAQUINARIA Y EQUIPO",
         "Orden": "888"
     },
     {
         "Codigo": "46591",
-        "Descripcion": "Comercio al por mayor de maquinaria, equipo y accesorios para la industria de la madera",
+        "Nombre": "Comercio al por mayor de maquinaria, equipo y accesorios para la industria de la madera",
         "Orden": "889"
     },
     {
         "Codigo": "46592",
-        "Descripcion": "Comercio al por mayor de maquinaria, equipo, accesorios y materiales para las industria gráfica y del papel, cartón y productos de papel y cartón",
+        "Nombre": "Comercio al por mayor de maquinaria, equipo, accesorios y materiales para las industria gráfica y del papel, cartón y productos de papel y cartón",
         "Orden": "890"
     },
     {
         "Codigo": "46593",
-        "Descripcion": "Comercio al por mayor de maquinaria, equipo, accesorios y materiales para las industrias de  productos químicos, plásticos y de caucho",
+        "Nombre": "Comercio al por mayor de maquinaria, equipo, accesorios y materiales para las industrias de  productos químicos, plásticos y de caucho",
         "Orden": "891"
     },
     {
         "Codigo": "46594",
-        "Descripcion": "Comercio al por mayor de maquinaria, equipo y accesorios para la industria metálica",
+        "Nombre": "Comercio al por mayor de maquinaria, equipo y accesorios para la industria metálica",
         "Orden": "892"
     },
     {
         "Codigo": "46595",
-        "Descripcion": "Comercio al por mayor de equipamiento para uso médico, odontológico, veterinario y servicios conexos",
+        "Nombre": "Comercio al por mayor de equipamiento para uso médico, odontológico, veterinario y servicios conexos",
         "Orden": "893"
     },
     {
         "Codigo": "46596",
-        "Descripcion": "Comercio al por mayor de maquinaria, equipo, accesorios y partes para la industria de la alimentación",
+        "Nombre": "Comercio al por mayor de maquinaria, equipo, accesorios y partes para la industria de la alimentación",
         "Orden": "894"
     },
     {
         "Codigo": "46597",
-        "Descripcion": "Comercio al por mayor de maquinaria, equipo, accesorios y partes para la industria textil, confecciones y cuero",
+        "Nombre": "Comercio al por mayor de maquinaria, equipo, accesorios y partes para la industria textil, confecciones y cuero",
         "Orden": "895"
     },
     {
         "Codigo": "46598",
-        "Descripcion": "Comercio al por mayor de maquinaria, equipo y accesorios para la construcción y explotación de minas y canteras",
+        "Nombre": "Comercio al por mayor de maquinaria, equipo y accesorios para la construcción y explotación de minas y canteras",
         "Orden": "896"
     },
     {
         "Codigo": "46599",
-        "Descripcion": "Comercio al por mayor de otros tipos de maquinaria y equipo n.c.p.",
+        "Nombre": "Comercio al por mayor de otros tipos de maquinaria y equipo n.c.p.",
         "Orden": "897"
     },
     {
         "Codigo": "466",
-        "Descripcion": "OTRAS ACTIVIDADES DE VENTA AL POR MAYOR ESPECIALIZADA",
+        "Nombre": "OTRAS ACTIVIDADES DE VENTA AL POR MAYOR ESPECIALIZADA",
         "Orden": "898"
     },
     {
         "Codigo": "4661",
-        "Descripcion": "VENTA AL POR MAYOR DE COMBUSTIBLES SÓLIDOS, LÍQUIDOS Y GASEOSOS Y PRODUCTOS CONEXOS",
+        "Nombre": "VENTA AL POR MAYOR DE COMBUSTIBLES SÓLIDOS, LÍQUIDOS Y GASEOSOS Y PRODUCTOS CONEXOS",
         "Orden": "899"
     },
     {
         "Codigo": "46611",
-        "Descripcion": "Comercio al por mayor de combustibles para automotores, aviones, barcos, maquinaria  y otros",
+        "Nombre": "Comercio al por mayor de combustibles para automotores, aviones, barcos, maquinaria  y otros",
         "Orden": "900"
     },
     {
         "Codigo": "46612",
-        "Descripcion": "Comercio al por mayor de lubricantes, grasas y otros aceites para automotores, maquinaria industrial, entre otros",
+        "Nombre": "Comercio al por mayor de lubricantes, grasas y otros aceites para automotores, maquinaria industrial, entre otros",
         "Orden": "901"
     },
     {
         "Codigo": "46613",
-        "Descripcion": "Comercio al por mayor de gas propano, natural y keroseno ",
+        "Nombre": "Comercio al por mayor de gas propano, natural y keroseno ",
         "Orden": "902"
     },
     {
         "Codigo": "46619",
-        "Descripcion": "Comercio al por mayor de combustibles sólidos, líquidos, gaseosos y de productos conexos n.c.p., (incluye el comercio al por mayor de combustible libre de contaminantes, leña y carbón de leña, entre otros)",
+        "Nombre": "Comercio al por mayor de combustibles sólidos, líquidos, gaseosos y de productos conexos n.c.p., (incluye el comercio al por mayor de combustible libre de contaminantes, leña y carbón de leña, entre otros)",
         "Orden": "903"
     },
     {
         "Codigo": "4662",
-        "Descripcion": "VENTA AL POR MAYOR DE METALES Y MINERALES METALÍFEROS",
+        "Nombre": "VENTA AL POR MAYOR DE METALES Y MINERALES METALÍFEROS",
         "Orden": "904"
     },
     {
         "Codigo": "46620",
-        "Descripcion": "Comercio al por mayor de metales y minerales metalíferos",
+        "Nombre": "Comercio al por mayor de metales y minerales metalíferos",
         "Orden": "905"
     },
     {
         "Codigo": "4663",
-        "Descripcion": "VENTA AL POR MAYOR DE MATERIALES DE CONSTRUCCIÓN, ARTÍCULOS DE FERRETERÍA Y EQUIPO Y MATERIALES DE FONTANERÍA Y CALEFACCIÓN",
+        "Nombre": "VENTA AL POR MAYOR DE MATERIALES DE CONSTRUCCIÓN, ARTÍCULOS DE FERRETERÍA Y EQUIPO Y MATERIALES DE FONTANERÍA Y CALEFACCIÓN",
         "Orden": "906"
     },
     {
         "Codigo": "46631",
-        "Descripcion": "Comercio al por mayor de puertas, ventanas, vitrinas y similares",
+        "Nombre": "Comercio al por mayor de puertas, ventanas, vitrinas y similares",
         "Orden": "907"
     },
     {
         "Codigo": "46632",
-        "Descripcion": "Comercio al por mayor de artículos de ferretería, cerrajería y pinturería",
+        "Nombre": "Comercio al por mayor de artículos de ferretería, cerrajería y pinturería",
         "Orden": "908"
     },
     {
         "Codigo": "46633",
-        "Descripcion": "Vidrierías",
+        "Nombre": "Vidrierías",
         "Orden": "909"
     },
     {
         "Codigo": "46634",
-        "Descripcion": "Comercio al por mayor de madera (no trabajada)",
+        "Nombre": "Comercio al por mayor de madera (no trabajada)",
         "Orden": "910"
     },
     {
         "Codigo": "46639",
-        "Descripcion": "Comercio al por mayor de materiales para la construcción, artículos de ferretería, equipo y materiales de fontanería y calefacción, n.c.p.",
+        "Nombre": "Comercio al por mayor de materiales para la construcción, artículos de ferretería, equipo y materiales de fontanería y calefacción, n.c.p.",
         "Orden": "911"
     },
     {
         "Codigo": "4669",
-        "Descripcion": "VENTA AL POR MAYOR DE DESPERDICIOS, DESECHOS, CHATARRA Y OTROS PRODUCTOS N.C.P.",
+        "Nombre": "VENTA AL POR MAYOR DE DESPERDICIOS, DESECHOS, CHATARRA Y OTROS PRODUCTOS N.C.P.",
         "Orden": "912"
     },
     {
         "Codigo": "46691",
-        "Descripcion": "Comercio al por mayor de sal industrial sin yodar",
+        "Nombre": "Comercio al por mayor de sal industrial sin yodar",
         "Orden": "913"
     },
     {
         "Codigo": "46692",
-        "Descripcion": "Comercio al por mayor de productos intermedios y desechos de origen textil",
+        "Nombre": "Comercio al por mayor de productos intermedios y desechos de origen textil",
         "Orden": "914"
     },
     {
         "Codigo": "46693",
-        "Descripcion": "Comercio al por mayor de productos intermedios y desechos de origen metálico",
+        "Nombre": "Comercio al por mayor de productos intermedios y desechos de origen metálico",
         "Orden": "915"
     },
     {
         "Codigo": "46694",
-        "Descripcion": "Comercio al por mayor de productos intermedios y desechos de papel y cartón",
+        "Nombre": "Comercio al por mayor de productos intermedios y desechos de papel y cartón",
         "Orden": "916"
     },
     {
         "Codigo": "46695",
-        "Descripcion": "Comercio al por mayor de fertilizantes, abonos, agroquímicos y productos similares",
+        "Nombre": "Comercio al por mayor de fertilizantes, abonos, agroquímicos y productos similares",
         "Orden": "917"
     },
     {
         "Codigo": "46696",
-        "Descripcion": "Comercio al por mayor de productos intermedios y desechos de origen plástico",
+        "Nombre": "Comercio al por mayor de productos intermedios y desechos de origen plástico",
         "Orden": "918"
     },
     {
         "Codigo": "46697",
-        "Descripcion": "Comercio al por mayor de tintas para imprenta, productos curtientes, materias y productos colorantes",
+        "Nombre": "Comercio al por mayor de tintas para imprenta, productos curtientes, materias y productos colorantes",
         "Orden": "919"
     },
     {
         "Codigo": "46698",
-        "Descripcion": "Comercio al por mayor de productos intermedios y desechos de origen químico y de caucho",
+        "Nombre": "Comercio al por mayor de productos intermedios y desechos de origen químico y de caucho",
         "Orden": "920"
     },
     {
         "Codigo": "46699",
-        "Descripcion": "Comercio al por mayor de desperdicios, desechos, chatarra y otros productos n.c.p.",
+        "Nombre": "Comercio al por mayor de desperdicios, desechos, chatarra y otros productos n.c.p.",
         "Orden": "921"
     },
     {
         "Codigo": "469",
-        "Descripcion": "VENTA AL POR MAYOR NO ESPECIALIZADA",
+        "Nombre": "VENTA AL POR MAYOR NO ESPECIALIZADA",
         "Orden": "922"
     },
     {
         "Codigo": "4690",
-        "Descripcion": "VENTA AL POR MAYOR NO ESPECIALIZADA",
+        "Nombre": "VENTA AL POR MAYOR NO ESPECIALIZADA",
         "Orden": "923"
     },
     {
         "Codigo": "46900",
-        "Descripcion": "Comercio al por mayor no especializada",
+        "Nombre": "Comercio al por mayor no especializada",
         "Orden": "924"
     },
     {
         "Codigo": "47",
-        "Descripcion": "COMERCIO AL POR MENOR, EXCEPTO EL DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS",
+        "Nombre": "COMERCIO AL POR MENOR, EXCEPTO EL DE VEHÍCULOS AUTOMOTORES Y MOTOCICLETAS",
         "Orden": "925"
     },
     {
         "Codigo": "471",
-        "Descripcion": "VENTA AL POR MENOR EN COMERCIOS NO ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR EN COMERCIOS NO ESPECIALIZADOS",
         "Orden": "926"
     },
     {
         "Codigo": "4711",
-        "Descripcion": "VENTA AL POR MENOR EN COMERCIOS NO ESPECIALIZADOS CON PREDOMINIO DE LA VENTA DE ALIMENTOS, BEBIDAS O TABACO",
+        "Nombre": "VENTA AL POR MENOR EN COMERCIOS NO ESPECIALIZADOS CON PREDOMINIO DE LA VENTA DE ALIMENTOS, BEBIDAS O TABACO",
         "Orden": "927"
     },
     {
         "Codigo": "47111",
-        "Descripcion": "Comercio al por menor en supermercados y almacenes surtidos, con predominio de la venta de alimentos, bebidas o tabaco",
+        "Nombre": "Comercio al por menor en supermercados y almacenes surtidos, con predominio de la venta de alimentos, bebidas o tabaco",
         "Orden": "928"
     },
     {
         "Codigo": "47112",
-        "Descripcion": "Comercio al por menor en tiendas de artículos de primera necesidad",
+        "Nombre": "Comercio al por menor en tiendas de artículos de primera necesidad",
         "Orden": "929"
     },
     {
         "Codigo": "47113",
-        "Descripcion": "Comercio al por menor en chalet y quioscos de artículos de primera necesidad (se excluye en puestos de la calle y móviles)",
+        "Nombre": "Comercio al por menor en chalet y quioscos de artículos de primera necesidad (se excluye en puestos de la calle y móviles)",
         "Orden": "930"
     },
     {
         "Codigo": "47119",
-        "Descripcion": "Comercio al por menor en comercios no especializados con predominio de la venta de alimentos, bebidas o tabaco n.c.p.",
+        "Nombre": "Comercio al por menor en comercios no especializados con predominio de la venta de alimentos, bebidas o tabaco n.c.p.",
         "Orden": "931"
     },
     {
         "Codigo": "4719",
-        "Descripcion": "OTRAS ACTIVIDADES DE VENTA AL POR MENOR EN COMERCIOS NO ESPECIALIZADOS",
+        "Nombre": "OTRAS ACTIVIDADES DE VENTA AL POR MENOR EN COMERCIOS NO ESPECIALIZADOS",
         "Orden": "932"
     },
     {
         "Codigo": "47191",
-        "Descripcion": "Comercio al por menor de diversos artículos en almacenes ",
+        "Nombre": "Comercio al por menor de diversos artículos en almacenes ",
         "Orden": "933"
     },
     {
         "Codigo": "47192",
-        "Descripcion": "Comercio al por menor de diversos artículos en bazares ",
+        "Nombre": "Comercio al por menor de diversos artículos en bazares ",
         "Orden": "934"
     },
     {
         "Codigo": "47199",
-        "Descripcion": "Otras actividades de comercio al por menor en comercios no especializados n.c.p.",
+        "Nombre": "Otras actividades de comercio al por menor en comercios no especializados n.c.p.",
         "Orden": "935"
     },
     {
         "Codigo": "472",
-        "Descripcion": "VENTA AL POR MENOR DE ALIMENTOS, BEBIDAS Y TABACO EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE ALIMENTOS, BEBIDAS Y TABACO EN COMERCIOS ESPECIALIZADOS",
         "Orden": "936"
     },
     {
         "Codigo": "4721",
-        "Descripcion": "VENTA AL POR MENOR DE ALIMENTOS EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE ALIMENTOS EN COMERCIOS ESPECIALIZADOS",
         "Orden": "937"
     },
     {
         "Codigo": "47211",
-        "Descripcion": "Comercio al por menor de frutas, legumbres y hortalizas frescas o en conserva",
+        "Nombre": "Comercio al por menor de frutas, legumbres y hortalizas frescas o en conserva",
         "Orden": "938"
     },
     {
         "Codigo": "47212",
-        "Descripcion": "Comercio al por menor de carnes, embutidos, huevos, otros productos cárnicos y de granja",
+        "Nombre": "Comercio al por menor de carnes, embutidos, huevos, otros productos cárnicos y de granja",
         "Orden": "939"
     },
     {
         "Codigo": "47213",
-        "Descripcion": "Comercio al por menor de pescado, crustáceos, moluscos y productos conexos",
+        "Nombre": "Comercio al por menor de pescado, crustáceos, moluscos y productos conexos",
         "Orden": "940"
     },
     {
         "Codigo": "47214",
-        "Descripcion": "Comercio al por menor de productos lácteos ",
+        "Nombre": "Comercio al por menor de productos lácteos ",
         "Orden": "941"
     },
     {
         "Codigo": "47215",
-        "Descripcion": "Comercio al por menor de productos de panadería, repostería y galletas",
+        "Nombre": "Comercio al por menor de productos de panadería, repostería y galletas",
         "Orden": "942"
     },
     {
         "Codigo": "47219",
-        "Descripcion": "Comercio al por menor en comercios especializados de alimentos n.c.p. , (incluye granos básicos, condimentos, miel de abeja, alimentos dietéticos, entre otros)",
+        "Nombre": "Comercio al por menor en comercios especializados de alimentos n.c.p. , (incluye granos básicos, condimentos, miel de abeja, alimentos dietéticos, entre otros)",
         "Orden": "943"
     },
     {
         "Codigo": "4722",
-        "Descripcion": "VENTA AL POR MENOR DE BEBIDAS EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE BEBIDAS EN COMERCIOS ESPECIALIZADOS",
         "Orden": "944"
     },
     {
         "Codigo": "47221",
-        "Descripcion": "Comercio al por menor de hielo",
+        "Nombre": "Comercio al por menor de hielo",
         "Orden": "945"
     },
     {
         "Codigo": "47223",
-        "Descripcion": "Comercio al por menor de bebidas alcohólicas (no para el consumo en el lugar de venta)",
+        "Nombre": "Comercio al por menor de bebidas alcohólicas (no para el consumo en el lugar de venta)",
         "Orden": "946"
     },
     {
         "Codigo": "47224",
-        "Descripcion": "Comercio al por menor de bebidas no alcohólicas (no para el consumo en el lugar de venta)",
+        "Nombre": "Comercio al por menor de bebidas no alcohólicas (no para el consumo en el lugar de venta)",
         "Orden": "947"
     },
     {
         "Codigo": "47229",
-        "Descripcion": "Comercio al por menor de bebidas en comercios especializados (no para el consumo en el lugar de venta) n.c.p.",
+        "Nombre": "Comercio al por menor de bebidas en comercios especializados (no para el consumo en el lugar de venta) n.c.p.",
         "Orden": "948"
     },
     {
         "Codigo": "4723",
-        "Descripcion": "VENTA AL POR MENOR DE PRODUCTOS DE TABACO EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE PRODUCTOS DE TABACO EN COMERCIOS ESPECIALIZADOS",
         "Orden": "949"
     },
     {
         "Codigo": "47230",
-        "Descripcion": "Comercio al por menor de productos de tabaco en comercios especializados",
+        "Nombre": "Comercio al por menor de productos de tabaco en comercios especializados",
         "Orden": "950"
     },
     {
         "Codigo": "473",
-        "Descripcion": "VENTA AL POR MENOR DE COMBUSTIBLES PARA VEHÍCULOS AUTOMOTORES EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE COMBUSTIBLES PARA VEHÍCULOS AUTOMOTORES EN COMERCIOS ESPECIALIZADOS",
         "Orden": "951"
     },
     {
         "Codigo": "4730",
-        "Descripcion": "VENTA AL POR MENOR DE COMBUSTIBLES PARA VEHÍCULOS AUTOMOTORES EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE COMBUSTIBLES PARA VEHÍCULOS AUTOMOTORES EN COMERCIOS ESPECIALIZADOS",
         "Orden": "952"
     },
     {
         "Codigo": "47300",
-        "Descripcion": "Comercio de combustibles, productos lubricantes y productos refrigerantes para vehículos automotores y motocicletas",
+        "Nombre": "Comercio de combustibles, productos lubricantes y productos refrigerantes para vehículos automotores y motocicletas",
         "Orden": "953"
     },
     {
         "Codigo": "474",
-        "Descripcion": "VENTA AL POR MENOR DE EQUIPO DE INFORMACIÓN Y DE COMUNICACIONES EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE EQUIPO DE INFORMACIÓN Y DE COMUNICACIONES EN COMERCIOS ESPECIALIZADOS",
         "Orden": "954"
     },
     {
         "Codigo": "4741",
-        "Descripcion": "VENTA AL POR MENOR DE ORDENADORES, EQUIPO PERIFÉRICO, PROGRAMAS INFORMÁTICOS Y EQUIPO DE TELECOMUNICACIONES EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE ORDENADORES, EQUIPO PERIFÉRICO, PROGRAMAS INFORMÁTICOS Y EQUIPO DE TELECOMUNICACIONES EN COMERCIOS ESPECIALIZADOS",
         "Orden": "955"
     },
     {
         "Codigo": "47411",
-        "Descripcion": "Comercio al por menor de computadoras, equipo periférico, programas informáticos no personalizados y otros productos conexos",
+        "Nombre": "Comercio al por menor de computadoras, equipo periférico, programas informáticos no personalizados y otros productos conexos",
         "Orden": "956"
     },
     {
         "Codigo": "47412",
-        "Descripcion": "Comercio de equipo y accesorios de telecomunicación",
+        "Nombre": "Comercio de equipo y accesorios de telecomunicación",
         "Orden": "957"
     },
     {
         "Codigo": "47419",
-        "Descripcion": "Comercio al por menor de computadoras, equipo periférico, programas informáticos y equipo de telecomunicaciones en comercios especializados n.c.p., (incluye la Comercio al por menor de juegos de vídeo)",
+        "Nombre": "Comercio al por menor de computadoras, equipo periférico, programas informáticos y equipo de telecomunicaciones en comercios especializados n.c.p., (incluye la Comercio al por menor de juegos de vídeo)",
         "Orden": "958"
     },
     {
         "Codigo": "4742",
-        "Descripcion": "VENTA AL POR MENOR DE EQUIPO DE SONIDO Y DE VIDEO EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE EQUIPO DE SONIDO Y DE VIDEO EN COMERCIOS ESPECIALIZADOS",
         "Orden": "959"
     },
     {
         "Codigo": "47420",
-        "Descripcion": "Comercio al por menor de equipo de sonido y video en comercios especializados",
+        "Nombre": "Comercio al por menor de equipo de sonido y video en comercios especializados",
         "Orden": "960"
     },
     {
         "Codigo": "475",
-        "Descripcion": "VENTA AL POR MENOR DE OTROS ENSERES DOMÉSTICOS EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE OTROS ENSERES DOMÉSTICOS EN COMERCIOS ESPECIALIZADOS",
         "Orden": "961"
     },
     {
         "Codigo": "4751",
-        "Descripcion": "VENTA AL POR MENOR DE PRODUCTOS TEXTILES EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE PRODUCTOS TEXTILES EN COMERCIOS ESPECIALIZADOS",
         "Orden": "962"
     },
     {
         "Codigo": "47510",
-        "Descripcion": "Comercio al por menor de hilados, tejidos, artículos de mercería y otros artículos textiles básicos para la confección de alfombras, tapices, bordados, entre otros",
+        "Nombre": "Comercio al por menor de hilados, tejidos, artículos de mercería y otros artículos textiles básicos para la confección de alfombras, tapices, bordados, entre otros",
         "Orden": "963"
     },
     {
         "Codigo": "4752",
-        "Descripcion": "VENTA AL POR MENOR DE ARTÍCULOS DE FERRETERÍA, PINTURAS Y PRODUCTOS DE VIDRIO EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE ARTÍCULOS DE FERRETERÍA, PINTURAS Y PRODUCTOS DE VIDRIO EN COMERCIOS ESPECIALIZADOS",
         "Orden": "964"
     },
     {
         "Codigo": "47521",
-        "Descripcion": "Comercio al por menor de materiales de construcción como: madera, ladrillo, equipo sanitario, entre otros",
+        "Nombre": "Comercio al por menor de materiales de construcción como: madera, ladrillo, equipo sanitario, entre otros",
         "Orden": "965"
     },
     {
         "Codigo": "47522",
-        "Descripcion": "Comercio al por menor de artículos de ferretería",
+        "Nombre": "Comercio al por menor de artículos de ferretería",
         "Orden": "966"
     },
     {
         "Codigo": "47523",
-        "Descripcion": "Comercio al por menor de pinturas, lacas, barnices y otros productos de pinturerías",
+        "Nombre": "Comercio al por menor de pinturas, lacas, barnices y otros productos de pinturerías",
         "Orden": "967"
     },
     {
         "Codigo": "47524",
-        "Descripcion": "Comercio al por menor de productos de vidrierías",
+        "Nombre": "Comercio al por menor de productos de vidrierías",
         "Orden": "968"
     },
     {
         "Codigo": "47529",
-        "Descripcion": "Comercio al por menor de artículos de ferretería, pinturas y productos de vidrio en comercios especializados n.c.p.",
+        "Nombre": "Comercio al por menor de artículos de ferretería, pinturas y productos de vidrio en comercios especializados n.c.p.",
         "Orden": "969"
     },
     {
         "Codigo": "4753",
-        "Descripcion": "VENTA AL POR MENOR DE TAPICES, ALFOMBRAS Y CUBRIMIENTOS PARA PAREDES Y PISOS EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE TAPICES, ALFOMBRAS Y CUBRIMIENTOS PARA PAREDES Y PISOS EN COMERCIOS ESPECIALIZADOS",
         "Orden": "970"
     },
     {
         "Codigo": "47530",
-        "Descripcion": "Comercio al por menor de tapices, alfombras y revestimientos de paredes y pisos en comercios especializados",
+        "Nombre": "Comercio al por menor de tapices, alfombras y revestimientos de paredes y pisos en comercios especializados",
         "Orden": "971"
     },
     {
         "Codigo": "4759",
-        "Descripcion": "VENTA AL POR MENOR DE APARATOS ELÉCTRICOS DE USO DOMÉSTICO, MUEBLES, EQUIPO DE ILUMINACIÓN Y OTROS ENSERES DOMÉSTICOS EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE APARATOS ELÉCTRICOS DE USO DOMÉSTICO, MUEBLES, EQUIPO DE ILUMINACIÓN Y OTROS ENSERES DOMÉSTICOS EN COMERCIOS ESPECIALIZADOS",
         "Orden": "972"
     },
     {
         "Codigo": "47591",
-        "Descripcion": "Comercio al por menor de muebles de uso doméstico",
+        "Nombre": "Comercio al por menor de muebles de uso doméstico",
         "Orden": "973"
     },
     {
         "Codigo": "47592",
-        "Descripcion": "Comercio al por menor de artículos de bazar",
+        "Nombre": "Comercio al por menor de artículos de bazar",
         "Orden": "974"
     },
     {
         "Codigo": "47593",
-        "Descripcion": "Comercio al por menor de aparatos electrodomésticos, repuestos y accesorios",
+        "Nombre": "Comercio al por menor de aparatos electrodomésticos, repuestos y accesorios",
         "Orden": "975"
     },
     {
         "Codigo": "47594",
-        "Descripcion": "Comercio al por menor de artículos eléctricos y de iluminación",
+        "Nombre": "Comercio al por menor de artículos eléctricos y de iluminación",
         "Orden": "976"
     },
     {
         "Codigo": "47595",
-        "Descripcion": "Comercio al por menor de instrumentos musicales, repuestos y accesorios en comercios especializados",
+        "Nombre": "Comercio al por menor de instrumentos musicales, repuestos y accesorios en comercios especializados",
         "Orden": "977"
     },
     {
         "Codigo": "47599",
-        "Descripcion": "Comercio al por menor de aparatos eléctricos de uso doméstico, muebles, equipo de iluminación y otros enseres domésticos en comercios especializados, n.c.p.",
+        "Nombre": "Comercio al por menor de aparatos eléctricos de uso doméstico, muebles, equipo de iluminación y otros enseres domésticos en comercios especializados, n.c.p.",
         "Orden": "978"
     },
     {
         "Codigo": "476",
-        "Descripcion": "VENTA AL POR MENOR DE PRODUCTOS CULTURALES Y RECREATIVOS EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE PRODUCTOS CULTURALES Y RECREATIVOS EN COMERCIOS ESPECIALIZADOS",
         "Orden": "979"
     },
     {
         "Codigo": "4761",
-        "Descripcion": "VENTA AL POR MENOR DE LIBROS, PERIÓDICOS Y ARTÍCULOS DE PAPELERÍA EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE LIBROS, PERIÓDICOS Y ARTÍCULOS DE PAPELERÍA EN COMERCIOS ESPECIALIZADOS",
         "Orden": "980"
     },
     {
         "Codigo": "47610",
-        "Descripcion": "Comercio al por menor de libros, periódicos y artículos de papelería en comercios especializados ",
+        "Nombre": "Comercio al por menor de libros, periódicos y artículos de papelería en comercios especializados ",
         "Orden": "981"
     },
     {
         "Codigo": "4762",
-        "Descripcion": "VENTA AL POR MENOR DE GRABACIONES DE MÚSICA Y DE VÍDEO EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE GRABACIONES DE MÚSICA Y DE VÍDEO EN COMERCIOS ESPECIALIZADOS",
         "Orden": "982"
     },
     {
         "Codigo": "47620",
-        "Descripcion": "Comercio al por menor de grabaciones de música y de vídeo en comercios especializados",
+        "Nombre": "Comercio al por menor de grabaciones de música y de vídeo en comercios especializados",
         "Orden": "983"
     },
     {
         "Codigo": "4763",
-        "Descripcion": "VENTA AL POR MENOR DE EQUIPO DE DEPORTE EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE EQUIPO DE DEPORTE EN COMERCIOS ESPECIALIZADOS",
         "Orden": "984"
     },
     {
         "Codigo": "47630",
-        "Descripcion": "Comercio al por menor de equipo de deporte en comercio especializados",
+        "Nombre": "Comercio al por menor de equipo de deporte en comercio especializados",
         "Orden": "985"
     },
     {
         "Codigo": "4764",
-        "Descripcion": "VENTA AL POR MENOR DE JUEGOS Y JUGUETES EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE JUEGOS Y JUGUETES EN COMERCIOS ESPECIALIZADOS",
         "Orden": "986"
     },
     {
         "Codigo": "47640",
-        "Descripcion": "Comercio al por menor de juegos y juguetes  en comercios especializados (se incluyen piñatas y artículos de fiesta)",
+        "Nombre": "Comercio al por menor de juegos y juguetes  en comercios especializados (se incluyen piñatas y artículos de fiesta)",
         "Orden": "987"
     },
     {
         "Codigo": "477",
-        "Descripcion": "VENTA AL POR MENOR DE OTROS PRODUCTOS EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE OTROS PRODUCTOS EN COMERCIOS ESPECIALIZADOS",
         "Orden": "988"
     },
     {
         "Codigo": "4771",
-        "Descripcion": "VENTA AL POR MENOR DE PRENDAS DE VESTIR, CALZADO Y ARTÍCULOS DE CUERO EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE PRENDAS DE VESTIR, CALZADO Y ARTÍCULOS DE CUERO EN COMERCIOS ESPECIALIZADOS",
         "Orden": "989"
     },
     {
         "Codigo": "47711",
-        "Descripcion": "Comercio al por menor de prendas de vestir y accesorios de vestir",
+        "Nombre": "Comercio al por menor de prendas de vestir y accesorios de vestir",
         "Orden": "990"
     },
     {
         "Codigo": "47712",
-        "Descripcion": "Comercio al por menor de calzado",
+        "Nombre": "Comercio al por menor de calzado",
         "Orden": "991"
     },
     {
         "Codigo": "47713",
-        "Descripcion": "Comercio al por menor de artículos de marroquinería y talabartería como: carteras, maletas, maletines, bolsos,  machete, monturas y otros artículos similares",
+        "Nombre": "Comercio al por menor de artículos de marroquinería y talabartería como: carteras, maletas, maletines, bolsos,  machete, monturas y otros artículos similares",
         "Orden": "992"
     },
     {
         "Codigo": "47719",
-        "Descripcion": "Comercio al por menor de prendas de vestir, calzado y artículos de cuero en comercios especializados n.c.p.",
+        "Nombre": "Comercio al por menor de prendas de vestir, calzado y artículos de cuero en comercios especializados n.c.p.",
         "Orden": "993"
     },
     {
         "Codigo": "4772",
-        "Descripcion": "VENTA AL POR MENOR DE PRODUCTOS FARMACÉUTICOS Y MEDICINALES, COSMÉTICOS Y ARTÍCULOS DE TOCADOR EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE PRODUCTOS FARMACÉUTICOS Y MEDICINALES, COSMÉTICOS Y ARTÍCULOS DE TOCADOR EN COMERCIOS ESPECIALIZADOS",
         "Orden": "994"
     },
     {
         "Codigo": "47721",
-        "Descripcion": "Comercio al por menor de productos farmacéuticos, materiales y artículos de uso médico y odontológico (se excluyen productos veterinarios y medicinas naturales no certificadas), en comercios especializados como farmacias y otros similares",
+        "Nombre": "Comercio al por menor de productos farmacéuticos, materiales y artículos de uso médico y odontológico (se excluyen productos veterinarios y medicinas naturales no certificadas), en comercios especializados como farmacias y otros similares",
         "Orden": "995"
     },
     {
         "Codigo": "47722",
-        "Descripcion": "Comercio al por menor de productos cosméticos y artículos de tocador",
+        "Nombre": "Comercio al por menor de productos cosméticos y artículos de tocador",
         "Orden": "996"
     },
     {
         "Codigo": "47729",
-        "Descripcion": "Comercio al por menor de productos farmacéuticos y medicinales (se incluyen productos veterinarios y medicinas naturales no certificadas), cosméticos y artículos de tocador en comercios especializados n.c.p.",
+        "Nombre": "Comercio al por menor de productos farmacéuticos y medicinales (se incluyen productos veterinarios y medicinas naturales no certificadas), cosméticos y artículos de tocador en comercios especializados n.c.p.",
         "Orden": "997"
     },
     {
         "Codigo": "4773",
-        "Descripcion": "VENTA AL POR MENOR DE OTROS PRODUCTOS NUEVOS EN COMERCIOS ESPECIALIZADOS",
+        "Nombre": "VENTA AL POR MENOR DE OTROS PRODUCTOS NUEVOS EN COMERCIOS ESPECIALIZADOS",
         "Orden": "998"
     },
     {
         "Codigo": "47731",
-        "Descripcion": "Comercio al por menor de productos de joyería, bisutería, óptica y relojería en comercios especializados",
+        "Nombre": "Comercio al por menor de productos de joyería, bisutería, óptica y relojería en comercios especializados",
         "Orden": "999"
     },
     {
         "Codigo": "47732",
-        "Descripcion": "Comercio al por menor de flores, plantas, semillas, abonos, animales domésticos y alimento para animales domésticos en comercios especializados",
+        "Nombre": "Comercio al por menor de flores, plantas, semillas, abonos, animales domésticos y alimento para animales domésticos en comercios especializados",
         "Orden": "1000"
     },
     {
         "Codigo": "47733",
-        "Descripcion": "Comercio al por menor de gas propano, leña y otros combustibles para uso doméstico en comercios especializados",
+        "Nombre": "Comercio al por menor de gas propano, leña y otros combustibles para uso doméstico en comercios especializados",
         "Orden": "1001"
     },
     {
         "Codigo": "47734",
-        "Descripcion": "Comercio al por menor de artesanías, artículos cerámicos y recuerdos en general en comercios especializados",
+        "Nombre": "Comercio al por menor de artesanías, artículos cerámicos y recuerdos en general en comercios especializados",
         "Orden": "1002"
     },
     {
         "Codigo": "47735",
-        "Descripcion": "Comercio al por menor de ataúdes, lápidas, cruces y otros productos similares en comercios especializados",
+        "Nombre": "Comercio al por menor de ataúdes, lápidas, cruces y otros productos similares en comercios especializados",
         "Orden": "1003"
     },
     {
         "Codigo": "47739",
-        "Descripcion": "Comercio al por menor de otros productos nuevos en comercios especializados n.c.p.",
+        "Nombre": "Comercio al por menor de otros productos nuevos en comercios especializados n.c.p.",
         "Orden": "1004"
     },
     {
         "Codigo": "4774",
-        "Descripcion": "VENTA AL POR MENOR DE ARTÍCULOS DE SEGUNDA MANO",
+        "Nombre": "VENTA AL POR MENOR DE ARTÍCULOS DE SEGUNDA MANO",
         "Orden": "1005"
     },
     {
         "Codigo": "47741",
-        "Descripcion": "Comercio al por menor de muebles, electrodomésticos, juguetes y otros artículos usados para el hogar",
+        "Nombre": "Comercio al por menor de muebles, electrodomésticos, juguetes y otros artículos usados para el hogar",
         "Orden": "1006"
     },
     {
         "Codigo": "47742",
-        "Descripcion": "Comercio al por menor de prendas de vestir, calzado y otros artículos confeccionados usados",
+        "Nombre": "Comercio al por menor de prendas de vestir, calzado y otros artículos confeccionados usados",
         "Orden": "1007"
     },
     {
         "Codigo": "47743",
-        "Descripcion": "Comercio al por menor de libros, revistas y otros productos similares usados",
+        "Nombre": "Comercio al por menor de libros, revistas y otros productos similares usados",
         "Orden": "1008"
     },
     {
         "Codigo": "47749",
-        "Descripcion": "Comercio al por menor de artículos de segunda mano o usados n.c.p. (incluye la Comercio al por menor de antigüedades)",
+        "Nombre": "Comercio al por menor de artículos de segunda mano o usados n.c.p. (incluye la Comercio al por menor de antigüedades)",
         "Orden": "1009"
     },
     {
         "Codigo": "478",
-        "Descripcion": "VENTA AL POR MENOR EN PUESTOS DE VENTA Y MERCADOS",
+        "Nombre": "VENTA AL POR MENOR EN PUESTOS DE VENTA Y MERCADOS",
         "Orden": "1010"
     },
     {
         "Codigo": "4781",
-        "Descripcion": "VENTA AL POR MENOR DE ALIMENTOS, BEBIDAS Y TABACO EN PUESTOS DE VENTA Y MERCADOS",
+        "Nombre": "VENTA AL POR MENOR DE ALIMENTOS, BEBIDAS Y TABACO EN PUESTOS DE VENTA Y MERCADOS",
         "Orden": "1011"
     },
     {
         "Codigo": "47811",
-        "Descripcion": "Comercio al por menor de frutas y hortalizas en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de frutas y hortalizas en puestos de venta y mercado",
         "Orden": "1012"
     },
     {
         "Codigo": "47812",
-        "Descripcion": "Comercio al por menor de carnes, embutidos y productos de granja en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de carnes, embutidos y productos de granja en puestos de venta y mercado",
         "Orden": "1013"
     },
     {
         "Codigo": "47813",
-        "Descripcion": "Comercio al por menor de pescado y mariscos en puestos de venta y mercado ",
+        "Nombre": "Comercio al por menor de pescado y mariscos en puestos de venta y mercado ",
         "Orden": "1014"
     },
     {
         "Codigo": "47814",
-        "Descripcion": "Comercio al por menor de productos lácteos en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de productos lácteos en puestos de venta y mercado",
         "Orden": "1015"
     },
     {
         "Codigo": "47815",
-        "Descripcion": "Comercio al por menor de productos de panadería, galletas y similares en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de productos de panadería, galletas y similares en puestos de venta y mercado",
         "Orden": "1016"
     },
     {
         "Codigo": "47816",
-        "Descripcion": "Comercio al por menor de bebidas en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de bebidas en puestos de venta y mercado",
         "Orden": "1017"
     },
     {
         "Codigo": "47817",
-        "Descripcion": "Comercio al por menor de tabaco en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de tabaco en puestos de venta y mercado",
         "Orden": "1018"
     },
     {
         "Codigo": "47818",
-        "Descripcion": "Comercio al por menor de granos básicos y otros productos alimenticios en tiendas de mercado y puestos de venta",
+        "Nombre": "Comercio al por menor de granos básicos y otros productos alimenticios en tiendas de mercado y puestos de venta",
         "Orden": "1019"
     },
     {
         "Codigo": "47819",
-        "Descripcion": "Comercio al por menor de alimentos, bebidas y tabaco en puestos de venta y mercado, n.c.p.",
+        "Nombre": "Comercio al por menor de alimentos, bebidas y tabaco en puestos de venta y mercado, n.c.p.",
         "Orden": "1020"
     },
     {
         "Codigo": "4782",
-        "Descripcion": "VENTA AL POR MENOR DE PRODUCTOS TEXTILES, PRENDAS DE VESTIR Y CALZADO EN PUESTOS DE VENTA Y MERCADOS",
+        "Nombre": "VENTA AL POR MENOR DE PRODUCTOS TEXTILES, PRENDAS DE VESTIR Y CALZADO EN PUESTOS DE VENTA Y MERCADOS",
         "Orden": "1021"
     },
     {
         "Codigo": "47821",
-        "Descripcion": "Comercio al por menor de hilados, telas y productos textiles de mercería en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de hilados, telas y productos textiles de mercería en puestos de venta y mercado",
         "Orden": "1022"
     },
     {
         "Codigo": "47822",
-        "Descripcion": "Comercio al por menor de hamacas y otros productos textiles de fibras en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de hamacas y otros productos textiles de fibras en puestos de venta y mercado",
         "Orden": "1023"
     },
     {
         "Codigo": "47823",
-        "Descripcion": "Comercio al por menor de artículos textiles para el hogar (toallas, colchas, entre otros) en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de artículos textiles para el hogar (toallas, colchas, entre otros) en puestos de venta y mercado",
         "Orden": "1024"
     },
     {
         "Codigo": "47824",
-        "Descripcion": "Comercio al por menor de prendas de vestir, accesorios de vestir y similares en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de prendas de vestir, accesorios de vestir y similares en puestos de venta y mercado",
         "Orden": "1025"
     },
     {
         "Codigo": "47825",
-        "Descripcion": "Comercio al por menor de ropa usada en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de ropa usada en puestos de venta y mercado",
         "Orden": "1026"
     },
     {
         "Codigo": "47826",
-        "Descripcion": "Comercio al por menor de calzado en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de calzado en puestos de venta y mercado",
         "Orden": "1027"
     },
     {
         "Codigo": "47827",
-        "Descripcion": "Comercio al por menor de artículos de marroquinería y talabartería en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de artículos de marroquinería y talabartería en puestos de venta y mercado",
         "Orden": "1028"
     },
     {
         "Codigo": "47829",
-        "Descripcion": "Comercio al por menor de artículos textiles n.c.p. en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de artículos textiles n.c.p. en puestos de venta y mercado",
         "Orden": "1029"
     },
     {
         "Codigo": "4789",
-        "Descripcion": "VENTA AL POR MENOR DE OTROS PRODUCTOS EN PUESTOS DE VENTA Y MERCADO",
+        "Nombre": "VENTA AL POR MENOR DE OTROS PRODUCTOS EN PUESTOS DE VENTA Y MERCADO",
         "Orden": "1030"
     },
     {
         "Codigo": "47891",
-        "Descripcion": "Comercio al por menor de animales, flores y productos conexos en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de animales, flores y productos conexos en puestos de venta y mercado",
         "Orden": "1031"
     },
     {
         "Codigo": "47892",
-        "Descripcion": "Comercio al por menor de productos medicinales, cosméticos, de tocador y de limpieza en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de productos medicinales, cosméticos, de tocador y de limpieza en puestos de venta y mercado",
         "Orden": "1032"
     },
     {
         "Codigo": "47893",
-        "Descripcion": "Comercio al por menor de artículos de bazar en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de artículos de bazar en puestos de venta y mercado",
         "Orden": "1033"
     },
     {
         "Codigo": "47894",
-        "Descripcion": "Comercio al por menor de libros, revistas y artículos de papelería en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de libros, revistas y artículos de papelería en puestos de venta y mercado",
         "Orden": "1034"
     },
     {
         "Codigo": "47895",
-        "Descripcion": "Comercio al por menor de electrodomésticos, accesorios para autos y similares en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de electrodomésticos, accesorios para autos y similares en puestos de venta y mercado",
         "Orden": "1035"
     },
     {
         "Codigo": "47896",
-        "Descripcion": "Comercio al por menor de equipos accesorios para las comunicaciones en puestos de venta y mercado",
+        "Nombre": "Comercio al por menor de equipos accesorios para las comunicaciones en puestos de venta y mercado",
         "Orden": "1036"
     },
     {
         "Codigo": "47899",
-        "Descripcion": "Comercio al por menor de otros productos en puestos de venta y mercado n.c.p.",
+        "Nombre": "Comercio al por menor de otros productos en puestos de venta y mercado n.c.p.",
         "Orden": "1037"
     },
     {
         "Codigo": "479",
-        "Descripcion": "VENTA AL POR MENOR NO REALIZADA EN COMERCIOS, PUESTOS DE VENTA O MERCADOS",
+        "Nombre": "VENTA AL POR MENOR NO REALIZADA EN COMERCIOS, PUESTOS DE VENTA O MERCADOS",
         "Orden": "1038"
     },
     {
         "Codigo": "4791",
-        "Descripcion": "VENTA AL POR MENOR POR CORREO Y POR INTERNET",
+        "Nombre": "VENTA AL POR MENOR POR CORREO Y POR INTERNET",
         "Orden": "1039"
     },
     {
         "Codigo": "47911",
-        "Descripcion": "Comercio al por menor mediante pedidos por catálogos y revistas",
+        "Nombre": "Comercio al por menor mediante pedidos por catálogos y revistas",
         "Orden": "1040"
     },
     {
         "Codigo": "47912",
-        "Descripcion": "Comercio al por menor de productos a través de Internet (comercio electrónico que incluye: catálogos en línea, App, entre otros)",
+        "Nombre": "Comercio al por menor de productos a través de Internet (comercio electrónico que incluye: catálogos en línea, App, entre otros)",
         "Orden": "1041"
     },
     {
         "Codigo": "47913",
-        "Descripcion": "Comercio al por menor de producto a través de la televisión",
+        "Nombre": "Comercio al por menor de producto a través de la televisión",
         "Orden": "1042"
     },
     {
         "Codigo": "47919",
-        "Descripcion": "Comercio al por menor por correo o internet n.c.p.",
+        "Nombre": "Comercio al por menor por correo o internet n.c.p.",
         "Orden": "1043"
     },
     {
         "Codigo": "4799",
-        "Descripcion": "OTRAS ACTIVIDADES DE VENTA AL POR MENOR NO REALIZADAS EN COMERCIOS, PUESTOS DE VENTA O MERCADOS",
+        "Nombre": "OTRAS ACTIVIDADES DE VENTA AL POR MENOR NO REALIZADAS EN COMERCIOS, PUESTOS DE VENTA O MERCADOS",
         "Orden": "1044"
     },
     {
         "Codigo": "47991",
-        "Descripcion": "Comercio al por menor de productos varios realizada por vendedores a domicilio",
+        "Nombre": "Comercio al por menor de productos varios realizada por vendedores a domicilio",
         "Orden": "1045"
     },
     {
         "Codigo": "47992",
-        "Descripcion": "Comercio al por menor de agua embotellada realizada a domicilio",
+        "Nombre": "Comercio al por menor de agua embotellada realizada a domicilio",
         "Orden": "1046"
     },
     {
         "Codigo": "47993",
-        "Descripcion": "Comercio al por menor realizada por máquinas expendedoras",
+        "Nombre": "Comercio al por menor realizada por máquinas expendedoras",
         "Orden": "1047"
     },
     {
         "Codigo": "47999",
-        "Descripcion": "Otras actividades de comercio al por menor no realizadas en comercio, puestos de venta o mercados, n.c.p.",
+        "Nombre": "Otras actividades de comercio al por menor no realizadas en comercio, puestos de venta o mercados, n.c.p.",
         "Orden": "1048"
     }
 ]

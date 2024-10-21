@@ -8,6 +8,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OptiFinance_System.database.generalities.parameters;
+using OptiFinance_System.database.models;
+using OptiFinance_System.database.query;
 
 namespace OptiFinance_System.Views
 {
@@ -34,6 +37,23 @@ namespace OptiFinance_System.Views
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void busquedaGiro_Shown(object sender, EventArgs e)
+        {
+            CargarGirosEconomicos();
+        }
+
+        private void CargarGirosEconomicos()
+        {
+            List<GiroEconomico> giroEconomicos = GiroEconomicoQuery.Instance.SelectAll();
+            
+            giroEconomicos.ForEach(entity =>
+            {
+                dataGiros.Rows.Add(
+                    entity.Nombre
+                    );
+            });
         }
     }
 }

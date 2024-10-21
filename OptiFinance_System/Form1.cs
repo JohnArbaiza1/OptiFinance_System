@@ -111,6 +111,23 @@ public partial class Form1 : Form
         if (DistritoQuery.Instance.Insert(distritos)) MessageBox.Show(@"Distritos registrados correctamente");
     }
 
+    private void InsertarGirosEconomicos()
+    {
+        string girosPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources", "giros.json");
+        Console.WriteLine(girosPath);
+        
+        if (!File.Exists(girosPath))
+        {
+            MessageBox.Show(@"No se encontró el archivo giros.json");
+            return;
+        }
+        
+        string girosJson = File.ReadAllText(girosPath);
+        
+        List<GiroEconomico>? giros = JsonSerializer.Deserialize<List<GiroEconomico>>(girosJson);
+        if (GiroEconomicoQuery.Instance.Insert(giros!)) MessageBox.Show(@"Giros económicos registrados correctamente");
+    }
+
     private static bool ValidarUsuario(string username, string password)
     {
         People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
@@ -139,6 +156,7 @@ public partial class Form1 : Form
     private void Form1_Load(object sender, EventArgs e)
     {
         // InsertarDistritos();
+        // InsertarGirosEconomicos();
     }
 
     private void txtUser_Enter(object sender, EventArgs e)
