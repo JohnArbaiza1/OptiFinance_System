@@ -115,8 +115,6 @@ public partial class Form1 : Form
     {
         People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
                           MiembroEmpresaQuery.Instance.FindByUsername(username);
-
-        Console.WriteLine(@"Usuario: " + usuario);
         return Validations.UserExist(usuario);
     }
 

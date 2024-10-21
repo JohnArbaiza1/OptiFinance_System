@@ -57,20 +57,27 @@ CREATE TABLE distritos
     FOREIGN KEY (id_municipio) REFERENCES municipios (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE giros_economicos
+(
+    id     BIGINT PRIMARY KEY IDENTITY (1,1),
+    nombre NVARCHAR(300) NOT NULL UNIQUE
+);
+
 CREATE TABLE empresas
 (
     id                  BIGINT PRIMARY KEY IDENTITY (1,1),
     nombre              NVARCHAR(300) NOT NULL,
     nit                 NVARCHAR(17) UNIQUE,
-    giro_economico      NVARCHAR(300) NOT NULL,
     representante_legal NVARCHAR(300) NOT NULL DEFAULT 'No especificado',
     direccion           NVARCHAR(300),
     telefono            NVARCHAR(8)   NOT NULL UNIQUE,
     email               NVARCHAR(200) UNIQUE   DEFAULT 'No especificado',
     id_usuario          BIGINT        NOT NULL,
     id_distrito         BIGINT        NOT NULL,
+    id_giro_economico   BIGINT        NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (id_distrito) REFERENCES distritos (id) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (id_distrito) REFERENCES distritos (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_giro_economico) REFERENCES giros_economicos (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE miembros_empresa

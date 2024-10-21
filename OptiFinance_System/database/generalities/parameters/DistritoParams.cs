@@ -73,5 +73,13 @@ public class DistritoParams : IQueriesString<Distrito>
             Municipio = MunicipioQuery.Instance.FindById(reader.GetInt64(2))
         };
         return distrito;
+    }public Distrito MapSelectAll(SqlDataReader reader)
+    {
+        Distrito distrito = new()
+        {
+            Id = reader.GetInt64(0),
+            Nombre = reader.GetString(1)
+        };
+        return distrito;
     }
 }

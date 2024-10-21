@@ -77,6 +77,13 @@ public class MunicipiosParams : IQueriesString<Municipio>
             Nombre = reader.GetString(1),
             Departamento = DepartamentoQuery.Instance.FindById(reader.GetInt64(2))
         };
+    }public Municipio MapSelectAll(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader.GetInt64(0),
+            Nombre = reader.GetString(1)
+        };
     }
 
     public List<SqlParameter> ParametersFindByName(string name)

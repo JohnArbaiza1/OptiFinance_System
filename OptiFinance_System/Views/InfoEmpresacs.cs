@@ -37,15 +37,29 @@ public partial class InfoEmpresacs : Form
 
     private void InfoEmpresacs_Load(object sender, EventArgs e)
     {
-        List<Distrito> distritos = DistritoQuery.Instance.SelectAll();
+        // await Task.Run(cargarDistritos);
+    }
 
+    private void cargarDistritos()
+    {
+        List<Distrito> distritos = DistritoQuery.Instance.SelectAll();
         if (distritos.Count == 0) return;
-        comboDistrito.DataSource = distritos;
+
+        Invoke(() =>
+        {
+            comboDistrito.DataSource = distritos;
+        });
+
     }
 
     private void btnBuscarGiro_Click(object sender, EventArgs e)
     {
-        busquedaGiro busqueda = new busquedaGiro();
+        busquedaGiro busqueda = new();
         busqueda.Show();
+    }
+
+    private async void  InfoEmpresacs_Shown(object sender, EventArgs e)
+    {
+        await Task.Run(cargarDistritos);
     }
 }

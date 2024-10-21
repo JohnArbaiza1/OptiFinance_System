@@ -5,32 +5,32 @@ using OptiFinance_System.database.generalities.parameters;
 using OptiFinance_System.database.helper;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
-using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.database.query;
 
-public class DistritoQuery : IQueryEstandar<Distrito>
+public class GiroEconomicoQuery : IQueryEstandar<GiroEconomico>
 {
-    private static readonly Lazy<DistritoQuery> _instance = new(() => new());
+    private static readonly Lazy<GiroEconomicoQuery> _instance = new(() => new());
 
     private readonly Connection _connectionInstance;
 
-    private DistritoQuery()
+    private GiroEconomicoQuery()
     {
         _connectionInstance = Connection.Instance;
         _connectionInstance.OpenConnection();
     }
 
-    public static DistritoQuery Instance => _instance.Value;
-    private static DistritoParams Params => Queries.DistritoParams;
+    public static GiroEconomicoQuery Instance => _instance.Value;
 
-    public bool Insert(Distrito entity, SqlTransaction? transaction = null)
+    private static GiroEconomicoParams Params => Queries.GiroEconomicoParams;
+
+    public bool Insert(GiroEconomico entity, SqlTransaction? transaction = null)
     {
         return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
             Params.ParametersInsert(entity), transaction);
     }
 
-    public bool Insert(List<Distrito> entities)
+    public bool Insert(List<GiroEconomico> entities)
     {
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
@@ -40,13 +40,13 @@ public class DistritoQuery : IQueryEstandar<Distrito>
         });
     }
 
-    public bool Update(Distrito entity, SqlTransaction? transaction = null)
+    public bool Update(GiroEconomico entity, SqlTransaction? transaction = null)
     {
         return QueryHelper.ExecuteUpdate(_connectionInstance.GetSqlConnection(), Params.SqlUpdate,
             Params.ParametersUpdate(entity), transaction);
     }
 
-    public bool Update(List<Distrito> entities)
+    public bool Update(List<GiroEconomico> entities)
     {
         return QueryHelper.ExecuteInTransaction(_connectionInstance.GetSqlConnection(), transaction =>
         {
@@ -62,7 +62,7 @@ public class DistritoQuery : IQueryEstandar<Distrito>
             Params.ParametersDelete(id), transaction);
     }
 
-    public bool Delete(Distrito entity)
+    public bool Delete(GiroEconomico entity)
     {
         return Delete(entity.Id);
     }
@@ -77,29 +77,28 @@ public class DistritoQuery : IQueryEstandar<Distrito>
         });
     }
 
-    public bool Delete(List<Distrito> entities)
+    public bool Delete(List<GiroEconomico> entities)
     {
         return Delete(entities.Select(e => e.Id).ToList());
     }
 
-    public Distrito? FindById(long id)
+    public GiroEconomico? FindById(long id)
     {
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
             Params.ParametersFindById(id));
     }
 
-    public List<Distrito> SelectAll()
+    public List<GiroEconomico> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, Params.MapSelectAll);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
-    public List<Distrito> SearchAll(string search)
+    public List<GiroEconomico> SearchAll(string search)
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
-            Params.ParametersSearchAll(search));
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity);
     }
 
-    public Distrito MapEntity(SqlDataReader reader)
+    public GiroEconomico MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);
     }
