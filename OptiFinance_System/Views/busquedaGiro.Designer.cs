@@ -131,11 +131,11 @@
             // 
             // Nombre
             // 
-            Nombre.HeaderText = "Column1";
+            Nombre.HeaderText = "Giros Disponibles";
             Nombre.MinimumWidth = 6;
             Nombre.Name = "Nombre";
             Nombre.ReadOnly = true;
-            Nombre.Width = 412;
+            Nombre.Width = 414;
             // 
             // busquedaGiro
             // 

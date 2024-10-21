@@ -1,5 +1,5 @@
 ﻿using System.Runtime.InteropServices;
-
+using OptiFinance_System.global;
 namespace OptiFinance_System.Views;
 
 public partial class Principal : Form
@@ -81,22 +81,75 @@ public partial class Principal : Form
     private void Principal_Load(object sender, EventArgs e)
     {
         btnInicio_Click(null, e);
-        //========================================================
-        //Para la opcion de cuentas
-        btnCuentas.Location = new(0, 190);
-        btnLibros.Location = new(0, 260);
-        PanelCuentas.Hide();
-        //Para la opcion de libros
-        btnEstados.Location = new(0, 330);
-        panelLibros.Hide();
-        //Para la opcion de estados
-        btnRLiquidez.Location = new(0, 400);
-        panelEstados.Hide();
-        btnIngresarPartida.Location = new(0, 470);
-        btnUsuarios.Location = new(0, 540);
-        btnEmpresas.Location = new(0, 610);
-        btnSalir.Location = new(0, 830);
-        panelEmpresa.Hide();
+
+        //Validamos las opciones que se mostraran segun el id del tipo de usuario
+        if (Global.SelectedUser!.TipoUsuario!.Id == 1)
+        {
+            //Hacemos invisibles las demas opciones para el admin
+            btnCuentas.Visible = false;
+            btnLibros.Visible = false;
+            btnEstados.Visible = false;
+            btnRLiquidez.Visible = false;
+            btnIngresarPartida.Visible = false;
+            btnEmpresas.Visible = false;
+            PanelCuentas.Visible = false;
+            panelLibros.Visible = false;
+            panelEstados.Visible = false;
+            panelEmpresa.Visible = false;
+            //Reposicionamos los buttons de las opciones que el admin manejara
+            btnUsuarios.Location = new(0, 190);
+            btnCuentas.Location = new(0, 540);
+            btnSalir.Location = new(0, 830);
+            //Ajustes necesarios
+            panelMenu.AutoSize = false; //Desactivamos el ajuste automatico
+            panelMenu.Size = new Size(381, 900); //Fijamos un tamaño especifico
+            panelMenu.AutoScroll = false;  // Desactivamos el scroll automático
+
+            //Creamos el button de notificacion
+            Button btnNotificacion = new Button();
+
+            // Configuramos las propiedades del botón
+            btnNotificacion.Name = "btnNotificacion";
+            btnNotificacion.Text = "Notificaciónes";
+            btnNotificacion.Size = new Size(380,67); 
+            btnNotificacion.BackColor = Color.FromArgb(34, 53, 80);
+            btnNotificacion.ForeColor = Color.White;
+            btnNotificacion.FlatStyle = FlatStyle.Flat;
+            btnNotificacion.FlatAppearance.BorderSize = 0;
+            btnNotificacion.Font = new Font("Bookman Old Style", 12, FontStyle.Bold);
+            // Esto es una prueba
+            btnNotificacion.Click += (sender, e) =>
+            {
+                MessageBox.Show("Has hecho clic en Notificación");
+            };
+            //Agregamos el botón al panel
+            panelMenu.Controls.Add(btnNotificacion);
+            //Reposicionamos por si acaso XD
+            btnNotificacion.Location = new(0,260);
+            btnLibros.Location = new(0, 700);
+        }
+        else
+        {
+            //========================================================
+            //Para la opcion de cuentas
+            btnCuentas.Location = new(0, 190);
+            btnLibros.Location = new(0, 260);
+            PanelCuentas.Hide();
+            //Para la opcion de libros
+            btnEstados.Location = new(0, 330);
+            panelLibros.Hide();
+            //Para la opcion de estados
+            btnRLiquidez.Location = new(0, 400);
+            panelEstados.Hide();
+            btnIngresarPartida.Location = new(0, 470);
+            btnSalir.Location = new(0, 830);
+            panelEmpresa.Hide();
+
+            //Ajustes de la validacion
+            btnUsuarios.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 540);
+            btnUsuarios.Visible = false;
+        }
     }
 
     #region Varibles Empleadas
@@ -342,8 +395,8 @@ public partial class Principal : Form
             panelEmpresa.Visible = true;
             btnSalir.Location = new(0, 830);
         }
-        btnEmpresas.Location = new(0, 610);
-        panelEmpresa.Location = new(0, 680);
+        btnEmpresas.Location = new(0, 540);
+        panelEmpresa.Location = new(0, 610);
     }
     //=================================| Partidas |===================================
     private void btnIngresarPartida_Click(object sender, EventArgs e)
