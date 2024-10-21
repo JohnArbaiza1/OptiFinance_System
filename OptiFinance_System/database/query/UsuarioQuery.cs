@@ -110,6 +110,6 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
     public Usuario? FindByUsername(string username)
     {
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsername, MapEntity,
-            Params.FindByUsernameParameters(username));
+            Params.ParametersFindByUsername(username));
     }
 }

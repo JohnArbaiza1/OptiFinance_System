@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using global::OptiFinance_System.global;
 using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -101,7 +102,7 @@ public class UsuarioParams : IQueriesString<Usuario>
         return parameters;
     }
 
-    public List<SqlParameter> FindByUsernameParameters(string username)
+    public List<SqlParameter> ParametersFindByUsername(string username)
     {
         List<SqlParameter> parameters = new()
         {

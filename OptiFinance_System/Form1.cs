@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using OptiFinance_System.global;
@@ -84,28 +85,29 @@ public partial class Form1 : Form
         string municipiosJson = File.ReadAllText(jsonPath);
         List<Municipio>? municipios = DeserializeJson<Municipio>(municipiosJson);
         if (municipios == null) return;
-        municipios.ForEach(municipio =>
-            municipio.Departamento = DepartamentoQuery.Instance.FindByName(municipio.Departamento.Nombre)!);
+        municipios.ForEach(entity =>
+            entity.Departamento = DepartamentoQuery.Instance.FindByName(entity.Departamento!.Nombre));
         if (MunicipioQuery.Instance.Insert(municipios)) MessageBox.Show(@"Municipios registrados correctamente");
     }
 
+    [SuppressMessage("ReSharper.DPA", "DPA0000: DPA issues")]
     private void InsertarDistritos()
     {
-        string distritosJsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources",
-            "distritos.json");
+        string distritosJsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources", "distritos.json");
+
+        Console.WriteLine(distritosJsonPath);
 
         if (!File.Exists(distritosJsonPath))
         {
-            MessageBox.Show(@"No se encontró el archivo distritos.json");
+            MessageBox.Show(@"No se encontró el archivo json");
             return;
         }
 
         string distritosJson = File.ReadAllText(distritosJsonPath);
 
         List<Distrito>? distritos = JsonSerializer.Deserialize<List<Distrito>>(distritosJson);
-        if (distritos == null) return;
-        distritos.ForEach(distrito =>
-            distrito.Municipio = MunicipioQuery.Instance.FindByName(distrito.Municipio.Nombre)!);
+        distritos!.ForEach(distrito =>
+            distrito.Municipio = MunicipioQuery.Instance.FindByName(distrito.Municipio!.Nombre));
         if (DistritoQuery.Instance.Insert(distritos)) MessageBox.Show(@"Distritos registrados correctamente");
     }
 
@@ -138,7 +140,7 @@ public partial class Form1 : Form
 
     private void Form1_Load(object sender, EventArgs e)
     {
-        // CargarDatos();
+        // InsertarDistritos();
     }
 
     private void txtUser_Enter(object sender, EventArgs e)
@@ -171,12 +173,6 @@ public partial class Form1 : Form
 
     private bool SigningSucces(string usermame, string password)
     {
-        /*if (!Validations.UserExist(user)) return false;
-        string paswordHash = user!.GetType().Name.Equals(nameof(Usuario))
-            ? ((Usuario)user).Password
-            : ((MiembroEmpresa)user).Password;
-        return Validations.ComparePasswordHash(password, paswordHash);*/
-
         Usuario? usuario = UsuarioQuery.Instance.FindByUsername(usermame);
 
         if (usuario != null) return Validations.ComparePasswordHash(password, usuario.Password);
@@ -212,22 +208,24 @@ public partial class Form1 : Form
             Message.MessageViewError(@"Usuario o contraseña incorrecta");
             return;
         }
+
         if (!SigningSucces(_usuario, _pass))
         {
             Message.MessageViewError(@"Usuario o contraseña incorrecta");
             return;
         }
-        
+
         Usuario? curentUser = UsuarioQuery.Instance.FindByUsername(_usuario);
         if (curentUser == null)
         {
             Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
             Global.SelectedUser = Global.SelectedMiembroEmpresa!.Empresa!.Usuario;
         }
+
         Global.SelectedUser = curentUser;
 
-        Console.WriteLine(@"Usuario: " + Global.SelectedUser);
-        Console.WriteLine(@"Miembro Empresa: " + Global.SelectedMiembroEmpresa);
+        // Console.WriteLine(@"Usuario: " + Global.SelectedUser);
+        // Console.WriteLine(@"Miembro Empresa: " + Global.SelectedMiembroEmpresa);
 
         Hide();
         Principal menu = new();
