@@ -25,7 +25,7 @@ public class UsuarioParams : IQueriesString<Usuario>
 
     public string SqlFindById =>
         $"SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios " +
-        $"WHERE id = @id AND id_tipo_usuario <> {_idTipoUsuarioAdmin}";
+        $"WHERE id = @id";
 
     public string SqlSelectAll =>
         $"SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios " +

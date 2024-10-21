@@ -15,10 +15,11 @@ public class Empresa
 
     public override string ToString()
     {
-        return
+        /*return
             $"{nameof(Id)}: {Id}, {nameof(Nombre)}: {Nombre}, {nameof(Nit)}: {Nit}, " +
             $"{nameof(GiroEconomico)}: {GiroEconomico}, {nameof(RepresentanteLegal)}: {RepresentanteLegal}, " +
             $"{nameof(Direccion)}: {Direccion}, {nameof(Telefono)}: {Telefono}, {nameof(Email)}: {Email}, " +
-            $"{nameof(Usuario)}: {Usuario}, {nameof(Distrito)}: {Distrito}";
+            $"{nameof(Usuario)}: {Usuario}, {nameof(Distrito)}: {Distrito}";*/
+        return Nombre;
     }
 }

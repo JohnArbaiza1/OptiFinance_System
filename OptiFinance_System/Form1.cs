@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using global::OptiFinance_System.global;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.generalities;
 using OptiFinance_System.database.generalities.parameters;
@@ -14,7 +15,7 @@ namespace OptiFinance_System;
 
 public partial class Form1 : Form
 {
-    public static Usuario currentUser = new();
+    public static Usuario? currentUser = new();
     private string _pass = "";
 
     //Variables
@@ -179,14 +180,14 @@ public partial class Form1 : Form
         _usuario = txtUser.Text;
         _pass = txtPassword.Text;
         Usuario? usuario = UsuarioQuery.Instance.FindByUsername(_usuario);
-        Console.WriteLine(usuario);
         if (!SigningSucces(usuario, _pass))
         {
             MessageBox.Show(@"Usuario o contraseña incorrectos", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
-        currentUser = usuario!;
+        currentUser = usuario;
+        Global.SelectedUser = usuario;
         Hide();
         Principal menu = new();
         menu.Show();
