@@ -6,9 +6,12 @@ namespace OptiFinance_System.Views;
 
 public partial class InfoEmpresacs : Form
 {
+
+    public static TextBox txtGiroAux;
     public InfoEmpresacs()
     {
         InitializeComponent();
+        txtGiroAux = textBox4;
     }
 
     private void btnAtras_Click(object sender, EventArgs e)
@@ -21,7 +24,7 @@ public partial class InfoEmpresacs : Form
         Empresa empresa = new();
 
         empresa.Nombre = txtNombreEmpresa.Text;
-        //empresa.GiroEconomico = txtGiro.Text;
+        empresa.GiroEconomico = textBox4.Tag as GiroEconomico;
         empresa.Nit = txtNit.Text;
         empresa.RepresentanteLegal = txtRepresentante.Text;
         empresa.Telefono = textBox1.Text;
