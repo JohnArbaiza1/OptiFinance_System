@@ -217,6 +217,7 @@
             btnMiembros.TextAlign = ContentAlignment.MiddleLeft;
             btnMiembros.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMiembros.UseVisualStyleBackColor = true;
+            btnMiembros.Click += btnMiembros_Click;
             // 
             // panel10
             // 
@@ -392,6 +393,7 @@
             btnRLiquidez.TextAlign = ContentAlignment.MiddleLeft;
             btnRLiquidez.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRLiquidez.UseVisualStyleBackColor = true;
+            btnRLiquidez.Click += btnRLiquidez_Click;
             // 
             // btnLibros
             // 
@@ -501,6 +503,7 @@
             btnEResultados.TextAlign = ContentAlignment.MiddleLeft;
             btnEResultados.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEResultados.UseVisualStyleBackColor = true;
+            btnEResultados.Click += btnEResultados_Click;
             // 
             // btnInicio
             // 

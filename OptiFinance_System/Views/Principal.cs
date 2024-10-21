@@ -70,6 +70,9 @@ public partial class Principal : Form
         if (Application.OpenForms["libroMayor"] == null) btnMayor.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["balanceGeneral"] == null) btnBGeneral.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["SeleccionEmpresa"] == null) btnSeleccionarEmpresa.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["estado_Resultado"] == null) btnEResultados.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["razones_Liquidez"] == null) btnRLiquidez.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["Miembros"] == null) btnMiembros.BackColor = Color.FromArgb(34, 53, 80);
     }
 
     #endregion
@@ -392,7 +395,6 @@ public partial class Principal : Form
         abrirF<balanceGeneral>();
         btnBGeneral.BackColor = Color.FromArgb(254, 214, 0);
     }
-    #endregion
 
     //=============================| Seleccionar Empresa |==============================
     private void btnSeleccionarEmpresa_Click(object sender, EventArgs e)
@@ -400,4 +402,23 @@ public partial class Principal : Form
         abrirF<SeleccionEmpresa>();
         btnSeleccionarEmpresa.BackColor = Color.FromArgb(254, 214, 0);
     }
+    //=============================| Estado de Resultados |==============================
+    private void btnEResultados_Click(object sender, EventArgs e)
+    {
+        abrirF<estado_Resultado>();
+        btnEResultados.BackColor = Color.FromArgb(254, 214, 0);
+    }
+    //=============================| Razones de Liquidez |==============================
+    private void btnRLiquidez_Click(object sender, EventArgs e)
+    {
+        abrirF<razones_Liquidez>();
+        btnRLiquidez.BackColor = Color.FromArgb(215, 143, 35);
+    }
+    //=============================| Miembros |==============================
+    private void btnMiembros_Click(object sender, EventArgs e)
+    {
+        abrirF<Miembros>();
+        btnMiembros.BackColor = Color.FromArgb(254, 214, 0);
+    }
+    #endregion
 }

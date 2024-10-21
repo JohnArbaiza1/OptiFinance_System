@@ -81,6 +81,7 @@
             Container.Controls.Add(btnBuscar);
             Container.Controls.Add(panelHeader);
             Container.Dock = DockStyle.Fill;
+            Container.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Container.ForeColor = Color.FromArgb(35, 55, 80);
             Container.Location = new Point(0, 0);
             Container.Name = "Container";
@@ -91,9 +92,9 @@
             // 
             panelControlUser.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelControlUser.Controls.Add(groupBox1);
-            panelControlUser.Location = new Point(827, 161);
+            panelControlUser.Location = new Point(827, 110);
             panelControlUser.Name = "panelControlUser";
-            panelControlUser.Size = new Size(430, 633);
+            panelControlUser.Size = new Size(430, 684);
             panelControlUser.TabIndex = 7;
             // 
             // groupBox1
@@ -103,10 +104,10 @@
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Controls.Add(btnEliminar);
             groupBox1.Controls.Add(btnEditar);
-            groupBox1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.Location = new Point(14, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(413, 581);
+            groupBox1.Size = new Size(413, 577);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Control de Usuarios";
@@ -292,7 +293,7 @@
             btnEliminar.ForeColor = Color.White;
             btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
             btnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEliminar.Location = new Point(251, 532);
+            btnEliminar.Location = new Point(251, 528);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Padding = new Padding(5, 0, 0, 0);
             btnEliminar.Size = new Size(150, 44);
@@ -311,7 +312,7 @@
             btnEditar.ForeColor = Color.White;
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditar.Location = new Point(96, 532);
+            btnEditar.Location = new Point(96, 528);
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(5, 0, 0, 0);
             btnEditar.Size = new Size(150, 44);
@@ -334,7 +335,7 @@
             dataGridViewUsuarios.BackgroundColor = Color.FromArgb(245, 245, 242);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
@@ -405,11 +406,11 @@
             // 
             txtBusqueda.BackColor = Color.FromArgb(245, 245, 242);
             txtBusqueda.BorderStyle = BorderStyle.FixedSingle;
-            txtBusqueda.Font = new Font("Bookman Old Style", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBusqueda.Location = new Point(34, 101);
+            txtBusqueda.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBusqueda.Location = new Point(34, 110);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.PlaceholderText = "  Nombre de Usuario o Id";
-            txtBusqueda.Size = new Size(631, 43);
+            txtBusqueda.Size = new Size(631, 34);
             txtBusqueda.TabIndex = 0;
             // 
             // btnBuscar
@@ -421,10 +422,10 @@
             btnBuscar.ForeColor = Color.White;
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(671, 101);
+            btnBuscar.Location = new Point(671, 110);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Padding = new Padding(5, 0, 0, 0);
-            btnBuscar.Size = new Size(150, 43);
+            btnBuscar.Size = new Size(150, 34);
             btnBuscar.TabIndex = 1;
             btnBuscar.Text = " Buscar";
             btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
