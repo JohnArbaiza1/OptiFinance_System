@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(busquedaGiro));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             barraTiulo = new Panel();
             btnSalir = new PictureBox();
             label1 = new Label();
             txtBusquedaGiro = new TextBox();
             btnBuscar = new Button();
             dataGiros = new DataGridView();
-            Nombre = new DataGridViewTextBoxColumn();
             btnGuardarGiro = new Button();
+            Nombre = new DataGridViewTextBoxColumn();
             barraTiulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnSalir).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGiros).BeginInit();
@@ -47,17 +48,15 @@
             barraTiulo.Controls.Add(btnSalir);
             barraTiulo.Dock = DockStyle.Top;
             barraTiulo.Location = new Point(0, 0);
-            barraTiulo.Margin = new Padding(3, 2, 3, 2);
             barraTiulo.Name = "barraTiulo";
-            barraTiulo.Size = new Size(411, 49);
+            barraTiulo.Size = new Size(470, 65);
             barraTiulo.TabIndex = 0;
             barraTiulo.MouseDown += barraTiulo_MouseDown;
             // 
             // btnSalir
             // 
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(355, 1);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(406, 1);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(64, 64);
             btnSalir.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -71,30 +70,28 @@
             label1.AutoSize = true;
             label1.Font = new Font("Bookman Old Style", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(35, 55, 80);
-            label1.Location = new Point(91, 51);
+            label1.Location = new Point(104, 68);
             label1.Name = "label1";
-            label1.Size = new Size(216, 25);
+            label1.Size = new Size(271, 33);
             label1.TabIndex = 2;
             label1.Text = "Giros Comerciales.";
             // 
             // txtBusquedaGiro
             // 
             txtBusquedaGiro.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBusquedaGiro.Location = new Point(32, 90);
-            txtBusquedaGiro.Margin = new Padding(3, 2, 3, 2);
+            txtBusquedaGiro.Location = new Point(37, 120);
             txtBusquedaGiro.Name = "txtBusquedaGiro";
             txtBusquedaGiro.PlaceholderText = "Ingrese su Giro";
-            txtBusquedaGiro.Size = new Size(294, 26);
+            txtBusquedaGiro.Size = new Size(335, 31);
             txtBusquedaGiro.TabIndex = 3;
             // 
             // btnBuscar
             // 
             btnBuscar.BackColor = Color.FromArgb(215, 143, 35);
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
-            btnBuscar.Location = new Point(330, 86);
-            btnBuscar.Margin = new Padding(3, 2, 3, 2);
+            btnBuscar.Location = new Point(377, 115);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(46, 30);
+            btnBuscar.Size = new Size(53, 40);
             btnBuscar.TabIndex = 4;
             btnBuscar.UseVisualStyleBackColor = false;
             // 
@@ -102,42 +99,50 @@
             // 
             dataGiros.BackgroundColor = Color.White;
             dataGiros.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGiros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGiros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGiros.Columns.AddRange(new DataGridViewColumn[] { Nombre });
-            dataGiros.Dock = DockStyle.Fill;
-            dataGiros.Location = new Point(0, 49);
-            dataGiros.Margin = new Padding(3, 2, 3, 2);
+            dataGiros.EnableHeadersVisualStyles = false;
+            dataGiros.Location = new Point(0, 65);
             dataGiros.Name = "dataGiros";
             dataGiros.RowHeadersWidth = 51;
             dataGiros.RowTemplate.Height = 29;
-            dataGiros.Size = new Size(411, 350);
+            dataGiros.Size = new Size(470, 401);
             dataGiros.TabIndex = 5;
-            // 
-            // Nombre
-            // 
-            Nombre.HeaderText = "Column1";
-            Nombre.Name = "Nombre";
-            Nombre.ReadOnly = true;
             // 
             // btnGuardarGiro
             // 
             btnGuardarGiro.BackColor = Color.FromArgb(31, 58, 93);
             btnGuardarGiro.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnGuardarGiro.ForeColor = Color.White;
-            btnGuardarGiro.Location = new Point(32, 340);
-            btnGuardarGiro.Margin = new Padding(3, 2, 3, 2);
+            btnGuardarGiro.Location = new Point(37, 472);
             btnGuardarGiro.Name = "btnGuardarGiro";
-            btnGuardarGiro.Size = new Size(345, 36);
+            btnGuardarGiro.Size = new Size(394, 48);
             btnGuardarGiro.TabIndex = 6;
             btnGuardarGiro.Text = "Guardar Giro";
             btnGuardarGiro.UseVisualStyleBackColor = false;
             // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Column1";
+            Nombre.MinimumWidth = 6;
+            Nombre.Name = "Nombre";
+            Nombre.ReadOnly = true;
+            Nombre.Width = 412;
+            // 
             // busquedaGiro
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 245, 242);
-            ClientSize = new Size(411, 399);
+            ClientSize = new Size(470, 532);
             Controls.Add(btnGuardarGiro);
             Controls.Add(dataGiros);
             Controls.Add(btnBuscar);
@@ -145,7 +150,6 @@
             Controls.Add(label1);
             Controls.Add(barraTiulo);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "busquedaGiro";
             StartPosition = FormStartPosition.CenterScreen;
             Shown += busquedaGiro_Shown;

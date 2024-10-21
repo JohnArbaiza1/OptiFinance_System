@@ -204,6 +204,7 @@
             dataEmpresas.EnableHeadersVisualStyles = false;
             dataEmpresas.Location = new Point(0, 0);
             dataEmpresas.Name = "dataEmpresas";
+            dataEmpresas.ReadOnly = true;
             dataEmpresas.RowHeadersWidth = 51;
             dataEmpresas.RowTemplate.Height = 29;
             dataEmpresas.Size = new Size(1120, 501);
@@ -214,6 +215,7 @@
             Column1.HeaderText = "Nombre";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
+            Column1.ReadOnly = true;
             Column1.Width = 200;
             // 
             // Column2
@@ -221,6 +223,7 @@
             Column2.HeaderText = "Nit";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
+            Column2.ReadOnly = true;
             Column2.Width = 200;
             // 
             // Column3
@@ -228,6 +231,7 @@
             Column3.HeaderText = "Giro Economico";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
+            Column3.ReadOnly = true;
             Column3.Width = 200;
             // 
             // Column4
@@ -235,6 +239,7 @@
             Column4.HeaderText = "Representante Legal";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
+            Column4.ReadOnly = true;
             Column4.Width = 200;
             // 
             // Column5
@@ -242,6 +247,7 @@
             Column5.HeaderText = "Direccion";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
+            Column5.ReadOnly = true;
             Column5.Width = 200;
             // 
             // Column6
@@ -249,6 +255,7 @@
             Column6.HeaderText = "Telefono";
             Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
+            Column6.ReadOnly = true;
             Column6.Width = 200;
             // 
             // Column7
@@ -256,6 +263,7 @@
             Column7.HeaderText = "Email";
             Column7.MinimumWidth = 6;
             Column7.Name = "Column7";
+            Column7.ReadOnly = true;
             Column7.Width = 200;
             // 
             // SeleccionEmpresa
