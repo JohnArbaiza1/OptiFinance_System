@@ -89,7 +89,8 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
 
     public List<Empresa> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity,
+            Params.ParametersSelectAll());
     }
 
     public List<Empresa> SearchAll(string search)

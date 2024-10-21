@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using global::OptiFinance_System.global;
+using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -21,10 +22,12 @@ public class EmpresaParams : IQueriesString<Empresa>
     public string SqlDelete => "DELETE FROM empresas WHERE id = @id";
 
     public string SqlFindById =>
-        "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas WHERE id = @id";
+        "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito " +
+        "FROM empresas WHERE id = @id and id_usuario = @id_usuario";
 
     public string SqlSelectAll =>
-        "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas";
+        "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito " + 
+        "FROM empresas WHERE id_usuario = @id_usuario";
 
     public string SqlSearchAll =>
         "SELECT id, nombre, nit, giro_economico, representante_legal, direccion, telefono, email, id_usuario, id_distrito FROM empresas " +
@@ -78,7 +81,17 @@ public class EmpresaParams : IQueriesString<Empresa>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id", id)
+            new("@id", id),
+            new("@id_usuario", Global.SelectedUser!.Id)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersSelectAll()
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_usuario", Global.SelectedUser!.Id)
         };
         return parameters;
     }

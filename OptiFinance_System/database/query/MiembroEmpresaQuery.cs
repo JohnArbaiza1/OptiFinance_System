@@ -101,4 +101,10 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
     {
         return Params.Map(reader);
     }
+
+    public MiembroEmpresa? FindByUsername(string username)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsername, MapEntity,
+            Params.FindByUsernameParameters(username));
+    }
 }

@@ -1,6 +1,6 @@
 ﻿namespace OptiFinance_System.database.models;
 
-public class Usuario
+public class Usuario : People
 {
     public long Id { get; set; }
     public string Nombres { get; set; } = string.Empty;

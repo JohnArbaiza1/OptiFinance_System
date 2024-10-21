@@ -118,5 +118,1457 @@
         "Municipio": {
             "Nombre": "San Miguel Oeste"
         }
+    },
+    {
+        "Nombre": "Atiquizaya",
+        "Municipio": {
+            "Nombre": "Ahuachapán Norte"
+        }
+    },
+    {
+        "Nombre": "El Refugio",
+        "Municipio": {
+            "Nombre": "Ahuachapán Norte"
+        }
+    },
+    {
+        "Nombre": "San Lorenzo",
+        "Municipio": {
+            "Nombre": "Ahuachapán Norte"
+        }
+    },
+    {
+        "Nombre": "Turín",
+        "Municipio": {
+            "Nombre": "Ahuchapán Norte"
+        }
+    },
+    {
+        "Nombre": "Ahuachapán",
+        "Municipio": {
+            "Nombre": "Ahuachapán Centro"
+        }
+    },
+    {
+        "Nombre": "Apaneca",
+        "Municipio": {
+            "Nombre": "Ahuachapán Centro"
+        }
+    },
+    {
+        "Nombre": "Concepción de Ataco",
+        "Municipio": {
+            "Nombre": "Ahuachapán Centro"
+        }
+    },
+    {
+        "Nombre": "Tacuba",
+        "Municipio": {
+            "Nombre": "Ahuachapán Centro"
+        }
+    },
+    {
+        "Nombre": "Guaymango",
+        "Municipio": {
+            "Nombre": "Ahuachapán Sur"
+        }
+    },
+    {
+        "Nombre": "Jujutla",
+        "Municipio": {
+            "Nombre": "Ahuachapán Sur"
+        }
+    },
+    {
+        "Nombre": "San Francisco Menéndez",
+        "Municipio": {
+            "Nombre": "Ahuachapán Sur"
+        }
+    },
+    {
+        "Nombre": "San Pedro Puxtla",
+        "Municipio": {
+            "Nombre": "Ahuachapán Sur"
+        }
+    },
+    {
+        "Nombre": "Aguilares",
+        "Municipio": {
+            "Nombre": "San Salvador Norte"
+        }
+    },
+    {
+        "Nombre": "El Paisnal",
+        "Municipio": {
+            "Nombre": "San Salvador Norte"
+        }
+    },
+    {
+        "Nombre": "Guazapa",
+        "Municipio": {
+            "Nombre": "San Salvador Norte"
+        }
+    },
+    {
+        "Nombre": "Apopa",
+        "Municipio": {
+            "Nombre": "San Salvador Oeste"
+        }
+    },
+    {
+        "Nombre": "Nejapa",
+        "Municipio": {
+            "Nombre": "San Salvador Oeste"
+        }
+    },
+    {
+        "Nombre": "Ilopango",
+        "Municipio": {
+            "Nombre": "San Salvador Este"
+        }
+    },
+    {
+        "Nombre": "San Martín",
+        "Municipio": {
+            "Nombre": "San Salvador Este"
+        }
+    },
+    {
+        "Nombre": "Soyapango",
+        "Municipio": {
+            "Nombre": "San Salvador Este"
+        }
+    },
+    {
+        "Nombre": "Tonacatepeque",
+        "Municipio": {
+            "Nombre": "San Salvador Este"
+        }
+    },
+    {
+        "Nombre": "Ayutuxtepeque",
+        "Municipio": {
+            "Nombre": "San Salvador Centro"
+        }
+    },
+    {
+        "Nombre": "Mejicanos",
+        "Municipio": {
+            "Nombre": "San Salvador Centro"
+        }
+    },
+    {
+        "Nombre": "San Salvador",
+        "Municipio": {
+            "Nombre": "San Salvador Centro"
+        }
+    },
+    {
+        "Nombre": "Cuscatancingo",
+        "Municipio": {
+            "Nombre": "San Salvador Centro"
+        }
+    },
+    {
+        "Nombre": "Ciudad Delgado",
+        "Municipio": {
+            "Nombre": "San Salvador Centro"
+        }
+    },
+    {
+        "Nombre": "Panchimalco",
+        "Municipio": {
+            "Nombre": "San Salvador Sur"
+        }
+    },
+    {
+        "Nombre": "Rosario de Mora",
+        "Municipio": {
+            "Nombre": "San Salvador Sur"
+        }
+    },
+    {
+        "Nombre": "San Marcos",
+        "Municipio": {
+            "Nombre": "San Salvador Sur"
+        }
+    },
+    {
+        "Nombre": "Santo Tomás",
+        "Municipio": {
+            "Nombre": "San Salvador Sur"
+        }
+    },
+    {
+        "Nombre": "Santiago Texacuangos",
+        "Municipio": {
+            "Nombre": "San Salvador Sur"
+        }
+    },
+    {
+        "Nombre": "Quezaltepeque",
+        "Municipio": {
+            "Nombre": "La Libertad Norte"
+        }
+    },
+    {
+        "Nombre": "San Matías",
+        "Municipio": {
+            "Nombre": "La Libertad Norte"
+        }
+    },
+    {
+        "Nombre": "San Pablo Tacachico",
+        "Municipio": {
+            "Nombre": "La Libertad Norte"
+        }
+    },
+    {
+        "Nombre": "San Juan Opico",
+        "Municipio": {
+            "Nombre": "La Libertad Centro"
+        }
+    },
+    {
+        "Nombre": "Ciudad Arce",
+        "Municipio": {
+            "Nombre": "La Libertad Centro"
+        }
+    },
+    {
+        "Nombre": "Colón",
+        "Municipio": {
+            "Nombre": "La Libertad Oeste"
+        }
+    },
+    {
+        "Nombre": "Jayaque",
+        "Municipio": {
+            "Nombre": "La Libertad Oeste"
+        }
+    },
+    {
+        "Nombre": "Sacacoyo",
+        "Municipio": {
+            "Nombre": "La Libertad Oeste"
+        }
+    },
+    {
+        "Nombre": "Tepecoyo",
+        "Municipio": {
+            "Nombre": "La Libertad Oeste"
+        }
+    },
+    {
+        "Nombre": "Talnique",
+        "Municipio": {
+            "Nombre": "La Libertad Oeste"
+        }
+    },
+    {
+        "Nombre": "Antiguo Cuscatlán",
+        "Municipio": {
+            "Nombre": "La Libertad Este"
+        }
+    },
+    {
+        "Nombre": "Huizúcar",
+        "Municipio": {
+            "Nombre": "La Libertad Este"
+        }
+    },
+    {
+        "Nombre": "Nuevo Cuscatlán",
+        "Municipio": {
+            "Nombre": "La Libertad Este"
+        }
+    },
+    {
+        "Nombre": "San José Villanueva",
+        "Municipio": {
+            "Nombre": "La Libertad Este"
+        }
+    },
+    {
+        "Nombre": "Zaragoza",
+        "Municipio": {
+            "Nombre": "La Libertad Este"
+        }
+    },
+    {
+        "Nombre": "Chiltiupán",
+        "Municipio": {
+            "Nombre": "La Libertad Costa"
+        }
+    },
+    {
+        "Nombre": "Jicalapa",
+        "Municipio": {
+            "Nombre": "La Libertad Costa"
+        }
+    },
+    {
+        "Nombre": "La Libertad",
+        "Municipio": {
+            "Nombre": "La Libertad Costa"
+        }
+    },
+    {
+        "Nombre": "Tamanique",
+        "Municipio": {
+            "Nombre": "La Libertad Costa"
+        }
+    },
+    {
+        "Nombre": "Teotepeque",
+        "Municipio": {
+            "Nombre": "La Libertad Costa"
+        }
+    },
+    {
+        "Nombre": "Comasagua",
+        "Municipio": {
+            "Nombre": "La Libertad Sur"
+        }
+    },
+    {
+        "Nombre": "Santa Tecla",
+        "Municipio": {
+            "Nombre": "La Libertad Sur"
+        }
+    },
+    {
+        "Nombre": "La Palma",
+        "Municipio": {
+            "Nombre": "Chalatenango Norte"
+        }
+    },
+    {
+        "Nombre": "Citalá",
+        "Municipio": {
+            "Nombre": "Chalatenango Norte"
+        }
+    },
+    {
+        "Nombre": "San Ignacio",
+        "Municipio": {
+            "Nombre": "Chalatenango Norte"
+        }
+    },
+    {
+        "Nombre": "Nueva Concepción",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "Tejutla",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "La Reina",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "Agua Caliente",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "Dulce Nombre de María",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "El Paraíso",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "San Fernando",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "San Francisco Morazán",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "San Rafael",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "Santa Rita",
+        "Municipio": {
+            "Nombre": "Chalatenango Centro"
+        }
+    },
+    {
+        "Nombre": "Chalatenango",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Arcatao",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Azacualpa",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Comalapa",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Concepción Quezaltepeque",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "El Carrizal",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "La Laguna",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Las Vueltas",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Nombre de Jesús",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Nueva Trinidad",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Ojos de Agua",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Potonico",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "San Antonio de la Cruz",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "San Antonio Los Ranchos",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "San Francisco Lempa",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "San Isidro Labrador",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "San José Cancasque",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "San Miguel de Mercedes",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "San José Las Flores",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "San Luis del Carmen",
+        "Municipio": {
+            "Nombre": "Chalatenango Sur"
+        }
+    },
+    {
+        "Nombre": "Suchitoto",
+        "Municipio": {
+            "Nombre": "Cuscatlán Norte"
+        }
+    },
+    {
+        "Nombre": "San José Guayabal",
+        "Municipio": {
+            "Nombre": "Cuscatlán Norte"
+        }
+    },
+    {
+        "Nombre": "Oratorio de Concepción",
+        "Municipio": {
+            "Nombre": "Cuscatlán Norte"
+        }
+    },
+    {
+        "Nombre": "San Bartolomé Perulapía",
+        "Municipio": {
+            "Nombre": "Cuscatlán Norte"
+        }
+    },
+    {
+        "Nombre": "San Pedro Perulapán",
+        "Municipio": {
+            "Nombre": "Cuscatlán Norte"
+        }
+    },
+    {
+        "Nombre": "Cojutepeque",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "San Rafael Cedros",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "Candelaria",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "Monte San Juan",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "El Carmen",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "San Cristóbal",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "Santa Cruz Michapa",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "San Ramón",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "El Rosario",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "Santa Cruz Analquito",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "Tenancingo",
+        "Municipio": {
+            "Nombre": "Cuscatlán Centro"
+        }
+    },
+    {
+        "Nombre": "Sensuntepeque",
+        "Municipio": {
+            "Nombre": "Cabañas Este"
+        }
+    },
+    {
+        "Nombre": "Victoria",
+        "Municipio": {
+            "Nombre": "Cabañas Este"
+        }
+    },
+    {
+        "Nombre": "Villa Dolores",
+        "Municipio": {
+            "Nombre": "Cabañas Este"
+        }
+    },
+    {
+        "Nombre": "Guacotecti",
+        "Municipio": {
+            "Nombre": "Cabañas Este"
+        }
+    },
+    {
+        "Nombre": "San Isidro",
+        "Municipio": {
+            "Nombre": "Cabañas Este"
+        }
+    },
+    {
+        "Nombre": "Ilobasco",
+        "Municipio": {
+            "Nombre": "Cabañas Oeste"
+        }
+    },
+    {
+        "Nombre": "Tejutepeque",
+        "Municipio": {
+            "Nombre": "Cabañas Oeste"
+        }
+    },
+    {
+        "Nombre": "Jutiapa",
+        "Municipio": {
+            "Nombre": "Cabañas Oeste"
+        }
+    },
+    {
+        "Nombre": "Cinquera",
+        "Municipio": {
+            "Nombre": "Cabañas Oeste"
+        }
+    },
+    {
+        "Nombre": "Cuyultitán",
+        "Municipio": {
+            "Nombre": "La paz Oeste"
+        }
+    },
+    {
+        "Nombre": "Olocuilta",
+        "Municipio": {
+            "Nombre": "La paz Oeste"
+        }
+    },
+    {
+        "Nombre": "San Juan Talpa",
+        "Municipio": {
+            "Nombre": "La paz Oeste"
+        }
+    },
+    {
+        "Nombre": "San Luis Talpa",
+        "Municipio": {
+            "Nombre": "La paz Oeste"
+        }
+    },
+    {
+        "Nombre": "San Pedro Masahuat",
+        "Municipio": {
+            "Nombre": "La paz Oeste"
+        }
+    },
+    {
+        "Nombre": "Tapalhuaca",
+        "Municipio": {
+            "Nombre": "La paz Oeste"
+        }
+    },
+    {
+        "Nombre": "San Francisco Chinameca",
+        "Municipio": {
+            "Nombre": "La paz Oeste"
+        }
+    },
+    {
+        "Nombre": "El Rosario",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "Jerusalén",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "Mercedes La Ceiba",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "Paraíso de Osorio",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "San Antonio Masahuat",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "San Emigdio",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "San Juan Tepezontes",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "San Luis La Herradura",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "San Miguel Tepezontes",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "San Pedro Nonualco",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "Santa María Ostuma",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "Santiago Nonualco",
+        "Municipio": {
+            "Nombre": "La paz Centro"
+        }
+    },
+    {
+        "Nombre": "San Juan Nonualco",
+        "Municipio": {
+            "Nombre": "La paz Este"
+        }
+    },
+    {
+        "Nombre": "San Rafael Obrajuelo",
+        "Municipio": {
+            "Nombre": "La paz Este"
+        }
+    },
+    {
+        "Nombre": "Zacatecoluca",
+        "Municipio": {
+            "Nombre": "La paz Este"
+        }
+    },
+    {
+        "Nombre": "Anamorós",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "Bolívar",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "Concepción de Oriente",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "El Sauce",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "Lislique",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "Nueva Esparta",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "Pasaquina",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "Polorós",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "San José La Fuente",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "Santa Rosa de Lima",
+        "Municipio": {
+            "Nombre": "La Unión Norte"
+        }
+    },
+    {
+        "Nombre": "Conchagua",
+        "Municipio": {
+            "Nombre": "La Unión Sur"
+        }
+    },
+    {
+        "Nombre": "El Carmen",
+        "Municipio": {
+            "Nombre": "La Unión Sur"
+        }
+    },
+    {
+        "Nombre": "Intipucá",
+        "Municipio": {
+            "Nombre": "La Unión Sur"
+        }
+    },
+    {
+        "Nombre": "La Unión",
+        "Municipio": {
+            "Nombre": "La Unión Sur"
+        }
+    },
+    {
+        "Nombre": "Meanguera del Golfo",
+        "Municipio": {
+            "Nombre": "La Unión Sur"
+        }
+    },
+    {
+        "Nombre": "San Alejo",
+        "Municipio": {
+            "Nombre": "La Unión Sur"
+        }
+    },
+    {
+        "Nombre": "Yayantique",
+        "Municipio": {
+            "Nombre": "La Unión Sur"
+        }
+    },
+    {
+        "Nombre": "Yucuaiquín",
+        "Municipio": {
+            "Nombre": "La Unión Sur"
+        }
+    },
+    {
+        "Nombre": "Santiago de María",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "Alegría",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "Berlín",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "Mercedes Umaña",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "Jucuapa",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "El Triunfo",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "Estanzuelas",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "San Buenaventura",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "Nueva Granada",
+        "Municipio": {
+            "Nombre": "Usulután Norte"
+        }
+    },
+    {
+        "Nombre": "Usulután",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "Jucuarán",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "San Dionisio",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "Concepción Batres",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "Santa María",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "Ozatlán",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "Tecapán",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "Santa Elena",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "California",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "Ereguayquín",
+        "Municipio": {
+            "Nombre": "Usulután Este"
+        }
+    },
+    {
+        "Nombre": "Jiquilisco",
+        "Municipio": {
+            "Nombre": "Usulután Oeste"
+        }
+    },
+    {
+        "Nombre": "Puerto El Triunfo",
+        "Municipio": {
+            "Nombre": "Usulután Oeste"
+        }
+    },
+    {
+        "Nombre": "San Agustín",
+        "Municipio": {
+            "Nombre": "Usulután Oeste"
+        }
+    },
+    {
+        "Nombre": "San Francisco Javier",
+        "Municipio": {
+            "Nombre": "Usulután Oeste"
+        }
+    },
+    {
+        "Nombre": "Juayúa",
+        "Municipio": {
+            "Nombre": "Sonsonate Norte"
+        }
+    },
+    {
+        "Nombre": "Nahuizalco",
+        "Municipio": {
+            "Nombre": "Sonsonate Norte"
+        }
+    },
+    {
+        "Nombre": "Salcoatitán",
+        "Municipio": {
+            "Nombre": "Sonsonate Norte"
+        }
+    },
+    {
+        "Nombre": "San Catarina Masahuat",
+        "Municipio": {
+            "Nombre": "Sonsonate Norte"
+        }
+    },
+    {
+        "Nombre": "Sonsonate",
+        "Municipio": {
+            "Nombre": "Sonsonate Centro"
+        }
+    },
+    {
+        "Nombre": "Sonzacate",
+        "Municipio": {
+            "Nombre": "Sonsonate Centro"
+        }
+    },
+    {
+        "Nombre": "Nahulingo",
+        "Municipio": {
+            "Nombre": "Sonsonate Centro"
+        }
+    },
+    {
+        "Nombre": "San Antonio del Monte",
+        "Municipio": {
+            "Nombre": "Sonsonate Centro"
+        }
+    },
+    {
+        "Nombre": "Santo Domingo de Guzmán",
+        "Municipio": {
+            "Nombre": "Sonsonate Centro"
+        }
+    },
+    {
+        "Nombre": "Izalco",
+        "Municipio": {
+            "Nombre": "Sonsonate Este"
+        }
+    },
+    {
+        "Nombre": "Armenia",
+        "Municipio": {
+            "Nombre": "Sonsonate Este"
+        }
+    },
+    {
+        "Nombre": "Caluco",
+        "Municipio": {
+            "Nombre": "Sonsonate Este"
+        }
+    },
+    {
+        "Nombre": "San Julián",
+        "Municipio": {
+            "Nombre": "Sonsonate Este"
+        }
+    },
+    {
+        "Nombre": "Cuisnahuat",
+        "Municipio": {
+            "Nombre": "Sonsonate Este"
+        }
+    },
+    {
+        "Nombre": "Santa Isabel Ishuatán",
+        "Municipio": {
+            "Nombre": "Sonsonate Este"
+        }
+    },
+    {
+        "Nombre": "Acajutla",
+        "Municipio": {
+            "Nombre": "Sonsonate Oeste"
+        }
+    },
+    {
+        "Nombre": "Masahuat",
+        "Municipio": {
+            "Nombre": "Santa Ana Norte"
+        }
+    },
+    {
+        "Nombre": "Metapán",
+        "Municipio": {
+            "Nombre": "Santa Ana Norte"
+        }
+    },
+    {
+        "Nombre": "Santa Rosa Guachipilín",
+        "Municipio": {
+            "Nombre": "Santa Ana Norte"
+        }
+    },
+    {
+        "Nombre": "Texistepeque",
+        "Municipio": {
+            "Nombre": "Santa Ana Norte"
+        }
+    },
+    {
+        "Nombre": "Santa Ana",
+        "Municipio": {
+            "Nombre": "Santa Ana Centro"
+        }
+    },
+    {
+        "Nombre": "Coatepeque",
+        "Municipio": {
+            "Nombre": "Santa Ana Este"
+        }
+    },
+    {
+        "Nombre": "El Congo",
+        "Municipio": {
+            "Nombre": "Santa Ana Este"
+        }
+    },
+    {
+        "Nombre": "Candelaria de la Frontera",
+        "Municipio": {
+            "Nombre": "Santa Ana Oeste"
+        }
+    },
+    {
+        "Nombre": "Chalchuapa",
+        "Municipio": {
+            "Nombre": "Santa Ana Oeste"
+        }
+    },
+    {
+        "Nombre": "El Porvenir",
+        "Municipio": {
+            "Nombre": "Santa Ana Oeste"
+        }
+    },
+    {
+        "Nombre": "San Antonio Pajonal",
+        "Municipio": {
+            "Nombre": "Santa Ana Oeste"
+        }
+    },
+    {
+        "Nombre": "San Sebastián Salitrillo",
+        "Municipio": {
+            "Nombre": "Santa Ana Oeste"
+        }
+    },
+    {
+        "Nombre": "Santiago de la Frontera",
+        "Municipio": {
+            "Nombre": "Santa Ana Oeste"
+        }
+    },
+    {
+        "Nombre": "Apastepeque",
+        "Municipio": {
+            "Nombre": "San Vicente Norte"
+        }
+    },
+    {
+        "Nombre": "Santa Clara",
+        "Municipio": {
+            "Nombre": "San Vicente Norte"
+        }
+    },
+    {
+        "Nombre": "San Ildefonso",
+        "Municipio": {
+            "Nombre": "San Vicente Norte"
+        }
+    },
+    {
+        "Nombre": "San Esteban Catarina",
+        "Municipio": {
+            "Nombre": "San Vicente Norte"
+        }
+    },
+    {
+        "Nombre": "San Sebastián",
+        "Municipio": {
+            "Nombre": "San Vicente Norte"
+        }
+    },
+    {
+        "Nombre": "San Lorenzo",
+        "Municipio": {
+            "Nombre": "San Vicente Norte"
+        }
+    },
+    {
+        "Nombre": "Santo Domingo",
+        "Municipio": {
+            "Nombre": "San Vicente Norte"
+        }
+    },
+    {
+        "Nombre": "San Vicente",
+        "Municipio": {
+            "Nombre": "San Vicente Sur"
+        }
+    },
+    {
+        "Nombre": "Guadalupe",
+        "Municipio": {
+            "Nombre": "San Vicente Sur"
+        }
+    },
+    {
+        "Nombre": "Verapaz",
+        "Municipio": {
+            "Nombre": "San Vicente Sur"
+        }
+    },
+    {
+        "Nombre": "Nuevo Tepetitán",
+        "Municipio": {
+            "Nombre": "San Vicente Sur"
+        }
+    },
+    {
+        "Nombre": "Tecoluca",
+        "Municipio": {
+            "Nombre": "San Vicente Sur"
+        }
+    },
+    {
+        "Nombre": "San Cayetano Istepeque",
+        "Municipio": {
+            "Nombre": "San Vicente Sur"
+        }
+    },
+    {
+        "Nombre": "Arambala",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "Cacaopera",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "Corinto",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "El Rosario",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "Joateca",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "Jocoaitique",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "Meanguera",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "Perquín",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "San Fernando",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "San Isidro",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "Torola",
+        "Municipio": {
+            "Nombre": "Morazán Norte"
+        }
+    },
+    {
+        "Nombre": "Chilanga",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Delicias de Concepción",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "El Divisadero",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Gualococti",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Guatajiagua",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Jocoro",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Lolotiquillo",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Osicala",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "San Carlos",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "San Francisco Gotera",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "San Simón",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Sensembra",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Sociedad",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Yamabal",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
+    },
+    {
+        "Nombre": "Yoloaiquín",
+        "Municipio": {
+            "Nombre": "Morazán Sur"
+        }
     }
 ]

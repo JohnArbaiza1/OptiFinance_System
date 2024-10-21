@@ -32,6 +32,10 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     public string SqlSearchAll =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa " +
         "WHERE CONCAT(id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) LIKE @search";
+    
+    public string SqlFindByUsername =>
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " +
+        "FROM miembros_empresa WHERE alias = @alias";
 
     public List<SqlParameter> ParametersInsert(MiembroEmpresa entity)
     {
@@ -116,5 +120,14 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Direccion = reader.GetString(7),
             Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(8))
         };
+    }
+    
+    public List<SqlParameter> FindByUsernameParameters(string username)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@alias", username)
+        };
+        return parameters;
     }
 }

@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Text.Json;
-using global::OptiFinance_System.global;
+using OptiFinance_System.global;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.generalities;
 using OptiFinance_System.database.generalities.parameters;
@@ -9,6 +9,7 @@ using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 using OptiFinance_System.utils;
 using OptiFinance_System.Views;
+using Message = OptiFinance_System.utils.Message;
 using Registro = OptiFinance_System.Views.Registro;
 
 namespace OptiFinance_System;
@@ -28,13 +29,13 @@ public partial class Form1 : Form
 
     private static void CargarDatos()
     {
-        var queryBuilder = new QueryBuilder<Empresa>()
+        QueryBuilder<Empresa> queryBuilder = new QueryBuilder<Empresa>()
             .SelectAll()
             .Where("nombre", "nose");
 
         Connection.Instance.OpenConnection();
-        List<Empresa> departamentos = queryBuilder.ExecuteQuery(Connection.Instance.GetSqlConnection(), Queries.EmpresaParams.Map);
-
+        List<Empresa> departamentos =
+            queryBuilder.ExecuteQuery(Connection.Instance.GetSqlConnection(), Queries.EmpresaParams.Map);
     }
 
     private void InsertarUsuarios()
@@ -110,10 +111,11 @@ public partial class Form1 : Form
 
     private static bool ValidarUsuario(string username, string password)
     {
-        Usuario? usuario = UsuarioQuery.Instance.FindByUsername(username);
-        if (!Validations.UserExist(usuario)) return false;
-        MessageBox.Show(@"Usuario o contraseña incorrectos");
-        return false;
+        People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
+                          MiembroEmpresaQuery.Instance.FindByUsername(username);
+
+        Console.WriteLine(@"Usuario: " + usuario);
+        return Validations.UserExist(usuario);
     }
 
     //Nos permite mover la ventana del formulario a traves de la barra de titulo
@@ -167,10 +169,19 @@ public partial class Form1 : Form
         txtPassword.ForeColor = Color.Goldenrod;
     }
 
-    private bool SigningSucces(Usuario? user, string password)
+    private bool SigningSucces(string usermame, string password)
     {
-        if (!Validations.UserExist(user)) return false;
-        return Validations.ComparePasswordHash(password, user!.Password);
+        /*if (!Validations.UserExist(user)) return false;
+        string paswordHash = user!.GetType().Name.Equals(nameof(Usuario))
+            ? ((Usuario)user).Password
+            : ((MiembroEmpresa)user).Password;
+        return Validations.ComparePasswordHash(password, paswordHash);*/
+
+        Usuario? usuario = UsuarioQuery.Instance.FindByUsername(usermame);
+
+        if (usuario != null) return Validations.ComparePasswordHash(password, usuario.Password);
+        MiembroEmpresa? miembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(usermame);
+        return miembroEmpresa != null && Validations.ComparePasswordHash(password, miembroEmpresa.Password);
     }
 
     private void btnIngresar_Click(object sender, EventArgs e)
@@ -195,15 +206,29 @@ public partial class Form1 : Form
     {
         _usuario = txtUser.Text;
         _pass = txtPassword.Text;
-        Usuario? usuario = UsuarioQuery.Instance.FindByUsername(_usuario);
-        if (!SigningSucces(usuario, _pass))
+
+        if (!ValidarUsuario(_usuario, _pass))
         {
-            MessageBox.Show(@"Usuario o contraseña incorrectos", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            Message.MessageViewError(@"Usuario o contraseña incorrecta");
             return;
         }
+        if (!SigningSucces(_usuario, _pass))
+        {
+            Message.MessageViewError(@"Usuario o contraseña incorrecta");
+            return;
+        }
+        
+        Usuario? curentUser = UsuarioQuery.Instance.FindByUsername(_usuario);
+        if (curentUser == null)
+        {
+            Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
+            Global.SelectedUser = Global.SelectedMiembroEmpresa!.Empresa!.Usuario;
+        }
+        Global.SelectedUser = curentUser;
 
-        currentUser = usuario;
-        Global.SelectedUser = usuario;
+        Console.WriteLine(@"Usuario: " + Global.SelectedUser);
+        Console.WriteLine(@"Miembro Empresa: " + Global.SelectedMiembroEmpresa);
+
         Hide();
         Principal menu = new();
         menu.Show();

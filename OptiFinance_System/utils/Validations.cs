@@ -10,9 +10,17 @@ public class Validations
         return BCrypt.Net.BCrypt.Verify(password, passwordHash);
     }
 
-    public static bool UserExist(Usuario? user)
+    public static bool UserExist(People? people)
     {
-        return user != null && !user.Alias.IsNullOrEmpty() && !user.Password.IsNullOrEmpty();
+        if (people == null) return false;
+        if (people is MiembroEmpresa)
+        {
+            MiembroEmpresa miembroEmpresa = (MiembroEmpresa)people;
+            return !miembroEmpresa.Alias.IsNullOrEmpty() && !miembroEmpresa.Password.IsNullOrEmpty();
+        }
+
+        Usuario usuario = (Usuario)people;
+        return !usuario.Alias.IsNullOrEmpty() && !usuario.Password.IsNullOrEmpty();
     }
 
     public static bool FieldNullOrEmpty(string field)
