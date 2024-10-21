@@ -30,12 +30,10 @@ public partial class Form1 : Form
     {
         var queryBuilder = new QueryBuilder<Empresa>()
             .SelectAll()
-            .Where("nombre", "nose" );
+            .Where("nombre", "nose");
 
         Connection.Instance.OpenConnection();
         List<Empresa> departamentos = queryBuilder.ExecuteQuery(Connection.Instance.GetSqlConnection(), Queries.EmpresaParams.Map);
-        
-        departamentos.ForEach(Console.WriteLine);
 
     }
 
@@ -177,6 +175,24 @@ public partial class Form1 : Form
 
     private void btnIngresar_Click(object sender, EventArgs e)
     {
+        Ingresar();
+    }
+
+    private void lblRegistro_Click(object sender, EventArgs e)
+    {
+        Registro registro = new();
+        registro.Show();
+        Hide();
+    }
+
+    private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar != (int)Keys.Enter) return;
+        Ingresar();
+    }
+
+    private void Ingresar()
+    {
         _usuario = txtUser.Text;
         _pass = txtPassword.Text;
         Usuario? usuario = UsuarioQuery.Instance.FindByUsername(_usuario);
@@ -193,12 +209,5 @@ public partial class Form1 : Form
         menu.Show();
         //evento que se dispara cuando el formulario Principal se cierra.
         menu.FormClosed += (s, args) => Close();
-    }
-
-    private void lblRegistro_Click(object sender, EventArgs e)
-    {
-        Registro registro = new();
-        registro.Show();
-        Hide();
     }
 }
