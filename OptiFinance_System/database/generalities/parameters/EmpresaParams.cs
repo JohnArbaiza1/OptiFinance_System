@@ -43,8 +43,9 @@ public class EmpresaParams : IQueriesString<Empresa>
             new("@direccion", entity.Direccion),
             new("@telefono", entity.Telefono),
             new("@email", entity.Email),
-            new("@id_usuario", entity.Usuario?.Id),
-            new("@id_distrito", entity.Distrito?.Id)
+            new("@id_usuario", Global.SelectedUser!.Id),
+            new("@id_distrito", entity.Distrito?.Id),
+            new("@id_giro_economico", entity.GiroEconomico?.Id)
         };
         return parameters;
     }
@@ -110,13 +111,13 @@ public class EmpresaParams : IQueriesString<Empresa>
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),
             Nit = reader.IsDBNull(2) ? null : reader.GetString(2),
-            RepresentanteLegal = reader.GetString(4),
-            Direccion = reader.IsDBNull(5) ? null : reader.GetString(5),
-            Telefono = reader.GetString(6),
-            Email = reader.GetString(7),
-            Usuario = UsuarioQuery.Instance.FindById(reader.GetInt64(8)),
-            Distrito = DistritoQuery.Instance.FindById(reader.GetInt64(9)),
-            GiroEconomico = GiroEconomicoQuery.Instance.FindById(reader.GetInt64(10))
+            RepresentanteLegal = reader.GetString(3),
+            Direccion = reader.IsDBNull(4) ? null : reader.GetString(4),
+            Telefono = reader.GetString(5),
+            Email = reader.GetString(6),
+            Usuario = UsuarioQuery.Instance.FindById(reader.GetInt64(7)),
+            Distrito = DistritoQuery.Instance.FindById(reader.GetInt64(8)),
+            GiroEconomico = GiroEconomicoQuery.Instance.FindById(reader.GetInt64(9))
         };
     }
 }

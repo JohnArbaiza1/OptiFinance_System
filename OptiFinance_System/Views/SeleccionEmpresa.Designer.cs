@@ -62,8 +62,9 @@
             panel1.Controls.Add(btnAtras);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1270, 65);
+            panel1.Size = new Size(1111, 49);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -72,9 +73,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Bookman Old Style", 24F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(35, 55, 80);
-            label1.Location = new Point(402, 9);
+            label1.Location = new Point(352, 7);
             label1.Name = "label1";
-            label1.Size = new Size(471, 45);
+            label1.Size = new Size(376, 39);
             label1.TabIndex = 4;
             label1.Text = "Empresas Registradas.";
             // 
@@ -82,6 +83,7 @@
             // 
             btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
             btnAtras.Location = new Point(0, 0);
+            btnAtras.Margin = new Padding(3, 2, 3, 2);
             btnAtras.Name = "btnAtras";
             btnAtras.Size = new Size(64, 64);
             btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -95,9 +97,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(35, 55, 80);
-            label2.Location = new Point(143, 75);
+            label2.Location = new Point(125, 56);
             label2.Name = "label2";
-            label2.Size = new Size(1010, 26);
+            label2.Size = new Size(848, 21);
             label2.TabIndex = 5;
             label2.Text = "En esta sección podrás observar las empresas registradas y seleccionar la empresa con la";
             // 
@@ -107,9 +109,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(35, 55, 80);
-            label3.Location = new Point(539, 111);
+            label3.Location = new Point(472, 83);
             label3.Name = "label3";
-            label3.Size = new Size(190, 26);
+            label3.Size = new Size(159, 21);
             label3.TabIndex = 6;
             label3.Text = "deseas trabajar.";
             // 
@@ -123,9 +125,11 @@
             groupBox1.Controls.Add(panelEmpresasSelect);
             groupBox1.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.ForeColor = Color.FromArgb(31, 58, 93);
-            groupBox1.Location = new Point(51, 164);
+            groupBox1.Location = new Point(45, 123);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1169, 651);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(1023, 488);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "Tus Empresas:";
@@ -135,9 +139,10 @@
             btnSeleccionar.BackColor = Color.FromArgb(31, 58, 93);
             btnSeleccionar.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnSeleccionar.ForeColor = Color.White;
-            btnSeleccionar.Location = new Point(568, 53);
+            btnSeleccionar.Location = new Point(497, 40);
+            btnSeleccionar.Margin = new Padding(3, 2, 3, 2);
             btnSeleccionar.Name = "btnSeleccionar";
-            btnSeleccionar.Size = new Size(285, 42);
+            btnSeleccionar.Size = new Size(249, 32);
             btnSeleccionar.TabIndex = 9;
             btnSeleccionar.Text = "Seleccionar esta empresa";
             btnSeleccionar.UseVisualStyleBackColor = false;
@@ -146,10 +151,11 @@
             // txtNombreEmpresa
             // 
             txtNombreEmpresa.BackColor = Color.FromArgb(245, 245, 242);
-            txtNombreEmpresa.Location = new Point(859, 59);
+            txtNombreEmpresa.Location = new Point(752, 44);
+            txtNombreEmpresa.Margin = new Padding(3, 2, 3, 2);
             txtNombreEmpresa.Name = "txtNombreEmpresa";
             txtNombreEmpresa.ReadOnly = true;
-            txtNombreEmpresa.Size = new Size(286, 34);
+            txtNombreEmpresa.Size = new Size(251, 29);
             txtNombreEmpresa.TabIndex = 8;
             // 
             // btnBuscar
@@ -161,10 +167,11 @@
             btnBuscar.ForeColor = Color.White;
             btnBuscar.Image = (Image)resources.GetObject("btnBuscar.Image");
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(431, 57);
+            btnBuscar.Location = new Point(377, 43);
+            btnBuscar.Margin = new Padding(3, 2, 3, 2);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Padding = new Padding(5, 0, 0, 0);
-            btnBuscar.Size = new Size(131, 39);
+            btnBuscar.Padding = new Padding(4, 0, 0, 0);
+            btnBuscar.Size = new Size(115, 29);
             btnBuscar.TabIndex = 2;
             btnBuscar.Text = " Buscar";
             btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -174,21 +181,27 @@
             // 
             txtSearchEmpresa.BackColor = Color.FromArgb(245, 245, 242);
             txtSearchEmpresa.Font = new Font("Bookman Old Style", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearchEmpresa.Location = new Point(26, 53);
+            txtSearchEmpresa.Location = new Point(23, 40);
+            txtSearchEmpresa.Margin = new Padding(3, 2, 3, 2);
             txtSearchEmpresa.Name = "txtSearchEmpresa";
-            txtSearchEmpresa.Size = new Size(399, 39);
+            txtSearchEmpresa.Size = new Size(350, 33);
             txtSearchEmpresa.TabIndex = 1;
             // 
             // panelEmpresasSelect
             // 
+            panelEmpresasSelect.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelEmpresasSelect.Controls.Add(dataEmpresas);
-            panelEmpresasSelect.Location = new Point(26, 121);
+            panelEmpresasSelect.Location = new Point(23, 91);
+            panelEmpresasSelect.Margin = new Padding(3, 2, 3, 2);
             panelEmpresasSelect.Name = "panelEmpresasSelect";
-            panelEmpresasSelect.Size = new Size(1120, 501);
+            panelEmpresasSelect.Size = new Size(980, 376);
             panelEmpresasSelect.TabIndex = 0;
             // 
             // dataEmpresas
             // 
+            dataEmpresas.AllowUserToAddRows = false;
+            dataEmpresas.AllowUserToDeleteRows = false;
+            dataEmpresas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataEmpresas.BackgroundColor = Color.FromArgb(245, 245, 242);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
@@ -200,14 +213,16 @@
             dataEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataEmpresas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataEmpresas.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6, Column7 });
-            dataEmpresas.Dock = DockStyle.Fill;
             dataEmpresas.EnableHeadersVisualStyles = false;
             dataEmpresas.Location = new Point(0, 0);
+            dataEmpresas.Margin = new Padding(3, 2, 3, 2);
+            dataEmpresas.MultiSelect = false;
             dataEmpresas.Name = "dataEmpresas";
             dataEmpresas.ReadOnly = true;
             dataEmpresas.RowHeadersWidth = 51;
             dataEmpresas.RowTemplate.Height = 29;
-            dataEmpresas.Size = new Size(1120, 501);
+            dataEmpresas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataEmpresas.Size = new Size(980, 376);
             dataEmpresas.TabIndex = 0;
             // 
             // Column1
@@ -268,15 +283,16 @@
             // 
             // SeleccionEmpresa
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1270, 851);
+            ClientSize = new Size(1111, 638);
             Controls.Add(groupBox1);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SeleccionEmpresa";
             Text = "SeleccionEmpresa";
             Load += SeleccionEmpresa_Load;

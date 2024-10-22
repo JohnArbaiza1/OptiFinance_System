@@ -1,6 +1,7 @@
 ﻿using OptiFinance_System.global;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
+using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.Views;
 
@@ -16,14 +17,6 @@ public partial class SeleccionEmpresa : Form
 
     private void btnAtras_Click(object sender, EventArgs e)
     {
-        Close();
-    }
-
-    private void checkSelectEmpresa_CheckedChanged(object sender, EventArgs e)
-    {
-        if (dataEmpresas.SelectedRows.Count <= 0) return;
-        Empresa empresaSelected = (Empresa)dataEmpresas.SelectedRows[0].Cells[0].Value;
-        Global.SelectedEmpresa = empresaSelected;
         Close();
     }
 
@@ -47,5 +40,14 @@ public partial class SeleccionEmpresa : Form
 
     private void btnSeleccionar_Click(object sender, EventArgs e)
     {
+        if (dataEmpresas.SelectedRows.Count == 0)
+        {
+            Message.MessageViewError("Seleccione una empresa");
+            return;
+        }
+        Empresa? empresa = dataEmpresas.SelectedRows[0].Cells[0].Value as Empresa;
+        Global.SelectedEmpresa = empresa;
+        // Inicio.lblNombreEmpresa.Text = $@"Bienvenidos a {empresa?.Nombre ?? ""}";
+        Close();
     }
 }

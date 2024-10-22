@@ -23,8 +23,44 @@ public class Validations
         return !usuario.Alias.IsNullOrEmpty() && !usuario.Password.IsNullOrEmpty();
     }
 
-    public static bool FieldNullOrEmpty(string field)
+    public static bool FieldNullOrEmpty(ErrorProvider errorProvider, Control control, string message,
+        ErrorIconAlignment iconAlignment = ErrorIconAlignment.MiddleLeft)
     {
-        return field.IsNullOrEmpty();
+        if (control.Text.IsNullOrEmpty())
+        {
+            errorProvider.SetError(control, message);
+            return true;
+        }
+
+        errorProvider.SetError(control, "");
+        return false;
+    }
+
+    public static bool TextBoxNullOrEmpty(ErrorProvider errorProvider, TextBox control, string message,
+        ErrorIconAlignment iconAlignment = ErrorIconAlignment.MiddleLeft)
+    {
+        errorProvider.SetIconAlignment(control, iconAlignment);
+        if (control.Text.IsNullOrEmpty())
+        {
+            errorProvider.SetError(control, message);
+            return true;
+        }
+
+        errorProvider.SetError(control, "");
+        return false;
+    }
+
+    public static bool ComboBoxNullOrEmpty(ErrorProvider errorProvider, ComboBox control, string message,
+        ErrorIconAlignment iconAlignment = ErrorIconAlignment.MiddleLeft)
+    {
+        errorProvider.SetIconAlignment(control, iconAlignment);
+        if (control.SelectedItem == null)
+        {
+            errorProvider.SetError(control, message);
+            return true;
+        }
+
+        errorProvider.SetError(control, "");
+        return false;
     }
 }

@@ -56,9 +56,12 @@ public partial class busquedaGiro : Form
 
         DataTable dataTable = new();
         dataTable.Columns.Add("Giros Disponibles", typeof(GiroEconomico));
+        dataTable.Columns.Add("GiroNombre", typeof(string));
 
-        Global.ListGirosEconomicos.ForEach(entity => { dataTable.Rows.Add(entity); });
+        Global.ListGirosEconomicos.ForEach(entity => { dataTable.Rows.Add(entity, entity.Nombre); });
         dataGiros.DataSource = dataTable;
+        
+        dataGiros.Columns["GiroNombre"]!.Visible = false;
     }
 
     private void Search(string? search)
@@ -71,7 +74,7 @@ public partial class busquedaGiro : Form
             return;
         }
 
-        dataTable.DefaultView.RowFilter = $"[Giros Disponibles] LIKE '%{search}%'";
+        dataTable.DefaultView.RowFilter = $"[GiroNombre] LIKE '%{search}%'";
     }
 
     private void txtBusquedaGiro_KeyPress(object sender, KeyPressEventArgs e)
