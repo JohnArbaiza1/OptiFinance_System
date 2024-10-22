@@ -10,7 +10,9 @@ CREATE TABLE cuentas
     codigo         NVARCHAR(20)  NOT NULL,
     nombre         NVARCHAR(200) NOT NULL,
     id_tipo_cuenta BIGINT        NOT NULL,
-    FOREIGN KEY (id_tipo_cuenta) REFERENCES tipo_cuenta (id) ON UPDATE CASCADE ON DELETE CASCADE
+    id_empresa     BIGINT        NULL,
+    FOREIGN KEY (id_tipo_cuenta) REFERENCES tipo_cuenta (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_empresa) REFERENCES empresas (id) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 CREATE TABLE tipo_usuario

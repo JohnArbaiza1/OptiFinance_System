@@ -236,11 +236,13 @@ public partial class Form1 : Form
         if (curentUser == null)
         {
             Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
-            Global.SelectedUser = Global.SelectedMiembroEmpresa!.Empresa!.Usuario;
-            Global.SelectedEmpresa = Global.SelectedMiembroEmpresa.Empresa;
+            // Global.SelectedUser = Global.SelectedMiembroEmpresa!.Empresa!.Usuario;
+            Global.SelectedEmpresa = Global.SelectedMiembroEmpresa!.Empresa;
         }
-
-        Global.SelectedUser = curentUser;
+        else
+        {
+            Global.SelectedUser = curentUser;
+        }
 
         // Console.WriteLine(@"Usuario: " + Global.SelectedUser);
         // Console.WriteLine(@"Miembro Empresa: " + Global.SelectedMiembroEmpresa);

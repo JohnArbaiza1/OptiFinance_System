@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoEmpresacs));
             containerInfoEmpresa = new Panel();
             contenidoInfo = new Panel();
@@ -84,6 +85,13 @@
             btnAtras = new PictureBox();
             label1 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            errorProviderNombre = new ErrorProvider(components);
+            errorProviderGiroEcnomico = new ErrorProvider(components);
+            errorProviderNit = new ErrorProvider(components);
+            errorProviderRepresentante = new ErrorProvider(components);
+            errorProviderTelefono = new ErrorProvider(components);
+            errorProviderCorreo = new ErrorProvider(components);
+            errorProviderDistrito = new ErrorProvider(components);
             containerInfoEmpresa.SuspendLayout();
             contenidoInfo.SuspendLayout();
             groupBoxDoc.SuspendLayout();
@@ -93,6 +101,13 @@
             panel1.SuspendLayout();
             pabelNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderNombre).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderGiroEcnomico).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderNit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderRepresentante).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderTelefono).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderCorreo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderDistrito).BeginInit();
             SuspendLayout();
             // 
             // containerInfoEmpresa
@@ -775,6 +790,34 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
+            // errorProviderNombre
+            // 
+            errorProviderNombre.ContainerControl = this;
+            // 
+            // errorProviderGiroEcnomico
+            // 
+            errorProviderGiroEcnomico.ContainerControl = this;
+            // 
+            // errorProviderNit
+            // 
+            errorProviderNit.ContainerControl = this;
+            // 
+            // errorProviderRepresentante
+            // 
+            errorProviderRepresentante.ContainerControl = this;
+            // 
+            // errorProviderTelefono
+            // 
+            errorProviderTelefono.ContainerControl = this;
+            // 
+            // errorProviderCorreo
+            // 
+            errorProviderCorreo.ContainerControl = this;
+            // 
+            // errorProviderDistrito
+            // 
+            errorProviderDistrito.ContainerControl = this;
+            // 
             // InfoEmpresacs
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -801,6 +844,13 @@
             pabelNav.ResumeLayout(false);
             pabelNav.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderNombre).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderGiroEcnomico).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderNit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderRepresentante).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderTelefono).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderCorreo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderDistrito).EndInit();
             ResumeLayout(false);
         }
 
@@ -861,5 +911,12 @@
         private Label label21;
         private TextBox lblMunicipio;
         private TextBox lblDepartamento;
+        private ErrorProvider errorProviderNombre;
+        private ErrorProvider errorProviderGiroEcnomico;
+        private ErrorProvider errorProviderNit;
+        private ErrorProvider errorProviderRepresentante;
+        private ErrorProvider errorProviderTelefono;
+        private ErrorProvider errorProviderCorreo;
+        private ErrorProvider errorProviderDistrito;
     }
 }

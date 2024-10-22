@@ -93,12 +93,14 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
 
     public List<Cuenta> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll,
+            Params.MapSelectAll, Params.ParametersSelectAll());
     }
 
     public List<Cuenta> SearchAll(string search)
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll,
+            Params.MapSearchAll,
             Params.ParametersSearchAll(search));
     }
 
