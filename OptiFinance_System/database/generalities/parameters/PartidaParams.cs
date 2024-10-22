@@ -19,7 +19,7 @@ public class PartidaParams : IQueriesString<Partida>
     public string SqlSelectAll => "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id_empresa = @id_empresa";
 
     public string SqlSearchAll => "SELECT id, detalles, fecha, id_empresa FROM partidas " +
-                               "WHERE CONCAT(id, detalles, fecha, id_empresa) LIKE @search";
+                                  "WHERE CONCAT(id, detalles, fecha, id_empresa) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(Partida entity)
     {

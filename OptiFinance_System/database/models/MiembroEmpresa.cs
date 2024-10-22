@@ -10,7 +10,7 @@ public class MiembroEmpresa : People
     public string? Correo { get; set; } = string.Empty;
     public string? Telefono { get; set; } = string.Empty;
     public string Direccion { get; set; } = string.Empty;
-    
+
     public string Password { get; set; } = string.Empty;
     public Empresa? Empresa { get; set; } = null;
 

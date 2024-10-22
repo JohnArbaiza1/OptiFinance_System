@@ -8,18 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OptiFinance_System.Views
-{
-    public partial class Miembros : Form
-    {
-        public Miembros()
-        {
-            InitializeComponent();
-        }
+namespace OptiFinance_System.Views;
 
-        private void btnAtras_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+public partial class Miembros : Form
+{
+    public Miembros()
+    {
+        InitializeComponent();
+    }
+
+    private void btnAtras_Click(object sender, EventArgs e)
+    {
+        Close();
     }
 }

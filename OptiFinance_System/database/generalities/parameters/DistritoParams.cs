@@ -14,7 +14,9 @@ public class DistritoParams : IQueriesString<Distrito>
     public string SqlDelete => "DELETE FROM distritos WHERE id = @id";
     public string SqlFindById => "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
     public string SqlSelectAll => "SELECT id, nombre, id_municipio FROM distritos";
-    public string SqlSearchAll => "SELECT id, nombre, id_municipio FROM distritos WHERE CONCAT(id, nombre, id_municipio) LIKE @search";
+
+    public string SqlSearchAll =>
+        "SELECT id, nombre, id_municipio FROM distritos WHERE CONCAT(id, nombre, id_municipio) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(Distrito entity)
     {
@@ -73,7 +75,9 @@ public class DistritoParams : IQueriesString<Distrito>
             Municipio = MunicipioQuery.Instance.FindById(reader.GetInt64(2))
         };
         return distrito;
-    }public Distrito MapSelectAll(SqlDataReader reader)
+    }
+
+    public Distrito MapSelectAll(SqlDataReader reader)
     {
         Distrito distrito = new()
         {

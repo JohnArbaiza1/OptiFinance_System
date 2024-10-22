@@ -27,9 +27,8 @@ public partial class Usuarios : Form
 
             // Iteramos sobre cada usuario en la lista y los agregamos al DataGridView
             foreach (Usuario user in userList)
-            {
-                dataGridViewUsuarios.Rows.Add(user.Nombres, user.Apellidos, user.Alias, user.Email, user.Telefono, user.Direccion);
-            }
+                dataGridViewUsuarios.Rows.Add(user.Nombres, user.Apellidos, user.Alias, user.Email, user.Telefono,
+                    user.Direccion);
         }
         catch (Exception ex)
         {
@@ -40,6 +39,5 @@ public partial class Usuarios : Form
 
     private void btnGuardar_Click(object sender, EventArgs e)
     {
-
     }
 }

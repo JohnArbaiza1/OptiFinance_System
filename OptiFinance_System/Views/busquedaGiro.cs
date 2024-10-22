@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using System.Runtime.InteropServices;
-using global::OptiFinance_System.global;
+using OptiFinance_System.global;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 
@@ -51,7 +51,7 @@ public partial class busquedaGiro : Form
         {
             Console.WriteLine(@"Cargando giros economicos desde la lista");
         }
-        
+
         if (Global.ListGirosEconomicos.Count == 0) return;
 
         DataTable dataTable = new();

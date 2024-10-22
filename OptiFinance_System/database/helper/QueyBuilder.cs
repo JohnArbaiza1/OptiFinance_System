@@ -12,8 +12,8 @@ public class QueryBuilder<T>
 
     public QueryBuilder()
     {
-        _query = new StringBuilder();
-        _parameters = new List<SqlParameter>();
+        _query = new();
+        _parameters = new();
     }
 
     public QueryBuilder<T> SelectAll()
@@ -25,15 +25,11 @@ public class QueryBuilder<T>
     public QueryBuilder<T> Where(string column, object value, string condition = "=")
     {
         if (_query.ToString().Contains("WHERE"))
-        {
             _query.Append($" AND {column} {condition} @{column}");
-        }
         else
-        {
             _query.Append($" WHERE {column} {condition} @{column}");
-        }
-        
-        _parameters.Add(new SqlParameter($"@{column}", value));
+
+        _parameters.Add(new($"@{column}", value));
         return this;
     }
 
@@ -45,8 +41,8 @@ public class QueryBuilder<T>
     public QueryBuilder<T> WhereBetween(string column, object value1, object value2)
     {
         _query.Append($" WHERE {column} BETWEEN @{column}Start AND @{column}End");
-        _parameters.Add(new SqlParameter($"@{column}Start", value1));
-        _parameters.Add(new SqlParameter($"@{column}End", value2));
+        _parameters.Add(new($"@{column}Start", value1));
+        _parameters.Add(new($"@{column}End", value2));
         return this;
     }
 

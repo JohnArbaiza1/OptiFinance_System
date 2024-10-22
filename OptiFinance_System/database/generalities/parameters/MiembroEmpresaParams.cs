@@ -21,18 +21,18 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
 
     public string SqlDelete => "DELETE FROM miembros_empresa WHERE id = @id";
 
-    public string SqlFindById => 
-        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " + 
+    public string SqlFindById =>
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " +
         "FROM miembros_empresa WHERE id = @id";
 
-    public string SqlSelectAll => 
-        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " + 
+    public string SqlSelectAll =>
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " +
         "FROM miembros_empresa WHERE id_empresa = @id_empresa";
 
     public string SqlSearchAll =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa " +
         "WHERE CONCAT(id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) LIKE @search";
-    
+
     public string SqlFindByUsername =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " +
         "FROM miembros_empresa WHERE alias = @alias";
@@ -121,7 +121,22 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(8))
         };
     }
-    
+
+    public MiembroEmpresa MapSelectAll(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader.GetInt64(0),
+            Nombres = reader.GetString(1),
+            Apellidos = reader.GetString(2),
+            Alias = reader.GetString(3),
+            Dui = reader.GetString(4),
+            Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
+            Direccion = reader.GetString(7)
+        };
+    }
+
     public List<SqlParameter> FindByUsernameParameters(string username)
     {
         List<SqlParameter> parameters = new()

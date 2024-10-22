@@ -11,7 +11,10 @@ public class GiroEconomicoParams : IQueriesString<GiroEconomico>
     public string SqlDelete { get; } = "DELETE FROM giros_economicos WHERE id = @id";
     public string SqlFindById { get; } = "SELECT id, nombre FROM giros_economicos WHERE id = @id";
     public string SqlSelectAll { get; } = "SELECT id, nombre FROM giros_economicos";
-    public string SqlSearchAll { get; } = "SELECT id, nombre FROM giros_economicos WHERE CONCAT(id, nombre) LIKE @search";
+
+    public string SqlSearchAll { get; } =
+        "SELECT id, nombre FROM giros_economicos WHERE CONCAT(id, nombre) LIKE @search";
+
     public List<SqlParameter> ParametersInsert(GiroEconomico entity)
     {
         List<SqlParameter> parameters = new()

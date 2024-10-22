@@ -54,12 +54,8 @@ public partial class IngresarCuentas : Form
     private void checkBoxSubCuenta_CheckedChanged(object sender, EventArgs e)
     {
         if (checkBoxSubCuenta.Checked)
-        {
             comboBoxSubCuenta.Enabled = true;
-        }
         else
-        {
             comboBoxSubCuenta.Enabled = false;
-        }
     }
 }

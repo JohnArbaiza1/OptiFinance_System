@@ -1,4 +1,4 @@
-﻿using global::OptiFinance_System.global;
+﻿using OptiFinance_System.global;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 
@@ -47,6 +47,5 @@ public partial class SeleccionEmpresa : Form
 
     private void btnSeleccionar_Click(object sender, EventArgs e)
     {
-
     }
 }

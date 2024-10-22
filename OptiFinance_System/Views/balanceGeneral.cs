@@ -8,19 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OptiFinance_System.Views
+namespace OptiFinance_System.Views;
+
+public partial class balanceGeneral : Form
 {
-    public partial class balanceGeneral : Form
+    public balanceGeneral()
     {
-        public balanceGeneral()
-        {
-            InitializeComponent();
+        InitializeComponent();
+    }
 
-        }
-
-        private void btnAtras_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+    private void btnAtras_Click(object sender, EventArgs e)
+    {
+        Close();
     }
 }

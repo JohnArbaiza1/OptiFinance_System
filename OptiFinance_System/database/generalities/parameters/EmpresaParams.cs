@@ -1,4 +1,4 @@
-﻿using global::OptiFinance_System.global;
+﻿using OptiFinance_System.global;
 using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -26,7 +26,7 @@ public class EmpresaParams : IQueriesString<Empresa>
         "FROM empresas WHERE id = @id and id_usuario = @id_usuario";
 
     public string SqlSelectAll =>
-        "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " + 
+        "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
         "FROM empresas WHERE id_usuario = @id_usuario";
 
     public string SqlSearchAll =>
@@ -84,7 +84,7 @@ public class EmpresaParams : IQueriesString<Empresa>
         };
         return parameters;
     }
-    
+
     public List<SqlParameter> ParametersSelectAll()
     {
         List<SqlParameter> parameters = new()

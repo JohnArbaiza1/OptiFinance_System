@@ -93,7 +93,8 @@ public partial class Form1 : Form
     [SuppressMessage("ReSharper.DPA", "DPA0000: DPA issues")]
     private void InsertarDistritos()
     {
-        string distritosJsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources", "distritos.json");
+        string distritosJsonPath =
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources", "distritos.json");
 
         Console.WriteLine(distritosJsonPath);
 
@@ -115,15 +116,15 @@ public partial class Form1 : Form
     {
         string girosPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources", "giros.json");
         Console.WriteLine(girosPath);
-        
+
         if (!File.Exists(girosPath))
         {
             MessageBox.Show(@"No se encontró el archivo giros.json");
             return;
         }
-        
+
         string girosJson = File.ReadAllText(girosPath);
-        
+
         List<GiroEconomico>? giros = JsonSerializer.Deserialize<List<GiroEconomico>>(girosJson);
         if (GiroEconomicoQuery.Instance.Insert(giros!)) MessageBox.Show(@"Giros económicos registrados correctamente");
     }
@@ -236,6 +237,7 @@ public partial class Form1 : Form
         {
             Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
             Global.SelectedUser = Global.SelectedMiembroEmpresa!.Empresa!.Usuario;
+            Global.SelectedEmpresa = Global.SelectedMiembroEmpresa.Empresa;
         }
 
         Global.SelectedUser = curentUser;

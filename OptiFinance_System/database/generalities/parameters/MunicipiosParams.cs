@@ -17,7 +17,7 @@ public class MunicipiosParams : IQueriesString<Municipio>
     public string SqlSelectAll => "SELECT id, nombre, id_departamento FROM municipios";
 
     public string SqlSearchAll => "SELECT id, nombre, id_departamento FROM municipios " +
-                               "WHERE CONCAT(id, nombre, id_departamento) LIKE @search";
+                                  "WHERE CONCAT(id, nombre, id_departamento) LIKE @search";
 
     public string SqlFindByName => "SELECT id, nombre, id_departamento FROM municipios WHERE nombre = @nombre";
 
@@ -77,7 +77,9 @@ public class MunicipiosParams : IQueriesString<Municipio>
             Nombre = reader.GetString(1),
             Departamento = DepartamentoQuery.Instance.FindById(reader.GetInt64(2))
         };
-    }public Municipio MapSelectAll(SqlDataReader reader)
+    }
+
+    public Municipio MapSelectAll(SqlDataReader reader)
     {
         return new()
         {
