@@ -584,9 +584,12 @@
             txtNit.BackColor = Color.FromArgb(245, 245, 242);
             txtNit.Location = new Point(157, 92);
             txtNit.Margin = new Padding(3, 2, 3, 2);
+            txtNit.MaxLength = 17;
             txtNit.Name = "txtNit";
             txtNit.Size = new Size(314, 23);
             txtNit.TabIndex = 7;
+            txtNit.TextChanged += txtNit_TextChanged;
+            txtNit.KeyPress += txtNit_KeyPress;
             // 
             // label3
             // 
@@ -626,6 +629,8 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(312, 23);
             textBox1.TabIndex = 13;
+            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // panel1
             // 

@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using OptiFinance_System.global;
+
 namespace OptiFinance_System.Views;
 
 public partial class Principal : Form
@@ -24,16 +25,16 @@ public partial class Principal : Form
 
     #region Parte donde se trabaja la logica del panel contenedor de formularios
 
-    public void abrirF<MiForm>() where MiForm : Form, new()
+    public void abrirF<TMiForm>() where TMiForm : Form, new()
     {
-        Form formulario;
+        Form? formulario;
         //Buscara en la coleccion el formulario si el formulario o instancia no existe
-        formulario = panelContenedor.Controls.OfType<MiForm>().FirstOrDefault();
+        formulario = panelContenedor.Controls.OfType<TMiForm>().FirstOrDefault();
 
         if (formulario == null)
         {
             //Creamos una nueva instancia
-            formulario = new MiForm();
+            formulario = new TMiForm();
             //Indicamos que el formulario que se use sera secundario
             formulario.TopLevel = false;
             //Nos permetira que el formulario se acople al panel contenedor
@@ -69,7 +70,8 @@ public partial class Principal : Form
         if (Application.OpenForms["CatalogoCuentas"] == null) btnCatalogo.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["libroMayor"] == null) btnMayor.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["balanceGeneral"] == null) btnBGeneral.BackColor = Color.FromArgb(34, 53, 80);
-        if (Application.OpenForms["SeleccionEmpresa"] == null) btnSeleccionarEmpresa.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["SeleccionEmpresa"] == null)
+            btnSeleccionarEmpresa.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["estado_Resultado"] == null) btnEResultados.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["razones_Liquidez"] == null) btnRLiquidez.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["Miembros"] == null) btnMiembros.BackColor = Color.FromArgb(34, 53, 80);
@@ -102,30 +104,27 @@ public partial class Principal : Form
             btnSalir.Location = new(0, 830);
             //Ajustes necesarios
             panelMenu.AutoSize = false; //Desactivamos el ajuste automatico
-            panelMenu.Size = new Size(381, 900); //Fijamos un tamaño especifico
-            panelMenu.AutoScroll = false;  // Desactivamos el scroll automático
+            panelMenu.Size = new(381, 900); //Fijamos un tamaño especifico
+            panelMenu.AutoScroll = false; // Desactivamos el scroll automático
 
             //Creamos el button de notificacion
-            Button btnNotificacion = new Button();
+            Button btnNotificacion = new();
 
             // Configuramos las propiedades del botón
             btnNotificacion.Name = "btnNotificacion";
             btnNotificacion.Text = "Notificaciónes";
-            btnNotificacion.Size = new Size(380,67); 
+            btnNotificacion.Size = new(380, 67);
             btnNotificacion.BackColor = Color.FromArgb(34, 53, 80);
             btnNotificacion.ForeColor = Color.White;
             btnNotificacion.FlatStyle = FlatStyle.Flat;
             btnNotificacion.FlatAppearance.BorderSize = 0;
-            btnNotificacion.Font = new Font("Bookman Old Style", 12, FontStyle.Bold);
+            btnNotificacion.Font = new("Bookman Old Style", 12, FontStyle.Bold);
             // Esto es una prueba
-            btnNotificacion.Click += (sender, e) =>
-            {
-                MessageBox.Show("Has hecho clic en Notificación");
-            };
+            btnNotificacion.Click += (sender, e) => { MessageBox.Show("Has hecho clic en Notificación"); };
             //Agregamos el botón al panel
             panelMenu.Controls.Add(btnNotificacion);
             //Reposicionamos por si acaso XD
-            btnNotificacion.Location = new(0,260);
+            btnNotificacion.Location = new(0, 260);
             btnLibros.Location = new(0, 700);
         }
         else
@@ -286,11 +285,13 @@ public partial class Principal : Form
     #endregion
 
     #region Buttons del menu
+
     //=================================| Inicio |===================================
     private void btnInicio_Click(object sender, EventArgs e)
     {
         abrirF<Inicio>();
     }
+
     //=================================| Salir |===================================
     private void btnSalir_Click(object sender, EventArgs e)
     {
@@ -395,21 +396,25 @@ public partial class Principal : Form
             panelEmpresa.Visible = true;
             btnSalir.Location = new(0, 830);
         }
+
         btnEmpresas.Location = new(0, 540);
         panelEmpresa.Location = new(0, 610);
     }
+
     //=================================| Partidas |===================================
     private void btnIngresarPartida_Click(object sender, EventArgs e)
     {
         abrirF<RegistrarPartidas>();
         btnIngresarPartida.BackColor = Color.FromArgb(215, 143, 35);
     }
+
     //=================================| Cuentas |===================================
     private void btnIngresarCuenta_Click(object sender, EventArgs e)
     {
         abrirF<IngresarCuentas>();
         btnIngresarCuenta.BackColor = Color.FromArgb(215, 143, 35);
     }
+
     //=================================| Catalogo |===================================
     private void btnCatalogo_Click(object sender, EventArgs e)
     {
@@ -424,24 +429,28 @@ public partial class Principal : Form
         abrirF<Usuarios>();
         btnUsuarios.BackColor = Color.FromArgb(215, 143, 35);
     }
+
     //=================================| Info Empresa |================================
     private void btnInfo_Click(object sender, EventArgs e)
     {
         abrirF<InfoEmpresacs>();
         btnInfo.BackColor = Color.FromArgb(254, 214, 0);
     }
+
     //==============================| Libro Diario |===================================
     private void btnDiario_Click(object sender, EventArgs e)
     {
         abrirF<libriDiario>();
         btnDiario.BackColor = Color.FromArgb(254, 214, 0);
     }
+
     //===============================| Libro Mayor |===================================
     private void btnMayor_Click(object sender, EventArgs e)
     {
         abrirF<libroMayor>();
         btnMayor.BackColor = Color.FromArgb(254, 214, 0);
     }
+
     //==============================| Balance General |================================
     private void btnBGeneral_Click(object sender, EventArgs e)
     {
@@ -455,23 +464,27 @@ public partial class Principal : Form
         abrirF<SeleccionEmpresa>();
         btnSeleccionarEmpresa.BackColor = Color.FromArgb(254, 214, 0);
     }
+
     //=============================| Estado de Resultados |==============================
     private void btnEResultados_Click(object sender, EventArgs e)
     {
         abrirF<estado_Resultado>();
         btnEResultados.BackColor = Color.FromArgb(254, 214, 0);
     }
+
     //=============================| Razones de Liquidez |==============================
     private void btnRLiquidez_Click(object sender, EventArgs e)
     {
         abrirF<razones_Liquidez>();
         btnRLiquidez.BackColor = Color.FromArgb(215, 143, 35);
     }
+
     //=============================| Miembros |==============================
     private void btnMiembros_Click(object sender, EventArgs e)
     {
         abrirF<Miembros>();
         btnMiembros.BackColor = Color.FromArgb(254, 214, 0);
     }
+
     #endregion
 }

@@ -1,13 +1,14 @@
 ﻿using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
+using Formats = OptiFinance_System.utils.Formats;
 using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.Views;
 
 public partial class InfoEmpresacs : Form
 {
-
     public static TextBox txtGiroAux;
+
     public InfoEmpresacs()
     {
         InitializeComponent();
@@ -48,11 +49,7 @@ public partial class InfoEmpresacs : Form
         List<Distrito> distritos = DistritoQuery.Instance.SelectAll();
         if (distritos.Count == 0) return;
 
-        Invoke(() =>
-        {
-            comboDistrito.DataSource = distritos;
-        });
-
+        Invoke(() => { comboDistrito.DataSource = distritos; });
     }
 
     private void btnBuscarGiro_Click(object sender, EventArgs e)
@@ -61,8 +58,28 @@ public partial class InfoEmpresacs : Form
         busqueda.Show();
     }
 
-    private async void  InfoEmpresacs_Shown(object sender, EventArgs e)
+    private async void InfoEmpresacs_Shown(object sender, EventArgs e)
     {
         await Task.Run(cargarDistritos);
+    }
+
+    private void txtNit_TextChanged(object sender, EventArgs e)
+    {
+        Formats.FormatNit(sender, e);
+    }
+
+    private void textBox1_TextChanged(object sender, EventArgs e)
+    {
+        Formats.FormatTelefono(sender, e);
+    }
+
+    private void txtNit_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        Formats.OnlyNumbers(sender, e);
+    }
+
+    private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        Formats.OnlyNumbers(sender, e);
     }
 }

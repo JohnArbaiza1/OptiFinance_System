@@ -22,15 +22,15 @@ CREATE TABLE tipo_usuario
 CREATE TABLE usuarios
 (
     id              BIGINT PRIMARY KEY IDENTITY (1,1),
-    nombres         NVARCHAR(200)        NOT NULL,
-    apellidos       NVARCHAR(200)        NOT NULL,
-    alias           NVARCHAR(12) UNIQUE  NOT NULL,
-    email           NVARCHAR(200) UNIQUE DEFAULT 'No especificado',
-    password        NVARCHAR(200)        NOT NULL,
-    dui             NVARCHAR(10) UNIQUE  NOT NULL,
-    telefono        NVARCHAR(8) UNIQUE   NOT NULL,
-    direccion       NVARCHAR(300)                 DEFAULT 'No especificado',
-    id_tipo_usuario BIGINT               NOT NULL DEFAULT 2,
+    nombres         NVARCHAR(200)       NOT NULL,
+    apellidos       NVARCHAR(200)       NOT NULL,
+    alias           NVARCHAR(12) UNIQUE NOT NULL,
+    email           NVARCHAR(200) UNIQUE         DEFAULT 'No especificado',
+    password        NVARCHAR(200)       NOT NULL,
+    dui             NVARCHAR(10) UNIQUE NOT NULL,
+    telefono        NVARCHAR(8) UNIQUE  NOT NULL,
+    direccion       NVARCHAR(300)                DEFAULT 'No especificado',
+    id_tipo_usuario BIGINT              NOT NULL DEFAULT 2,
     FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -70,7 +70,7 @@ CREATE TABLE empresas
     nit                 NVARCHAR(17) UNIQUE,
     representante_legal NVARCHAR(300) NOT NULL DEFAULT 'No especificado',
     direccion           NVARCHAR(300),
-    telefono            NVARCHAR(8)   NOT NULL UNIQUE,
+    telefono            NVARCHAR(9)   NOT NULL UNIQUE,
     email               NVARCHAR(200) UNIQUE   DEFAULT 'No especificado',
     id_usuario          BIGINT        NOT NULL,
     id_distrito         BIGINT        NOT NULL,
@@ -82,16 +82,16 @@ CREATE TABLE empresas
 
 CREATE TABLE miembros_empresa
 (
-    id                 BIGINT PRIMARY KEY IDENTITY (1,1),
-    nombres            NVARCHAR(200) NOT NULL,
-    apellidos          NVARCHAR(200) NOT NULL,
-    alias              NVARCHAR(12)  NOT NULL UNIQUE,
-    password           NVARCHAR(200) NOT NULL,
-    dui                NVARCHAR(10)  NOT NULL UNIQUE,
-    email NVARCHAR(200) UNIQUE DEFAULT 'No especificado',
-    telefono           NVARCHAR(8) UNIQUE   DEFAULT 'No especificado',
-    direccion          NVARCHAR(300) NOT NULL,
-    id_empresa         BIGINT        NOT NULL,
+    id         BIGINT PRIMARY KEY IDENTITY (1,1),
+    nombres    NVARCHAR(200) NOT NULL,
+    apellidos  NVARCHAR(200) NOT NULL,
+    alias      NVARCHAR(12)  NOT NULL UNIQUE,
+    password   NVARCHAR(200) NOT NULL,
+    dui        NVARCHAR(10)  NOT NULL UNIQUE,
+    email      NVARCHAR(200) UNIQUE DEFAULT 'No especificado',
+    telefono   NVARCHAR(8) UNIQUE   DEFAULT 'No especificado',
+    direccion  NVARCHAR(300) NOT NULL,
+    id_empresa BIGINT        NOT NULL,
     FOREIGN KEY (id_empresa) REFERENCES empresas (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
