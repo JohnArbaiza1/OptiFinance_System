@@ -75,7 +75,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
         {
             return ids.Select(id => Params.ParametersDelete(id))
                 .Select(list => QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(),
-                    Params.SqlInsert, list, transaction))
+                    Params.SqlDelete, list, transaction))
                 .All(result => result);
         });
     }

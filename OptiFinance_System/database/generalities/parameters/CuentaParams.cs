@@ -1,5 +1,6 @@
 ﻿using OptiFinance_System.global;
 using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -15,13 +16,13 @@ public class CuentaParams : IQueriesString<Cuenta>
         "UPDATE cuentas SET codigo = @codigo, nombre = @nombre, id_tipo_cuenta = @id_tipo_cuenta, id_empresa = @id_empresa WHERE id = @id";
 
     public string SqlDelete => "DELETE FROM cuentas WHERE id = @id";
-    public string SqlFindById => "SELECT id, codigo, nombre, id_tipo_cuenta, id_empresa FROM cuentas WHERE id = @id";
+    public string SqlFindById => "SELECT * FROM cuentas WHERE id = @id";
 
     public string SqlSelectAll =>
-        "SELECT id, codigo, nombre, id_tipo_cuenta, id_empresa FROM cuentas WHERE id_empresa = @id_empresa";
+        "SELECT * FROM cuentas WHERE id_empresa = @id_empresa";
 
     public string SqlSearchAll =>
-        "SELECT id, codigo, nombre, id_tipo_cuenta, id_empresa FROM cuentas " + 
+        "SELECT * FROM cuentas " + 
         "WHERE CONCAT(id, codigo, nombre, id_tipo_cuenta) LIKE @search AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersInsert(Cuenta entity)
@@ -90,8 +91,8 @@ public class CuentaParams : IQueriesString<Cuenta>
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Codigo = reader.GetString(1),
+            Id = (long)reader[CuentasField.Id],
+            Codigo = (string)reader[CuentasField.Codigo],
             Nombre = reader.GetString(2),
             TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3)),
             Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(4))

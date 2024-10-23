@@ -10,8 +10,8 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
 {
     public string SqlInsert =>
         "INSERT INTO miembros_empresa " +
-        "(nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) " +
-        "VALUES (@nombres, @apellidos, @alias, @dui, @correo_electronico, @telefono, @direccion, @id_empresa)";
+        "(nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password) " +
+        "VALUES (@nombres, @apellidos, @alias, @dui, @correo_electronico, @telefono, @direccion, @id_empresa, @password)";
 
     public string SqlUpdate =>
         "UPDATE miembros_empresa SET " +
@@ -48,7 +48,8 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             new("@correo_electronico", entity.Correo),
             new("@telefono", entity.Telefono),
             new("@direccion", entity.Direccion),
-            new("@id_empresa", entity.Empresa?.Id)
+            new("@id_empresa", entity.Empresa?.Id ?? 0),
+            new("@password", entity.Password)
         };
         return parameters;
     }
@@ -64,7 +65,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             new("@correo_electronico", entity.Correo),
             new("@telefono", entity.Telefono),
             new("@direccion", entity.Direccion),
-            new("@id_empresa", entity.Empresa?.Id),
+            new("@id_empresa", entity.Empresa?.Id ?? 0),
             new("@id", entity.Id)
         };
         return parameters;

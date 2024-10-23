@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using OptiFinance_System.global;
 using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -39,8 +40,7 @@ public class UsuarioParams : IQueriesString<Usuario>
         $"AND id_tipo_usuario <> {_idTipoUsuarioAdmin}";
 
     public string SqlFindByUsername =>
-        $"SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios " +
-        $"WHERE alias = @alias";
+        "SELECT * FROM usuarios WHERE alias = @alias";
 
     public List<SqlParameter> ParametersInsert(Usuario entity)
     {
@@ -115,15 +115,15 @@ public class UsuarioParams : IQueriesString<Usuario>
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Nombres = reader.GetString(1),
-            Apellidos = reader.GetString(2),
-            Alias = reader.GetString(3),
-            Email = reader.IsDBNull(4) ? null : reader.GetString(4),
-            Password = reader.GetString(5),
-            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
-            Direccion = reader.IsDBNull(7) ? null : reader.GetString(7),
-            TipoUsuario = TipoUsuarioQuery.Instance.FindById(reader.GetInt64(8))
+            Id = reader.GetInt64(UsuarioField.Id),
+            Nombres = reader.GetString(UsuarioField.Nombres),
+            Apellidos = reader.GetString(UsuarioField.Apellidos),
+            Alias = reader.GetString(UsuarioField.Alias),
+            Email = reader.IsDBNull(UsuarioField.Email) ? null : reader.GetString(UsuarioField.Email),
+            Password = reader.GetString(UsuarioField.Password),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(UsuarioField.Telefono),
+            Direccion = reader.IsDBNull(7) ? null : reader.GetString(UsuarioField.Direccion),
+            TipoUsuario = TipoUsuarioQuery.Instance.FindById(reader.GetInt64(UsuarioField.IdTipoUsuario))
         };
     }
 }
