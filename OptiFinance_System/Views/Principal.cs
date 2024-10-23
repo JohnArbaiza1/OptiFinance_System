@@ -104,52 +104,29 @@ public partial class Principal : Form
             btnUsuarios.Location = new(0, 190);
             btnCuentas.Location = new(0, 540);
             btnSalir.Location = new(0, 830);
-            //Ajustes necesarios
-            panelMenu.AutoSize = false; //Desactivamos el ajuste automatico
-            panelMenu.Size = new(381, 900); //Fijamos un tamaño especifico
-            panelMenu.AutoScroll = false; // Desactivamos el scroll automático
-
-            //Creamos el button de notificacion
-            Button btnNotificacion = new();
-
-            // Configuramos las propiedades del botón
-            btnNotificacion.Name = "btnNotificacion";
-            btnNotificacion.Text = "Notificaciónes";
-            btnNotificacion.Size = new(380, 67);
-            btnNotificacion.BackColor = Color.FromArgb(34, 53, 80);
-            btnNotificacion.ForeColor = Color.White;
-            btnNotificacion.FlatStyle = FlatStyle.Flat;
-            btnNotificacion.FlatAppearance.BorderSize = 0;
-            btnNotificacion.Font = new("Bookman Old Style", 12, FontStyle.Bold);
-            // Esto es una prueba
-            btnNotificacion.Click += (sender, e) => { MessageBox.Show("Has hecho clic en Notificación"); };
-            //Agregamos el botón al panel
-            panelMenu.Controls.Add(btnNotificacion);
-            //Reposicionamos por si acaso XD
-            btnNotificacion.Location = new(0, 260);
+            //Llamamos a los metodos
+            reajustesMenu();
+            notificaciones();
+            
             btnLibros.Location = new(0, 700);
         }
-        else
+        else if(Global.SelectedMiembroEmpresa == null)
         {
-            //========================================================
-            //Para la opcion de cuentas
-            btnCuentas.Location = new(0, 190);
-            btnLibros.Location = new(0, 260);
-            PanelCuentas.Hide();
-            //Para la opcion de libros
-            btnEstados.Location = new(0, 330);
-            panelLibros.Hide();
-            //Para la opcion de estados
-            btnRLiquidez.Location = new(0, 400);
-            panelEstados.Hide();
-            btnIngresarPartida.Location = new(0, 470);
-            btnSalir.Location = new(0, 830);
-            panelEmpresa.Hide();
-
+            buttonsPosition();
             //Ajustes de la validacion
             btnUsuarios.Location = new(0, 610);
             btnEmpresas.Location = new(0, 540);
             btnUsuarios.Visible = false;
+        }
+        else
+        {
+            //Llamamos a los metodos
+            buttonsPosition();
+            reajustesMenu();
+            btnUsuarios.Visible = false;
+            btnEmpresas.Visible = false;
+            panelEmpresa.Visible = false;
+
         }
     }
 
@@ -286,6 +263,71 @@ public partial class Principal : Form
 
     #endregion
 
+    #region Metodos
+    private void buttonsPosition()
+    {
+        btnCuentas.Location = new(0, 190);
+        btnLibros.Location = new(0, 260);
+        PanelCuentas.Hide();
+        //Para la opcion de libros
+        btnEstados.Location = new(0, 330);
+        panelLibros.Hide();
+        //Para la opcion de estados
+        btnRLiquidez.Location = new(0, 400);
+        panelEstados.Hide();
+        btnIngresarPartida.Location = new(0, 470);
+        btnSalir.Location = new(0, 830);
+        panelEmpresa.Hide();
+    }
+
+    private void reajustesMenu()
+    {
+        //Ajustes necesarios
+        panelMenu.AutoSize = false; //Desactivamos el ajuste automatico
+        panelMenu.Size = new(381, 900); //Fijamos un tamaño especifico
+        panelMenu.AutoScroll = false; // Desactivamos el scroll automático
+    }
+
+    //Metodo para crear el button de notificaciones
+    private Button notificaciones()
+    {
+        //Creamos el button de notificacion
+        Button btnNotificacion = new();
+
+        // Configuramos las propiedades del botón
+        btnNotificacion.Name = "btnNotificacion";
+        btnNotificacion.Text = "Notificaciónes";
+        btnNotificacion.Size = new(380, 67);
+        btnNotificacion.BackColor = Color.FromArgb(34, 53, 80);
+        btnNotificacion.ForeColor = Color.White;
+        btnNotificacion.FlatStyle = FlatStyle.Flat;
+        btnNotificacion.FlatAppearance.BorderSize = 0;
+        btnNotificacion.Font = new("Bookman Old Style", 12, FontStyle.Bold);
+        btnNotificacion.TextAlign = ContentAlignment.MiddleLeft;
+        btnNotificacion.Padding = new Padding(16, 0, 0, 0);
+        // Evento para cambiar color cuando el ratón pasa sobre el botón
+        btnNotificacion.MouseEnter += (sender, e) =>
+        {
+            btnNotificacion.BackColor = Color.FromArgb(215, 143, 35); // Restaurar el color original
+        };
+
+        // Evento para restaurar el color cuando el ratón sale del botón
+        btnNotificacion.MouseLeave += (sender, e) =>
+        {
+            btnNotificacion.BackColor = Color.FromArgb(34, 53, 80); // Restaurar el color original
+        };
+
+        // Esto es una prueba
+        btnNotificacion.Click += (sender, e) => { MessageBox.Show("Has hecho clic en Notificación"); };
+        //Agregamos el botón al panel
+        panelMenu.Controls.Add(btnNotificacion);
+        //Reposicionamos por si acaso XD
+        btnNotificacion.Location = new(0, 260);
+
+        return btnNotificacion;
+    }
+    #endregion
+
     #region Buttons del menu
 
     //=================================| Inicio |===================================
@@ -316,8 +358,7 @@ public partial class Principal : Form
             btnEstados.Location = new(0, 330);
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
-            btnUsuarios.Location = new(0, 540);
-            btnEmpresas.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 540);
         }
         else
         {
@@ -326,8 +367,7 @@ public partial class Principal : Form
             btnEstados.Location = new(0, 465);
             btnRLiquidez.Location = new(0, 535);
             btnIngresarPartida.Location = new(0, 604);
-            btnUsuarios.Location = new(0, 674);
-            btnEmpresas.Location = new(0, 738);
+            btnEmpresas.Location = new(0, 674);
         }
 
         btnCuentas.Location = new(0, 190);
@@ -344,8 +384,7 @@ public partial class Principal : Form
             btnEstados.Location = new(0, 330);
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
-            btnUsuarios.Location = new(0, 540);
-            btnEmpresas.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 540);
         }
         else
         {
@@ -353,8 +392,7 @@ public partial class Principal : Form
             btnEstados.Location = new(0, 465);
             btnRLiquidez.Location = new(0, 530);
             btnIngresarPartida.Location = new(0, 600);
-            btnUsuarios.Location = new(0, 665);
-            btnEmpresas.Location = new(0, 735);
+            btnEmpresas.Location = new(0, 665);
         }
 
         btnLibros.Location = new(0, 257);
@@ -370,16 +408,14 @@ public partial class Principal : Form
             panelEstados.Visible = false;
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
-            btnUsuarios.Location = new(0, 540);
-            btnEmpresas.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 540);
         }
         else
         {
             panelEstados.Visible = true;
             btnRLiquidez.Location = new(0, 545);
             btnIngresarPartida.Location = new(0, 610);
-            btnUsuarios.Location = new(0, 680);
-            btnEmpresas.Location = new(0, 750);
+            btnEmpresas.Location = new(0, 680);
         }
 
         btnEstados.Location = new(0, 332);
