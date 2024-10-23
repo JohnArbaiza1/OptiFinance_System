@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Exe</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWindowsForms>true</UseWindowsForms>
@@ -9,9 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Formularios\**"/>
-        <EmbeddedResource Remove="Formularios\**"/>
-        <None Remove="Formularios\**"/>
+        <Compile Remove="Formularios\**" />
+        <EmbeddedResource Remove="Formularios\**" />
+        <None Remove="Formularios\**" />
         <None Update="database\resources\departamentos.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
@@ -42,9 +42,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3"/>
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -63,7 +64,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="database\export\"/>
+        <Folder Include="database\export\" />
     </ItemGroup>
 
 </Project>

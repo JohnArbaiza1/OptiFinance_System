@@ -153,11 +153,29 @@ public partial class Form1 : Form
         ReleaseCapture();
         SendMessage(Handle, 0x112, 0xf012, 0);
     }
+    private void agregarCuentas()
+    {
+        var cuentas = new List<TipoCuenta> {
+            new TipoCuenta { Nombre = "Cuentas de resultado Deudora" },
+            new TipoCuenta { Nombre = "Cuentas de resultado Acreedora" },
+            new TipoCuenta { Nombre = "Cuentas de puente de cierre" }
+        };
+        bool result = TipoCuentaQuery.Instance.Insert(cuentas);
+        if (result)
+        {
+            MessageBox.Show("Cuentas agregadas");
+        }
+        else
+        {
+            MessageBox.Show("Error al agregar las cuentas");
+        }
+    }
 
     private void Form1_Load(object sender, EventArgs e)
     {
         // InsertarDistritos();
         // InsertarGirosEconomicos();
+        //agregarCuentas();
     }
 
     private void txtUser_Enter(object sender, EventArgs e)
@@ -241,9 +259,9 @@ public partial class Form1 : Form
                 Message.MessageViewError(@"Usuario no encontrado");
                 return;
             }
-            
+
             Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindById(member.Id);
-            
+
             if (Global.SelectedMiembroEmpresa == null)
             {
                 Message.MessageViewError(@"Miembro empresa no encontrado");
@@ -251,7 +269,7 @@ public partial class Form1 : Form
             }
             Global.IsSelectedMiembroEmpresa = true;
             Global.SelectedEmpresa = Global.SelectedMiembroEmpresa.Empresa ?? null;
-            
+
             if (Global.SelectedEmpresa == null)
             {
                 Message.MessageViewError(@"Empresa no encontrada");
