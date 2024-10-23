@@ -28,51 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CatalogoCuentas));
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel3 = new Panel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            dataGridView1 = new DataGridView();
+            dataGridActivos = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             label2 = new Label();
             tabPage2 = new TabPage();
-            dataGridView2 = new DataGridView();
+            dataGridPasivos = new DataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             label3 = new Label();
             tabPage3 = new TabPage();
-            dataGridView3 = new DataGridView();
+            dataGridCapital = new DataGridView();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             label4 = new Label();
-            tabPage4 = new TabPage();
-            dataGridView4 = new DataGridView();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            label5 = new Label();
             panel2 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            label5 = new Label();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            tabPage4 = new TabPage();
+            tabPage5 = new TabPage();
+            tabPage6 = new TabPage();
+            label6 = new Label();
+            label7 = new Label();
+            dataGridDeudora = new DataGridView();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
+            dataGridAcreedora = new DataGridView();
+            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
+            dataGridCierre = new DataGridView();
+            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
+            label8 = new Label();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridActivos).BeginInit();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridPasivos).BeginInit();
             tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
-            tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridCapital).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
+            tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
+            tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridDeudora).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridAcreedora).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridCierre).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -100,6 +119,8 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
+            tabControl1.Controls.Add(tabPage6);
             tabControl1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tabControl1.Location = new Point(33, 27);
             tabControl1.Name = "tabControl1";
@@ -112,7 +133,7 @@
             tabPage1.BackColor = Color.White;
             tabPage1.BackgroundImageLayout = ImageLayout.None;
             tabPage1.BorderStyle = BorderStyle.Fixed3D;
-            tabPage1.Controls.Add(dataGridView1);
+            tabPage1.Controls.Add(dataGridActivos);
             tabPage1.Controls.Add(label2);
             tabPage1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tabPage1.Location = new Point(4, 32);
@@ -120,29 +141,29 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(1180, 648);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "ACTIVOS      ";
+            tabPage1.Text = "ACTIVO    ";
             // 
-            // dataGridView1
+            // dataGridActivos
             // 
-            dataGridView1.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(43, 56);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1082, 564);
-            dataGridView1.TabIndex = 10;
+            dataGridActivos.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle7.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridActivos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridActivos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridActivos.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
+            dataGridActivos.EnableHeadersVisualStyles = false;
+            dataGridActivos.Location = new Point(43, 56);
+            dataGridActivos.Name = "dataGridActivos";
+            dataGridActivos.ReadOnly = true;
+            dataGridActivos.RowHeadersWidth = 51;
+            dataGridActivos.RowTemplate.Height = 29;
+            dataGridActivos.Size = new Size(1082, 564);
+            dataGridActivos.TabIndex = 10;
             // 
             // Column1
             // 
@@ -176,36 +197,36 @@
             // 
             tabPage2.BackColor = Color.White;
             tabPage2.BorderStyle = BorderStyle.Fixed3D;
-            tabPage2.Controls.Add(dataGridView2);
+            tabPage2.Controls.Add(dataGridPasivos);
             tabPage2.Controls.Add(label3);
             tabPage2.Location = new Point(4, 32);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1180, 648);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "PASIVOS        ";
+            tabPage2.Text = "PASIVO      ";
             // 
-            // dataGridView2
+            // dataGridPasivos
             // 
-            dataGridView2.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2 });
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.Location = new Point(46, 58);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.ReadOnly = true;
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.RowTemplate.Height = 29;
-            dataGridView2.Size = new Size(1082, 564);
-            dataGridView2.TabIndex = 11;
+            dataGridPasivos.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle8.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dataGridPasivos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridPasivos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridPasivos.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2 });
+            dataGridPasivos.EnableHeadersVisualStyles = false;
+            dataGridPasivos.Location = new Point(46, 58);
+            dataGridPasivos.Name = "dataGridPasivos";
+            dataGridPasivos.ReadOnly = true;
+            dataGridPasivos.RowHeadersWidth = 51;
+            dataGridPasivos.RowTemplate.Height = 29;
+            dataGridPasivos.Size = new Size(1082, 564);
+            dataGridPasivos.TabIndex = 11;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -239,36 +260,36 @@
             // 
             tabPage3.BackColor = Color.White;
             tabPage3.BorderStyle = BorderStyle.Fixed3D;
-            tabPage3.Controls.Add(dataGridView3);
+            tabPage3.Controls.Add(dataGridCapital);
             tabPage3.Controls.Add(label4);
             tabPage3.Location = new Point(4, 32);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(1180, 648);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "PATRIMONIO      ";
+            tabPage3.Text = "CAPITAL   ";
             // 
-            // dataGridView3
+            // dataGridCapital
             // 
-            dataGridView3.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle3.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
-            dataGridView3.EnableHeadersVisualStyles = false;
-            dataGridView3.Location = new Point(49, 59);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.ReadOnly = true;
-            dataGridView3.RowHeadersWidth = 51;
-            dataGridView3.RowTemplate.Height = 29;
-            dataGridView3.Size = new Size(1082, 564);
-            dataGridView3.TabIndex = 12;
+            dataGridCapital.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle9.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dataGridCapital.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridCapital.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridCapital.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
+            dataGridCapital.EnableHeadersVisualStyles = false;
+            dataGridCapital.Location = new Point(49, 59);
+            dataGridCapital.Name = "dataGridCapital";
+            dataGridCapital.ReadOnly = true;
+            dataGridCapital.RowHeadersWidth = 51;
+            dataGridCapital.RowTemplate.Height = 29;
+            dataGridCapital.Size = new Size(1082, 564);
+            dataGridCapital.TabIndex = 12;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -294,72 +315,9 @@
             label4.ForeColor = Color.FromArgb(35, 55, 80);
             label4.Location = new Point(6, 15);
             label4.Name = "label4";
-            label4.Size = new Size(477, 41);
+            label4.Size = new Size(399, 41);
             label4.TabIndex = 11;
-            label4.Text = "CUENTAS DE PATRIMONIO";
-            // 
-            // tabPage4
-            // 
-            tabPage4.BackColor = Color.White;
-            tabPage4.BorderStyle = BorderStyle.Fixed3D;
-            tabPage4.Controls.Add(dataGridView4);
-            tabPage4.Controls.Add(label5);
-            tabPage4.Location = new Point(4, 32);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1180, 648);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "CIERRE        ";
-            // 
-            // dataGridView4
-            // 
-            dataGridView4.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle4.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView4.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6 });
-            dataGridView4.EnableHeadersVisualStyles = false;
-            dataGridView4.Location = new Point(45, 59);
-            dataGridView4.Name = "dataGridView4";
-            dataGridView4.ReadOnly = true;
-            dataGridView4.RowHeadersWidth = 51;
-            dataGridView4.RowTemplate.Height = 29;
-            dataGridView4.Size = new Size(1082, 564);
-            dataGridView4.TabIndex = 13;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.HeaderText = "Código";
-            dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            dataGridViewTextBoxColumn5.ReadOnly = true;
-            dataGridViewTextBoxColumn5.Width = 515;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.HeaderText = "Nombre";
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.ReadOnly = true;
-            dataGridViewTextBoxColumn6.Width = 515;
-            // 
-            // label5
-            // 
-            label5.Anchor = AnchorStyles.Top;
-            label5.AutoSize = true;
-            label5.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.ForeColor = Color.FromArgb(35, 55, 80);
-            label5.Location = new Point(6, 15);
-            label5.Name = "label5";
-            label5.Size = new Size(386, 41);
-            label5.TabIndex = 12;
-            label5.Text = "CUENTAS DE CIERRE";
+            label4.Text = "CUENTAS DE CAPITAL";
             // 
             // panel2
             // 
@@ -395,6 +353,222 @@
             btnAtras.TabStop = false;
             btnAtras.Click += btnAtras_Click;
             // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Top;
+            label5.AutoSize = true;
+            label5.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(35, 55, 80);
+            label5.Location = new Point(6, 15);
+            label5.Name = "label5";
+            label5.Size = new Size(0, 41);
+            label5.TabIndex = 12;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.HeaderText = "Nombre";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
+            dataGridViewTextBoxColumn6.Width = 515;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "Código";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.ReadOnly = true;
+            dataGridViewTextBoxColumn5.Width = 515;
+            // 
+            // tabPage4
+            // 
+            tabPage4.BackColor = Color.White;
+            tabPage4.BorderStyle = BorderStyle.Fixed3D;
+            tabPage4.Controls.Add(dataGridDeudora);
+            tabPage4.Controls.Add(label6);
+            tabPage4.Controls.Add(label5);
+            tabPage4.Location = new Point(4, 32);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(1180, 648);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "RESULTADO DEUDORA  ";
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(dataGridAcreedora);
+            tabPage5.Controls.Add(label7);
+            tabPage5.Location = new Point(4, 32);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(1180, 648);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "RESULTADO ACREEDORA";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            tabPage6.Controls.Add(label8);
+            tabPage6.Controls.Add(dataGridCierre);
+            tabPage6.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            tabPage6.Location = new Point(4, 32);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new Padding(3);
+            tabPage6.Size = new Size(1180, 648);
+            tabPage6.TabIndex = 5;
+            tabPage6.Text = "PUENTE DE CIERRE";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Top;
+            label6.AutoSize = true;
+            label6.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(35, 55, 80);
+            label6.Location = new Point(34, 15);
+            label6.Name = "label6";
+            label6.Size = new Size(679, 41);
+            label6.TabIndex = 14;
+            label6.Text = "CUENTAS DE RESULTADO DEUDORA  ";
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Top;
+            label7.AutoSize = true;
+            label7.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = Color.FromArgb(35, 55, 80);
+            label7.Location = new Point(45, 21);
+            label7.Name = "label7";
+            label7.Size = new Size(698, 41);
+            label7.TabIndex = 15;
+            label7.Text = "CUENTAS DE RESULTADO ACREEDORA";
+            // 
+            // dataGridDeudora
+            // 
+            dataGridDeudora.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle10.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dataGridDeudora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridDeudora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridDeudora.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8 });
+            dataGridDeudora.EnableHeadersVisualStyles = false;
+            dataGridDeudora.Location = new Point(46, 59);
+            dataGridDeudora.Name = "dataGridDeudora";
+            dataGridDeudora.ReadOnly = true;
+            dataGridDeudora.RowHeadersWidth = 51;
+            dataGridDeudora.RowTemplate.Height = 29;
+            dataGridDeudora.Size = new Size(1082, 564);
+            dataGridDeudora.TabIndex = 15;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.HeaderText = "Código";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
+            dataGridViewTextBoxColumn7.Width = 515;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            dataGridViewTextBoxColumn8.HeaderText = "Nombre";
+            dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            dataGridViewTextBoxColumn8.ReadOnly = true;
+            dataGridViewTextBoxColumn8.Width = 515;
+            // 
+            // dataGridAcreedora
+            // 
+            dataGridAcreedora.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle11.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dataGridAcreedora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridAcreedora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridAcreedora.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn9, dataGridViewTextBoxColumn10 });
+            dataGridAcreedora.EnableHeadersVisualStyles = false;
+            dataGridAcreedora.Location = new Point(58, 65);
+            dataGridAcreedora.Name = "dataGridAcreedora";
+            dataGridAcreedora.ReadOnly = true;
+            dataGridAcreedora.RowHeadersWidth = 51;
+            dataGridAcreedora.RowTemplate.Height = 29;
+            dataGridAcreedora.Size = new Size(1082, 564);
+            dataGridAcreedora.TabIndex = 16;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            dataGridViewTextBoxColumn9.HeaderText = "Código";
+            dataGridViewTextBoxColumn9.MinimumWidth = 6;
+            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            dataGridViewTextBoxColumn9.ReadOnly = true;
+            dataGridViewTextBoxColumn9.Width = 515;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            dataGridViewTextBoxColumn10.HeaderText = "Nombre";
+            dataGridViewTextBoxColumn10.MinimumWidth = 6;
+            dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            dataGridViewTextBoxColumn10.ReadOnly = true;
+            dataGridViewTextBoxColumn10.Width = 515;
+            // 
+            // dataGridCierre
+            // 
+            dataGridCierre.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle12.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dataGridCierre.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridCierre.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridCierre.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn11, dataGridViewTextBoxColumn12 });
+            dataGridCierre.EnableHeadersVisualStyles = false;
+            dataGridCierre.Location = new Point(46, 59);
+            dataGridCierre.Name = "dataGridCierre";
+            dataGridCierre.ReadOnly = true;
+            dataGridCierre.RowHeadersWidth = 51;
+            dataGridCierre.RowTemplate.Height = 29;
+            dataGridCierre.Size = new Size(1082, 564);
+            dataGridCierre.TabIndex = 11;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            dataGridViewTextBoxColumn11.HeaderText = "Código";
+            dataGridViewTextBoxColumn11.MinimumWidth = 6;
+            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            dataGridViewTextBoxColumn11.ReadOnly = true;
+            dataGridViewTextBoxColumn11.Width = 515;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            dataGridViewTextBoxColumn12.HeaderText = "Nombre";
+            dataGridViewTextBoxColumn12.MinimumWidth = 6;
+            dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            dataGridViewTextBoxColumn12.ReadOnly = true;
+            dataGridViewTextBoxColumn12.Width = 515;
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Top;
+            label8.AutoSize = true;
+            label8.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = Color.FromArgb(35, 55, 80);
+            label8.Location = new Point(36, 15);
+            label8.Name = "label8";
+            label8.Size = new Size(597, 41);
+            label8.TabIndex = 16;
+            label8.Text = "CUENTAS DE PUENTE DE CIERRE";
+            // 
             // CatalogoCuentas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -410,19 +584,25 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridActivos).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridPasivos).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
-            tabPage4.ResumeLayout(false);
-            tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridCapital).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            tabPage6.ResumeLayout(false);
+            tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridDeudora).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridAcreedora).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridCierre).EndInit();
             ResumeLayout(false);
         }
 
@@ -438,22 +618,35 @@
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;
-        private TabPage tabPage4;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridActivos;
         private Label label2;
         private Label label3;
         private Label label4;
-        private Label label5;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
-        private DataGridView dataGridView2;
+        private DataGridView dataGridPasivos;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridView dataGridView3;
+        private DataGridView dataGridCapital;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridView dataGridView4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private TabPage tabPage4;
+        private Label label5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private TabPage tabPage5;
+        private TabPage tabPage6;
+        private Label label6;
+        private DataGridView dataGridDeudora;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private Label label7;
+        private DataGridView dataGridAcreedora;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private DataGridView dataGridCierre;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private Label label8;
     }
 }
