@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OptiFinance_System.Views;
 
@@ -20,5 +21,10 @@ public partial class libroMayor : Form
     private void btnAtras_Click(object sender, EventArgs e)
     {
         Close();
+    }
+
+    private void libroMayor_Load(object sender, EventArgs e)
+    {
+
     }
 }

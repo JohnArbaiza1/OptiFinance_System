@@ -72,6 +72,7 @@
             btnMayor = new Button();
             panelContenedor = new Panel();
             panelRedireccion = new Panel();
+            pictureEmpresaSelect = new PictureBox();
             barraTitulo.SuspendLayout();
             opcionesBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximo).BeginInit();
@@ -85,11 +86,13 @@
             PanelCuentas.SuspendLayout();
             panelLibros.SuspendLayout();
             panelContenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureEmpresaSelect).BeginInit();
             SuspendLayout();
             // 
             // barraTitulo
             // 
             barraTitulo.BackColor = Color.Goldenrod;
+            barraTitulo.Controls.Add(pictureEmpresaSelect);
             barraTitulo.Controls.Add(opcionesBarraTitulo);
             barraTitulo.Dock = DockStyle.Top;
             barraTitulo.Location = new Point(381, 0);
@@ -718,6 +721,16 @@
             panelRedireccion.MouseMove += panelRedireccion_MouseMove;
             panelRedireccion.MouseUp += panelRedireccion_MouseUp;
             // 
+            // pictureEmpresaSelect
+            // 
+            pictureEmpresaSelect.Image = (Image)resources.GetObject("pictureEmpresaSelect.Image");
+            pictureEmpresaSelect.Location = new Point(3, 0);
+            pictureEmpresaSelect.Name = "pictureEmpresaSelect";
+            pictureEmpresaSelect.Size = new Size(60, 50);
+            pictureEmpresaSelect.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureEmpresaSelect.TabIndex = 1;
+            pictureEmpresaSelect.TabStop = false;
+            // 
             // Principal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -744,6 +757,7 @@
             PanelCuentas.ResumeLayout(false);
             panelLibros.ResumeLayout(false);
             panelContenedor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureEmpresaSelect).EndInit();
             ResumeLayout(false);
         }
 
@@ -792,5 +806,6 @@
         private Button btnSeleccionarEmpresa;
         private Button btnMiembros;
         private Panel panel9;
+        private PictureBox pictureEmpresaSelect;
     }
 }

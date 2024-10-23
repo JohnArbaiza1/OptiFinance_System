@@ -31,14 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(libroMayor));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            btnAtras = new PictureBox();
             label1 = new Label();
+            btnAtras = new PictureBox();
             panel2 = new Panel();
             groupBox1 = new GroupBox();
             dataGridView1 = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
@@ -59,17 +58,6 @@
             panel1.Size = new Size(1270, 70);
             panel1.TabIndex = 0;
             // 
-            // btnAtras
-            // 
-            btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
-            btnAtras.Location = new Point(0, 0);
-            btnAtras.Name = "btnAtras";
-            btnAtras.Size = new Size(64, 64);
-            btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
-            btnAtras.TabIndex = 3;
-            btnAtras.TabStop = false;
-            btnAtras.Click += btnAtras_Click;
-            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top;
@@ -81,6 +69,17 @@
             label1.Size = new Size(313, 45);
             label1.TabIndex = 6;
             label1.Text = "LIBRO MAYOR";
+            // 
+            // btnAtras
+            // 
+            btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
+            btnAtras.Location = new Point(0, 0);
+            btnAtras.Name = "btnAtras";
+            btnAtras.Size = new Size(64, 64);
+            btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnAtras.TabIndex = 3;
+            btnAtras.TabStop = false;
+            btnAtras.Click += btnAtras_Click;
             // 
             // panel2
             // 
@@ -116,15 +115,14 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
-            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column4, Column5, Column6 });
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(3, 30);
+            dataGridView1.Location = new Point(17, 27);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1182, 667);
+            dataGridView1.Size = new Size(1165, 667);
             dataGridView1.TabIndex = 0;
             // 
             // Column1
@@ -142,14 +140,6 @@
             Column2.Name = "Column2";
             Column2.ReadOnly = true;
             Column2.Width = 300;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Fo.";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 125;
             // 
             // Column4
             // 
@@ -186,6 +176,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "libroMayor";
             Text = "libroMayor";
+            Load += libroMayor_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
@@ -205,7 +196,6 @@
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;

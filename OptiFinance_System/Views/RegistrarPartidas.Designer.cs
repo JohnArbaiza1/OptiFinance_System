@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrarPartidas));
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel3 = new Panel();
             groupBox1 = new GroupBox();
             textBox1 = new TextBox();
             label6 = new Label();
             groupBox2 = new GroupBox();
-            btnSave = new Button();
+            btnEditar = new Button();
             btnCancelar = new Button();
+            btnSave = new Button();
             btnRegistrar = new Button();
             btnNew = new Button();
             radiobtnHaber = new RadioButton();
@@ -47,12 +48,6 @@
             btnBuscar = new Button();
             panel4 = new Panel();
             dataGridView1 = new DataGridView();
-            Fecha = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
             comboFecha = new ComboBox();
             txtCodigo = new TextBox();
             label3 = new Label();
@@ -63,7 +58,11 @@
             panel2 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
-            btnEditar = new Button();
+            Fecha = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column1 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -145,8 +144,8 @@
             groupBox2.AutoSize = true;
             groupBox2.Controls.Add(btnEditar);
             groupBox2.Controls.Add(btnCancelar);
-            groupBox2.Controls.Add(btnSave);
             groupBox2.Controls.Add(btnRegistrar);
+            groupBox2.Controls.Add(btnSave);
             groupBox2.Controls.Add(btnNew);
             groupBox2.Controls.Add(radiobtnHaber);
             groupBox2.Controls.Add(radiobtnDebe);
@@ -158,6 +157,35 @@
             groupBox2.TabIndex = 13;
             groupBox2.TabStop = false;
             groupBox2.Text = "Ingresa el valor";
+            // 
+            // btnEditar
+            // 
+            btnEditar.BackColor = Color.FromArgb(44, 161, 232);
+            btnEditar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEditar.ForeColor = Color.White;
+            btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
+            btnEditar.Location = new Point(7, 195);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Padding = new Padding(10, 0, 0, 0);
+            btnEditar.Size = new Size(214, 61);
+            btnEditar.TabIndex = 16;
+            btnEditar.Text = "   Editar";
+            btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEditar.UseVisualStyleBackColor = false;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = Color.FromArgb(234, 130, 6);
+            btnCancelar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancelar.ForeColor = Color.WhiteSmoke;
+            btnCancelar.Image = (Image)resources.GetObject("btnCancelar.Image");
+            btnCancelar.Location = new Point(7, 262);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(214, 61);
+            btnCancelar.TabIndex = 13;
+            btnCancelar.Text = "   Cancelar";
+            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
             // btnSave
             // 
@@ -173,27 +201,13 @@
             btnSave.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSave.UseVisualStyleBackColor = false;
             // 
-            // btnCancelar
-            // 
-            btnCancelar.BackColor = Color.FromArgb(234, 130, 6);
-            btnCancelar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancelar.ForeColor = Color.WhiteSmoke;
-            btnCancelar.Image = (Image)resources.GetObject("btnCancelar.Image");
-            btnCancelar.Location = new Point(6, 334);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(214, 61);
-            btnCancelar.TabIndex = 13;
-            btnCancelar.Text = "   Cancelar";
-            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar.UseVisualStyleBackColor = false;
-            // 
             // btnRegistrar
             // 
             btnRegistrar.BackColor = Color.FromArgb(31, 58, 93);
             btnRegistrar.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnRegistrar.ForeColor = Color.White;
             btnRegistrar.Image = (Image)resources.GetObject("btnRegistrar.Image");
-            btnRegistrar.Location = new Point(6, 133);
+            btnRegistrar.Location = new Point(6, 329);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(214, 61);
             btnRegistrar.TabIndex = 12;
@@ -207,7 +221,7 @@
             btnNew.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnNew.ForeColor = Color.White;
             btnNew.Image = (Image)resources.GetObject("btnNew.Image");
-            btnNew.Location = new Point(6, 200);
+            btnNew.Location = new Point(7, 128);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(214, 61);
             btnNew.TabIndex = 14;
@@ -279,16 +293,16 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle3.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Fecha, Column2, Column3, Column5, Column4, Column1 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Fecha, Column2, Column5, Column4, Column1 });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(0, 0);
@@ -299,54 +313,6 @@
             dataGridView1.ShowCellToolTips = false;
             dataGridView1.Size = new Size(983, 577);
             dataGridView1.TabIndex = 0;
-            // 
-            // Fecha
-            // 
-            Fecha.HeaderText = "Fecha";
-            Fecha.MinimumWidth = 6;
-            Fecha.Name = "Fecha";
-            Fecha.ReadOnly = true;
-            Fecha.Width = 160;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Detalle";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 224;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "F";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 125;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Parcial";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Width = 200;
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Debe";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 200;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Haber";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 200;
             // 
             // comboFecha
             // 
@@ -447,20 +413,45 @@
             btnAtras.TabStop = false;
             btnAtras.Click += btnAtras_Click;
             // 
-            // btnEditar
+            // Fecha
             // 
-            btnEditar.BackColor = Color.FromArgb(44, 161, 232);
-            btnEditar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEditar.ForeColor = Color.White;
-            btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
-            btnEditar.Location = new Point(6, 267);
-            btnEditar.Name = "btnEditar";
-            btnEditar.Padding = new Padding(10, 0, 0, 0);
-            btnEditar.Size = new Size(214, 61);
-            btnEditar.TabIndex = 16;
-            btnEditar.Text = "   Editar";
-            btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnEditar.UseVisualStyleBackColor = false;
+            Fecha.HeaderText = "Fecha";
+            Fecha.MinimumWidth = 6;
+            Fecha.Name = "Fecha";
+            Fecha.ReadOnly = true;
+            Fecha.Width = 160;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Detalle";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Width = 224;
+            // 
+            // Column5
+            // 
+            Column5.HeaderText = "Codigo";
+            Column5.MinimumWidth = 6;
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            Column5.Width = 200;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "Debe";
+            Column4.MinimumWidth = 6;
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Width = 200;
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Haber";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 200;
             // 
             // RegistrarPartidas
             // 
@@ -514,12 +505,11 @@
         private Button btnSave;
         private TextBox textBox1;
         private Label label6;
+        private Button btnEditar;
         private DataGridViewTextBoxColumn Fecha;
         private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column1;
-        private Button btnEditar;
     }
 }

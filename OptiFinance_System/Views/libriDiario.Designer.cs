@@ -36,15 +36,14 @@
             label2 = new Label();
             groupBox1 = new GroupBox();
             dataPartidas = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataPartidas).BeginInit();
@@ -126,7 +125,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataPartidas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataPartidas.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column6, Column3, Column4, Column5 });
+            dataPartidas.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
             dataPartidas.Dock = DockStyle.Fill;
             dataPartidas.EnableHeadersVisualStyles = false;
             dataPartidas.Location = new Point(3, 30);
@@ -136,54 +135,6 @@
             dataPartidas.RowTemplate.Height = 29;
             dataPartidas.Size = new Size(1215, 638);
             dataPartidas.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Fecha";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 204;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Detalle";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 314;
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "F";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            Column6.Width = 70;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Parcial";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 208;
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Debe";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 218;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Haber";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Width = 218;
             // 
             // panel2
             // 
@@ -218,6 +169,46 @@
             btnAtras.TabStop = false;
             btnAtras.Click += btnAtras_Click;
             // 
+            // Column1
+            // 
+            Column1.HeaderText = "Fecha";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 204;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Detalle";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Width = 314;
+            // 
+            // Column3
+            // 
+            Column3.HeaderText = "Codigo";
+            Column3.MinimumWidth = 6;
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            Column3.Width = 208;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "Debe";
+            Column4.MinimumWidth = 6;
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Width = 218;
+            // 
+            // Column5
+            // 
+            Column5.HeaderText = "Haber";
+            Column5.MinimumWidth = 6;
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            Column5.Width = 218;
+            // 
             // libriDiario
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -250,7 +241,6 @@
         private Label label2;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
