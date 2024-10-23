@@ -16,7 +16,7 @@ public class CuentaParams : IQueriesString<Cuenta>
         "UPDATE cuentas SET codigo = @codigo, nombre = @nombre, id_tipo_cuenta = @id_tipo_cuenta, id_empresa = @id_empresa WHERE id = @id";
 
     public string SqlDelete => "DELETE FROM cuentas WHERE id = @id";
-    public string SqlFindById => "SELECT * FROM cuentas WHERE id = @id";
+    public string SqlFindById => "SELECT * FROM cuentas WHERE id = @id and id_empresa = @id_empresa";
 
     public string SqlSelectAll =>
         "SELECT * FROM cuentas WHERE id_empresa = @id_empresa";
@@ -32,7 +32,7 @@ public class CuentaParams : IQueriesString<Cuenta>
             new("@codigo", entity.Codigo),
             new("@nombre", entity.Nombre),
             new("@id_tipo_cuenta", entity.TipoCuenta?.Id),
-            new("@id_empresa", entity.Empresa?.Id)
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
@@ -63,7 +63,8 @@ public class CuentaParams : IQueriesString<Cuenta>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id", id)
+            new("@id", id),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
@@ -82,7 +83,7 @@ public class CuentaParams : IQueriesString<Cuenta>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id_empresa", Global.SelectedEmpresa!.Id)
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
