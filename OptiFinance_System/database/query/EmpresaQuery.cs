@@ -86,6 +86,12 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
             Params.ParametersFindById(id));
     }
+    
+    public Empresa? FindByIdWithoutUser(long id)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByIdWithoutUser, MapEntity,
+            Params.ParametersFindByIdWithoutUser(id));
+    }
 
     public List<Empresa> SelectAll()
     {

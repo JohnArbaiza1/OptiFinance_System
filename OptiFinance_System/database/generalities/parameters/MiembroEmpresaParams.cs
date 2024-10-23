@@ -22,20 +22,39 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     public string SqlDelete => "DELETE FROM miembros_empresa WHERE id = @id";
 
     public string SqlFindById =>
-        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " +
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE id = @id";
 
     public string SqlSelectAll =>
-        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " +
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE id_empresa = @id_empresa";
 
     public string SqlSearchAll =>
-        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa FROM miembros_empresa " +
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password FROM miembros_empresa " +
         "WHERE CONCAT(id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) LIKE @search";
 
     public string SqlFindByUsername =>
-        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa " +
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE alias = @alias";
+
+    public string SqlFindIdEmpresa => "SELECT id_empresa FROM miembros_empresa WHERE id = @id";
+    
+    public List<SqlParameter> ParametersFindIdEmpresa(long id)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id", id)
+        };
+        return parameters;
+    }
+
+    public MiembroEmpresa MapOnlyIdEmpresa(SqlDataReader reader)
+    {
+        return new()
+        {
+            Empresa = EmpresaQuery.Instance.FindByIdWithoutUser(reader.GetInt64(0))
+        };
+    }
 
     public List<SqlParameter> ParametersInsert(MiembroEmpresa entity)
     {
@@ -119,7 +138,8 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
             Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
             Direccion = reader.GetString(7),
-            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(8))
+            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(8)),
+            Password = reader.GetString(9)
         };
     }
 

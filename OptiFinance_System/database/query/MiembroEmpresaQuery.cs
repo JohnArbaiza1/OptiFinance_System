@@ -82,8 +82,23 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
 
     public MiembroEmpresa? FindById(long id)
     {
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
+        MiembroEmpresa? miembroEmpresa = QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(),
+            Params.SqlFindById, MapEntity,
             Params.ParametersFindById(id));
+
+        if (miembroEmpresa == null) return null;
+        if (miembroEmpresa.Empresa != null) return miembroEmpresa;
+        Console.WriteLine("Empresa es nullable");
+        MiembroEmpresa? aux = QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindIdEmpresa,
+            Params.MapOnlyIdEmpresa, Params.ParametersFindIdEmpresa(id));
+        miembroEmpresa.Empresa = aux?.Empresa;
+        return miembroEmpresa;
+    }
+
+    private MiembroEmpresa? GetEmpresa(long id)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindIdEmpresa, MapEntity,
+            Params.ParametersFindIdEmpresa(id));
     }
 
     public List<MiembroEmpresa> SelectAll()

@@ -222,7 +222,7 @@ public partial class Form1 : Form
 
         if (!ValidarUsuario(_usuario, _pass))
         {
-            Message.MessageViewError(@"Usuario o contraseña incorrecta");
+            Message.MessageViewError(@"Usuario o contraseña incorrectadfasdsa");
             return;
         }
 
@@ -235,17 +235,37 @@ public partial class Form1 : Form
         Usuario? curentUser = UsuarioQuery.Instance.FindByUsername(_usuario);
         if (curentUser == null)
         {
-            Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
-            // Global.SelectedUser = Global.SelectedMiembroEmpresa!.Empresa!.Usuario;
-            Global.SelectedEmpresa = Global.SelectedMiembroEmpresa!.Empresa;
+            MiembroEmpresa? member = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
+            if (member == null)
+            {
+                Message.MessageViewError(@"Usuario no encontrado");
+                return;
+            }
+            
+            Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindById(member.Id);
+            
+            if (Global.SelectedMiembroEmpresa == null)
+            {
+                Message.MessageViewError(@"Miembro empresa no encontrado");
+                return;
+            }
+            Global.IsSelectedMiembroEmpresa = true;
+            Global.SelectedEmpresa = Global.SelectedMiembroEmpresa.Empresa ?? null;
+            
+            if (Global.SelectedEmpresa == null)
+            {
+                Message.MessageViewError(@"Empresa no encontrada");
+                return;
+            }
+            Global.IsSelectedEmpresa = true;
+            Global.SelectedUser = Global.SelectedEmpresa.Usuario;
         }
         else
         {
             Global.SelectedUser = curentUser;
         }
 
-        // Console.WriteLine(@"Usuario: " + Global.SelectedUser);
-        // Console.WriteLine(@"Miembro Empresa: " + Global.SelectedMiembroEmpresa);
+        Global.IsSelectedUser = true;
 
         Hide();
         Principal menu = new();

@@ -24,6 +24,10 @@ public class EmpresaParams : IQueriesString<Empresa>
     public string SqlFindById =>
         "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
         "FROM empresas WHERE id = @id and id_usuario = @id_usuario";
+    
+    public string SqlFindByIdWithoutUser =>
+        "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
+        "FROM empresas WHERE id = @id";
 
     public string SqlSelectAll =>
         "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
@@ -100,6 +104,15 @@ public class EmpresaParams : IQueriesString<Empresa>
         List<SqlParameter> parameters = new()
         {
             new("@search", $"%{search}%")
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByIdWithoutUser(long id)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id", id)
         };
         return parameters;
     }
