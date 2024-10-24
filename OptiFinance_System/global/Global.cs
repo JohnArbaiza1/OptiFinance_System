@@ -11,4 +11,5 @@ public class Global
     public static Empresa? SelectedEmpresa { get; set; } = null;
     public static bool IsSelectedEmpresa { get; set; } = false;
     public static List<GiroEconomico>? ListGirosEconomicos { get; set; } = null;
+    public static List<Usuario>? listUsuarios { get; set; } = null;
 }

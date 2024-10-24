@@ -14,9 +14,6 @@ public class Usuario : People
 
     public override string ToString()
     {
-        return
-            $"{nameof(Id)}: {Id}, {nameof(Nombres)}: {Nombres}, {nameof(Apellidos)}: {Apellidos}, " +
-            $"{nameof(Alias)}: {Alias}, {nameof(Email)}: {Email}, {nameof(Password)}: {Password}, " +
-            $"{nameof(Telefono)}: {Telefono}, {nameof(Direccion)}: {Direccion}, {nameof(TipoUsuario)}: {TipoUsuario}";
+        return Nombres;
     }
 }
