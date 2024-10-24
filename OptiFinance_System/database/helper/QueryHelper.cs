@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Data.SqlClient;
 using Message = OptiFinance_System.utils.Message;
 
 namespace OptiFinance_System.database.helper;
@@ -22,6 +23,36 @@ public static class QueryHelper
             return false;
         }
     }
+
+    public static T? ExecuteNonQueryWithResult<T>(SqlConnection connection, string query, List<SqlParameter> parameters, Func<SqlDataReader, T> func, SqlTransaction? transaction = null)
+    {
+        T? result = default;
+        try
+        {
+            using (SqlCommand command = new(query, connection, transaction))
+            {
+                command.Parameters.AddRange(parameters.ToArray());
+
+                // Ejecutar la consulta con ExecuteReader para obtener el resultado
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        // Mapear el resultado al objeto de tipo T
+                        result = func(reader);
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            throw new Exception(@"Error en la consulta SQL: " + e.Message);
+        }
+
+        return result;
+    }
+
+
 
     public static bool ExecuteInTransaction(SqlConnection connection, Func<SqlTransaction, bool> operation)
     {
@@ -59,6 +90,12 @@ public static class QueryHelper
         SqlTransaction? transaction = null)
     {
         return ExecuteNonQuery(connection, query, parameters, transaction);
+    }
+
+    public static T? ExecuteInsertWithResult<T>(SqlConnection connection, string query, List<SqlParameter> parameters,
+        Func<SqlDataReader, T> func, SqlTransaction? transaction = null)
+    {
+        return ExecuteNonQueryWithResult(connection, query, parameters, func, transaction);
     }
 
     public static bool ExecuteUpdate(SqlConnection connection, string query, List<SqlParameter> parameters,

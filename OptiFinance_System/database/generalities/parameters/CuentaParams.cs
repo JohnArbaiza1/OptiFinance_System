@@ -32,7 +32,7 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         {
             new("@codigo", entity.Codigo),
             new("@nombre", entity.Nombre),
-            new("@id_tipo_cuenta", entity.TipoCuenta?.Id),
+            new("@id_tipo_cuenta", entity.TipoCuenta?.Id ?? 0),
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;

@@ -9,6 +9,9 @@ public class PartidaParams : IQueriesString<Partida>
 {
     public string SqlInsert =>
         "INSERT INTO partidas (detalles, fecha, id_empresa) VALUES (@detalles, @fecha, @id_empresa)";
+    
+    public string SqlInsertWithResult => 
+    "INSERT INTO partidas (detalles, fecha, id_empresa) OUTPUT INSERTED.id, INSERTED.detalles, INSERTED.fecha, INSERTED.id_empresa VALUES (@detalles, @fecha, @id_empresa)";
 
     public string SqlUpdate =>
         "UPDATE partidas SET detalles = @detalles, fecha = @fecha, id_empresa = @id_empresa WHERE id = @id";
@@ -22,6 +25,17 @@ public class PartidaParams : IQueriesString<Partida>
                                   "WHERE CONCAT(id, detalles, fecha, id_empresa) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(Partida entity)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@detalles", entity.Detalles),
+            new("@fecha", entity.Fecha),
+            new("@id_empresa", entity.Empresa?.Id)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersInsertWithResult(Partida entity)
     {
         List<SqlParameter> parameters = new()
         {

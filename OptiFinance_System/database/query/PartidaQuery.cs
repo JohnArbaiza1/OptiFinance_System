@@ -27,6 +27,12 @@ public class PartidaQuery : IQueryEstandar<Partida>
         return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
             Params.ParametersInsert(entity), transaction);
     }
+    
+    public Partida? InsertWithResult(Partida entity, SqlTransaction? transaction = null)
+    {
+        return QueryHelper.ExecuteInsertWithResult(_connectionInstance.GetSqlConnection(), Params.SqlInsertWithResult,
+            Params.ParametersInsertWithResult(entity), MapEntity, transaction);
+    }
 
     public bool Insert(List<Partida> entities)
     {
