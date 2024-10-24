@@ -28,8 +28,8 @@ public class RegistroParams : IQueriesString<Registro>
         {
             new("@debe", entity.Debe),
             new("@haber", entity.Haber),
-            new("@id_cuenta", entity.Cuenta?.Id),
-            new("@id_partida", entity.Partida?.Id)
+            new("@id_cuenta", entity.Cuenta?.Id ?? 0),
+            new("@id_partida", entity.Partida?.Id ?? 0)
         };
         return parameters;
     }
@@ -40,8 +40,8 @@ public class RegistroParams : IQueriesString<Registro>
         {
             new("@debe", entity.Debe),
             new("@haber", entity.Haber),
-            new("@id_cuenta", entity.Cuenta?.Id),
-            new("@id_partida", entity.Partida?.Id),
+            new("@id_cuenta", entity.Cuenta?.Id ?? 0),
+            new("@id_partida", entity.Partida?.Id ?? 0),
             new("@id", entity.Id)
         };
         return parameters;
@@ -74,7 +74,7 @@ public class RegistroParams : IQueriesString<Registro>
         return parameters;
     }
 
-    public List<SqlParameter> SelectAllParameters(Partida entity)
+    public List<SqlParameter> ParametersSelectAll(Partida entity)
     {
         List<SqlParameter> parameters = new()
         {
@@ -90,8 +90,8 @@ public class RegistroParams : IQueriesString<Registro>
             Id = reader.GetInt64(0),
             Debe = reader.GetDecimal(1),
             Haber = reader.GetDecimal(2),
-            Cuenta = CuentaQuery.Instance.FindById(reader.GetInt64(3)),
-            Partida = PartidaQuery.Instance.FindById(reader.GetInt64(4))
+            Cuenta = new(){Id = reader.GetInt64(3)},
+            Partida = new(){Id = reader.GetInt64(4)}
         };
     }
 }

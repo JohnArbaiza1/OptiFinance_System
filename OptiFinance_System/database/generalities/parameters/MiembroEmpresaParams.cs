@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using global::OptiFinance_System.global;
 using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -23,7 +24,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
 
     public string SqlFindById =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
-        "FROM miembros_empresa WHERE id = @id";
+        "FROM miembros_empresa WHERE id = @id and id_empresa = @id_empresa";
 
     public string SqlSelectAll =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
@@ -31,11 +32,12 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
 
     public string SqlSearchAll =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password FROM miembros_empresa " +
-        "WHERE CONCAT(id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) LIKE @search";
+        "WHERE CONCAT(id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa) LIKE @search " +
+        "AND id_empresa = @id_empresa";
 
     public string SqlFindByUsername =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
-        "FROM miembros_empresa WHERE alias = @alias";
+        "FROM miembros_empresa WHERE alias = @alias AND id_empresa = @id_empresa";
 
     public string SqlFindIdEmpresa => "SELECT id_empresa FROM miembros_empresa WHERE id = @id";
     
@@ -103,7 +105,8 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id", id)
+            new("@id", id),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
@@ -112,7 +115,8 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@search", $"%{search}%")
+            new("@search", $"%{search}%"),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
@@ -138,7 +142,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
             Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
             Direccion = reader.GetString(7),
-            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(8)),
+            Empresa = new() { Id = reader.GetInt64(8) },
             Password = reader.GetString(9)
         };
     }
@@ -162,7 +166,8 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@alias", username)
+            new("@alias", username),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }

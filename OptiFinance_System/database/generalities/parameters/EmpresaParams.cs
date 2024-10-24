@@ -1,5 +1,6 @@
 ﻿using OptiFinance_System.global;
 using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -47,7 +48,7 @@ public class EmpresaParams : IQueriesString<Empresa>
             new("@direccion", entity.Direccion),
             new("@telefono", entity.Telefono),
             new("@email", entity.Email),
-            new("@id_usuario", Global.SelectedUser!.Id),
+            new("@id_usuario", Global.SelectedUser?.Id ?? 0),
             new("@id_distrito", entity.Distrito?.Id),
             new("@id_giro_economico", entity.GiroEconomico?.Id)
         };
@@ -64,7 +65,7 @@ public class EmpresaParams : IQueriesString<Empresa>
             new("@direccion", entity.Direccion),
             new("@telefono", entity.Telefono),
             new("@email", entity.Email),
-            new("@id_usuario", entity.Usuario?.Id),
+            new("@id_usuario", Global.SelectedUser?.Id ?? 0),
             new("@id_distrito", entity.Distrito?.Id),
             new("@id", entity.Id)
         };
@@ -94,7 +95,7 @@ public class EmpresaParams : IQueriesString<Empresa>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id_usuario", Global.SelectedUser!.Id)
+            new("@id_usuario", Global.SelectedUser?.Id ?? 0)
         };
         return parameters;
     }
@@ -121,16 +122,16 @@ public class EmpresaParams : IQueriesString<Empresa>
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1),
-            Nit = reader.IsDBNull(2) ? null : reader.GetString(2),
-            RepresentanteLegal = reader.GetString(3),
-            Direccion = reader.IsDBNull(4) ? null : reader.GetString(4),
-            Telefono = reader.GetString(5),
-            Email = reader.GetString(6),
-            Usuario = UsuarioQuery.Instance.FindById(reader.GetInt64(7)),
-            Distrito = DistritoQuery.Instance.FindById(reader.GetInt64(8)),
-            GiroEconomico = GiroEconomicoQuery.Instance.FindById(reader.GetInt64(9))
+            Id = reader.GetInt64(EmpresaField.Id),
+            Nombre = reader.GetString(EmpresaField.Nombre),
+            Nit = reader.IsDBNull(EmpresaField.Nit) ? null : reader.GetString(EmpresaField.Nit),
+            RepresentanteLegal = reader.GetString(EmpresaField.RepresentanteLegal),
+            Direccion = reader.IsDBNull(EmpresaField.Direccion) ? null : reader.GetString(EmpresaField.Direccion),
+            Telefono = reader.GetString(EmpresaField.Telefono),
+            Email = reader.GetString(EmpresaField.Email),
+            Usuario = new(){Id = reader.GetInt64(EmpresaField.IdUsuario)},
+            Distrito = new(){Id = reader.GetInt64(EmpresaField.IdDistrito)},
+            GiroEconomico = new(){Id = reader.GetInt64(EmpresaField.IdGiroEconomico)}
         };
     }
 }

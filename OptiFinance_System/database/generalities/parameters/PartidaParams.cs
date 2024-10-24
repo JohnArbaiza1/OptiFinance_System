@@ -1,4 +1,4 @@
-﻿using global::OptiFinance_System.global;
+﻿using OptiFinance_System.global;
 using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
@@ -10,20 +10,21 @@ public class PartidaParams : IQueriesString<Partida>
 {
     public string SqlInsert =>
         "INSERT INTO partidas (detalles, fecha, id_empresa) VALUES (@detalles, @fecha, @id_empresa)";
-    
-    public string SqlInsertWithResult => 
-    "INSERT INTO partidas (detalles, fecha, id_empresa) OUTPUT INSERTED.id, INSERTED.detalles, INSERTED.fecha, INSERTED.id_empresa VALUES (@detalles, @fecha, @id_empresa)";
+
+    public string SqlInsertWithResult =>
+        "INSERT INTO partidas (detalles, fecha, id_empresa) " +
+        "OUTPUT INSERTED.id, INSERTED.detalles, INSERTED.fecha, INSERTED.id_empresa VALUES (@detalles, @fecha, @id_empresa)";
 
     public string SqlUpdate =>
         "UPDATE partidas SET detalles = @detalles, fecha = @fecha, id_empresa = @id_empresa WHERE id = @id";
 
     public string SqlDelete => "DELETE FROM partidas WHERE id = @id";
-    public string SqlFindById => "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id = @id";
+    public string SqlFindById => "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id = @id and id_empresa = @id_empresa";
 
     public string SqlSelectAll => "SELECT id, detalles, fecha, id_empresa FROM partidas WHERE id_empresa = @id_empresa";
 
     public string SqlSearchAll => "SELECT id, detalles, fecha, id_empresa FROM partidas " +
-                                  "WHERE CONCAT(id, detalles, fecha, id_empresa) LIKE @search";
+                                  "WHERE CONCAT(id, detalles, fecha, id_empresa) LIKE @search AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersInsert(Partida entity)
     {
@@ -35,7 +36,7 @@ public class PartidaParams : IQueriesString<Partida>
         };
         return parameters;
     }
-    
+
     public List<SqlParameter> ParametersInsertWithResult(Partida entity)
     {
         List<SqlParameter> parameters = new()
@@ -72,7 +73,8 @@ public class PartidaParams : IQueriesString<Partida>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id", id)
+            new("@id", id),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
@@ -81,7 +83,8 @@ public class PartidaParams : IQueriesString<Partida>
     {
         List<SqlParameter> parameters = new()
         {
-            new("@search", $"%{search}%")
+            new("@search", $"%{search}%"),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
@@ -107,7 +110,7 @@ public class PartidaParams : IQueriesString<Partida>
         };
     }
 
-    public List<SqlParameter> SelectAllParameters(Empresa entity)
+    public List<SqlParameter> ParametersSelectAll(Empresa entity)
     {
         List<SqlParameter> parameters = new()
         {
