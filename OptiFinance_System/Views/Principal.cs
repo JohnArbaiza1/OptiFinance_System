@@ -1,11 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 using OptiFinance_System.global;
+using OptiFinance_System.global.database;
 
 namespace OptiFinance_System.Views;
 
 public partial class Principal : Form
 {
-    private const int ADMIN = 1;
     public Principal()
     {
         AutoScaleMode = AutoScaleMode.Dpi;
@@ -87,7 +87,7 @@ public partial class Principal : Form
 
         //Validamos las opciones que se mostraran segun el id del tipo de usuario
         if (Global.SelectedUser == null) return;
-        if (Global.SelectedUser.TipoUsuario!.Id == ADMIN)
+        if (Global.SelectedUser.TipoUsuario!.Id == UserTypes.Admin)
         {
             //Hacemos invisibles las demas opciones para el admin
             btnCuentas.Visible = false;
