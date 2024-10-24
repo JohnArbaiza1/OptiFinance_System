@@ -2,6 +2,6 @@
 
 public class TipoUsuarioField
 {
-    public const string Id = "id";
-    public const string Nombre = "nombre";
+    public const int Id = 0;
+    public const int Nombre = 1;
 }

@@ -2,14 +2,14 @@
 
 public class EmpresaField
 {
-    public const string Id = "id";
-    public const string Nombre = "nombre";
-    public const string Nit = "nit";
-    public const string Direccion = "direccion";
-    public const string Telefono = "telefono";
-    public const string Email = "email";
-    public const string IdUsuario = "id_usuario";
-    public const string IdDistrito = "id_distrito";
-    public const string IdGiroEconomico = "id_giro_economico";
-    
+    public const int Id = 0;
+    public const int Nombre = 1;
+    public const int Nit = 2;
+    public const int RepresentanteLegal = 3;
+    public const int Direccion = 4;
+    public const int Telefono = 5;
+    public const int Email = 6;
+    public const int IdUsuario = 7;
+    public const int IdDistrito = 8;
+    public const int IdGiroEconomico = 9;
 }

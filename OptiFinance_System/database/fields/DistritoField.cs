@@ -2,7 +2,7 @@
 
 public class DistritoField
 {
-    public const string Id = "id";
-    public const string Nombre = "nombre";
-    public const string IdMunicipio = "id_municipio";
+    public const int Id = 0;
+    public const int Nombre = 1;
+    public const int IdMunicipio = 2;
 }

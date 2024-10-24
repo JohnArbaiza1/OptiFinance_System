@@ -2,8 +2,8 @@
 
 public class PartidaField
 {
-    public const string Id = "id";
-    public const string Detalles = "detalles";
-    public const string Fecha = "fecha";
-    public const string IdEmpresa = "id_empresa";
+    public const int Id = 0;
+    public const int Detalles = 1;
+    public const int Fecha = 2;
+    public const int IdEmpresa = 3;
 }

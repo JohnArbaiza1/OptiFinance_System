@@ -2,7 +2,7 @@
 
 public class DepartamentoField
 {
-    public const string Id = "id";
-    public const string Nombre = "nombre";
-    public const string Codigo = "codigo";
+    public const int Id = 0;
+    public const int Nombre = 1;
+    public const int Codigo = 2;
 }

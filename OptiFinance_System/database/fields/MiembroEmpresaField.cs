@@ -2,14 +2,14 @@
 
 public class MiembroEmpresaField
 {
-    public const string Id = "id";
-    public const string Nombres = "nombres";
-    public const string Apellidos = "apellidos";
-    public const string Alias = "alias";
-    public const string Dui = "dui";
-    public const string CorreoElectronico = "correo_electronico";
-    public const string Telefono = "telefono";
-    public const string Direccion = "direccion";
-    public const string IdEmpresa = "id_empresa";
-    public const string Password = "password";
+    public const int Id = 0;
+    public const int Nombres = 1;
+    public const int Apellidos = 2;
+    public const int Alias = 3;
+    public const int Dui = 4;
+    public const int CorreoElectronico = 5;
+    public const int Telefono = 6;
+    public const int Direccion = 7;
+    public const int IdEmpresa = 8;
+    public const int Password = 9;
 }

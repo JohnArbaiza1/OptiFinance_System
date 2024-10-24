@@ -2,9 +2,9 @@
 
 public class RegistroField
 {
-    public const string Id = "id";
-    public const string Debe = "debe";
-    public const string Haber = "haber";
-    public const string IdCuenta = "id_cuenta";
-    public const string IdPartida = "id_partida";
+    public const int Id = 0;
+    public const int Debe = 1;
+    public const int Haber = 2;
+    public const int IdCuenta = 3;
+    public const int IdPartida = 4;
 }
