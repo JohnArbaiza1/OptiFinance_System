@@ -10,6 +10,6 @@ public class Cuenta
 
     public override string ToString()
     {
-        return $"{nameof(Id)}: {Id}, {nameof(Codigo)}: {Codigo}, {nameof(TipoCuenta)}: {TipoCuenta}";
+        return Nombre;
     }
 }
