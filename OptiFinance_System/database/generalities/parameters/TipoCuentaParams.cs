@@ -31,6 +31,16 @@ public class TipoCuentaParams : IQueriesString<TipoCuenta>
         };
         return parameters;
     }
+    
+    public string SqlSelectByName => "SELECT id, nombre FROM tipo_cuenta WHERE nombre = @nombre";
+    public List<SqlParameter> ParametersSelectByName(string name)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@nombre", name)
+        };
+        return parameters;
+    }
 
     public List<SqlParameter> ParametersDelete(long id)
     {

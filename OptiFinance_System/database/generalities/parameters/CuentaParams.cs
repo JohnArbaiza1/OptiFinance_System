@@ -4,10 +4,11 @@ using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
+using OptiFinance_System.global.database;
 
 namespace OptiFinance_System.database.generalities.parameters;
 
-public class CuentaParams : IQueriesString<Cuenta>
+public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta>
 {
     public string SqlInsert =>
         "INSERT INTO cuentas (codigo, nombre, id_tipo_cuenta, id_empresa) VALUES (@codigo, @nombre, @id_tipo_cuenta, @id_empresa)";
@@ -119,5 +120,83 @@ public class CuentaParams : IQueriesString<Cuenta>
             Nombre = reader.GetString(2),
             TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3))
         };
+    }
+
+    public string SqlselectByTypeActivo => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+
+    public List<SqlParameter> ParametersSelectByTypeActivo()
+    {
+        TipoCuenta? tipoCuenta = TipoCuentaQuery.Instance.FindByName(AccountTypes.Activo);
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_tipo_cuenta", tipoCuenta?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
+
+    public string SqlselectByTypePasivo => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+
+    public List<SqlParameter> ParametersSelectByTypePasivo()
+    {
+        TipoCuenta? tipoCuenta = TipoCuentaQuery.Instance.FindByName(AccountTypes.Pasivo);
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_tipo_cuenta", tipoCuenta?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
+
+    public string SqlselectByTypeCapital => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+
+    public List<SqlParameter> ParametersSelectByTypeCapital()
+    {
+        TipoCuenta? tipoCuenta = TipoCuentaQuery.Instance.FindByName(AccountTypes.Capital);
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_tipo_cuenta", tipoCuenta?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
+
+    public string SqlselectByTypeDeudora => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+
+    public List<SqlParameter> ParametersSelectByTypeDeudora()
+    {
+        TipoCuenta? tipoCuenta = TipoCuentaQuery.Instance.FindByName(AccountTypes.Deudora);
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_tipo_cuenta", tipoCuenta?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
+
+    public string SqlselectByTypeAcreedora => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+
+    public List<SqlParameter> ParametersSelectByTypeAcreedora()
+    {
+        TipoCuenta? tipoCuenta = TipoCuentaQuery.Instance.FindByName(AccountTypes.Acreedora);
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_tipo_cuenta", tipoCuenta?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
+
+    public string SqlselectByTypePuenteCierre => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+
+    public List<SqlParameter> ParametersSelectByTypePuenteCierre()
+    {
+        TipoCuenta? tipoCuenta = TipoCuentaQuery.Instance.FindByName(AccountTypes.PuenteCierre);
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_tipo_cuenta", tipoCuenta?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
     }
 }

@@ -8,7 +8,7 @@ using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.database.query;
 
-public class CuentaQuery : IQueryEstandar<Cuenta>
+public class CuentaQuery : IQueryEstandar<Cuenta>, IQueryAccounts<Cuenta>
 {
     private static readonly Lazy<CuentaQuery> _instance = new(() => new());
 
@@ -107,5 +107,41 @@ public class CuentaQuery : IQueryEstandar<Cuenta>
     public Cuenta MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);
+    }
+
+    public List<Cuenta> SelectAllByTypeActivo()
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlselectByTypeActivo,
+            Params.MapSelectAll, Params.ParametersSelectByTypeActivo());
+    }
+
+    public List<Cuenta> SelectAllByTypePasivo()
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlselectByTypePasivo,
+            Params.MapSelectAll, Params.ParametersSelectByTypePasivo());
+    }
+
+    public List<Cuenta> SelectAllByTypeCapital()
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlselectByTypeCapital,
+            Params.MapSelectAll, Params.ParametersSelectByTypeCapital());
+    }
+
+    public List<Cuenta> SelectAllByTypeDeudora()
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlselectByTypeDeudora,
+            Params.MapSelectAll, Params.ParametersSelectByTypeDeudora());
+    }
+
+    public List<Cuenta> SelectAllByTypeAcreedora()
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlselectByTypeAcreedora,
+            Params.MapSelectAll, Params.ParametersSelectByTypeAcreedora());
+    }
+
+    public List<Cuenta> SelectAllByTypePuenteCierre()
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlselectByTypePuenteCierre,
+            Params.MapSelectAll, Params.ParametersSelectByTypePuenteCierre());
     }
 }
