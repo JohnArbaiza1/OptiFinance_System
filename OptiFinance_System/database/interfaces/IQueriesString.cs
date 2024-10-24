@@ -10,10 +10,12 @@ public interface IQueriesString<T>
     string SqlDelete { get; }
     string SqlFindById { get; }
     string SqlSelectAll { get; }
+    string SqlSearchAll { get; }
     List<SqlParameter> ParametersInsert(T entity);
     List<SqlParameter> ParametersUpdate(T entity);
     List<SqlParameter> ParametersDelete(long id);
     List<SqlParameter> ParametersFindById(long id, Usuario? user = null);
+    List<SqlParameter> ParametersSearchAll(string search);
 
     T Map(SqlDataReader reader);
 }

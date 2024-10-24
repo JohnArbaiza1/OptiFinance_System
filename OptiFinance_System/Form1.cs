@@ -1,5 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using OptiFinance_System.global;
 using OptiFinance_System.database.connection;
 using OptiFinance_System.database.generalities;
 using OptiFinance_System.database.generalities.parameters;
@@ -8,13 +10,14 @@ using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 using OptiFinance_System.utils;
 using OptiFinance_System.Views;
+using Message = OptiFinance_System.utils.Message;
 using Registro = OptiFinance_System.Views.Registro;
 
 namespace OptiFinance_System;
 
 public partial class Form1 : Form
 {
-    public static Usuario currentUser = new();
+    public static Usuario? currentUser = new();
     private string _pass = "";
 
     //Variables
@@ -27,15 +30,13 @@ public partial class Form1 : Form
 
     private static void CargarDatos()
     {
-        var queryBuilder = new QueryBuilder<Empresa>()
+        QueryBuilder<Empresa> queryBuilder = new QueryBuilder<Empresa>()
             .SelectAll()
-            .Where("nombre", "nose" );
+            .Where("nombre", "nose");
 
         Connection.Instance.OpenConnection();
-        List<Empresa> departamentos = queryBuilder.ExecuteQuery(Connection.Instance.GetSqlConnection(), Queries.EmpresaParams.Map);
-        
-        departamentos.ForEach(Console.WriteLine);
-
+        List<Empresa> departamentos =
+            queryBuilder.ExecuteQuery(Connection.Instance.GetSqlConnection(), Queries.EmpresaParams.Map);
     }
 
     private void InsertarUsuarios()
@@ -84,37 +85,55 @@ public partial class Form1 : Form
         string municipiosJson = File.ReadAllText(jsonPath);
         List<Municipio>? municipios = DeserializeJson<Municipio>(municipiosJson);
         if (municipios == null) return;
-        municipios.ForEach(municipio =>
-            municipio.Departamento = DepartamentoQuery.Instance.FindByName(municipio.Departamento.Nombre)!);
+        municipios.ForEach(entity =>
+            entity.Departamento = DepartamentoQuery.Instance.FindByName(entity.Departamento!.Nombre));
         if (MunicipioQuery.Instance.Insert(municipios)) MessageBox.Show(@"Municipios registrados correctamente");
     }
 
+    [SuppressMessage("ReSharper.DPA", "DPA0000: DPA issues")]
     private void InsertarDistritos()
     {
-        string distritosJsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources",
-            "distritos.json");
+        string distritosJsonPath =
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources", "distritos.json");
+
+        Console.WriteLine(distritosJsonPath);
 
         if (!File.Exists(distritosJsonPath))
         {
-            MessageBox.Show(@"No se encontró el archivo distritos.json");
+            MessageBox.Show(@"No se encontró el archivo json");
             return;
         }
 
         string distritosJson = File.ReadAllText(distritosJsonPath);
 
         List<Distrito>? distritos = JsonSerializer.Deserialize<List<Distrito>>(distritosJson);
-        if (distritos == null) return;
-        distritos.ForEach(distrito =>
-            distrito.Municipio = MunicipioQuery.Instance.FindByName(distrito.Municipio.Nombre)!);
+        distritos!.ForEach(distrito =>
+            distrito.Municipio = MunicipioQuery.Instance.FindByName(distrito.Municipio!.Nombre));
         if (DistritoQuery.Instance.Insert(distritos)) MessageBox.Show(@"Distritos registrados correctamente");
+    }
+
+    private void InsertarGirosEconomicos()
+    {
+        string girosPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database", "resources", "giros.json");
+        Console.WriteLine(girosPath);
+
+        if (!File.Exists(girosPath))
+        {
+            MessageBox.Show(@"No se encontró el archivo giros.json");
+            return;
+        }
+
+        string girosJson = File.ReadAllText(girosPath);
+
+        List<GiroEconomico>? giros = JsonSerializer.Deserialize<List<GiroEconomico>>(girosJson);
+        if (GiroEconomicoQuery.Instance.Insert(giros!)) MessageBox.Show(@"Giros económicos registrados correctamente");
     }
 
     private static bool ValidarUsuario(string username, string password)
     {
-        Usuario? usuario = UsuarioQuery.Instance.FindByUsername(username);
-        if (!Validations.UserExist(usuario)) return false;
-        MessageBox.Show(@"Usuario o contraseña incorrectos");
-        return false;
+        People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
+                          MiembroEmpresaQuery.Instance.FindByUsername(username);
+        return Validations.UserExist(usuario);
     }
 
     //Nos permite mover la ventana del formulario a traves de la barra de titulo
@@ -134,10 +153,29 @@ public partial class Form1 : Form
         ReleaseCapture();
         SendMessage(Handle, 0x112, 0xf012, 0);
     }
+    private void agregarCuentas()
+    {
+        var cuentas = new List<TipoCuenta> {
+            new TipoCuenta { Nombre = "Cuentas de resultado Deudora" },
+            new TipoCuenta { Nombre = "Cuentas de resultado Acreedora" },
+            new TipoCuenta { Nombre = "Cuentas de puente de cierre" }
+        };
+        bool result = TipoCuentaQuery.Instance.Insert(cuentas);
+        if (result)
+        {
+            MessageBox.Show("Cuentas agregadas");
+        }
+        else
+        {
+            MessageBox.Show("Error al agregar las cuentas");
+        }
+    }
 
     private void Form1_Load(object sender, EventArgs e)
     {
-        // CargarDatos();
+        // InsertarDistritos();
+        // InsertarGirosEconomicos();
+        //agregarCuentas();
     }
 
     private void txtUser_Enter(object sender, EventArgs e)
@@ -168,30 +206,18 @@ public partial class Form1 : Form
         txtPassword.ForeColor = Color.Goldenrod;
     }
 
-    private bool SigningSucces(Usuario? user, string password)
+    private bool SigningSucces(string usermame, string password)
     {
-        if (!Validations.UserExist(user)) return false;
-        return Validations.ComparePasswordHash(password, user!.Password);
+        Usuario? usuario = UsuarioQuery.Instance.FindByUsername(usermame);
+
+        if (usuario != null) return Validations.ComparePasswordHash(password, usuario.Password);
+        MiembroEmpresa? miembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(usermame);
+        return miembroEmpresa != null && Validations.ComparePasswordHash(password, miembroEmpresa.Password);
     }
 
     private void btnIngresar_Click(object sender, EventArgs e)
     {
-        _usuario = txtUser.Text;
-        _pass = txtPassword.Text;
-        Usuario? usuario = UsuarioQuery.Instance.FindByUsername(_usuario);
-        Console.WriteLine(usuario);
-        if (!SigningSucces(usuario, _pass))
-        {
-            MessageBox.Show(@"Usuario o contraseña incorrectos");
-            return;
-        }
-
-        currentUser = usuario!;
-        Hide();
-        Principal menu = new();
-        menu.Show();
-        //evento que se dispara cuando el formulario Principal se cierra.
-        menu.FormClosed += (s, args) => Close();
+        Ingresar();
     }
 
     private void lblRegistro_Click(object sender, EventArgs e)
@@ -199,5 +225,70 @@ public partial class Form1 : Form
         Registro registro = new();
         registro.Show();
         Hide();
+    }
+
+    private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar != (int)Keys.Enter) return;
+        Ingresar();
+    }
+
+    private void Ingresar()
+    {
+        _usuario = txtUser.Text;
+        _pass = txtPassword.Text;
+
+        if (!ValidarUsuario(_usuario, _pass))
+        {
+            Message.MessageViewError(@"Usuario o contraseña incorrectadfasdsa");
+            return;
+        }
+
+        if (!SigningSucces(_usuario, _pass))
+        {
+            Message.MessageViewError(@"Usuario o contraseña incorrecta");
+            return;
+        }
+
+        Usuario? curentUser = UsuarioQuery.Instance.FindByUsername(_usuario);
+        if (curentUser == null)
+        {
+            MiembroEmpresa? member = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
+            if (member == null)
+            {
+                Message.MessageViewError(@"Usuario no encontrado");
+                return;
+            }
+
+            Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindById(member.Id);
+
+            if (Global.SelectedMiembroEmpresa == null)
+            {
+                Message.MessageViewError(@"Miembro empresa no encontrado");
+                return;
+            }
+            Global.IsSelectedMiembroEmpresa = true;
+            Global.SelectedEmpresa = Global.SelectedMiembroEmpresa.Empresa ?? null;
+
+            if (Global.SelectedEmpresa == null)
+            {
+                Message.MessageViewError(@"Empresa no encontrada");
+                return;
+            }
+            Global.IsSelectedEmpresa = true;
+            Global.SelectedUser = Global.SelectedEmpresa.Usuario;
+        }
+        else
+        {
+            Global.SelectedUser = curentUser;
+        }
+
+        Global.IsSelectedUser = true;
+
+        Hide();
+        Principal menu = new();
+        menu.Show();
+        //evento que se dispara cuando el formulario Principal se cierra.
+        menu.FormClosed += (s, args) => Close();
     }
 }

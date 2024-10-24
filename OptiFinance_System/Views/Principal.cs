@@ -1,9 +1,11 @@
 ﻿using System.Runtime.InteropServices;
+using OptiFinance_System.global;
 
 namespace OptiFinance_System.Views;
 
 public partial class Principal : Form
 {
+    private const int ADMIN = 1;
     public Principal()
     {
         AutoScaleMode = AutoScaleMode.Dpi;
@@ -24,16 +26,16 @@ public partial class Principal : Form
 
     #region Parte donde se trabaja la logica del panel contenedor de formularios
 
-    public void abrirF<MiForm>() where MiForm : Form, new()
+    public void abrirF<TMiForm>() where TMiForm : Form, new()
     {
-        Form formulario;
+        Form? formulario;
         //Buscara en la coleccion el formulario si el formulario o instancia no existe
-        formulario = panelContenedor.Controls.OfType<MiForm>().FirstOrDefault();
+        formulario = panelContenedor.Controls.OfType<TMiForm>().FirstOrDefault();
 
         if (formulario == null)
         {
             //Creamos una nueva instancia
-            formulario = new MiForm();
+            formulario = new TMiForm();
             //Indicamos que el formulario que se use sera secundario
             formulario.TopLevel = false;
             //Nos permetira que el formulario se acople al panel contenedor
@@ -67,6 +69,13 @@ public partial class Principal : Form
             btnIngresarPartida.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["IngresarCuentas"] == null) btnIngresarCuenta.BackColor = Color.FromArgb(34, 53, 80);
         if (Application.OpenForms["CatalogoCuentas"] == null) btnCatalogo.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["libroMayor"] == null) btnMayor.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["balanceGeneral"] == null) btnBGeneral.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["SeleccionEmpresa"] == null)
+            btnSeleccionarEmpresa.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["estado_Resultado"] == null) btnEResultados.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["razones_Liquidez"] == null) btnRLiquidez.BackColor = Color.FromArgb(34, 53, 80);
+        if (Application.OpenForms["Miembros"] == null) btnMiembros.BackColor = Color.FromArgb(34, 53, 80);
     }
 
     #endregion
@@ -75,39 +84,50 @@ public partial class Principal : Form
     private void Principal_Load(object sender, EventArgs e)
     {
         btnInicio_Click(null, e);
-        //========================================================
-        //Para la opcion de cuentas
-        btnCuentas.Location = new(0, 190);
-        btnLibros.Location = new(0, 260);
-        PanelCuentas.Hide();
-        //Para la opcion de libros
-        btnEstados.Location = new(0, 330);
-        panelLibros.Hide();
-        //Para la opcion de estados
-        btnRLiquidez.Location = new(0, 400);
-        panelEstados.Hide();
-        btnIngresarPartida.Location = new(0, 470);
-        btnUsuarios.Location = new(0, 540);
-        btnInfo.Location = new(0, 610);
-        btnSalir.Location = new(0, 830);
-    }
 
-    private void btnIngresarPartida_Click(object sender, EventArgs e)
-    {
-        abrirF<RegistrarPartidas>();
-        btnIngresarPartida.BackColor = Color.FromArgb(215, 143, 35);
-    }
+        //Validamos las opciones que se mostraran segun el id del tipo de usuario
+        if (Global.SelectedUser == null) return;
+        if (Global.SelectedUser.TipoUsuario!.Id == ADMIN)
+        {
+            //Hacemos invisibles las demas opciones para el admin
+            btnCuentas.Visible = false;
+            btnLibros.Visible = false;
+            btnEstados.Visible = false;
+            btnRLiquidez.Visible = false;
+            btnIngresarPartida.Visible = false;
+            btnEmpresas.Visible = false;
+            PanelCuentas.Visible = false;
+            panelLibros.Visible = false;
+            panelEstados.Visible = false;
+            panelEmpresa.Visible = false;
+            //Reposicionamos los buttons de las opciones que el admin manejara
+            btnUsuarios.Location = new(0, 190);
+            btnCuentas.Location = new(0, 540);
+            btnSalir.Location = new(0, 830);
+            //Llamamos a los metodos
+            reajustesMenu();
+            notificaciones();
+            
+            btnLibros.Location = new(0, 700);
+        }
+        else if(Global.SelectedMiembroEmpresa == null)
+        {
+            buttonsPosition();
+            //Ajustes de la validacion
+            btnUsuarios.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 540);
+            btnUsuarios.Visible = false;
+        }
+        else
+        {
+            //Llamamos a los metodos
+            buttonsPosition();
+            reajustesMenu();
+            btnUsuarios.Visible = false;
+            btnEmpresas.Visible = false;
+            panelEmpresa.Visible = false;
 
-    private void btnIngresarCuenta_Click(object sender, EventArgs e)
-    {
-        abrirF<IngresarCuentas>();
-        btnIngresarCuenta.BackColor = Color.FromArgb(215, 143, 35);
-    }
-
-    private void btnCatalogo_Click(object sender, EventArgs e)
-    {
-        abrirF<CatalogoCuentas>();
-        btnCatalogo.BackColor = Color.FromArgb(215, 143, 35);
+        }
     }
 
     #region Varibles Empleadas
@@ -243,13 +263,80 @@ public partial class Principal : Form
 
     #endregion
 
+    #region Metodos
+    private void buttonsPosition()
+    {
+        btnCuentas.Location = new(0, 190);
+        btnLibros.Location = new(0, 260);
+        PanelCuentas.Hide();
+        //Para la opcion de libros
+        btnEstados.Location = new(0, 330);
+        panelLibros.Hide();
+        //Para la opcion de estados
+        btnRLiquidez.Location = new(0, 400);
+        panelEstados.Hide();
+        btnIngresarPartida.Location = new(0, 470);
+        btnSalir.Location = new(0, 830);
+        panelEmpresa.Hide();
+    }
+
+    private void reajustesMenu()
+    {
+        //Ajustes necesarios
+        panelMenu.AutoSize = false; //Desactivamos el ajuste automatico
+        panelMenu.Size = new(381, 900); //Fijamos un tamaño especifico
+        panelMenu.AutoScroll = false; // Desactivamos el scroll automático
+    }
+
+    //Metodo para crear el button de notificaciones
+    private Button notificaciones()
+    {
+        //Creamos el button de notificacion
+        Button btnNotificacion = new();
+
+        // Configuramos las propiedades del botón
+        btnNotificacion.Name = "btnNotificacion";
+        btnNotificacion.Text = "Notificaciónes";
+        btnNotificacion.Size = new(380, 67);
+        btnNotificacion.BackColor = Color.FromArgb(34, 53, 80);
+        btnNotificacion.ForeColor = Color.White;
+        btnNotificacion.FlatStyle = FlatStyle.Flat;
+        btnNotificacion.FlatAppearance.BorderSize = 0;
+        btnNotificacion.Font = new("Bookman Old Style", 12, FontStyle.Bold);
+        btnNotificacion.TextAlign = ContentAlignment.MiddleLeft;
+        btnNotificacion.Padding = new Padding(16, 0, 0, 0);
+        // Evento para cambiar color cuando el ratón pasa sobre el botón
+        btnNotificacion.MouseEnter += (sender, e) =>
+        {
+            btnNotificacion.BackColor = Color.FromArgb(215, 143, 35); // Restaurar el color original
+        };
+
+        // Evento para restaurar el color cuando el ratón sale del botón
+        btnNotificacion.MouseLeave += (sender, e) =>
+        {
+            btnNotificacion.BackColor = Color.FromArgb(34, 53, 80); // Restaurar el color original
+        };
+
+        // Esto es una prueba
+        btnNotificacion.Click += (sender, e) => { MessageBox.Show("Has hecho clic en Notificación"); };
+        //Agregamos el botón al panel
+        panelMenu.Controls.Add(btnNotificacion);
+        //Reposicionamos por si acaso XD
+        btnNotificacion.Location = new(0, 260);
+
+        return btnNotificacion;
+    }
+    #endregion
+
     #region Buttons del menu
 
+    //=================================| Inicio |===================================
     private void btnInicio_Click(object sender, EventArgs e)
     {
         abrirF<Inicio>();
     }
 
+    //=================================| Salir |===================================
     private void btnSalir_Click(object sender, EventArgs e)
     {
         //Almacenamos la respuesta del usuario en una variable
@@ -271,8 +358,7 @@ public partial class Principal : Form
             btnEstados.Location = new(0, 330);
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
-            btnUsuarios.Location = new(0, 540);
-            btnInfo.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 540);
         }
         else
         {
@@ -281,8 +367,7 @@ public partial class Principal : Form
             btnEstados.Location = new(0, 465);
             btnRLiquidez.Location = new(0, 535);
             btnIngresarPartida.Location = new(0, 604);
-            btnUsuarios.Location = new(0, 674);
-            btnInfo.Location = new(0, 738);
+            btnEmpresas.Location = new(0, 674);
         }
 
         btnCuentas.Location = new(0, 190);
@@ -299,8 +384,7 @@ public partial class Principal : Form
             btnEstados.Location = new(0, 330);
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
-            btnUsuarios.Location = new(0, 540);
-            btnInfo.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 540);
         }
         else
         {
@@ -308,8 +392,7 @@ public partial class Principal : Form
             btnEstados.Location = new(0, 465);
             btnRLiquidez.Location = new(0, 530);
             btnIngresarPartida.Location = new(0, 600);
-            btnUsuarios.Location = new(0, 665);
-            btnInfo.Location = new(0, 735);
+            btnEmpresas.Location = new(0, 665);
         }
 
         btnLibros.Location = new(0, 257);
@@ -325,22 +408,59 @@ public partial class Principal : Form
             panelEstados.Visible = false;
             btnRLiquidez.Location = new(0, 400);
             btnIngresarPartida.Location = new(0, 470);
-            btnUsuarios.Location = new(0, 540);
-            btnInfo.Location = new(0, 610);
+            btnEmpresas.Location = new(0, 540);
         }
         else
         {
             panelEstados.Visible = true;
             btnRLiquidez.Location = new(0, 545);
             btnIngresarPartida.Location = new(0, 610);
-            btnUsuarios.Location = new(0, 680);
-            btnInfo.Location = new(0, 750);
-            btnSalir.Location = new(0, 830);
+            btnEmpresas.Location = new(0, 680);
         }
 
         btnEstados.Location = new(0, 332);
         panelEstados.Location = new(0, 400);
     }
+
+    //=================================| Empresas |===================================
+    private void btnEmpresas_Click(object sender, EventArgs e)
+    {
+        if (panelEmpresa.Visible)
+        {
+            panelEmpresa.Visible = false;
+        }
+        else
+        {
+            panelEmpresa.Visible = true;
+            btnSalir.Location = new(0, 830);
+        }
+
+        btnEmpresas.Location = new(0, 540);
+        panelEmpresa.Location = new(0, 610);
+    }
+
+    //=================================| Partidas |===================================
+    private void btnIngresarPartida_Click(object sender, EventArgs e)
+    {
+        abrirF<RegistrarPartidas>();
+        btnIngresarPartida.BackColor = Color.FromArgb(215, 143, 35);
+    }
+
+    //=================================| Cuentas |===================================
+    private void btnIngresarCuenta_Click(object sender, EventArgs e)
+    {
+        abrirF<IngresarCuentas>();
+        btnIngresarCuenta.BackColor = Color.FromArgb(215, 143, 35);
+    }
+
+    //=================================| Catalogo |===================================
+    private void btnCatalogo_Click(object sender, EventArgs e)
+    {
+        abrirF<CatalogoCuentas>();
+        btnCatalogo.BackColor = Color.FromArgb(215, 143, 35);
+    }
+
+    //=================================| Usuarios |===================================
 
     private void btnUsuarios_Click(object sender, EventArgs e)
     {
@@ -348,16 +468,60 @@ public partial class Principal : Form
         btnUsuarios.BackColor = Color.FromArgb(215, 143, 35);
     }
 
+    //=================================| Info Empresa |================================
     private void btnInfo_Click(object sender, EventArgs e)
     {
         abrirF<InfoEmpresacs>();
-        btnInfo.BackColor = Color.FromArgb(215, 143, 35);
+        btnInfo.BackColor = Color.FromArgb(254, 214, 0);
     }
 
+    //==============================| Libro Diario |===================================
     private void btnDiario_Click(object sender, EventArgs e)
     {
         abrirF<libriDiario>();
         btnDiario.BackColor = Color.FromArgb(254, 214, 0);
+    }
+
+    //===============================| Libro Mayor |===================================
+    private void btnMayor_Click(object sender, EventArgs e)
+    {
+        abrirF<libroMayor>();
+        btnMayor.BackColor = Color.FromArgb(254, 214, 0);
+    }
+
+    //==============================| Balance General |================================
+    private void btnBGeneral_Click(object sender, EventArgs e)
+    {
+        abrirF<balanceGeneral>();
+        btnBGeneral.BackColor = Color.FromArgb(254, 214, 0);
+    }
+
+    //=============================| Seleccionar Empresa |==============================
+    private void btnSeleccionarEmpresa_Click(object sender, EventArgs e)
+    {
+        abrirF<SeleccionEmpresa>();
+        btnSeleccionarEmpresa.BackColor = Color.FromArgb(254, 214, 0);
+    }
+
+    //=============================| Estado de Resultados |==============================
+    private void btnEResultados_Click(object sender, EventArgs e)
+    {
+        abrirF<estado_Resultado>();
+        btnEResultados.BackColor = Color.FromArgb(254, 214, 0);
+    }
+
+    //=============================| Razones de Liquidez |==============================
+    private void btnRLiquidez_Click(object sender, EventArgs e)
+    {
+        abrirF<razones_Liquidez>();
+        btnRLiquidez.BackColor = Color.FromArgb(215, 143, 35);
+    }
+
+    //=============================| Miembros |==============================
+    private void btnMiembros_Click(object sender, EventArgs e)
+    {
+        abrirF<Miembros>();
+        btnMiembros.BackColor = Color.FromArgb(254, 214, 0);
     }
 
     #endregion

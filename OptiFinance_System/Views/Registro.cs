@@ -56,6 +56,22 @@ public partial class Registro : Form
             TipoUsuario = TipoUsuarioQuery.Instance.FindById(2)
         };
 
+        MiembroEmpresa miembroEmpresa = new()
+        {
+            Alias = username,
+            Apellidos = apellidos,
+            Nombres = nombres,
+            Direccion = "Prueba",
+            Password = Utilities.HashPassword(password),
+            Empresa = new()
+            {
+                Id = 12
+            },
+            Telefono = "70108769",
+            Correo = email,
+            Dui = "07347846-1"
+        };
+
         bool result = UsuarioQuery.Instance.Insert(user);
         if (result)
             Message.MessageViewSuccess(@"Usuario registrado correctamente");

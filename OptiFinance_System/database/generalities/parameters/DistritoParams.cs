@@ -7,14 +7,16 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class DistritoParams : IQueriesString<Distrito>
 {
-    public string SqlInsert { get; } = "INSERT INTO distritos (nombre, id_municipio) VALUES (@nombre, @id_municipio)";
+    public string SqlInsert => "INSERT INTO distritos (nombre, id_municipio) VALUES (@nombre, @id_municipio)";
 
-    public string SqlUpdate { get; } =
-        "UPDATE distritos SET nombre = @nombre, id_municipio = @id_municipio WHERE id = @id";
+    public string SqlUpdate => "UPDATE distritos SET nombre = @nombre, id_municipio = @id_municipio WHERE id = @id";
 
-    public string SqlDelete { get; } = "DELETE FROM distritos WHERE id = @id";
-    public string SqlFindById { get; } = "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
-    public string SqlSelectAll { get; } = "SELECT id, nombre, id_municipio FROM distritos";
+    public string SqlDelete => "DELETE FROM distritos WHERE id = @id";
+    public string SqlFindById => "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
+    public string SqlSelectAll => "SELECT id, nombre, id_municipio FROM distritos";
+
+    public string SqlSearchAll =>
+        "SELECT id, nombre, id_municipio FROM distritos WHERE CONCAT(id, nombre, id_municipio) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(Distrito entity)
     {
@@ -55,6 +57,15 @@ public class DistritoParams : IQueriesString<Distrito>
         return parameters;
     }
 
+    public List<SqlParameter> ParametersSearchAll(string search)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@search", $"%{search}%")
+        };
+        return parameters;
+    }
+
     public Distrito Map(SqlDataReader reader)
     {
         Distrito distrito = new()
@@ -62,6 +73,16 @@ public class DistritoParams : IQueriesString<Distrito>
             Id = reader.GetInt64(0),
             Nombre = reader.GetString(1),
             Municipio = MunicipioQuery.Instance.FindById(reader.GetInt64(2))
+        };
+        return distrito;
+    }
+
+    public Distrito MapSelectAll(SqlDataReader reader)
+    {
+        Distrito distrito = new()
+        {
+            Id = reader.GetInt64(0),
+            Nombre = reader.GetString(1)
         };
         return distrito;
     }

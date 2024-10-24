@@ -6,9 +6,10 @@ public class Cuenta
     public string Nombre { get; set; } = string.Empty;
     public string Codigo { get; set; } = string.Empty;
     public TipoCuenta? TipoCuenta { get; set; } = null;
+    public Empresa? Empresa { get; set; } = null;
 
     public override string ToString()
     {
-        return $"{nameof(Id)}: {Id}, {nameof(Codigo)}: {Codigo}, {nameof(TipoCuenta)}: {TipoCuenta}";
+        return Nombre;
     }
 }

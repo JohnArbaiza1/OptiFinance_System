@@ -90,7 +90,14 @@ public class DistritoQuery : IQueryEstandar<Distrito>
 
     public List<Distrito> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll,
+            Params.MapSelectAll);
+    }
+
+    public List<Distrito> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
     }
 
     public Distrito MapEntity(SqlDataReader reader)

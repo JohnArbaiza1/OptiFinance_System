@@ -6,11 +6,12 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class TipoUsuarioParams : IQueriesString<TipoUsuario>
 {
-    public string SqlInsert { get; } = "INSERT INTO tipo_usuario (nombre) VALUES (@nombre)";
-    public string SqlUpdate { get; } = "UPDATE tipo_usuario SET nombre = @nombre WHERE id = @id";
-    public string SqlDelete { get; } = "DELETE FROM tipo_usuario WHERE id = @id";
-    public string SqlFindById { get; } = "SELECT id, nombre FROM tipo_usuario WHERE id = @id";
-    public string SqlSelectAll { get; } = "SELECT id, nombre FROM tipo_usuario";
+    public string SqlInsert => "INSERT INTO tipo_usuario (nombre) VALUES (@nombre)";
+    public string SqlUpdate => "UPDATE tipo_usuario SET nombre = @nombre WHERE id = @id";
+    public string SqlDelete => "DELETE FROM tipo_usuario WHERE id = @id";
+    public string SqlFindById => "SELECT id, nombre FROM tipo_usuario WHERE id = @id";
+    public string SqlSelectAll => "SELECT id, nombre FROM tipo_usuario";
+    public string SqlSearchAll => "SELECT id, nombre FROM tipo_usuario WHERE CONCAT(id, nombre) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(TipoUsuario entity)
     {
@@ -45,6 +46,15 @@ public class TipoUsuarioParams : IQueriesString<TipoUsuario>
         List<SqlParameter> parameters = new()
         {
             new("@id", id)
+        };
+        return parameters;
+    }
+
+    public List<SqlParameter> ParametersSearchAll(string search)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@search", $"%{search}%")
         };
         return parameters;
     }

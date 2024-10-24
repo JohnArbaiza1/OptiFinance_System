@@ -91,6 +91,12 @@ public class PartidaQuery : IQueryEstandar<Partida>
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
+    public List<Partida> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
+    }
+
     public Partida MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);

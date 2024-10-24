@@ -8,6 +8,6 @@ public class Municipio
 
     public override string ToString()
     {
-        return $"{nameof(Id)}: {Id}, {nameof(Nombre)}: {Nombre}, {nameof(Departamento)}: {Departamento}";
+        return Nombre;
     }
 }

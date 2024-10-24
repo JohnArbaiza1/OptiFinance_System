@@ -4,7 +4,16 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\balanceGeneral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\busquedaGiro.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\CatalogoCuentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\estado_Resultado.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\InfoEmpresacs.cs">
@@ -19,13 +28,25 @@
     <Compile Update="Views\libriDiario.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\libroMayor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Miembros.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\razones_Liquidez.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\RegistrarPartidas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\Registro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\SeleccionEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\Usuarios.cs">

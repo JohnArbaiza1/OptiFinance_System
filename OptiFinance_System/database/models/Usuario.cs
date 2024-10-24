@@ -1,6 +1,6 @@
 ﻿namespace OptiFinance_System.database.models;
 
-public class Usuario
+public class Usuario : People
 {
     public long Id { get; set; }
     public string Nombres { get; set; } = string.Empty;
@@ -14,9 +14,6 @@ public class Usuario
 
     public override string ToString()
     {
-        return
-            $"{nameof(Id)}: {Id}, {nameof(Nombres)}: {Nombres}, {nameof(Apellidos)}: {Apellidos}, " +
-            $"{nameof(Alias)}: {Alias}, {nameof(Email)}: {Email}, {nameof(Password)}: {Password}, " +
-            $"{nameof(Telefono)}: {Telefono}, {nameof(Direccion)}: {Direccion}, {nameof(TipoUsuario)}: {TipoUsuario}";
+        return Nombres;
     }
 }

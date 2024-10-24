@@ -89,7 +89,14 @@ public class MunicipioQuery : IQueryEstandar<Municipio>
 
     public List<Municipio> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll,
+            Params.MapSelectAll);
+    }
+
+    public List<Municipio> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
     }
 
     public Municipio MapEntity(SqlDataReader reader)

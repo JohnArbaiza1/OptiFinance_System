@@ -30,13 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             barraTitulo = new Panel();
+            pictureSelectEmpresa = new PictureBox();
             opcionesBarraTitulo = new Panel();
             btnMaximo = new PictureBox();
             btnRestaurar = new PictureBox();
             btnMenos = new PictureBox();
             btnBarraTituloCerrar = new PictureBox();
             panelMenu = new Panel();
+            panelEmpresa = new Panel();
+            panel9 = new Panel();
+            btnMiembros = new Button();
+            panel10 = new Panel();
+            panel11 = new Panel();
+            btnSeleccionarEmpresa = new Button();
             btnInfo = new Button();
+            btnEmpresas = new Button();
             btnUsuarios = new Button();
             btnSalir = new Button();
             btnEstados = new Button();
@@ -66,12 +74,14 @@
             panelContenedor = new Panel();
             panelRedireccion = new Panel();
             barraTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureSelectEmpresa).BeginInit();
             opcionesBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMaximo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnRestaurar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMenos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnBarraTituloCerrar).BeginInit();
             panelMenu.SuspendLayout();
+            panelEmpresa.SuspendLayout();
             panelEstados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             PanelCuentas.SuspendLayout();
@@ -82,13 +92,24 @@
             // barraTitulo
             // 
             barraTitulo.BackColor = Color.Goldenrod;
+            barraTitulo.Controls.Add(pictureSelectEmpresa);
             barraTitulo.Controls.Add(opcionesBarraTitulo);
             barraTitulo.Dock = DockStyle.Top;
-            barraTitulo.Location = new Point(380, 0);
+            barraTitulo.Location = new Point(381, 0);
             barraTitulo.Name = "barraTitulo";
-            barraTitulo.Size = new Size(1270, 50);
+            barraTitulo.Size = new Size(1269, 50);
             barraTitulo.TabIndex = 0;
             barraTitulo.MouseDown += barraTitulo_MouseDown;
+            // 
+            // pictureSelectEmpresa
+            // 
+            pictureSelectEmpresa.Image = (Image)resources.GetObject("pictureSelectEmpresa.Image");
+            pictureSelectEmpresa.Location = new Point(3, 0);
+            pictureSelectEmpresa.Name = "pictureSelectEmpresa";
+            pictureSelectEmpresa.Size = new Size(65, 50);
+            pictureSelectEmpresa.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureSelectEmpresa.TabIndex = 1;
+            pictureSelectEmpresa.TabStop = false;
             // 
             // opcionesBarraTitulo
             // 
@@ -97,7 +118,7 @@
             opcionesBarraTitulo.Controls.Add(btnMenos);
             opcionesBarraTitulo.Controls.Add(btnBarraTituloCerrar);
             opcionesBarraTitulo.Dock = DockStyle.Right;
-            opcionesBarraTitulo.Location = new Point(1029, 0);
+            opcionesBarraTitulo.Location = new Point(1028, 0);
             opcionesBarraTitulo.Name = "opcionesBarraTitulo";
             opcionesBarraTitulo.Size = new Size(241, 50);
             opcionesBarraTitulo.TabIndex = 2;
@@ -150,7 +171,8 @@
             // 
             panelMenu.AutoScroll = true;
             panelMenu.BackColor = Color.FromArgb(34, 53, 80);
-            panelMenu.Controls.Add(btnInfo);
+            panelMenu.Controls.Add(panelEmpresa);
+            panelMenu.Controls.Add(btnEmpresas);
             panelMenu.Controls.Add(btnUsuarios);
             panelMenu.Controls.Add(btnSalir);
             panelMenu.Controls.Add(btnEstados);
@@ -166,8 +188,85 @@
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(380, 900);
+            panelMenu.Size = new Size(381, 900);
             panelMenu.TabIndex = 1;
+            // 
+            // panelEmpresa
+            // 
+            panelEmpresa.Controls.Add(panel9);
+            panelEmpresa.Controls.Add(btnMiembros);
+            panelEmpresa.Controls.Add(panel10);
+            panelEmpresa.Controls.Add(panel11);
+            panelEmpresa.Controls.Add(btnSeleccionarEmpresa);
+            panelEmpresa.Controls.Add(btnInfo);
+            panelEmpresa.Location = new Point(3, 1106);
+            panelEmpresa.Name = "panelEmpresa";
+            panelEmpresa.Size = new Size(377, 209);
+            panelEmpresa.TabIndex = 17;
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(254, 214, 0);
+            panel9.Location = new Point(0, 146);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(10, 64);
+            panel9.TabIndex = 20;
+            // 
+            // btnMiembros
+            // 
+            btnMiembros.FlatAppearance.BorderSize = 0;
+            btnMiembros.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnMiembros.FlatStyle = FlatStyle.Flat;
+            btnMiembros.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMiembros.ForeColor = Color.White;
+            btnMiembros.Image = (Image)resources.GetObject("btnMiembros.Image");
+            btnMiembros.ImageAlign = ContentAlignment.MiddleLeft;
+            btnMiembros.Location = new Point(0, 143);
+            btnMiembros.Name = "btnMiembros";
+            btnMiembros.Padding = new Padding(16, 0, 0, 0);
+            btnMiembros.Size = new Size(383, 67);
+            btnMiembros.TabIndex = 19;
+            btnMiembros.Text = "   Miembros";
+            btnMiembros.TextAlign = ContentAlignment.MiddleLeft;
+            btnMiembros.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnMiembros.UseVisualStyleBackColor = true;
+            btnMiembros.Click += btnMiembros_Click;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.FromArgb(254, 214, 0);
+            panel10.Location = new Point(0, 3);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(10, 64);
+            panel10.TabIndex = 15;
+            // 
+            // panel11
+            // 
+            panel11.BackColor = Color.FromArgb(254, 214, 0);
+            panel11.Location = new Point(0, 75);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(10, 64);
+            panel11.TabIndex = 16;
+            // 
+            // btnSeleccionarEmpresa
+            // 
+            btnSeleccionarEmpresa.FlatAppearance.BorderSize = 0;
+            btnSeleccionarEmpresa.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnSeleccionarEmpresa.FlatStyle = FlatStyle.Flat;
+            btnSeleccionarEmpresa.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSeleccionarEmpresa.ForeColor = Color.White;
+            btnSeleccionarEmpresa.Image = (Image)resources.GetObject("btnSeleccionarEmpresa.Image");
+            btnSeleccionarEmpresa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSeleccionarEmpresa.Location = new Point(-6, 70);
+            btnSeleccionarEmpresa.Name = "btnSeleccionarEmpresa";
+            btnSeleccionarEmpresa.Padding = new Padding(16, 0, 0, 0);
+            btnSeleccionarEmpresa.Size = new Size(383, 67);
+            btnSeleccionarEmpresa.TabIndex = 18;
+            btnSeleccionarEmpresa.Text = "   Seleccionar Empresa";
+            btnSeleccionarEmpresa.TextAlign = ContentAlignment.MiddleLeft;
+            btnSeleccionarEmpresa.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSeleccionarEmpresa.UseVisualStyleBackColor = true;
+            btnSeleccionarEmpresa.Click += btnSeleccionarEmpresa_Click;
             // 
             // btnInfo
             // 
@@ -178,16 +277,36 @@
             btnInfo.ForeColor = Color.White;
             btnInfo.Image = (Image)resources.GetObject("btnInfo.Image");
             btnInfo.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInfo.Location = new Point(3, 1036);
+            btnInfo.Location = new Point(-3, 0);
             btnInfo.Name = "btnInfo";
             btnInfo.Padding = new Padding(16, 0, 0, 0);
-            btnInfo.Size = new Size(380, 67);
+            btnInfo.Size = new Size(386, 67);
             btnInfo.TabIndex = 16;
-            btnInfo.Text = "   Información de la empresa";
+            btnInfo.Text = "Información de la  empresa";
             btnInfo.TextAlign = ContentAlignment.MiddleLeft;
             btnInfo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnInfo.UseVisualStyleBackColor = true;
             btnInfo.Click += btnInfo_Click;
+            // 
+            // btnEmpresas
+            // 
+            btnEmpresas.FlatAppearance.BorderSize = 0;
+            btnEmpresas.FlatAppearance.MouseOverBackColor = Color.FromArgb(215, 143, 35);
+            btnEmpresas.FlatStyle = FlatStyle.Flat;
+            btnEmpresas.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEmpresas.ForeColor = Color.White;
+            btnEmpresas.Image = (Image)resources.GetObject("btnEmpresas.Image");
+            btnEmpresas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEmpresas.Location = new Point(-3, 1036);
+            btnEmpresas.Name = "btnEmpresas";
+            btnEmpresas.Padding = new Padding(16, 0, 0, 0);
+            btnEmpresas.Size = new Size(380, 67);
+            btnEmpresas.TabIndex = 16;
+            btnEmpresas.Text = "   Empresas";
+            btnEmpresas.TextAlign = ContentAlignment.MiddleLeft;
+            btnEmpresas.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEmpresas.UseVisualStyleBackColor = true;
+            btnEmpresas.Click += btnEmpresas_Click;
             // 
             // btnUsuarios
             // 
@@ -218,7 +337,7 @@
             btnSalir.ForeColor = Color.White;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
             btnSalir.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSalir.Location = new Point(0, 1114);
+            btnSalir.Location = new Point(3, 1320);
             btnSalir.Name = "btnSalir";
             btnSalir.Padding = new Padding(16, 0, 0, 0);
             btnSalir.Size = new Size(380, 67);
@@ -287,6 +406,7 @@
             btnRLiquidez.TextAlign = ContentAlignment.MiddleLeft;
             btnRLiquidez.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRLiquidez.UseVisualStyleBackColor = true;
+            btnRLiquidez.Click += btnRLiquidez_Click;
             // 
             // btnLibros
             // 
@@ -376,6 +496,7 @@
             btnBGeneral.TextAlign = ContentAlignment.MiddleLeft;
             btnBGeneral.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBGeneral.UseVisualStyleBackColor = true;
+            btnBGeneral.Click += btnBGeneral_Click;
             // 
             // btnEResultados
             // 
@@ -395,6 +516,7 @@
             btnEResultados.TextAlign = ContentAlignment.MiddleLeft;
             btnEResultados.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEResultados.UseVisualStyleBackColor = true;
+            btnEResultados.Click += btnEResultados_Click;
             // 
             // btnInicio
             // 
@@ -576,21 +698,22 @@
             btnMayor.Location = new Point(3, 67);
             btnMayor.Name = "btnMayor";
             btnMayor.Padding = new Padding(16, 0, 0, 0);
-            btnMayor.Size = new Size(348, 67);
+            btnMayor.Size = new Size(374, 67);
             btnMayor.TabIndex = 5;
             btnMayor.Text = "   Libro Mayor";
             btnMayor.TextAlign = ContentAlignment.MiddleLeft;
             btnMayor.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMayor.UseVisualStyleBackColor = true;
+            btnMayor.Click += btnMayor_Click;
             // 
             // panelContenedor
             // 
             panelContenedor.BackColor = Color.White;
             panelContenedor.Controls.Add(panelRedireccion);
             panelContenedor.Dock = DockStyle.Fill;
-            panelContenedor.Location = new Point(380, 50);
+            panelContenedor.Location = new Point(381, 50);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1270, 850);
+            panelContenedor.Size = new Size(1269, 850);
             panelContenedor.TabIndex = 2;
             panelContenedor.MouseDown += panelContenedor_MouseDown;
             panelContenedor.MouseMove += panelContenedor_MouseMove;
@@ -600,7 +723,7 @@
             // 
             panelRedireccion.Anchor = AnchorStyles.None;
             panelRedireccion.BackColor = Color.White;
-            panelRedireccion.Location = new Point(1161, 765);
+            panelRedireccion.Location = new Point(1160, 765);
             panelRedireccion.Name = "panelRedireccion";
             panelRedireccion.Size = new Size(118, 85);
             panelRedireccion.TabIndex = 0;
@@ -622,12 +745,14 @@
             Text = "Principal";
             Load += Principal_Load;
             barraTitulo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureSelectEmpresa).EndInit();
             opcionesBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)btnMaximo).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnRestaurar).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnMenos).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnBarraTituloCerrar).EndInit();
             panelMenu.ResumeLayout(false);
+            panelEmpresa.ResumeLayout(false);
             panelEstados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             PanelCuentas.ResumeLayout(false);
@@ -674,5 +799,13 @@
         private Panel panelEstados;
         private Button btnUsuarios;
         private Button btnInfo;
+        private Panel panelEmpresa;
+        private Button btnEmpresas;
+        private Panel panel11;
+        private Panel panel10;
+        private Button btnSeleccionarEmpresa;
+        private Button btnMiembros;
+        private Panel panel9;
+        private PictureBox pictureSelectEmpresa;
     }
 }

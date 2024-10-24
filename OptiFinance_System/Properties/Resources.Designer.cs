@@ -60,6 +60,16 @@ namespace OptiFinance_System.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] boton_de_notificaciones {
+            get {
+                object obj = ResourceManager.GetObject("boton-de-notificaciones", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap sin_fondo {

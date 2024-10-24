@@ -37,6 +37,7 @@
             lblFecha = new Label();
             horaFecha = new System.Windows.Forms.Timer(components);
             panel1 = new Panel();
+            lblEmpresa = new Label();
             panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -47,11 +48,11 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Bookman Old Style", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Bookman Old Style", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(35, 55, 80);
-            label1.Location = new Point(497, 55);
+            label1.Location = new Point(490, 55);
             label1.Name = "label1";
-            label1.Size = new Size(295, 52);
+            label1.Size = new Size(286, 52);
             label1.TabIndex = 0;
             label1.Text = "Hola Mundo";
             // 
@@ -59,11 +60,11 @@
             // 
             label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
-            label2.Font = new Font("Bookman Old Style", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Bookman Old Style", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(35, 55, 80);
-            label2.Location = new Point(469, 107);
+            label2.Location = new Point(471, 107);
             label2.Name = "label2";
-            label2.Size = new Size(343, 52);
+            label2.Size = new Size(325, 52);
             label2.TabIndex = 1;
             label2.Text = "Bienvenidos a";
             // 
@@ -82,11 +83,11 @@
             // 
             lblHora.Anchor = AnchorStyles.Bottom;
             lblHora.AutoSize = true;
-            lblHora.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHora.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             lblHora.ForeColor = Color.FromArgb(35, 55, 80);
-            lblHora.Location = new Point(544, 631);
+            lblHora.Location = new Point(555, 702);
             lblHora.Name = "lblHora";
-            lblHora.Size = new Size(228, 40);
+            lblHora.Size = new Size(221, 41);
             lblHora.TabIndex = 3;
             lblHora.Text = "Hola Mundo";
             // 
@@ -94,11 +95,11 @@
             // 
             lblFecha.Anchor = AnchorStyles.Bottom;
             lblFecha.AutoSize = true;
-            lblFecha.Font = new Font("Bookman Old Style", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblFecha.Font = new Font("Bookman Old Style", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblFecha.ForeColor = Color.FromArgb(35, 55, 80);
-            lblFecha.Location = new Point(458, 682);
+            lblFecha.Location = new Point(461, 754);
             lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(189, 32);
+            lblFecha.Size = new Size(182, 33);
             lblFecha.TabIndex = 4;
             lblFecha.Text = "Hola Mundo";
             // 
@@ -109,6 +110,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(lblEmpresa);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblFecha);
@@ -120,11 +122,23 @@
             panel1.Size = new Size(1287, 850);
             panel1.TabIndex = 5;
             // 
+            // lblEmpresa
+            // 
+            lblEmpresa.Anchor = AnchorStyles.Top;
+            lblEmpresa.AutoSize = true;
+            lblEmpresa.Font = new Font("Bookman Old Style", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            lblEmpresa.ForeColor = Color.FromArgb(35, 55, 80);
+            lblEmpresa.Location = new Point(542, 172);
+            lblEmpresa.Name = "lblEmpresa";
+            lblEmpresa.Size = new Size(194, 45);
+            lblEmpresa.TabIndex = 6;
+            lblEmpresa.Text = "Empresa";
+            // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.Controls.Add(pictureBox1);
-            panel2.Location = new Point(350, 162);
+            panel2.Location = new Point(355, 220);
             panel2.Name = "panel2";
             panel2.Size = new Size(596, 466);
             panel2.TabIndex = 5;
@@ -156,5 +170,6 @@
         private System.Windows.Forms.Timer horaFecha;
         private Panel panel1;
         private Panel panel2;
+        private Label lblEmpresa;
     }
 }

@@ -94,6 +94,12 @@ public class RegistroQuery : IQueryEstandar<Registro>
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
+    public List<Registro> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
+    }
+
     public Registro MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);

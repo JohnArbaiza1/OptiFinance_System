@@ -9,9 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Formularios\**"/>
-        <EmbeddedResource Remove="Formularios\**"/>
-        <None Remove="Formularios\**"/>
+        <Compile Remove="Formularios\**" />
+        <EmbeddedResource Remove="Formularios\**" />
+        <None Remove="Formularios\**" />
         <None Update="database\resources\departamentos.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
@@ -20,6 +20,18 @@
         </None>
         <None Update="database\resources\municipios.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="database\resources\giros.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="database\resources\accounts\activos.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="database\resources\accounts\capital.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="database\resources\accounts\pasivos.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 
@@ -30,9 +42,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3"/>
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -48,6 +61,10 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="database\export\" />
     </ItemGroup>
 
 </Project>

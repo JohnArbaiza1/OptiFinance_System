@@ -75,7 +75,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
         {
             return ids.Select(id => Params.ParametersDelete(id))
                 .Select(list => QueryHelper.ExecuteDelete(_connectionInstance.GetSqlConnection(),
-                    Params.SqlInsert, list, transaction))
+                    Params.SqlDelete, list, transaction))
                 .All(result => result);
         });
     }
@@ -96,6 +96,12 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
+    public List<Usuario> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
+    }
+
     public Usuario MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);
@@ -103,7 +109,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public Usuario? FindByUsername(string username)
     {
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.FindByUsernameSql, MapEntity,
-            Params.FindByUsernameParameters(username));
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsername, MapEntity,
+            Params.ParametersFindByUsername(username));
     }
 }

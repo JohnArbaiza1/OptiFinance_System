@@ -8,6 +8,6 @@ public class Distrito
 
     public override string ToString()
     {
-        return Nombre;
+        return Nombre + " - " + Id;
     }
 }

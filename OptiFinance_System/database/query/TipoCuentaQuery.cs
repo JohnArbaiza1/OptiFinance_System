@@ -86,9 +86,21 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
             Params.ParametersFindById(id));
     }
 
+    public TipoCuenta? FindByName(string name)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlSelectByName, MapEntity,
+            Params.ParametersSelectByName(name));
+    }
+
     public List<TipoCuenta> SelectAll()
     {
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+    }
+
+    public List<TipoCuenta> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
     }
 
     public TipoCuenta MapEntity(SqlDataReader reader)

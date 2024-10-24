@@ -6,11 +6,12 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class TipoCuentaParams : IQueriesString<TipoCuenta>
 {
-    public string SqlInsert { get; } = "INSERT INTO tipo_cuenta (nombre) VALUES (@nombre)";
-    public string SqlUpdate { get; } = "UPDATE tipo_cuenta SET nombre = @nombre WHERE id = @id";
-    public string SqlDelete { get; } = "DELETE FROM tipo_cuenta WHERE id = @id";
-    public string SqlFindById { get; } = "SELECT id, nombre FROM tipo_cuenta WHERE id = @id";
-    public string SqlSelectAll { get; } = "SELECT id, nombre FROM tipo_cuenta";
+    public string SqlInsert => "INSERT INTO tipo_cuenta (nombre) VALUES (@nombre)";
+    public string SqlUpdate => "UPDATE tipo_cuenta SET nombre = @nombre WHERE id = @id";
+    public string SqlDelete => "DELETE FROM tipo_cuenta WHERE id = @id";
+    public string SqlFindById => "SELECT id, nombre FROM tipo_cuenta WHERE id = @id";
+    public string SqlSelectAll => "SELECT id, nombre FROM tipo_cuenta";
+    public string SqlSearchAll => "SELECT id, nombre FROM tipo_cuenta WHERE CONCAT(id, nombre) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(TipoCuenta entity)
     {
@@ -30,6 +31,16 @@ public class TipoCuentaParams : IQueriesString<TipoCuenta>
         };
         return parameters;
     }
+    
+    public string SqlSelectByName => "SELECT id, nombre FROM tipo_cuenta WHERE nombre = @nombre";
+    public List<SqlParameter> ParametersSelectByName(string name)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@nombre", name)
+        };
+        return parameters;
+    }
 
     public List<SqlParameter> ParametersDelete(long id)
     {
@@ -45,6 +56,15 @@ public class TipoCuentaParams : IQueriesString<TipoCuenta>
         List<SqlParameter> parameters = new()
         {
             new("@id", id)
+        };
+        return parameters;
+    }
+
+    public List<SqlParameter> ParametersSearchAll(string search)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@search", $"%{search}%")
         };
         return parameters;
     }

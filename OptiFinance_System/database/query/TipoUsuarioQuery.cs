@@ -91,6 +91,12 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
     }
 
+    public List<TipoUsuario> SearchAll(string search)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll, MapEntity,
+            Params.ParametersSearchAll(search));
+    }
+
     public TipoUsuario MapEntity(SqlDataReader reader)
     {
         return Params.Map(reader);
