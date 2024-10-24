@@ -49,10 +49,10 @@
             panel4 = new Panel();
             dataGridView1 = new DataGridView();
             Fecha = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
+            Cuenta = new DataGridViewTextBoxColumn();
+            Codigo = new DataGridViewTextBoxColumn();
+            Debe = new DataGridViewTextBoxColumn();
+            Haber = new DataGridViewTextBoxColumn();
             comboFecha = new ComboBox();
             txtCodigo = new TextBox();
             label3 = new Label();
@@ -126,6 +126,7 @@
             // textBox1
             // 
             textBox1.BackColor = Color.FromArgb(245, 245, 242);
+            textBox1.Enabled = false;
             textBox1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.Location = new Point(871, 57);
             textBox1.Margin = new Padding(3, 2, 3, 2);
@@ -195,6 +196,7 @@
             btnCancelar.Text = "   Cancelar";
             btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnRegistrar
             // 
@@ -210,6 +212,7 @@
             btnRegistrar.Text = "   Registrar";
             btnRegistrar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click_1;
             // 
             // btnSave
             // 
@@ -225,6 +228,7 @@
             btnSave.Text = "   Guardar     Registros";
             btnSave.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnNew
             // 
@@ -240,6 +244,7 @@
             btnNew.Text = "   Nuevo asiento";
             btnNew.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNew.UseVisualStyleBackColor = false;
+            btnNew.Click += btnNew_Click;
             // 
             // radiobtnHaber
             // 
@@ -276,6 +281,7 @@
             btnValor.Name = "btnValor";
             btnValor.Size = new Size(193, 26);
             btnValor.TabIndex = 0;
+            btnValor.KeyPress += btnValor_KeyPress;
             // 
             // btnLimpiar
             // 
@@ -322,7 +328,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Fecha, Column2, Column5, Column4, Column1 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Fecha, Cuenta, Codigo, Debe, Haber });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(0, 0);
@@ -343,37 +349,36 @@
             Fecha.ReadOnly = true;
             Fecha.Width = 160;
             // 
-            // Column2
+            // Cuenta
             // 
-            Column2.HeaderText = "Detalle";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 224;
+            Cuenta.HeaderText = "Cuenta";
+            Cuenta.Name = "Cuenta";
+            Cuenta.ReadOnly = true;
+            Cuenta.Width = 400;
             // 
-            // Column5
+            // Codigo
             // 
-            Column5.HeaderText = "Codigo";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Width = 200;
+            Codigo.HeaderText = "Codigo";
+            Codigo.MinimumWidth = 6;
+            Codigo.Name = "Codigo";
+            Codigo.ReadOnly = true;
+            Codigo.Width = 150;
             // 
-            // Column4
+            // Debe
             // 
-            Column4.HeaderText = "Debe";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 200;
+            Debe.HeaderText = "Debe";
+            Debe.MinimumWidth = 6;
+            Debe.Name = "Debe";
+            Debe.ReadOnly = true;
+            Debe.Width = 200;
             // 
-            // Column1
+            // Haber
             // 
-            Column1.HeaderText = "Haber";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 200;
+            Haber.HeaderText = "Haber";
+            Haber.MinimumWidth = 6;
+            Haber.Name = "Haber";
+            Haber.ReadOnly = true;
+            Haber.Width = 200;
             // 
             // comboFecha
             // 
@@ -385,6 +390,7 @@
             comboFecha.Size = new Size(285, 28);
             comboFecha.TabIndex = 9;
             comboFecha.TextChanged += comboFecha_TextChanged;
+            comboFecha.KeyPress += comboFecha_KeyPress;
             // 
             // txtCodigo
             // 
@@ -394,6 +400,7 @@
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(207, 29);
             txtCodigo.TabIndex = 5;
+            txtCodigo.KeyPress += txtCodigo_KeyPress;
             // 
             // label3
             // 
@@ -535,9 +542,9 @@
         private Label label6;
         private Button btnEditar;
         private DataGridViewTextBoxColumn Fecha;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Cuenta;
+        private DataGridViewTextBoxColumn Codigo;
+        private DataGridViewTextBoxColumn Debe;
+        private DataGridViewTextBoxColumn Haber;
     }
 }
