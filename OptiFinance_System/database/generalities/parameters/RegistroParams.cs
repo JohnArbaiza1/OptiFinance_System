@@ -104,8 +104,8 @@ public class RegistroParams : IQueriesString<Registro>
             Id = reader.GetInt64(0),
             Debe = reader.GetDecimal(1),
             Haber = reader.GetDecimal(2),
-            Cuenta = new(){Id = reader.GetInt64(3)},
-            Partida = new(){Id = reader.GetInt64(4)}
+            Cuenta = CuentaQuery.Instance.FindById(reader.GetInt64(3)),
+            Partida = PartidaQuery.Instance.FindById(reader.GetInt64(4))
         };
     }
 }
