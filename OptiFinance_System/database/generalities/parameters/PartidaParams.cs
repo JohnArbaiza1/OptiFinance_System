@@ -110,11 +110,11 @@ public class PartidaParams : IQueriesString<Partida>
         };
     }
 
-    public List<SqlParameter> ParametersSelectAll(Empresa entity)
+    public List<SqlParameter> ParametersSelectAll()
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id_empresa", entity.Id)
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }

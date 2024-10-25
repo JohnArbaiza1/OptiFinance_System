@@ -94,7 +94,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
 
     public List<Partida> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, Params.MapSelectAll);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, Params.MapSelectAll, Params.ParametersSelectAll());
     }
 
     public List<Partida> SearchAll(string search)
