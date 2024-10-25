@@ -6,6 +6,8 @@ namespace OptiFinance_System.Views;
 
 public partial class Principal : Form
 {
+    
+    public static PictureBox EmpresaSeleccionada;
     public Principal()
     {
         AutoScaleMode = AutoScaleMode.Dpi;
@@ -14,6 +16,8 @@ public partial class Principal : Form
         FormBorderStyle = FormBorderStyle.None;
         //Indicamos el tamaño mínimo del formulario
         MinimumSize = new(300, 200);
+        EmpresaSeleccionada = pictureSelectEmpresa;
+        EmpresaSeleccionada.Visible = Global.IsSelectedEmpresa;
 
         // Asociamos los eventos del mouse con los métodos manejadores
         MouseDown += panelContenedor_MouseDown;

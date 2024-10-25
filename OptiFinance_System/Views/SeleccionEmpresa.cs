@@ -47,6 +47,8 @@ public partial class SeleccionEmpresa : Form
         }
         Empresa? empresa = dataEmpresas.SelectedRows[0].Cells[0].Value as Empresa;
         Global.SelectedEmpresa = empresa;
+        Global.IsSelectedEmpresa = true;
+        Principal.EmpresaSeleccionada.Visible = true;
         // Inicio.lblNombreEmpresa.Text = $@"Bienvenidos a {empresa?.Nombre ?? ""}";
         Close();
     }
