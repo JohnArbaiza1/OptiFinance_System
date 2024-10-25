@@ -147,6 +147,7 @@ public partial class RegistrarPartidas : Form
                     }
                 }
                 dataGridView1.Rows.Add(fecha, cuenta.Nombre, cuenta.Codigo, debe, haber);
+                Limpiar();
             }
         }
         else
@@ -154,33 +155,41 @@ public partial class RegistrarPartidas : Form
             Cuenta cuenta = comboFecha.SelectedItem as Cuenta;
             decimal debe = 0m;
             decimal haber = 0m;
-            if (radiobtnDebe.Checked)
+            if (string.IsNullOrWhiteSpace(btnValor.Text))
             {
-                if (decimal.TryParse(btnValor.Text, out decimal montoDecimal))
-                {
-                    debe = montoDecimal;
-                    haber = 0m;
-                }
-                else
-                {
-                    // Mostrar un mensaje si la conversión falló
-                    MessageBox.Show("Por favor, ingrese un valor numérico válido.");
-                }
+                MessageBox.Show("No se ha agregado un monto perteneciente a la cuenta", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (radiobtnHaber.Checked)
+            else
             {
-                if (decimal.TryParse(btnValor.Text, out decimal montoDecimal))
+                if (radiobtnDebe.Checked)
                 {
-                    debe = 0m;
-                    haber = montoDecimal;
+                    if (decimal.TryParse(btnValor.Text, out decimal montoDecimal))
+                    {
+                        debe = montoDecimal;
+                        haber = 0m;
+                    }
+                    else
+                    {
+                        // Mostrar un mensaje si la conversión falló
+                        MessageBox.Show("Por favor, ingrese un valor numérico válido.");
+                    }
                 }
-                else
+                else if (radiobtnHaber.Checked)
                 {
-                    // Mostrar un mensaje si la conversión falló
-                    MessageBox.Show("Por favor, ingrese un valor numérico válido.");
+                    if (decimal.TryParse(btnValor.Text, out decimal montoDecimal))
+                    {
+                        debe = 0m;
+                        haber = montoDecimal;
+                    }
+                    else
+                    {
+                        // Mostrar un mensaje si la conversión falló
+                        MessageBox.Show("Por favor, ingrese un valor numérico válido.");
+                    }
                 }
+                dataGridView1.Rows.Add("", cuenta.Nombre, cuenta.Codigo, debe, haber);
+                Limpiar();
             }
-            dataGridView1.Rows.Add("", cuenta.Nombre, cuenta.Codigo, debe, haber);
         }
     }
 
@@ -250,7 +259,19 @@ public partial class RegistrarPartidas : Form
 
     private void btnCancelar_Click(object sender, EventArgs e)
     {
-        Close();
+        // Muestra un mensaje de confirmación con los botones Sí y No
+        DialogResult resultado = MessageBox.Show(
+            "¿Está seguro de que desea cerrar la pestaña?\nAl cerrar la pestaña se cerrará el formulario\nSe perderán todos los datos que ha ingresado",
+            "Confirmación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        );
+
+        // Si el usuario elige "Sí", cierra el formulario
+        if (resultado == DialogResult.Yes)
+        {
+            Close();
+        }
     }
     private void guardarRegistro()
     {
@@ -396,6 +417,9 @@ public partial class RegistrarPartidas : Form
         txtCodigo.Clear();
         textBox1.Clear();
         btnValor.Clear();
+        btnEliminar.Enabled = true;
+        btnRegistrar.Enabled=true;
+        btnSave.Enabled = true;
         comboFecha.Items.Clear();
         foreach (Cuenta item in cuentas)
         {
@@ -433,6 +457,122 @@ public partial class RegistrarPartidas : Form
         if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
         {
             e.Handled = true; // Evitar la entrada
+        }
+    }
+
+    private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+    {
+        if (e.RowIndex >= 0) // asegurandose de que no sea la ultima fila que es vacia y el encabezado
+        {
+            dataGridView1.Rows[e.RowIndex].Selected = true;
+        }
+    }
+
+    private void btnEliminar_Click(object sender, EventArgs e)
+    {
+        // Verifica que haya al menos una fila seleccionada en el DataGridView
+        if (dataGridView1.SelectedRows.Count > 0)
+        {
+            // Obtiene el índice de la fila seleccionada
+            int rowIndex = dataGridView1.SelectedRows[0].Index;
+
+            // Asegúrate de que no es la última fila vacía (si está habilitada para agregar nuevas filas)
+            if (rowIndex < dataGridView1.Rows.Count - 1)
+            {
+                // Elimina la fila seleccionada
+                dataGridView1.Rows.RemoveAt(rowIndex);
+            }
+            else
+            {
+                MessageBox.Show("No se puede eliminar la última fila vacía.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        else
+        {
+            MessageBox.Show("Seleccione una fila para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+    }
+
+    private void btnEditar_Click(object sender, EventArgs e)
+    {
+        if (btnEditar.Text.Equals("    Editar"))
+        {
+            
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // Obtiene el índice de la fila seleccionada
+                int rowIndex = dataGridView1.SelectedRows[0].Index;
+
+                // Asegúrate de que no es la última fila vacía (si está habilitada para agregar nuevas filas)
+                if (rowIndex < dataGridView1.Rows.Count - 1)
+                {
+                    btnEditar.Text = "Actualizar";
+                    dataGridView1.Enabled = false;
+                    btnEliminar.Enabled = false;
+                    btnRegistrar.Enabled = false;
+                    btnSave.Enabled = false;
+                    // Verifica que haya al menos una fila seleccionada en el DataGridView
+
+                    string cuenta = dataGridView1.Rows[rowIndex].Cells["Cuenta"].Value.ToString();
+                    foreach (var item in comboFecha.Items)
+                    {
+                        if (((Cuenta)item).Nombre == cuenta)
+                        {
+                            comboFecha.SelectedItem = item;
+                            break;
+                        }
+                    }
+
+                    // Establece el RadioButton en función de si es Debe o Haber
+                    string Debe = dataGridView1.Rows[rowIndex].Cells["Debe"].Value.ToString();
+                    string Haber = dataGridView1.Rows[rowIndex].Cells["Haber"].Value.ToString();
+                    if (Debe.Equals("0"))
+                    {
+                        radiobtnDebe.Checked = false;
+                        radiobtnHaber.Checked = true;
+                        btnValor.Text = Haber;
+                    }
+                    else
+                    {
+                        radiobtnDebe.Checked = true;
+                        radiobtnHaber.Checked = false;
+                        btnValor.Text = Debe;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se puede Seleccionar la última fila vacía.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una fila para Editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        else
+        {
+            int rowIndex = dataGridView1.SelectedRows[0].Index;
+
+            // Actualiza solo el valor de la celda "Valor" en el DataGridView
+            Cuenta cuenta = new Cuenta();
+            cuenta = comboFecha.SelectedItem as Cuenta;
+            dataGridView1.Rows[rowIndex].Cells["Cuenta"].Value = cuenta.Nombre;
+            dataGridView1.Rows[rowIndex].Cells["Codigo"].Value = cuenta.Codigo;
+            if (radiobtnDebe.Checked)
+            {
+                dataGridView1.Rows[rowIndex].Cells["Debe"].Value = btnValor.Text;
+                dataGridView1.Rows[rowIndex].Cells["Haber"].Value = "0";
+            }
+            else
+            {
+                dataGridView1.Rows[rowIndex].Cells["Debe"].Value = "0";
+                dataGridView1.Rows[rowIndex].Cells["Haber"].Value = btnValor.Text;
+            }
+            btnEliminar.Enabled = true;
+            btnRegistrar.Enabled = true;
+            btnSave.Enabled = true;
+            btnEditar.Text = "    Editar";
+            dataGridView1.Enabled = true;
         }
     }
 }
