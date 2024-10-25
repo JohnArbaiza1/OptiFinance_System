@@ -73,6 +73,7 @@
             btnMayor = new Button();
             panelContenedor = new Panel();
             panelRedireccion = new Panel();
+            lblNameEmpresa = new Label();
             barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureSelectEmpresa).BeginInit();
             opcionesBarraTitulo.SuspendLayout();
@@ -92,6 +93,7 @@
             // barraTitulo
             // 
             barraTitulo.BackColor = Color.Goldenrod;
+            barraTitulo.Controls.Add(lblNameEmpresa);
             barraTitulo.Controls.Add(pictureSelectEmpresa);
             barraTitulo.Controls.Add(opcionesBarraTitulo);
             barraTitulo.Dock = DockStyle.Top;
@@ -731,6 +733,17 @@
             panelRedireccion.MouseMove += panelRedireccion_MouseMove;
             panelRedireccion.MouseUp += panelRedireccion_MouseUp;
             // 
+            // lblNameEmpresa
+            // 
+            lblNameEmpresa.AutoSize = true;
+            lblNameEmpresa.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameEmpresa.ForeColor = Color.FromArgb(34, 53, 80);
+            lblNameEmpresa.Location = new Point(74, 17);
+            lblNameEmpresa.Name = "lblNameEmpresa";
+            lblNameEmpresa.Size = new Size(70, 28);
+            lblNameEmpresa.TabIndex = 3;
+            lblNameEmpresa.Text = "label1";
+            // 
             // Principal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -745,6 +758,7 @@
             Text = "Principal";
             Load += Principal_Load;
             barraTitulo.ResumeLayout(false);
+            barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureSelectEmpresa).EndInit();
             opcionesBarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)btnMaximo).EndInit();
@@ -807,5 +821,6 @@
         private Button btnMiembros;
         private Panel panel9;
         private PictureBox pictureSelectEmpresa;
+        private Label lblNameEmpresa;
     }
 }
