@@ -88,7 +88,7 @@ public class TipoUsuarioQuery : IQueryEstandar<TipoUsuario>
 
     public List<TipoUsuario> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, MapEntity);
     }
 
     public List<TipoUsuario> SearchAll(string search)

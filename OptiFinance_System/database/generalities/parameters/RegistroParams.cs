@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using global::OptiFinance_System.global;
+using Microsoft.Data.SqlClient;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -16,7 +17,11 @@ public class RegistroParams : IQueriesString<Registro>
     public string SqlDelete => "DELETE FROM registros WHERE id = @id";
     public string SqlFindById => "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id = @id";
 
-    public string SqlSelectAll =>
+    public string SqlSelectAll => "SELECT * FROM registros " +
+                                  "INNER JOIN partidas ON registros.id_partida = partidas.id " +
+                                  "INNER JOIN empresas ON partidas.id_empresa = empresas.id WHERE empresas.id = @id_empresa";
+
+    public string SqlSelectAllByPartida =>
         "SELECT id, debe, haber, id_cuenta, id_partida FROM registros WHERE id_partida = @id_partida";
 
     public string SqlSearchAll => "SELECT id, debe, haber, id_cuenta, id_partida FROM registros " +
@@ -73,8 +78,17 @@ public class RegistroParams : IQueriesString<Registro>
         };
         return parameters;
     }
+    
+    public List<SqlParameter> ParametersSelectAll()
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
 
-    public List<SqlParameter> ParametersSelectAll(Partida entity)
+    public List<SqlParameter> ParametersSelectAllByPartida(Partida entity)
     {
         List<SqlParameter> parameters = new()
         {

@@ -30,7 +30,7 @@ public class EmpresaParams : IQueriesString<Empresa>
         "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
         "FROM empresas WHERE id = @id";
 
-    public string SqlSelectAll =>
+    public string SqlSelectAllByPartida =>
         "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
         "FROM empresas WHERE id_usuario = @id_usuario";
 

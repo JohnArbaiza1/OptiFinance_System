@@ -9,7 +9,7 @@ public interface IQueriesString<T>
     string SqlUpdate { get; }
     string SqlDelete { get; }
     string SqlFindById { get; }
-    string SqlSelectAll { get; }
+    string SqlSelectAllByPartida { get; }
     string SqlSearchAll { get; }
     List<SqlParameter> ParametersInsert(T entity);
     List<SqlParameter> ParametersUpdate(T entity);

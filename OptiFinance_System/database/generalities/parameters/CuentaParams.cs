@@ -19,7 +19,7 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
     public string SqlDelete => "DELETE FROM cuentas WHERE id = @id";
     public string SqlFindById => "SELECT * FROM cuentas WHERE id = @id and id_empresa = @id_empresa";
 
-    public string SqlSelectAll =>
+    public string SqlSelectAllByPartida =>
         "SELECT * FROM cuentas WHERE id_empresa = @id_empresa";
 
     public string SqlSearchAll =>
@@ -95,9 +95,9 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         {
             Id = (long)reader[CuentasField.Id],
             Codigo = (string)reader[CuentasField.Codigo],
-            Nombre = reader.GetString(2),
-            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3)),
-            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(4))
+            Nombre = reader.GetString(CuentasField.Nombre),
+            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(CuentasField.IdTipoCuenta)),
+            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(CuentasField.IdEmpresa))
         };
     }
 
@@ -105,9 +105,9 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Codigo = reader.GetString(1),
-            Nombre = reader.GetString(2)
+            Id = reader.GetInt64(CuentasField.Id),
+            Codigo = reader.GetString(CuentasField.Codigo),
+            Nombre = reader.GetString(CuentasField.Nombre)
         };
     }
 
@@ -115,10 +115,10 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Codigo = reader.GetString(1),
-            Nombre = reader.GetString(2),
-            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3))
+            Id = reader.GetInt64(CuentasField.Id),
+            Codigo = reader.GetString(CuentasField.Codigo),
+            Nombre = reader.GetString(CuentasField.Nombre),
+            TipoCuenta = new(){Id = reader.GetInt64(CuentasField.IdTipoCuenta)}
         };
     }
 

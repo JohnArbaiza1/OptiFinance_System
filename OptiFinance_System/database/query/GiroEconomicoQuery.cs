@@ -90,7 +90,7 @@ public class GiroEconomicoQuery : IQueryEstandar<GiroEconomico>
 
     public List<GiroEconomico> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, MapEntity);
     }
 
     public List<GiroEconomico> SearchAll(string search)

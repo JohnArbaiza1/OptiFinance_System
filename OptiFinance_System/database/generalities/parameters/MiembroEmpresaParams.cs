@@ -26,7 +26,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE id = @id and id_empresa = @id_empresa";
 
-    public string SqlSelectAll =>
+    public string SqlSelectAllByPartida =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE id_empresa = @id_empresa";
 

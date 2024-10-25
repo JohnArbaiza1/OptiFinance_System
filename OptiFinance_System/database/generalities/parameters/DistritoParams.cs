@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -13,7 +15,7 @@ public class DistritoParams : IQueriesString<Distrito>
 
     public string SqlDelete => "DELETE FROM distritos WHERE id = @id";
     public string SqlFindById => "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
-    public string SqlSelectAll => "SELECT id, nombre, id_municipio FROM distritos";
+    public string SqlSelectAllByPartida => "SELECT id, nombre, id_municipio FROM distritos";
 
     public string SqlSearchAll =>
         "SELECT id, nombre, id_municipio FROM distritos WHERE CONCAT(id, nombre, id_municipio) LIKE @search";
@@ -70,8 +72,8 @@ public class DistritoParams : IQueriesString<Distrito>
     {
         Distrito distrito = new()
         {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1),
+            Id = reader.GetInt64(DistritoField.Id),
+            Nombre = reader.GetString(DistritoField.Nombre),
             Municipio = MunicipioQuery.Instance.FindById(reader.GetInt64(2))
         };
         return distrito;
@@ -81,8 +83,9 @@ public class DistritoParams : IQueriesString<Distrito>
     {
         Distrito distrito = new()
         {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1)
+            Id = reader.GetInt64(DistritoField.Id),
+            Nombre = reader.GetString(DistritoField.Nombre),
+            Municipio = new(){Id = reader.GetInt64(DistritoField.IdMunicipio)}
         };
         return distrito;
     }
