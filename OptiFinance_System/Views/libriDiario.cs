@@ -40,9 +40,17 @@ public partial class libriDiario : Form
             {
                 List<OptiFinance_System.database.models.Registro> registro = RegistroQuery.Instance.SelectAllByPartida(enity);
 
+                //Definimos una bandera  para la primera fila de cada partida
+                bool primeraFila = true;
+
                 registro.ForEach(r =>
                 {
-                    dataTable.Rows.Add(r.Partida.Fecha.ToString(),r.Partida.Id, r.Partida.Detalles, r.Cuenta.Codigo.ToString(), r.Debe, r.Haber);
+
+                    //Definimos un conjunto de variables para solo mostrar la fecha, partida y detalle en la primera fila de la partida
+                    string fecha = primeraFila ? r.Partida.Fecha.ToString() : "";
+                    string partida = primeraFila ? r.Partida.Id.ToString() : "";
+                    string detalle = primeraFila ? $"{r.Cuenta.Nombre}" : $"{r.Cuenta.Nombre}{Environment.NewLine}{r.Partida.Detalles}";
+                    dataTable.Rows.Add(fecha, partida, detalle, r.Cuenta.Codigo.ToString(), r.Debe, r.Haber);
                     //Hacemos la respectiva suma para calcular el resultado
 
                     //Convertimos el valor de "Debe" a un número decimal.
@@ -55,6 +63,8 @@ public partial class libriDiario : Form
                     {
                         totalHaber += haber; // Sumamos solo si la conversión es exitosa
                     }
+                    //Indicamos que despues de la primera fila, desactivamos la bandera
+                    primeraFila = false;
                 });
 
             });
@@ -65,6 +75,10 @@ public partial class libriDiario : Form
             dataPartidas.Columns["Codigo"]!.Width = 150;
             dataPartidas.Columns["Debe"]!.Width = 150;
             dataPartidas.Columns["Haber"]!.Width = 200;
+
+            // Configuración de la columna "Detalle" para el ajuste de texto
+            dataPartidas.Columns["Detalle"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataPartidas.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             //Mostramos el resultado de la suma para los totales
             lblTotalDebe.Text = totalDebe.ToString("N2");
             lblTotalHaber.Text = totalHaber.ToString("N2");
@@ -81,4 +95,5 @@ public partial class libriDiario : Form
         //Llamamos a la funcion
         cargarDatosLIbroD();
     }
+
 }
