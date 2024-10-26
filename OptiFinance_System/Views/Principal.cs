@@ -31,6 +31,7 @@ public partial class Principal : Form
         newPartida = btnIngresarPartida;
         info = btnInfo;
         miembroEmpresa = btnMiembros;
+        //-------------------------------------------------------------
         // Establecemos el estilo del borde del formulario a ninguno
         FormBorderStyle = FormBorderStyle.None;
         //Indicamos el tamaño mínimo del formulario
@@ -39,7 +40,7 @@ public partial class Principal : Form
         NombreEmpresa = lblNameEmpresa;
         EmpresaSeleccionada.Visible = Global.IsSelectedEmpresa;
         NombreEmpresa.Text = Global.SelectedEmpresa?.Nombre ?? "No hay empresa seleccionada";
-
+        //-------------------------------------------------------------
         // Asociamos los eventos del mouse con los métodos manejadores
         MouseDown += panelContenedor_MouseDown;
         MouseMove += panelContenedor_MouseMove;
@@ -390,7 +391,6 @@ public partial class Principal : Form
     {
         if (PanelCuentas.Visible)
         {
-            
             PanelCuentas.Visible = false;
             btnLibros.Location = new(0, 257);
             btnEstados.Location = new(0, 330);
@@ -407,11 +407,9 @@ public partial class Principal : Form
             btnIngresarPartida.Location = new(0, 604);
             btnEmpresas.Location = new(0, 674);
         }
-
         btnCuentas.Location = new(0, 190);
         PanelCuentas.Location = new(0, 263);
     }
-
     //=================================================================================
     //OPcion de los libros contables
     private void btnLibros_Click(object sender, EventArgs e)
@@ -436,7 +434,6 @@ public partial class Principal : Form
         btnLibros.Location = new(0, 257);
         panelLibros.Location = new(0, 330);
     }
-
     //=================================================================================
     //Opcion de los Estados Financieros
     private void btnEstados_Click(object sender, EventArgs e)
@@ -459,7 +456,6 @@ public partial class Principal : Form
         btnEstados.Location = new(0, 332);
         panelEstados.Location = new(0, 400);
     }
-
     //=================================| Empresas |===================================
     private void btnEmpresas_Click(object sender, EventArgs e)
     {
@@ -476,14 +472,12 @@ public partial class Principal : Form
         btnEmpresas.Location = new(0, 540);
         panelEmpresa.Location = new(0, 610);
     }
-
     //=================================| Partidas |===================================
     private void btnIngresarPartida_Click(object sender, EventArgs e)
     {
         abrirF<RegistrarPartidas>();
         btnIngresarPartida.BackColor = Color.FromArgb(215, 143, 35);
     }
-
     //=================================| Cuentas |===================================
     private void btnIngresarCuenta_Click(object sender, EventArgs e)
     {

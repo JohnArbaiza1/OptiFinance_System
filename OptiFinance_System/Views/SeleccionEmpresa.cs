@@ -50,6 +50,7 @@ public partial class SeleccionEmpresa : Form
         Global.IsSelectedEmpresa = true;
         Principal.EmpresaSeleccionada!.Visible = true;
         Principal.NombreEmpresa!.Text = Global.SelectedEmpresa?.Nombre ?? "No hay empresa seleccionada";
+        //para las validaciones de empresa
         Principal.cuentaXD.Enabled = Global.IsSelectedEmpresa; 
         Principal.libros.Enabled = Global.IsSelectedEmpresa;
         Principal.estados.Enabled = Global.IsSelectedEmpresa;
