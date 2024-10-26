@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using OptiFinance_System.database.models;
 using OptiFinance_System.global;
 using OptiFinance_System.global.database;
 
@@ -6,13 +7,30 @@ namespace OptiFinance_System.Views;
 
 public partial class Principal : Form
 {
-    
+    #region Global variables
     public static PictureBox? EmpresaSeleccionada;
     public static Label? NombreEmpresa;
+    public static Button cuentaXD;
+    public static Button libros;
+    public static Button estados;
+    public static Button liquidez;
+    public static Button newPartida;
+    public static Button info;
+    public static Button miembroEmpresa;
+    #endregion
+    
     public Principal()
     {
         AutoScaleMode = AutoScaleMode.Dpi;
         InitializeComponent();
+        //Llamamos a las variables staticas
+        cuentaXD = btnCuentas;
+        libros = btnLibros;
+        estados = btnEstados;
+        liquidez = btnRLiquidez;
+        newPartida = btnIngresarPartida;
+        info = btnInfo;
+        miembroEmpresa = btnMiembros;
         // Establecemos el estilo del borde del formulario a ninguno
         FormBorderStyle = FormBorderStyle.None;
         //Indicamos el tamaño mínimo del formulario
@@ -29,8 +47,9 @@ public partial class Principal : Form
         MouseDown += panelRedireccion_MouseDown;
         MouseMove += panelRedireccion_MouseMove;
         MouseUp += panelRedireccion_MouseUp;
+        Load += Principal_Load;
     }
-
+    
     #region Parte donde se trabaja la logica del panel contenedor de formularios
 
     public void abrirF<TMiForm>() where TMiForm : Form, new()
@@ -124,6 +143,7 @@ public partial class Principal : Form
             btnUsuarios.Location = new(0, 610);
             btnEmpresas.Location = new(0, 540);
             btnUsuarios.Visible = false;
+            ValidarEmpresaSeleccionada();
         }
         else
         {
@@ -133,7 +153,6 @@ public partial class Principal : Form
             btnUsuarios.Visible = false;
             btnEmpresas.Visible = false;
             panelEmpresa.Visible = false;
-
         }
     }
 
@@ -333,6 +352,17 @@ public partial class Principal : Form
 
         return btnNotificacion;
     }
+    //Metodo para validar empresa Seleccionada
+    private void ValidarEmpresaSeleccionada()
+    {
+        btnCuentas.Enabled = Global.SelectedEmpresa != null;
+        btnLibros.Enabled = Global.SelectedEmpresa != null;
+        btnEstados.Enabled = Global.SelectedEmpresa != null;
+        btnRLiquidez.Enabled = Global.SelectedEmpresa != null;
+        btnIngresarPartida.Enabled = Global.SelectedEmpresa != null;
+        btnInfo.Enabled = Global.SelectedEmpresa != null;
+        btnMiembros.Enabled = Global.SelectedEmpresa != null;
+    }
     #endregion
 
     #region Buttons del menu
@@ -360,6 +390,7 @@ public partial class Principal : Form
     {
         if (PanelCuentas.Visible)
         {
+            
             PanelCuentas.Visible = false;
             btnLibros.Location = new(0, 257);
             btnEstados.Location = new(0, 330);

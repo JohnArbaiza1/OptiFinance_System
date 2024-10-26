@@ -50,6 +50,13 @@ public partial class SeleccionEmpresa : Form
         Global.IsSelectedEmpresa = true;
         Principal.EmpresaSeleccionada!.Visible = true;
         Principal.NombreEmpresa!.Text = Global.SelectedEmpresa?.Nombre ?? "No hay empresa seleccionada";
+        Principal.cuentaXD.Enabled = Global.IsSelectedEmpresa; 
+        Principal.libros.Enabled = Global.IsSelectedEmpresa;
+        Principal.estados.Enabled = Global.IsSelectedEmpresa;
+        Principal.liquidez.Enabled = Global.IsSelectedEmpresa;
+        Principal.newPartida.Enabled = Global.IsSelectedEmpresa;
+        Principal.info.Enabled = Global.IsSelectedEmpresa;
+        Principal.miembroEmpresa.Enabled = Global.IsSelectedEmpresa;
         // Inicio.lblNombreEmpresa.Text = $@"Bienvenidos a {empresa?.Nombre ?? ""}";
         Close();
     }

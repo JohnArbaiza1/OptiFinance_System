@@ -20,16 +20,16 @@ public partial class CatalogoCuentas : Form
         dataGridActivos.DataSource = cuentasActivo
             .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
             .ToList();
-        dataGridActivos.Columns["Codigo"].Width = 282;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridActivos.Columns["Nombre"].Width = 594;  // Ancho de 594 píxeles para la columna 'Nombre'
+        dataGridActivos.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
+        dataGridActivos.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
 
         // Asignas las cuentas al DataGridView, mostrando solo Codigo y Nombre
         List<Cuenta> cuentasPasivo = CuentaQuery.Instance.SelectAllByTypePasivo();
         dataGridPasivos.DataSource = cuentasPasivo
             .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
             .ToList();
-        dataGridPasivos.Columns["Codigo"].Width = 282;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridPasivos.Columns["Nombre"].Width = 594;  // Ancho de 594 píxeles para la columna 'Nombre'
+        dataGridPasivos.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
+        dataGridPasivos.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
 
         List<Cuenta> cuentasCapital = CuentaQuery.Instance.SelectAllByTypeCapital();
 
@@ -37,8 +37,8 @@ public partial class CatalogoCuentas : Form
         dataGridCapital.DataSource = cuentasCapital
             .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
             .ToList();
-        dataGridCapital.Columns["Codigo"].Width = 282;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridCapital.Columns["Nombre"].Width = 594;  // Ancho de 594 píxeles para la columna 'Nombre'
+        dataGridCapital.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
+        dataGridCapital.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
 
         List<Cuenta> cuentasDeudora = CuentaQuery.Instance.SelectAllByTypeDeudora();
 
@@ -46,8 +46,8 @@ public partial class CatalogoCuentas : Form
         dataGridDeudora.DataSource = cuentasDeudora
             .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
             .ToList();
-        dataGridDeudora.Columns["Codigo"].Width = 282;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridDeudora.Columns["Nombre"].Width = 594;  // Ancho de 594 píxeles para la columna 'Nombre'
+        dataGridDeudora.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
+        dataGridDeudora.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
 
         List<Cuenta> cuentaAcreedora = CuentaQuery.Instance.SelectAllByTypeAcreedora();
 
@@ -55,8 +55,8 @@ public partial class CatalogoCuentas : Form
         dataGridAcreedora.DataSource = cuentaAcreedora
             .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
             .ToList();
-        dataGridAcreedora.Columns["Codigo"].Width = 282;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridAcreedora.Columns["Nombre"].Width = 594;  // Ancho de 594 píxeles para la columna 'Nombre'
+        dataGridAcreedora.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
+        dataGridAcreedora.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
 
         List<Cuenta> cuentaCierre = CuentaQuery.Instance.SelectAllByTypePuenteCierre();
 
@@ -64,8 +64,8 @@ public partial class CatalogoCuentas : Form
         dataGridCierre.DataSource = cuentaCierre
             .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
             .ToList();
-        dataGridCierre.Columns["Codigo"].Width = 282;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridCierre.Columns["Nombre"].Width = 594;  // Ancho de 594 píxeles para la columna 'Nombre'
+        dataGridCierre.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
+        dataGridCierre.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
     }
 
     private void btnAtras_Click(object sender, EventArgs e)
