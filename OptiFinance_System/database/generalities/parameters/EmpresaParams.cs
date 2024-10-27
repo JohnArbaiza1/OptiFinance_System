@@ -129,9 +129,9 @@ public class EmpresaParams : IQueriesString<Empresa>
             Direccion = reader.IsDBNull(EmpresaField.Direccion) ? null : reader.GetString(EmpresaField.Direccion),
             Telefono = reader.GetString(EmpresaField.Telefono),
             Email = reader.GetString(EmpresaField.Email),
-            Usuario = new(){Id = reader.GetInt64(EmpresaField.IdUsuario)},
-            Distrito = new(){Id = reader.GetInt64(EmpresaField.IdDistrito)},
-            GiroEconomico = new(){Id = reader.GetInt64(EmpresaField.IdGiroEconomico)}
+            Usuario = new() { Id = reader.GetInt64(EmpresaField.IdUsuario) },
+            Distrito = new() { Id = reader.GetInt64(EmpresaField.IdDistrito) },
+            GiroEconomico = GiroEconomicoQuery.Instance.FindById(reader.GetInt64(EmpresaField.IdGiroEconomico))
         };
     }
 }

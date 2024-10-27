@@ -27,7 +27,7 @@ public class PartidaQuery : IQueryEstandar<Partida>
         return QueryHelper.ExecuteInsert(_connectionInstance.GetSqlConnection(), Params.SqlInsert,
             Params.ParametersInsert(entity), transaction);
     }
-    
+
     public Partida? InsertWithResult(Partida entity, SqlTransaction? transaction = null)
     {
         return QueryHelper.ExecuteInsertWithResult(_connectionInstance.GetSqlConnection(), Params.SqlInsertWithResult,
@@ -91,10 +91,17 @@ public class PartidaQuery : IQueryEstandar<Partida>
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
             Params.ParametersFindById(id));
     }
+    
+    public Partida? FindByIdWithoutObjects(long id)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, Params.MapWithoutObjects,
+            Params.ParametersFindById(id));
+    }
 
     public List<Partida> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, Params.MapSelectAll, Params.ParametersSelectAll());
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida,
+            Params.MapSelectAll, Params.ParametersSelectAll());
     }
 
     public List<Partida> SearchAll(string search)

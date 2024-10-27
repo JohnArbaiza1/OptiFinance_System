@@ -1,7 +1,8 @@
 ﻿namespace OptiFinance_System.Views;
-using OptiFinance_System.database.models;
-using OptiFinance_System.database.query;
-using OptiFinance_System.global;
+
+using database.models;
+using database.query;
+using global;
 using System.Data;
 
 public partial class libriDiario : Form
@@ -11,6 +12,7 @@ public partial class libriDiario : Form
     private decimal haber = 0;
     private decimal totalDebe = 0;
     private decimal totalHaber = 0;
+
     public libriDiario()
     {
         InitializeComponent();
@@ -22,6 +24,7 @@ public partial class libriDiario : Form
     }
 
     #region Metodos para el libro diario
+
     //Metodo para cargar los datos del libro diario
     private void cargarDatosLIbroD()
     {
@@ -36,37 +39,33 @@ public partial class libriDiario : Form
             dataTable.Columns.Add("Haber", typeof(string));
 
             List<Partida> listPartida = PartidaQuery.Instance.SelectAll();
-            listPartida.ForEach(enity =>
+            listPartida.ForEach(entity =>
             {
-                List<OptiFinance_System.database.models.Registro> registro = RegistroQuery.Instance.SelectAllByPartida(enity);
+                List<OptiFinance_System.database.models.Registro> registro = RegistroQuery.Instance.SelectAllByPartida(entity);
 
                 //Definimos una bandera  para la primera fila de cada partida
                 bool primeraFila = true;
 
                 registro.ForEach(r =>
                 {
-
                     //Definimos un conjunto de variables para solo mostrar la fecha, partida y detalle en la primera fila de la partida
-                    string fecha = primeraFila ? r.Partida.Fecha.ToString() : "";
-                    string partida = primeraFila ? r.Partida.Id.ToString() : "";
-                    string detalle = primeraFila ? $"{r.Cuenta.Nombre}" : $"{r.Cuenta.Nombre}{Environment.NewLine}{r.Partida.Detalles}";
-                    dataTable.Rows.Add(fecha, partida, detalle, r.Cuenta.Codigo.ToString(), r.Debe, r.Haber);
+                    string fecha = primeraFila ? r.Partida?.Fecha.ToString() : "";
+                    string? partida = primeraFila ? r.Partida?.Id.ToString() : "";
+                    string detalle = primeraFila
+                        ? $"{r.Cuenta?.Nombre}"
+                        : $"{r.Cuenta?.Nombre}{Environment.NewLine}{r.Partida?.Detalles}";
+                    dataTable.Rows.Add(fecha, partida, detalle, r.Cuenta?.Codigo.ToString(), r.Debe, r.Haber);
                     //Hacemos la respectiva suma para calcular el resultado
 
                     //Convertimos el valor de "Debe" a un número decimal.
-                    if (decimal.TryParse(r.Debe.ToString(), out debe))
-                    {
-                        totalDebe += debe; // Sumamos solo si la conversión es exitosa
-                    }
+                    if (decimal.TryParse(r.Debe.ToString(),
+                            out debe)) totalDebe += debe; // Sumamos solo si la conversión es exitosa
                     //Convertimos el valor de "haber" a un número decimal.
-                    if (decimal.TryParse(r.Haber.ToString(), out haber))
-                    {
-                        totalHaber += haber; // Sumamos solo si la conversión es exitosa
-                    }
+                    if (decimal.TryParse(r.Haber.ToString(),
+                            out haber)) totalHaber += haber; // Sumamos solo si la conversión es exitosa
                     //Indicamos que despues de la primera fila, desactivamos la bandera
                     primeraFila = false;
                 });
-
             });
             dataPartidas.DataSource = dataTable;
             dataPartidas.Columns["Fecha"]!.Width = 160;
@@ -85,9 +84,10 @@ public partial class libriDiario : Form
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Error al cargar las partidas" + ex);
+            Console.WriteLine(@"Error al cargar las partidas" + ex);
         }
     }
+
     #endregion
 
     private void libriDiario_Load(object sender, EventArgs e)
@@ -95,5 +95,4 @@ public partial class libriDiario : Form
         //Llamamos a la funcion
         cargarDatosLIbroD();
     }
-
 }

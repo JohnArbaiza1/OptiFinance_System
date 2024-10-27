@@ -108,4 +108,15 @@ public class RegistroParams : IQueriesString<Registro>
             Partida = PartidaQuery.Instance.FindById(reader.GetInt64(4))
         };
     }
+    
+    public Registro MapSelectAllByPartida(SqlDataReader reader)
+    {
+        return new()
+        {
+            Debe = reader.GetDecimal(1),
+            Haber = reader.GetDecimal(2),
+            Cuenta = CuentaQuery.Instance.FindByIdWithoutObjects(reader.GetInt64(3)),
+            Partida = PartidaQuery.Instance.FindByIdWithoutObjects(reader.GetInt64(4))
+        };
+    }
 }

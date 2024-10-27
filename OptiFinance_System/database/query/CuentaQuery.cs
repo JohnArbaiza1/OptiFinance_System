@@ -90,6 +90,12 @@ public class CuentaQuery : IQueryEstandar<Cuenta>, IQueryAccounts<Cuenta>
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
             Params.ParametersFindById(id));
     }
+    
+    public Cuenta? FindByIdWithoutObjects(long id)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, Params.MapFindWithoutObjects,
+            Params.ParametersFindById(id));
+    }
 
     public List<Cuenta> SelectAll()
     {

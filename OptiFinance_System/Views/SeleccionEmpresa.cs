@@ -28,7 +28,7 @@ public partial class SeleccionEmpresa : Form
             dataEmpresas.Rows.Add(
                 entity,
                 entity.Nit,
-                entity.GiroEconomico?.Nombre,
+                entity.GiroEconomico,
                 entity.RepresentanteLegal,
                 entity.Direccion,
                 entity.Telefono,

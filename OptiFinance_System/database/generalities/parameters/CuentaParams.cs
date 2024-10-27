@@ -96,8 +96,7 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
             Id = (long)reader[CuentasField.Id],
             Codigo = (string)reader[CuentasField.Codigo],
             Nombre = reader.GetString(CuentasField.Nombre),
-            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(CuentasField.IdTipoCuenta)),
-            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(CuentasField.IdEmpresa))
+            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(CuentasField.IdTipoCuenta))
         };
     }
 
@@ -198,5 +197,14 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
+    }
+
+    public Cuenta MapFindWithoutObjects(SqlDataReader reader)
+    {
+        return new()
+        {
+            Codigo = reader.GetString(CuentasField.Codigo),
+            Nombre = reader.GetString(CuentasField.Nombre)
+        };
     }
 }

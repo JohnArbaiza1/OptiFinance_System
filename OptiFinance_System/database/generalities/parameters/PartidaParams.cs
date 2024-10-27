@@ -1,5 +1,6 @@
 ﻿using OptiFinance_System.global;
 using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -93,10 +94,10 @@ public class PartidaParams : IQueriesString<Partida>
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Detalles = reader.GetString(1),
-            Fecha = reader.GetDateTime(2),
-            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(3))
+            Id = reader.GetInt64(PartidaField.Id),
+            Detalles = reader.GetString(PartidaField.Detalles),
+            Fecha = reader.GetDateTime(PartidaField.Fecha),
+            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(PartidaField.IdEmpresa))
         };
     }
 
@@ -104,9 +105,20 @@ public class PartidaParams : IQueriesString<Partida>
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Detalles = reader.GetString(1),
-            Fecha = reader.GetDateTime(2)
+            Id = reader.GetInt64(PartidaField.Id),
+            Detalles = reader.GetString(PartidaField.Detalles),
+            Fecha = reader.GetDateTime(PartidaField.Fecha)
+        };
+    }
+    
+    public Partida MapWithoutObjects(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader.GetInt64(PartidaField.Id),
+            Detalles = reader.GetString(PartidaField.Detalles),
+            Fecha = reader.GetDateTime(PartidaField.Fecha),
+            Empresa = new (){Id = reader.GetInt64(PartidaField.IdEmpresa)}
         };
     }
 
