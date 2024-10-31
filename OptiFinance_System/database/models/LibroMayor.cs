@@ -6,9 +6,11 @@ public class LibroMayor
     public decimal Debe { get; set; }
     public decimal Haber { get; set; }
     public Cuenta? Cuenta { get; set; }
+    public Partida? Partida { get; set; }
 
     public override string ToString()
     {
-        return $"{nameof(Id)}: {Id}, {nameof(Debe)}: {Debe}, {nameof(Haber)}: {Haber}, {nameof(Cuenta)}: {Cuenta}";
+        return
+            $"{nameof(Id)}: {Id}, {nameof(Debe)}: {Debe}, {nameof(Haber)}: {Haber}, {nameof(Cuenta)}: {Cuenta}, {nameof(Partida)}: {Partida}";
     }
 }
