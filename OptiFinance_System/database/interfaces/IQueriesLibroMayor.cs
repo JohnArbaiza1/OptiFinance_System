@@ -7,7 +7,7 @@ public interface IQueriesLibroMayor
      List<LibroMayor> SelectAll();
      List<LibroMayor> SelectAllByAccount(long id);
      List<LibroMayor> SelectAllByAccount(Cuenta entity);
-     long GetSumByAccount(long id);
-     long GetSumByAccount(Cuenta entity);
+     LibroMayor? GetSumByAccount(long id);
+     LibroMayor? GetSumByAccount(Cuenta entity);
      int Count { get; }
 }

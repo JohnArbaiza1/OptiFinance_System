@@ -17,14 +17,27 @@ public class LibroMayorParams
     public string SqlSelectAll =>
         "SELECT r.id, r.debe, r.haber, c.id AS id_cuenta, c.codigo AS codigo, c.nombre AS nombre FROM registros AS r " +
         "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " +
-        "INNER JOIN empresas ON c.id_empresa = empresas.id " + 
+        "INNER JOIN empresas ON c.id_empresa = empresas.id " +
         "WHERE empresas.id = @id_empresa";
-    
+
     public string SelectAllByCodigo =>
         "SELECT r.id, r.debe, r.haber, c.id AS id_cuenta, c.codigo AS codigo, c.nombre AS nombre FROM registros AS r " +
         "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " +
-        "INNER JOIN empresas ON c.id_empresa = empresas.id " + 
+        "INNER JOIN empresas ON c.id_empresa = empresas.id " +
         "WHERE c.codigo = @codigo AND empresas.id = @id_empresa";
+
+    public string TotalByAccount =>
+        "SELECT MIN(r.id) AS id, SUM(r.debe) AS debe, SUM(r.haber) AS haber, MIN(c.id) AS id_cuenta, " + 
+        "MIN(c.codigo) AS codigo, MIN(c.nombre) AS nombre FROM registros AS r " +
+        "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " + 
+        "INNER JOIN empresas ON c.id_empresa = empresas.id " +
+        "WHERE empresas.id = @id_empresa and c.codigo = @codigo";
+    
+    public string SqlCount  => 
+        "SELECT COUNT(DISTINCT cuentas.id) AS count FROM registros " + 
+        "INNER JOIN cuentas ON registros.id_cuenta = cuentas.id " + 
+        "INNER JOIN empresas ON cuentas.id_empresa = empresas.id " +
+        "WHERE empresas.id = @id_empresa";
 
     public List<SqlParameter> ParametersInsert(LibroMayor entity)
     {
@@ -58,13 +71,30 @@ public class LibroMayorParams
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
     }
-    
+
     public List<SqlParameter> ParametersSelectAllByAccount(long id)
     {
         return new()
         {
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0),
             new("@id_cuenta", id)
+        };
+    }
+    
+    public List<SqlParameter> ParametersCount()
+    {
+        return new()
+        {
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+    }
+
+    public List<SqlParameter> ParametersTotalByAccount(long id)
+    {
+        return new()
+        {
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0),
+            new("@codigo", id)
         };
     }
 
@@ -82,5 +112,10 @@ public class LibroMayorParams
                 Nombre = reader.GetString(LibroMayorField.Nombre)
             }
         };
+    }
+    
+    public int MapCount(SqlDataReader reader)
+    {
+        return reader.GetInt32(0);
     }
 }
