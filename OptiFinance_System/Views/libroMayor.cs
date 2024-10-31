@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OptiFinance_System.database.models;
+using OptiFinance_System.database.query;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,8 +38,15 @@ public partial class libroMayor : Form
         //Definimos las variables para los espacios
         int spacingX = 610;
         int spacingY = 310;
-
-        for(int i = 0; i < 4; i++)
+        List<LibroMayor> listaMayor = LibroMayorQuery.Instance.SelectAll();
+        // Crea una lista de cuentas únicas basadas en el Id de la cuenta.
+        List<Cuenta> cuentasUnicas = listaMayor
+            .Where(libro => libro.Cuenta != null) // Filtra nulos, si hay alguno
+            .Select(libro => libro.Cuenta!)
+            .GroupBy(cuenta => cuenta.Id)
+            .Select(grupo => grupo.First())
+            .ToList();
+        for (int i = 0; i < cuentasUnicas.Count; i++)
         {
             //creamos una nueva instancia de DataGridView
             DataGridView dataGridMayor = new DataGridView();
@@ -47,11 +56,38 @@ public partial class libroMayor : Form
             dataGridMayor.Size = new Size(590, 300);
             dataGridMayor.Location = new Point(20, 10);
 
-            //Columnas 
-            dataGridMayor.Columns.Add("Column1", "Cuenta");
-            dataGridMayor.Columns.Add("Column2", "Codigo");
+            //Columnas
+            dataGridMayor.Columns.Add("Column", "Fecha");
+            dataGridMayor.Columns.Add("Column1", cuentasUnicas[i].Nombre);
+            dataGridMayor.Columns.Add("Column2", cuentasUnicas[i].Codigo);
+            dataGridMayor.Columns.Add("Column3", "Debe");
+            dataGridMayor.Columns.Add("Column4", "Haber");
+            dataGridMayor.Columns.Add("Column5", "Saldo");
+            dataGridMayor.Columns["Column"].Width = 180;
             dataGridMayor.Columns["Column1"].Width = 290;
-            dataGridMayor.Columns["Column2"].Width = 290;
+            dataGridMayor.Columns["Column2"].Width = 100;
+            dataGridMayor.Columns["Column3"].Width = 150;
+            dataGridMayor.Columns["Column4"].Width = 150;
+            dataGridMayor.Columns["Column5"].Width = 150;
+
+            // Filtrar los elementos de listaMayor que coinciden con la cuenta actual
+            var itemsFiltrados = listaMayor.Where(libro => libro.Cuenta?.Id == cuentasUnicas[i].Id);
+            decimal saldo = 0m;
+            // Agregar cada elemento filtrado como una nueva fila en el DataGridView
+            foreach (var item in itemsFiltrados)
+            {
+                // Obtén el saldo (debe - haber) o según el cálculo deseado
+                saldo += calcularSaldo(item.Cuenta, item.Debe, item.Haber);
+                // Agregar fila
+                dataGridMayor.Rows.Add(
+                    DateTime.Now.ToString("yyyy-MM-dd"), // Reemplaza con la fecha real si la tienes
+                    item.Cuenta?.Nombre,
+                    "",
+                    item.Debe,
+                    item.Haber,
+                    saldo
+                );
+            }
 
             // Cálculo para colocar dos DataGridView por fila
             int x = 10 + (i % 2) * spacingX; // Alterna entre columna 0 y columna 1
@@ -61,6 +97,35 @@ public partial class libroMayor : Form
             //Agregamos los data al panel
             containerDataMayor.Controls.Add(dataGridMayor);
         }
+    }
+    private decimal calcularSaldo(Cuenta tipoCuenta, decimal debe, decimal haber)
+    {
+        decimal dato = 0m;
+        if (tipoCuenta.Codigo.StartsWith("1"))
+        {
+            dato = debe - haber;
+        }
+        else if (tipoCuenta.Codigo.StartsWith("2"))
+        {
+            dato = haber - debe;
+        }
+        else if (tipoCuenta.Codigo.StartsWith("3"))
+        {
+            dato = haber - debe;
+        }
+        else if (tipoCuenta.Codigo.StartsWith("4"))
+        {
+            dato = haber - debe;
+        }
+        else if (tipoCuenta.Codigo.StartsWith("5"))
+        {
+            dato = haber - debe;
+        }
+        else if (tipoCuenta.Codigo.StartsWith("6"))
+        {
+            dato = debe - haber;
+        }
+        return dato;
     }
     #endregion
 }

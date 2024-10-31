@@ -49,7 +49,7 @@ public partial class libriDiario : Form
                 registro.ForEach(r =>
                 {
                     //Definimos un conjunto de variables para solo mostrar la fecha, partida y detalle en la primera fila de la partida
-                    string fecha = primeraFila ? r.Partida?.Fecha.ToString() : "";
+                    string fecha = primeraFila ? r.Partida?.Fecha.ToString("yyyy-MM-dd") : "";
                     string? partida = primeraFila ? r.Partida?.Id.ToString() : "";
                     string detalle = primeraFila
                         ? $"{r.Cuenta?.Nombre}"
