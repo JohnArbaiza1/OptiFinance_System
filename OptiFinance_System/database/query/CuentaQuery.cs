@@ -110,10 +110,10 @@ public class CuentaQuery : IQueryEstandar<Cuenta>, IQueryAccounts<Cuenta>
     /// <returns>
     /// Retorna una <see cref="List{T}"/> de <see cref="Cuenta"/> que contiene todas las cuentas distintas de la empresa seleccionada
     /// </returns>
-    public List<Cuenta> SelectAllByEmpresa()
+    public List<Cuenta> SelectAllDistinctsByEmpresa()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByEmpresa,
-            Params.MapSearchAll, Params.ParametersSelectAllByEmpresa());
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllDistinctsByEmpresa,
+            Params.MapSearchAll, Params.ParametersSelectAllDistinctsByEmpresa());
     }
 
     public List<Cuenta> SearchAll(string search)

@@ -89,7 +89,7 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
     
-    public List<SqlParameter> ParametersSelectAllByEmpresa()
+    public List<SqlParameter> ParametersSelectAllDistinctsByEmpresa()
     {
         List<SqlParameter> parameters = new()
         {
@@ -203,7 +203,7 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
     public string SqlselectByTypePuenteCierre =>
         "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
-    public string SqlSelectAllByEmpresa =>
+    public string SqlSelectAllDistinctsByEmpresa =>
         "SELECT MIN(c.id) AS id, MIN(c.nombre) AS nombre, c.codigo AS codigo, MIN(c.id_tipo_cuenta) AS id_tipo_cuenta, " +
         "MIN(c.id_empresa) AS id_empresa FROM registros AS r " +
         "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " +
