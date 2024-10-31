@@ -103,6 +103,13 @@ public class CuentaQuery : IQueryEstandar<Cuenta>, IQueryAccounts<Cuenta>
             Params.MapSelectAll, Params.ParametersSelectAll());
     }
 
+    /// <summary>
+    /// Selecciona todos las cuentas diferentes por empresa
+    /// Advertencia: Se debe de haber seleccionado una empresa antes de llamar a este método
+    /// </summary>
+    /// <returns>
+    /// Retorna una <see cref="List{T}"/> de <see cref="Cuenta"/> que contiene todas las cuentas distintas de la empresa seleccionada
+    /// </returns>
     public List<Cuenta> SelectAllByEmpresa()
     {
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByEmpresa,
