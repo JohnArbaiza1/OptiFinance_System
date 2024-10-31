@@ -23,7 +23,7 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         "SELECT * FROM cuentas WHERE id_empresa = @id_empresa";
 
     public string SqlSearchAll =>
-        "SELECT * FROM cuentas " + 
+        "SELECT * FROM cuentas " +
         "WHERE CONCAT(id, codigo, nombre, id_tipo_cuenta) LIKE @search AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersInsert(Cuenta entity)
@@ -88,6 +88,15 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         };
         return parameters;
     }
+    
+    public List<SqlParameter> ParametersSelectAllByEmpresa()
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
 
     public Cuenta Map(SqlDataReader reader)
     {
@@ -117,11 +126,12 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
             Id = reader.GetInt64(CuentasField.Id),
             Codigo = reader.GetString(CuentasField.Codigo),
             Nombre = reader.GetString(CuentasField.Nombre),
-            TipoCuenta = new(){Id = reader.GetInt64(CuentasField.IdTipoCuenta)}
+            TipoCuenta = new() { Id = reader.GetInt64(CuentasField.IdTipoCuenta) }
         };
     }
 
-    public string SqlselectByTypeActivo => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypeActivo =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypeActivo()
     {
@@ -134,7 +144,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypePasivo => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypePasivo =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypePasivo()
     {
@@ -147,7 +158,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypeCapital => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypeCapital =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypeCapital()
     {
@@ -160,7 +172,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypeDeudora => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypeDeudora =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypeDeudora()
     {
@@ -173,7 +186,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypeAcreedora => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypeAcreedora =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypeAcreedora()
     {
@@ -186,7 +200,15 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypePuenteCierre => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypePuenteCierre =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+
+    public string SqlSelectAllByEmpresa =>
+        "SELECT MIN(c.id) AS id, MIN(c.nombre) AS nombre, c.codigo AS codigo, MIN(c.id_tipo_cuenta) AS id_tipo_cuenta, " +
+        "MIN(c.id_empresa) AS id_empresa FROM registros AS r " +
+        "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " +
+        "INNER JOIN empresas AS e ON c.id_empresa = e.id " +
+        "WHERE e.id = @id_empresa GROUP BY c.codigo;";
 
     public List<SqlParameter> ParametersSelectByTypePuenteCierre()
     {

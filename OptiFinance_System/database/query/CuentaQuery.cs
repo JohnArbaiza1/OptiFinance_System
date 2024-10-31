@@ -103,6 +103,12 @@ public class CuentaQuery : IQueryEstandar<Cuenta>, IQueryAccounts<Cuenta>
             Params.MapSelectAll, Params.ParametersSelectAll());
     }
 
+    public List<Cuenta> SelectAllByEmpresa()
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByEmpresa,
+            Params.MapSearchAll, Params.ParametersSelectAllByEmpresa());
+    }
+
     public List<Cuenta> SearchAll(string search)
     {
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSearchAll,
