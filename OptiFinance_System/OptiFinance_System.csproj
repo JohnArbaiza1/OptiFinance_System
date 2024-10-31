@@ -63,8 +63,4 @@
         </EmbeddedResource>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="database\export\" />
-    </ItemGroup>
-
 </Project>
