@@ -517,7 +517,7 @@ public partial class Principal : Form
     //===============================| Libro Mayor |===================================
     private void btnMayor_Click(object sender, EventArgs e)
     {
-        abrirF<libroMayor>();
+        abrirF<LibroMayor>();
         btnMayor.BackColor = Color.FromArgb(254, 214, 0);
     }
 

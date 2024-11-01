@@ -94,12 +94,12 @@ public class LibroMayorParams
         };
     }
 
-    public List<SqlParameter> ParametersTotalByAccount(long id)
+    public List<SqlParameter> ParametersTotalByAccount(string codigo)
     {
         return new()
         {
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0),
-            new("@codigo", id)
+            new("@codigo", codigo)
         };
     }
 

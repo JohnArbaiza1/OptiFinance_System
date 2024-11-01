@@ -1,6 +1,6 @@
 ﻿namespace OptiFinance_System.Views
 {
-    partial class libroMayor
+    partial class LibroMayor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(libroMayor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibroMayor));
             panel1 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
@@ -114,7 +114,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "libroMayor";
+            Name = "LibroMayor";
             Text = "libroMayor";
             Load += libroMayor_Load;
             panel1.ResumeLayout(false);

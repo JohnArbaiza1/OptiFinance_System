@@ -38,12 +38,12 @@ public class LibroMayorQuery : IQueriesLibroMayor
     /// <summary>
     /// Selecciona todos los registros, filtrándolos por el id de la cuenta
     /// </summary>
-    /// <param name="id"> Código de la cuenta porla que se filtrará </param>
+    /// <param name="codigo"> Código de la cuenta porla que se filtrará </param>
     /// <returns> Lista de registros que servirán como libro mayor </returns>
-    public List<LibroMayor> SelectAllByAccount(long id)
+    public List<LibroMayor> SelectAllByAccount(string codigo)
     {
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SelectAllByCodigo,
-            Map, Params.ParametersTotalByAccount(id));
+            Map, Params.ParametersTotalByAccount(codigo));
     }
 
     /// <summary>
@@ -53,20 +53,20 @@ public class LibroMayorQuery : IQueriesLibroMayor
     /// <returns></returns>
     public List<LibroMayor> SelectAllByAccount(Cuenta entity)
     {
-        return SelectAllByAccount(entity.Id);
+        return SelectAllByAccount(entity.Codigo);
     }
 
     /// <summary>
     /// Sirve para obtener la suma de los registros de una cuenta filtrando de manera implicita por empresa seleccionada
     /// </summary>
-    /// <param name="id">Id de la cuenta por la que se filtrará</param>
+    /// <param name="codigo">Id de la cuenta por la que se filtrará</param>
     /// <returns>Retorna un objeto de tipo <see cref="LibroMayor"/> que contiene la suma de los registros de
     /// la cuenta filtrada por id
     /// </returns>
-    public LibroMayor? GetSumByAccount(long id)
+    public LibroMayor? GetSumByAccount(string codigo)
     {
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.TotalByAccount,
-            Map, Params.ParametersTotalByAccount(id));
+            Map, Params.ParametersTotalByAccount(codigo));
     }
 
     /// <summary>
@@ -78,7 +78,7 @@ public class LibroMayorQuery : IQueriesLibroMayor
     /// </returns>
     public LibroMayor? GetSumByAccount(Cuenta entity)
     {
-        return GetSumByAccount(entity.Id);
+        return GetSumByAccount(entity.Codigo);
     }
 
     /// <summary>

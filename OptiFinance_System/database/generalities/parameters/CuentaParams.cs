@@ -204,7 +204,7 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public string SqlSelectAllDistinctsByEmpresa =>
-        "SELECT MIN(c.id) AS id, MIN(c.nombre) AS nombre, c.codigo AS codigo, MIN(c.id_tipo_cuenta) AS id_tipo_cuenta, " +
+        "SELECT MIN(c.id) AS id, c.codigo AS codigo, MIN(c.nombre) AS nombre, MIN(c.id_tipo_cuenta) AS id_tipo_cuenta, " +
         "MIN(c.id_empresa) AS id_empresa FROM registros AS r " +
         "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " +
         "INNER JOIN empresas AS e ON c.id_empresa = e.id " +
