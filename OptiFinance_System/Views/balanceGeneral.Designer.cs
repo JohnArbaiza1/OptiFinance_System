@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(balanceGeneral));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label1 = new Label();
+            btnAtras = new PictureBox();
             panel2 = new Panel();
             txtTotalPasyPatri = new TextBox();
             label3 = new Label();
@@ -45,12 +46,11 @@
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             lblFechaBalance = new Label();
-            btnAtras = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
             panel2.SuspendLayout();
             ContenedorBalance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataBalance).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -74,6 +74,17 @@
             label1.Size = new Size(427, 45);
             label1.TabIndex = 7;
             label1.Text = "BALANCE GENERAL";
+            // 
+            // btnAtras
+            // 
+            btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
+            btnAtras.Location = new Point(0, 0);
+            btnAtras.Name = "btnAtras";
+            btnAtras.Size = new Size(64, 64);
+            btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnAtras.TabIndex = 4;
+            btnAtras.TabStop = false;
+            btnAtras.Click += btnAtras_Click;
             // 
             // panel2
             // 
@@ -143,6 +154,7 @@
             btnGenerarBalance.TabIndex = 10;
             btnGenerarBalance.Text = "Generar Balance";
             btnGenerarBalance.UseVisualStyleBackColor = false;
+            btnGenerarBalance.Click += btnGenerarBalance_Click;
             // 
             // ContenedorBalance
             // 
@@ -220,17 +232,6 @@
             lblFechaBalance.TabIndex = 8;
             lblFechaBalance.Text = "FECHA DEL BALANCE GENERAL";
             // 
-            // btnAtras
-            // 
-            btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
-            btnAtras.Location = new Point(0, 0);
-            btnAtras.Name = "btnAtras";
-            btnAtras.Size = new Size(64, 64);
-            btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
-            btnAtras.TabIndex = 4;
-            btnAtras.TabStop = false;
-            btnAtras.Click += btnAtras_Click;
-            // 
             // balanceGeneral
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -244,11 +245,11 @@
             Text = "balanceGeneral";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ContenedorBalance.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataBalance).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
             ResumeLayout(false);
         }
 
