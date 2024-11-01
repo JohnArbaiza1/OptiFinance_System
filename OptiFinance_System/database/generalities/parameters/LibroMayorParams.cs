@@ -16,7 +16,7 @@ public class LibroMayorParams
 
     public string SqlSelectAll =>
         "SELECT r.id, r.debe, r.haber, c.id AS id_cuenta, c.codigo AS codigo, c.nombre AS nombre, p.detalles AS detalles, " + 
-        "p.fecha AS fecha FROM registros AS r " +
+        "p.fecha AS fecha , p.id AS id_partida FROM registros AS r " +
         "INNER JOIN partidas AS p ON r.id_partida = p.id " +
         "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " +
         "INNER JOIN empresas ON c.id_empresa = empresas.id " +
@@ -24,7 +24,7 @@ public class LibroMayorParams
 
     public string SelectAllByCodigo =>
         "SELECT r.id, r.debe, r.haber, c.id AS id_cuenta, c.codigo AS codigo, c.nombre, p.detalles AS detalles, " + 
-        "p.fecha AS fecha FROM registros AS r " +
+        "p.fecha AS fecha, p.id AS id_partida FROM registros AS r " +
         "INNER JOIN partidas AS p ON r.id_partida = p.id " +
         "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " +
         "INNER JOIN empresas ON c.id_empresa = empresas.id " +
@@ -32,7 +32,7 @@ public class LibroMayorParams
 
     public string TotalByAccount =>
         "SELECT MIN(r.id) AS id, SUM(r.debe) AS debe, SUM(r.haber) AS haber, MIN(c.id) AS id_cuenta, " + 
-        "MIN(c.codigo) AS codigo, MIN(c.nombre) AS nombre, MIN(p.detalles) AS detalles, MIN(p.fecha) AS fecha FROM registros AS r " +
+        "MIN(c.codigo) AS codigo, MIN(c.nombre) AS nombre, MIN(p.detalles) AS detalles, MIN(p.fecha) AS fecha, MIN(p.id) AS id_partida FROM registros AS r " +
         "INNER JOIN partidas AS p ON r.id_partida = p.id " +
         "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " + 
         "INNER JOIN empresas ON c.id_empresa = empresas.id " +
@@ -119,7 +119,8 @@ public class LibroMayorParams
             Partida = new()
             {
                 Detalles = reader.GetString(6),
-                Fecha = reader.GetDateTime(7)
+                Fecha = reader.GetDateTime(7),
+                Id = reader.GetInt64(8)
             }
         };
     }
