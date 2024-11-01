@@ -40,12 +40,7 @@ public partial class libroMayor : Form
         int spacingY = 310;
         List<LibroMayor> listaMayor = LibroMayorQuery.Instance.SelectAll();
         // Crea una lista de cuentas únicas basadas en el Id de la cuenta.
-        List<Cuenta> cuentasUnicas = listaMayor
-            .Where(libro => libro.Cuenta != null) // Filtra nulos, si hay alguno
-            .Select(libro => libro.Cuenta!)
-            .GroupBy(cuenta => cuenta.Id)
-            .Select(grupo => grupo.First())
-            .ToList();
+        List<Cuenta> cuentasUnicas = CuentaQuery.Instance.SelectAllDistinctsByEmpresa();
         for (int i = 0; i < cuentasUnicas.Count; i++)
         {
             //creamos una nueva instancia de DataGridView
@@ -58,8 +53,8 @@ public partial class libroMayor : Form
 
             //Columnas
             dataGridMayor.Columns.Add("Column", "Fecha");
-            dataGridMayor.Columns.Add("Column1", cuentasUnicas[i].Nombre);
-            dataGridMayor.Columns.Add("Column2", cuentasUnicas[i].Codigo);
+            dataGridMayor.Columns.Add("Column1", cuentasUnicas[i].Codigo);
+            dataGridMayor.Columns.Add("Column2", cuentasUnicas[i].Nombre);
             dataGridMayor.Columns.Add("Column3", "Debe");
             dataGridMayor.Columns.Add("Column4", "Haber");
             dataGridMayor.Columns.Add("Column5", "Saldo");
@@ -72,6 +67,7 @@ public partial class libroMayor : Form
 
             // Filtrar los elementos de listaMayor que coinciden con la cuenta actual
             var itemsFiltrados = listaMayor.Where(libro => libro.Cuenta?.Id == cuentasUnicas[i].Id);
+            //var itemsFiltrados = LibroMayorQuery.Instance.SelectAllByAccount(cuentasUnicas[i].Id);
             decimal saldo = 0m;
             // Agregar cada elemento filtrado como una nueva fila en el DataGridView
             foreach (var item in itemsFiltrados)
@@ -80,9 +76,9 @@ public partial class libroMayor : Form
                 saldo += calcularSaldo(item.Cuenta, item.Debe, item.Haber);
                 // Agregar fila
                 dataGridMayor.Rows.Add(
-                    DateTime.Now.ToString("yyyy-MM-dd"), // Reemplaza con la fecha real si la tienes
-                    item.Cuenta?.Nombre,
-                    "",
+                    item.Partida?.Fecha.ToString("d/MM/yyyy"), // Reemplaza con la fecha real si la tienes
+                    item.Partida?.Detalles,
+                    item.Partida?.Id,
                     item.Debe,
                     item.Haber,
                     saldo
