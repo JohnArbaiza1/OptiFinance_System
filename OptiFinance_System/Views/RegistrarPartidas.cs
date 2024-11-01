@@ -385,6 +385,7 @@ public partial class RegistrarPartidas : Form
     {
         btnEditar.Enabled = false;
         btnRegistrar.Enabled = false;
+        btnEliminar.Enabled = false;
         dataFecha.Enabled = false;
         comboFecha.Enabled = false;
         txtCodigo.Enabled = false;
@@ -396,6 +397,7 @@ public partial class RegistrarPartidas : Form
     {
         btnEditar.Enabled = true;
         btnRegistrar.Enabled = true;
+        btnEliminar.Enabled = true;
         dataFecha.Enabled = true;
         comboFecha.Enabled = true;
         txtCodigo.Enabled = true;
@@ -421,6 +423,7 @@ public partial class RegistrarPartidas : Form
         btnRegistrar.Enabled=true;
         btnSave.Enabled = true;
         comboFecha.Items.Clear();
+        comboFecha.Text = "";
         foreach (Cuenta item in cuentas)
         {
             comboFecha.Items.Add(item);
