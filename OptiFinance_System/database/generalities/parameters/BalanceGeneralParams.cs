@@ -45,10 +45,15 @@ public class BalanceGeneralParams
     {
         return new()
         {
-            Codigo = (int)reader[BalanceGeneralField.Codigo],
-            NombreCuenta = reader[BalanceGeneralField.NombreCuenta].ToString() ?? string.Empty,
-            Debe = (decimal)reader[BalanceGeneralField.Debe],
-            Haber = (decimal)reader[BalanceGeneralField.Haber]
+            // Codigo = reader[BalanceGeneralField.Codigo].ToString() ?? string.Empty,
+            //Validar que no sea nulo
+            Codigo = reader[BalanceGeneralField.Codigo] != DBNull.Value ? reader[BalanceGeneralField.Codigo].ToString() : string.Empty,
+            // NombreCuenta = reader[BalanceGeneralField.NombreCuenta].ToString() ?? string.Empty,
+            NombreCuenta = reader[BalanceGeneralField.NombreCuenta] != DBNull.Value ? reader[BalanceGeneralField.NombreCuenta].ToString() : string.Empty,
+            // Debe = (decimal)reader[BalanceGeneralField.Debe],
+            Debe = reader[BalanceGeneralField.Debe] != DBNull.Value ? (decimal)reader[BalanceGeneralField.Debe] : 0,
+            // Haber = (decimal)reader[BalanceGeneralField.Haber]
+            Haber = reader[BalanceGeneralField.Haber] != DBNull.Value ? (decimal)reader[BalanceGeneralField.Haber] : 0.05m
         };
     }
 }
