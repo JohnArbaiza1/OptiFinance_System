@@ -36,23 +36,24 @@ public partial class LibroMayor : Form
 
     //Configuramos las propiedades
     dataGridMayor.Name = "dataLibroMayor";
-    dataGridMayor.Size = new(590, 300);
+    dataGridMayor.Size = new(1150, 300);
     dataGridMayor.Location = new(20, 10);
 
     //Columnas
-    dataGridMayor.Columns.Add("Column", "Fecha");
-    dataGridMayor.Columns.Add("Column1", codigo);
-    dataGridMayor.Columns.Add("Column2", nombre);
-    dataGridMayor.Columns.Add("Column3", "Debe");
-    dataGridMayor.Columns.Add("Column4", "Haber");
-    dataGridMayor.Columns.Add("Column5", "Saldo");
+    dataGridMayor.Columns.Add("Column", $"Codigo: {codigo}");
+    dataGridMayor.Columns.Add("Column1", $"{nombre}");
+    dataGridMayor.Columns.Add("Column2", "");
+    dataGridMayor.Columns.Add("Column3", "");
+    dataGridMayor.Columns.Add("Column4", "");
+    dataGridMayor.Columns.Add("Column5", "");
     dataGridMayor.Columns["Column"]!.Width = 180;
-    dataGridMayor.Columns["Column1"]!.Width = 290;
+    dataGridMayor.Columns["Column1"]!.Width = 390;
     dataGridMayor.Columns["Column2"]!.Width = 100;
     dataGridMayor.Columns["Column3"]!.Width = 150;
     dataGridMayor.Columns["Column4"]!.Width = 150;
     dataGridMayor.Columns["Column5"]!.Width = 150;
 
+    dataGridMayor.Rows.Add("Fecha", "Concepto","Partida", "Debe", "Haber", "Saldo", "");
     return dataGridMayor;
 }
 
@@ -91,9 +92,8 @@ public partial class LibroMayor : Form
             }
 
             // Cálculo para colocar dos DataGridView por fila
-            int x = 10 + i % 2 * spacingX; // Alterna entre columna 0 y columna 1
-            int y = 10 + i / 2 * spacingY; // Cada dos DataGridView, se pasa a una nueva fila
-            dataGridMayor.Location = new(x, y); // Establece la posición dinámica
+            int y = 10 + i * spacingY; // Incrementa el y para cada DataGridView
+            dataGridMayor.Location = new Point(10, y); // Establece la posición dinámica
 
             //Agregamos los data al panel
             containerDataMayor.Controls.Add(dataGridMayor);
