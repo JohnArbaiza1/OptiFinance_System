@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
@@ -10,7 +11,7 @@ public class GiroEconomicoParams : IQueriesString<GiroEconomico>
     public string SqlUpdate { get; } = "UPDATE giros_economicos SET nombre = @nombre WHERE id = @id";
     public string SqlDelete { get; } = "DELETE FROM giros_economicos WHERE id = @id";
     public string SqlFindById { get; } = "SELECT id, nombre FROM giros_economicos WHERE id = @id";
-    public string SqlSelectAll { get; } = "SELECT id, nombre FROM giros_economicos";
+    public string SqlSelectAllByPartida { get; } = "SELECT id, nombre FROM giros_economicos";
 
     public string SqlSearchAll { get; } =
         "SELECT id, nombre FROM giros_economicos WHERE CONCAT(id, nombre) LIKE @search";
@@ -65,8 +66,8 @@ public class GiroEconomicoParams : IQueriesString<GiroEconomico>
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1)
+            Id = reader.GetInt64(GiroEconomicoField.Id),
+            Nombre = reader.GetString(GiroEconomicoField.Nombre)
         };
     }
 }

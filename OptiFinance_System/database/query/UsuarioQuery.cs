@@ -93,7 +93,7 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
 
     public List<Usuario> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, MapEntity);
     }
 
     public List<Usuario> SearchAll(string search)

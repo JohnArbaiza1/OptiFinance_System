@@ -19,11 +19,11 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
     public string SqlDelete => "DELETE FROM cuentas WHERE id = @id";
     public string SqlFindById => "SELECT * FROM cuentas WHERE id = @id and id_empresa = @id_empresa";
 
-    public string SqlSelectAll =>
+    public string SqlSelectAllByPartida =>
         "SELECT * FROM cuentas WHERE id_empresa = @id_empresa";
 
     public string SqlSearchAll =>
-        "SELECT * FROM cuentas " + 
+        "SELECT * FROM cuentas " +
         "WHERE CONCAT(id, codigo, nombre, id_tipo_cuenta) LIKE @search AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersInsert(Cuenta entity)
@@ -32,7 +32,7 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         {
             new("@codigo", entity.Codigo),
             new("@nombre", entity.Nombre),
-            new("@id_tipo_cuenta", entity.TipoCuenta?.Id),
+            new("@id_tipo_cuenta", entity.TipoCuenta?.Id ?? 0),
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
@@ -88,6 +88,15 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         };
         return parameters;
     }
+    
+    public List<SqlParameter> ParametersSelectAllDistinctsByEmpresa()
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
 
     public Cuenta Map(SqlDataReader reader)
     {
@@ -95,9 +104,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         {
             Id = (long)reader[CuentasField.Id],
             Codigo = (string)reader[CuentasField.Codigo],
-            Nombre = reader.GetString(2),
-            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3)),
-            Empresa = EmpresaQuery.Instance.FindById(reader.GetInt64(4))
+            Nombre = reader.GetString(CuentasField.Nombre),
+            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(CuentasField.IdTipoCuenta))
         };
     }
 
@@ -105,9 +113,9 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Codigo = reader.GetString(1),
-            Nombre = reader.GetString(2)
+            Id = reader.GetInt64(CuentasField.Id),
+            Codigo = reader.GetString(CuentasField.Codigo),
+            Nombre = reader.GetString(CuentasField.Nombre)
         };
     }
 
@@ -115,14 +123,15 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Codigo = reader.GetString(1),
-            Nombre = reader.GetString(2),
-            TipoCuenta = TipoCuentaQuery.Instance.FindById(reader.GetInt64(3))
+            Id = reader.GetInt64(CuentasField.Id),
+            Codigo = reader.GetString(CuentasField.Codigo),
+            Nombre = reader.GetString(CuentasField.Nombre),
+            TipoCuenta = new() { Id = reader.GetInt64(CuentasField.IdTipoCuenta) }
         };
     }
 
-    public string SqlselectByTypeActivo => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypeActivo =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypeActivo()
     {
@@ -135,7 +144,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypePasivo => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypePasivo =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypePasivo()
     {
@@ -148,7 +158,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypeCapital => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypeCapital =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypeCapital()
     {
@@ -161,7 +172,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypeDeudora => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypeDeudora =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypeDeudora()
     {
@@ -174,7 +186,8 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypeAcreedora => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypeAcreedora =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
 
     public List<SqlParameter> ParametersSelectByTypeAcreedora()
     {
@@ -187,7 +200,15 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
         return parameters;
     }
 
-    public string SqlselectByTypePuenteCierre => "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+    public string SqlselectByTypePuenteCierre =>
+        "SELECT * FROM cuentas WHERE id_tipo_cuenta = @id_tipo_cuenta AND id_empresa = @id_empresa";
+
+    public string SqlSelectAllDistinctsByEmpresa =>
+        "SELECT MIN(c.id) AS id, c.codigo AS codigo, MIN(c.nombre) AS nombre, MIN(c.id_tipo_cuenta) AS id_tipo_cuenta, " +
+        "MIN(c.id_empresa) AS id_empresa FROM registros AS r " +
+        "INNER JOIN cuentas AS c ON r.id_cuenta = c.id " +
+        "INNER JOIN empresas AS e ON c.id_empresa = e.id " +
+        "WHERE e.id = @id_empresa GROUP BY c.codigo;";
 
     public List<SqlParameter> ParametersSelectByTypePuenteCierre()
     {
@@ -198,5 +219,14 @@ public class CuentaParams : IQueriesString<Cuenta>, IQueriesByTypeAccount<Cuenta
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
+    }
+
+    public Cuenta MapFindWithoutObjects(SqlDataReader reader)
+    {
+        return new()
+        {
+            Codigo = reader.GetString(CuentasField.Codigo),
+            Nombre = reader.GetString(CuentasField.Nombre)
+        };
     }
 }

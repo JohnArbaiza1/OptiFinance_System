@@ -28,7 +28,7 @@ public partial class SeleccionEmpresa : Form
             dataEmpresas.Rows.Add(
                 entity,
                 entity.Nit,
-                entity.GiroEconomico?.Nombre,
+                entity.GiroEconomico,
                 entity.RepresentanteLegal,
                 entity.Direccion,
                 entity.Telefono,
@@ -47,6 +47,17 @@ public partial class SeleccionEmpresa : Form
         }
         Empresa? empresa = dataEmpresas.SelectedRows[0].Cells[0].Value as Empresa;
         Global.SelectedEmpresa = empresa;
+        Global.IsSelectedEmpresa = true;
+        Principal.EmpresaSeleccionada!.Visible = true;
+        Principal.NombreEmpresa!.Text = Global.SelectedEmpresa?.Nombre ?? "No hay empresa seleccionada";
+        //para las validaciones de empresa
+        Principal.cuentaXD.Enabled = Global.IsSelectedEmpresa; 
+        Principal.libros.Enabled = Global.IsSelectedEmpresa;
+        Principal.estados.Enabled = Global.IsSelectedEmpresa;
+        Principal.liquidez.Enabled = Global.IsSelectedEmpresa;
+        Principal.newPartida.Enabled = Global.IsSelectedEmpresa;
+        Principal.info.Enabled = Global.IsSelectedEmpresa;
+        Principal.miembroEmpresa.Enabled = Global.IsSelectedEmpresa;
         // Inicio.lblNombreEmpresa.Text = $@"Bienvenidos a {empresa?.Nombre ?? ""}";
         Close();
     }

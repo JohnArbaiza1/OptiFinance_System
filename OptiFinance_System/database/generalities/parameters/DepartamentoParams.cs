@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
@@ -7,12 +8,12 @@ namespace OptiFinance_System.database.generalities.parameters;
 
 public class DepartamentoParams : IQueriesString<Departamento>
 {
-    public string SqlInsert { get; } = "INSERT INTO departamentos (nombre, codigo) VALUES (@Nombre, @Codigo)";
-    public string SqlUpdate { get; } = "UPDATE departamentos SET nombre = @Nombre, codigo = @Codigo WHERE id = @Id";
-    public string SqlDelete { get; } = "DELETE FROM departamentos WHERE id = @Id";
-    public string SqlFindById { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
-    public string SqlFindName { get; } = "SELECT id, nombre, codigo FROM departamentos WHERE nombre = @Nombre";
-    public string SqlSelectAll { get; } = "SELECT id, nombre, codigo FROM departamentos";
+    public string SqlInsert => "INSERT INTO departamentos (nombre, codigo) VALUES (@Nombre, @Codigo)";
+    public string SqlUpdate => "UPDATE departamentos SET nombre = @Nombre, codigo = @Codigo WHERE id = @Id";
+    public string SqlDelete => "DELETE FROM departamentos WHERE id = @Id";
+    public string SqlFindById => "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
+    public string SqlFindName => "SELECT id, nombre, codigo FROM departamentos WHERE nombre = @Nombre";
+    public string SqlSelectAllByPartida => "SELECT id, nombre, codigo FROM departamentos";
     public string SqlSearchAll { get; }
 
     public List<SqlParameter> ParametersInsert(Departamento entity)
@@ -76,9 +77,9 @@ public class DepartamentoParams : IQueriesString<Departamento>
     {
         Departamento departamento = new()
         {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1),
-            Codigo = reader.IsDBNull(2) ? null : reader.GetString(2)
+            Id = reader.GetInt64(DepartamentoField.Id),
+            Nombre = reader.GetString(DepartamentoField.Nombre),
+            Codigo = reader.IsDBNull(DepartamentoField.Codigo) ? null : reader.GetString(DepartamentoField.Codigo)
         };
         return departamento;
     }

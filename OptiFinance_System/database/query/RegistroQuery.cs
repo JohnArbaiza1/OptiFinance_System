@@ -91,7 +91,14 @@ public class RegistroQuery : IQueryEstandar<Registro>
 
     public List<Registro> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity, 
+            Params.ParametersSelectAll());
+    }
+
+    public List<Registro> SelectAllByPartida(Partida entity)
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, Params.MapSelectAllByPartida,
+            Params.ParametersSelectAllByPartida(entity));
     }
 
     public List<Registro> SearchAll(string search)

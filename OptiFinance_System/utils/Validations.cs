@@ -1,5 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using OptiFinance_System.database.models;
+using OptiFinance_System.database.query;
 
 namespace OptiFinance_System.utils;
 
@@ -8,6 +9,14 @@ public class Validations
     public static bool ComparePasswordHash(string password, string passwordHash)
     {
         return BCrypt.Net.BCrypt.Verify(password, passwordHash);
+    }
+    
+    public static bool ValidarUsuarioAndMiembroExist(string username)
+    {
+        People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
+                          MiembroEmpresaQuery.Instance.FindByUsername(username);
+        
+        return UserExist(usuario);
     }
 
     public static bool UserExist(People? people)

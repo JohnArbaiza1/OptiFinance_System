@@ -1,0 +1,2 @@
+﻿sqlpackage.exe /Action:Import /tsn:localhost\SQLEXPRESS /tdn:sistemas_contables /sf:Backup.bacpac /TargetTrustServerCertificate:True
+sqlpackage.exe /Action:Import /tsn:[tu server name] /tdn:[base de datos donde se importará en local] /sf:[Ruta del archivo .bacpac] /TargetTrustServerCertificate:True

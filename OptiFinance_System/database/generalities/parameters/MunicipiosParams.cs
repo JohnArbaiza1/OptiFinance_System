@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
@@ -14,7 +15,7 @@ public class MunicipiosParams : IQueriesString<Municipio>
 
     public string SqlDelete => "DELETE FROM municipios WHERE id = @id";
     public string SqlFindById => "SELECT id, nombre, id_departamento FROM municipios WHERE id = @id";
-    public string SqlSelectAll => "SELECT id, nombre, id_departamento FROM municipios";
+    public string SqlSelectAllByPartida => "SELECT id, nombre, id_departamento FROM municipios";
 
     public string SqlSearchAll => "SELECT id, nombre, id_departamento FROM municipios " +
                                   "WHERE CONCAT(id, nombre, id_departamento) LIKE @search";
@@ -73,9 +74,9 @@ public class MunicipiosParams : IQueriesString<Municipio>
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1),
-            Departamento = DepartamentoQuery.Instance.FindById(reader.GetInt64(2))
+            Id = reader.GetInt64(MunicipioField.Id),
+            Nombre = reader.GetString(MunicipioField.Nombre),
+            Departamento = DepartamentoQuery.Instance.FindById(reader.GetInt64(MunicipioField.IdDepartamento))
         };
     }
 
@@ -84,7 +85,8 @@ public class MunicipiosParams : IQueriesString<Municipio>
         return new()
         {
             Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1)
+            Nombre = reader.GetString(1),
+            Departamento = new(){Id = reader.GetInt64(MunicipioField.IdDepartamento)}
         };
     }
 

@@ -11,6 +11,7 @@ public partial class Usuarios : Form
     private List<Usuario>? usuariosSistema;
     //Definimos una variable para almacenar el id del usuario seleccionado
     private int selectedUserId;
+    private Usuario? selectedUser;
     public Usuarios()
     {
         InitializeComponent();
@@ -36,7 +37,10 @@ public partial class Usuarios : Form
         }
 
         // Verificamos cuántos usuarios se han cargado
-        Console.WriteLine($"Total de usuarios cargados: {Global.listUsuarios.Count}");
+        Console.WriteLine($@"Total de usuarios cargados: {Global.listUsuarios.Count}");
+
+        List<Usuario> usuarios = UsuarioQuery.Instance.SelectAll();
+        if (usuarios.Count == 0) return;
 
         DataTable dataTable = new();
         dataTable.Columns.Add("Nombre", typeof(Usuario));  // Columna para el objeto Usuario
@@ -46,7 +50,7 @@ public partial class Usuarios : Form
         dataTable.Columns.Add("Email", typeof(string));
         dataTable.Columns.Add("Telefono", typeof(string));
         dataTable.Columns.Add("Direccion", typeof(string));
-        Global.listUsuarios.ForEach(entity =>
+        usuarios.ForEach(entity =>
         {
             dataTable.Rows.Add(entity, entity.Apellidos, entity.Alias, entity.Password, entity.Email, entity.Telefono, entity.Direccion);
         });
@@ -106,7 +110,7 @@ public partial class Usuarios : Form
         catch (Exception ex)
         {
             //Por si hay algun error :)
-            MessageBox.Show($"Error al cargar los usuarios: {ex.Message}");
+            MessageBox.Show(@$"Error al cargar los usuarios: {ex.Message}");
         }
     }
 
@@ -124,13 +128,13 @@ public partial class Usuarios : Form
         //Validamos que no se pueda ingresar contraeñas vacias
         if (string.IsNullOrWhiteSpace(password))
         {
-            MessageBox.Show("Debe Ingresar la contraseña", "¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(@"Debe Ingresar la contraseña", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
-
-        if (Validations.UserExist(UsuarioQuery.Instance.FindByUsername(alias)))
+        
+        if (Validations.ValidarUsuarioAndMiembroExist(alias))
         {
-            MessageBox.Show(@"El usuario ya existe", "!Advertencia¡", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(@"El usuario ya existe", @"!Advertencia¡", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txtName.Clear();
             return;
         }
@@ -165,19 +169,33 @@ public partial class Usuarios : Form
                 DataGridViewRow row = dataGridViewUsuarios.Rows[e.RowIndex];
 
                 selectedUserId = (int)((Usuario)row.Cells["Nombre"].Value).Id;
+                selectedUser = row.Cells["Nombre"].Value as Usuario;
+                if (selectedUser == null)
+                {
+                    MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                txtName.Text = row.Cells["Nombre"].Value.ToString();
+                /*txtName.Text = row.Cells["Nombre"].Value.ToString();
                 txtLastName.Text = row.Cells["Apellido"].Value.ToString();
                 txtAlias.Text = row.Cells["Alias"].Value.ToString();
                 txtEmail.Text = row.Cells["Email"].Value.ToString();
                 txtPassUser.Text = row.Cells["Password"].Value.ToString();
                 txtTelefonos.Text = row.Cells["Telefono"].Value.ToString();
-                txtAddress.Text = row.Cells["Direccion"].Value.ToString();
+                txtAddress.Text = row.Cells["Direccion"].Value.ToString();*/
+                
+                txtName.Text = selectedUser.Nombres;
+                txtLastName.Text = selectedUser.Apellidos;
+                txtAlias.Text = selectedUser.Alias;
+                txtEmail.Text = selectedUser.Email;
+                txtPassUser.Text = selectedUser.Password;
+                txtTelefonos.Text = selectedUser.Telefono;
+                txtAddress.Text = selectedUser.Direccion;
             }
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Parece que ha ocurrido un error\n" + ex);
+            MessageBox.Show(@"Parece que ha ocurrido un error\n" + ex);
         }
     }
 
@@ -202,15 +220,31 @@ public partial class Usuarios : Form
         //Validamos que no se pueda ingresar contraeñas vacias
         if (string.IsNullOrWhiteSpace(password))
         {
-            MessageBox.Show("Debe Ingresar la contraseña", "¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(@"Debe Ingresar la contraseña", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
+        }
+        
+        if (selectedUser == null)
+        {
+            MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        if (!alias.Equals(selectedUser.Alias))
+        {
+            if (Validations.ValidarUsuarioAndMiembroExist(alias))
+            {
+                MessageBox.Show(@"El usuario ya existe", @"!Advertencia¡", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
 
         Usuario user = new Usuario();
         {
-            user.Id = selectedUserId;
+            // user.Id = selectedUserId;
+            user.Id = selectedUser.Id;
             user.Alias = alias;
-            user.Password = Utilities.HashPassword(password);
+            user.Password = password.Equals(selectedUser.Password) ? password : Utilities.HashPassword(password);
             user.Nombres = username;
             user.Apellidos = apellidos;
             user.Email = email;
@@ -223,12 +257,13 @@ public partial class Usuarios : Form
 
         if (result)
         {
+            selectedUser = null;
             limpiar_ActualizarCampos();
-            MessageBox.Show("Datos de Usuario actualizados correctamente");
+            MessageBox.Show(@"Datos de Usuario actualizados correctamente");
         }
         else
         {
-            MessageBox.Show("Error al actualizar los datos de usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(@"Error al actualizar los datos de usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -251,6 +286,11 @@ public partial class Usuarios : Form
                 MessageBox.Show("Error al eliminar los datos de usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         };
+
+    }
+
+    private void dataGridViewUsuarios_MouseClick(object sender, MouseEventArgs e)
+    {
 
     }
 }

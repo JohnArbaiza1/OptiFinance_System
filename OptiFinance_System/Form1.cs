@@ -240,7 +240,7 @@ public partial class Form1 : Form
 
         if (!ValidarUsuario(_usuario, _pass))
         {
-            Message.MessageViewError(@"Usuario o contraseña incorrectadfasdsa");
+            Message.MessageViewError(@"Usuario o contraseña incorrecta");
             return;
         }
 

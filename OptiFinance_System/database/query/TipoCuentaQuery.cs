@@ -94,7 +94,7 @@ public class TipoCuentaQuery : IQueryEstandar<TipoCuenta>
 
     public List<TipoCuenta> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, MapEntity);
     }
 
     public List<TipoCuenta> SearchAll(string search)

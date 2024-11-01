@@ -36,6 +36,7 @@
             textBox1 = new TextBox();
             label6 = new Label();
             groupBox2 = new GroupBox();
+            btnEliminar = new Button();
             btnEditar = new Button();
             btnCancelar = new Button();
             btnRegistrar = new Button();
@@ -49,10 +50,10 @@
             panel4 = new Panel();
             dataGridView1 = new DataGridView();
             Fecha = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
+            Cuenta = new DataGridViewTextBoxColumn();
+            Codigo = new DataGridViewTextBoxColumn();
+            Debe = new DataGridViewTextBoxColumn();
+            Haber = new DataGridViewTextBoxColumn();
             comboFecha = new ComboBox();
             txtCodigo = new TextBox();
             label3 = new Label();
@@ -126,6 +127,7 @@
             // textBox1
             // 
             textBox1.BackColor = Color.FromArgb(245, 245, 242);
+            textBox1.Enabled = false;
             textBox1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.Location = new Point(871, 57);
             textBox1.Margin = new Padding(3, 2, 3, 2);
@@ -147,6 +149,7 @@
             // groupBox2
             // 
             groupBox2.AutoSize = true;
+            groupBox2.Controls.Add(btnEliminar);
             groupBox2.Controls.Add(btnEditar);
             groupBox2.Controls.Add(btnCancelar);
             groupBox2.Controls.Add(btnRegistrar);
@@ -160,10 +163,27 @@
             groupBox2.Margin = new Padding(3, 2, 3, 2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(3, 2, 3, 2);
-            groupBox2.Size = new Size(203, 378);
+            groupBox2.Size = new Size(203, 392);
             groupBox2.TabIndex = 13;
             groupBox2.TabStop = false;
             groupBox2.Text = "Ingresa el valor";
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = Color.FromArgb(234, 130, 6);
+            btnEliminar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEliminar.ForeColor = Color.White;
+            btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
+            btnEliminar.Location = new Point(7, 186);
+            btnEliminar.Margin = new Padding(3, 2, 3, 2);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Padding = new Padding(14, 0, 0, 0);
+            btnEliminar.Size = new Size(186, 40);
+            btnEliminar.TabIndex = 17;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnEditar
             // 
@@ -171,15 +191,16 @@
             btnEditar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnEditar.ForeColor = Color.White;
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
-            btnEditar.Location = new Point(6, 146);
+            btnEditar.Location = new Point(7, 136);
             btnEditar.Margin = new Padding(3, 2, 3, 2);
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(9, 0, 0, 0);
             btnEditar.Size = new Size(187, 46);
             btnEditar.TabIndex = 16;
-            btnEditar.Text = "   Editar";
+            btnEditar.Text = "    Editar";
             btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditar.UseVisualStyleBackColor = false;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnCancelar
             // 
@@ -187,14 +208,15 @@
             btnCancelar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.WhiteSmoke;
             btnCancelar.Image = (Image)resources.GetObject("btnCancelar.Image");
-            btnCancelar.Location = new Point(6, 196);
+            btnCancelar.Location = new Point(5, 230);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(187, 46);
+            btnCancelar.Size = new Size(187, 39);
             btnCancelar.TabIndex = 13;
             btnCancelar.Text = "   Cancelar";
             btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnRegistrar
             // 
@@ -202,7 +224,7 @@
             btnRegistrar.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnRegistrar.ForeColor = Color.White;
             btnRegistrar.Image = (Image)resources.GetObject("btnRegistrar.Image");
-            btnRegistrar.Location = new Point(5, 247);
+            btnRegistrar.Location = new Point(5, 274);
             btnRegistrar.Margin = new Padding(3, 2, 3, 2);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(187, 46);
@@ -210,6 +232,7 @@
             btnRegistrar.Text = "   Registrar";
             btnRegistrar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click_1;
             // 
             // btnSave
             // 
@@ -217,7 +240,7 @@
             btnSave.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
             btnSave.Image = (Image)resources.GetObject("btnSave.Image");
-            btnSave.Location = new Point(5, 301);
+            btnSave.Location = new Point(5, 328);
             btnSave.Margin = new Padding(3, 2, 3, 2);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(187, 44);
@@ -225,6 +248,7 @@
             btnSave.Text = "   Guardar     Registros";
             btnSave.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnNew
             // 
@@ -232,7 +256,7 @@
             btnNew.Font = new Font("Bookman Old Style", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnNew.ForeColor = Color.White;
             btnNew.Image = (Image)resources.GetObject("btnNew.Image");
-            btnNew.Location = new Point(6, 96);
+            btnNew.Location = new Point(7, 86);
             btnNew.Margin = new Padding(3, 2, 3, 2);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(187, 46);
@@ -240,11 +264,12 @@
             btnNew.Text = "   Nuevo asiento";
             btnNew.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNew.UseVisualStyleBackColor = false;
+            btnNew.Click += btnNew_Click;
             // 
             // radiobtnHaber
             // 
             radiobtnHaber.AutoSize = true;
-            radiobtnHaber.Location = new Point(103, 62);
+            radiobtnHaber.Location = new Point(105, 56);
             radiobtnHaber.Margin = new Padding(3, 2, 3, 2);
             radiobtnHaber.Name = "radiobtnHaber";
             radiobtnHaber.Size = new Size(68, 23);
@@ -257,7 +282,7 @@
             // 
             radiobtnDebe.Anchor = AnchorStyles.Top;
             radiobtnDebe.AutoSize = true;
-            radiobtnDebe.Location = new Point(18, 62);
+            radiobtnDebe.Location = new Point(20, 56);
             radiobtnDebe.Margin = new Padding(3, 2, 3, 2);
             radiobtnDebe.Name = "radiobtnDebe";
             radiobtnDebe.Size = new Size(62, 23);
@@ -271,11 +296,12 @@
             btnValor.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnValor.BackColor = Color.FromArgb(245, 245, 242);
             btnValor.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnValor.Location = new Point(5, 27);
+            btnValor.Location = new Point(5, 28);
             btnValor.Margin = new Padding(3, 2, 3, 2);
             btnValor.Name = "btnValor";
             btnValor.Size = new Size(193, 26);
             btnValor.TabIndex = 0;
+            btnValor.KeyPress += btnValor_KeyPress;
             // 
             // btnLimpiar
             // 
@@ -322,7 +348,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Fecha, Column2, Column5, Column4, Column1 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Fecha, Cuenta, Codigo, Debe, Haber });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(0, 0);
@@ -334,6 +360,7 @@
             dataGridView1.ShowCellToolTips = false;
             dataGridView1.Size = new Size(860, 433);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // Fecha
             // 
@@ -343,37 +370,37 @@
             Fecha.ReadOnly = true;
             Fecha.Width = 160;
             // 
-            // Column2
+            // Cuenta
             // 
-            Column2.HeaderText = "Detalle";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 224;
+            Cuenta.HeaderText = "Cuenta";
+            Cuenta.MinimumWidth = 6;
+            Cuenta.Name = "Cuenta";
+            Cuenta.ReadOnly = true;
+            Cuenta.Width = 400;
             // 
-            // Column5
+            // Codigo
             // 
-            Column5.HeaderText = "Codigo";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Width = 200;
+            Codigo.HeaderText = "Codigo";
+            Codigo.MinimumWidth = 6;
+            Codigo.Name = "Codigo";
+            Codigo.ReadOnly = true;
+            Codigo.Width = 150;
             // 
-            // Column4
+            // Debe
             // 
-            Column4.HeaderText = "Debe";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 200;
+            Debe.HeaderText = "Debe";
+            Debe.MinimumWidth = 6;
+            Debe.Name = "Debe";
+            Debe.ReadOnly = true;
+            Debe.Width = 200;
             // 
-            // Column1
+            // Haber
             // 
-            Column1.HeaderText = "Haber";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 200;
+            Haber.HeaderText = "Haber";
+            Haber.MinimumWidth = 6;
+            Haber.Name = "Haber";
+            Haber.ReadOnly = true;
+            Haber.Width = 200;
             // 
             // comboFecha
             // 
@@ -385,6 +412,7 @@
             comboFecha.Size = new Size(285, 28);
             comboFecha.TabIndex = 9;
             comboFecha.TextChanged += comboFecha_TextChanged;
+            comboFecha.KeyPress += comboFecha_KeyPress;
             // 
             // txtCodigo
             // 
@@ -394,6 +422,7 @@
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(207, 29);
             txtCodigo.TabIndex = 5;
+            txtCodigo.KeyPress += txtCodigo_KeyPress;
             // 
             // label3
             // 
@@ -535,9 +564,10 @@
         private Label label6;
         private Button btnEditar;
         private DataGridViewTextBoxColumn Fecha;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Cuenta;
+        private DataGridViewTextBoxColumn Codigo;
+        private DataGridViewTextBoxColumn Debe;
+        private DataGridViewTextBoxColumn Haber;
+        private Button btnEliminar;
     }
 }

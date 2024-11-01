@@ -103,7 +103,7 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
 
     public List<MiembroEmpresa> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll,
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida,
             Params.MapSelectAll);
     }
 

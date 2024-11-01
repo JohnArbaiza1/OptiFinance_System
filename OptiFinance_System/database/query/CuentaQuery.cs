@@ -90,11 +90,30 @@ public class CuentaQuery : IQueryEstandar<Cuenta>, IQueryAccounts<Cuenta>
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, MapEntity,
             Params.ParametersFindById(id));
     }
+    
+    public Cuenta? FindByIdWithoutObjects(long id)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindById, Params.MapFindWithoutObjects,
+            Params.ParametersFindById(id));
+    }
 
     public List<Cuenta> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll,
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida,
             Params.MapSelectAll, Params.ParametersSelectAll());
+    }
+
+    /// <summary>
+    /// Selecciona todos las cuentas diferentes por empresa
+    /// Advertencia: Se debe de haber seleccionado una empresa antes de llamar a este método
+    /// </summary>
+    /// <returns>
+    /// Retorna una <see cref="List{T}"/> de <see cref="Cuenta"/> que contiene todas las cuentas distintas de la empresa seleccionada
+    /// </returns>
+    public List<Cuenta> SelectAllDistinctsByEmpresa()
+    {
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllDistinctsByEmpresa,
+            Params.MapSearchAll, Params.ParametersSelectAllDistinctsByEmpresa());
     }
 
     public List<Cuenta> SearchAll(string search)

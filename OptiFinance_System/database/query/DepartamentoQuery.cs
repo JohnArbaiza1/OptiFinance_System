@@ -94,7 +94,7 @@ public class DepartamentoQuery : IQueryEstandar<Departamento>
 
     public List<Departamento> SelectAll()
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAll, MapEntity);
+        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida, MapEntity);
     }
 
     public List<Departamento> SearchAll(string search)

@@ -16,4 +16,5 @@ public static class Queries
     public static MunicipiosParams MunicipiosParams { get; } = new();
     public static DistritoParams DistritoParams { get; } = new();
     public static GiroEconomicoParams GiroEconomicoParams { get; } = new();
+    public static LibroMayorParams LibroMayorParams { get; } = new();
 }

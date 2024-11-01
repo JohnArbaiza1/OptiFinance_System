@@ -1,20 +1,46 @@
 ﻿using System.Runtime.InteropServices;
+using OptiFinance_System.database.models;
 using OptiFinance_System.global;
+using OptiFinance_System.global.database;
 
 namespace OptiFinance_System.Views;
 
 public partial class Principal : Form
 {
-    private const int ADMIN = 1;
+    #region Global variables
+    public static PictureBox? EmpresaSeleccionada;
+    public static Label? NombreEmpresa;
+    public static Button cuentaXD;
+    public static Button libros;
+    public static Button estados;
+    public static Button liquidez;
+    public static Button newPartida;
+    public static Button info;
+    public static Button miembroEmpresa;
+    #endregion
+    
     public Principal()
     {
         AutoScaleMode = AutoScaleMode.Dpi;
         InitializeComponent();
+        //Llamamos a las variables staticas
+        cuentaXD = btnCuentas;
+        libros = btnLibros;
+        estados = btnEstados;
+        liquidez = btnRLiquidez;
+        newPartida = btnIngresarPartida;
+        info = btnInfo;
+        miembroEmpresa = btnMiembros;
+        //-------------------------------------------------------------
         // Establecemos el estilo del borde del formulario a ninguno
         FormBorderStyle = FormBorderStyle.None;
         //Indicamos el tamaño mínimo del formulario
         MinimumSize = new(300, 200);
-
+        EmpresaSeleccionada = pictureSelectEmpresa;
+        NombreEmpresa = lblNameEmpresa;
+        EmpresaSeleccionada.Visible = Global.IsSelectedEmpresa;
+        NombreEmpresa.Text = Global.SelectedEmpresa?.Nombre ?? "No hay empresa seleccionada";
+        //-------------------------------------------------------------
         // Asociamos los eventos del mouse con los métodos manejadores
         MouseDown += panelContenedor_MouseDown;
         MouseMove += panelContenedor_MouseMove;
@@ -22,8 +48,9 @@ public partial class Principal : Form
         MouseDown += panelRedireccion_MouseDown;
         MouseMove += panelRedireccion_MouseMove;
         MouseUp += panelRedireccion_MouseUp;
+        Load += Principal_Load;
     }
-
+    
     #region Parte donde se trabaja la logica del panel contenedor de formularios
 
     public void abrirF<TMiForm>() where TMiForm : Form, new()
@@ -87,7 +114,7 @@ public partial class Principal : Form
 
         //Validamos las opciones que se mostraran segun el id del tipo de usuario
         if (Global.SelectedUser == null) return;
-        if (Global.SelectedUser.TipoUsuario!.Id == ADMIN)
+        if (Global.SelectedUser.TipoUsuario!.Id == UserTypes.Admin)
         {
             //Hacemos invisibles las demas opciones para el admin
             btnCuentas.Visible = false;
@@ -117,6 +144,7 @@ public partial class Principal : Form
             btnUsuarios.Location = new(0, 610);
             btnEmpresas.Location = new(0, 540);
             btnUsuarios.Visible = false;
+            ValidarEmpresaSeleccionada();
         }
         else
         {
@@ -126,7 +154,6 @@ public partial class Principal : Form
             btnUsuarios.Visible = false;
             btnEmpresas.Visible = false;
             panelEmpresa.Visible = false;
-
         }
     }
 
@@ -326,6 +353,17 @@ public partial class Principal : Form
 
         return btnNotificacion;
     }
+    //Metodo para validar empresa Seleccionada
+    private void ValidarEmpresaSeleccionada()
+    {
+        btnCuentas.Enabled = Global.SelectedEmpresa != null;
+        btnLibros.Enabled = Global.SelectedEmpresa != null;
+        btnEstados.Enabled = Global.SelectedEmpresa != null;
+        btnRLiquidez.Enabled = Global.SelectedEmpresa != null;
+        btnIngresarPartida.Enabled = Global.SelectedEmpresa != null;
+        btnInfo.Enabled = Global.SelectedEmpresa != null;
+        btnMiembros.Enabled = Global.SelectedEmpresa != null;
+    }
     #endregion
 
     #region Buttons del menu
@@ -369,11 +407,9 @@ public partial class Principal : Form
             btnIngresarPartida.Location = new(0, 604);
             btnEmpresas.Location = new(0, 674);
         }
-
         btnCuentas.Location = new(0, 190);
         PanelCuentas.Location = new(0, 263);
     }
-
     //=================================================================================
     //OPcion de los libros contables
     private void btnLibros_Click(object sender, EventArgs e)
@@ -398,7 +434,6 @@ public partial class Principal : Form
         btnLibros.Location = new(0, 257);
         panelLibros.Location = new(0, 330);
     }
-
     //=================================================================================
     //Opcion de los Estados Financieros
     private void btnEstados_Click(object sender, EventArgs e)
@@ -421,7 +456,6 @@ public partial class Principal : Form
         btnEstados.Location = new(0, 332);
         panelEstados.Location = new(0, 400);
     }
-
     //=================================| Empresas |===================================
     private void btnEmpresas_Click(object sender, EventArgs e)
     {
@@ -438,14 +472,12 @@ public partial class Principal : Form
         btnEmpresas.Location = new(0, 540);
         panelEmpresa.Location = new(0, 610);
     }
-
     //=================================| Partidas |===================================
     private void btnIngresarPartida_Click(object sender, EventArgs e)
     {
         abrirF<RegistrarPartidas>();
         btnIngresarPartida.BackColor = Color.FromArgb(215, 143, 35);
     }
-
     //=================================| Cuentas |===================================
     private void btnIngresarCuenta_Click(object sender, EventArgs e)
     {
@@ -485,7 +517,7 @@ public partial class Principal : Form
     //===============================| Libro Mayor |===================================
     private void btnMayor_Click(object sender, EventArgs e)
     {
-        abrirF<libroMayor>();
+        abrirF<LibroMayor>();
         btnMayor.BackColor = Color.FromArgb(254, 214, 0);
     }
 

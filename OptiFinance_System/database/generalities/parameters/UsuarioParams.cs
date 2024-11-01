@@ -29,7 +29,7 @@ public class UsuarioParams : IQueriesString<Usuario>
         $"SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios " +
         $"WHERE id = @id";
 
-    public string SqlSelectAll =>
+    public string SqlSelectAllByPartida =>
         $"SELECT id, nombres, apellidos, alias, email, password, telefono, direccion, id_tipo_usuario FROM usuarios " +
         $"WHERE id_tipo_usuario <> {_idTipoUsuarioAdmin}";
 
@@ -69,7 +69,7 @@ public class UsuarioParams : IQueriesString<Usuario>
             new("@password", entity.Password),
             new("@telefono", entity.Telefono),
             new("@direccion", entity.Direccion),
-            new("@id_tipo_usuario", entity.TipoUsuario?.Id),
+            new("@id_tipo_usuario", entity.TipoUsuario?.Id ?? 0),
             new("@id", entity.Id)
         };
         return parameters;

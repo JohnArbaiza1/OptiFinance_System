@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using OptiFinance_System.database.fields;
 using OptiFinance_System.database.interfaces;
 using OptiFinance_System.database.models;
 
@@ -10,7 +11,7 @@ public class TipoCuentaParams : IQueriesString<TipoCuenta>
     public string SqlUpdate => "UPDATE tipo_cuenta SET nombre = @nombre WHERE id = @id";
     public string SqlDelete => "DELETE FROM tipo_cuenta WHERE id = @id";
     public string SqlFindById => "SELECT id, nombre FROM tipo_cuenta WHERE id = @id";
-    public string SqlSelectAll => "SELECT id, nombre FROM tipo_cuenta";
+    public string SqlSelectAllByPartida => "SELECT id, nombre FROM tipo_cuenta";
     public string SqlSearchAll => "SELECT id, nombre FROM tipo_cuenta WHERE CONCAT(id, nombre) LIKE @search";
 
     public List<SqlParameter> ParametersInsert(TipoCuenta entity)
@@ -73,8 +74,8 @@ public class TipoCuentaParams : IQueriesString<TipoCuenta>
     {
         return new()
         {
-            Id = reader.GetInt64(0),
-            Nombre = reader.GetString(1)
+            Id = reader.GetInt64(TipoCuentaField.Id),
+            Nombre = reader.GetString(TipoCuentaField.Nombre)
         };
     }
 }

@@ -89,9 +89,9 @@
             // 
             pictureBox1.BackColor = Color.FromArgb(215, 143, 35);
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(770, 110);
+            pictureBox1.Location = new Point(770, 109);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(51, 34);
+            pictureBox1.Size = new Size(51, 35);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
@@ -100,7 +100,7 @@
             // 
             panelControlUser.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelControlUser.Controls.Add(groupBox1);
-            panelControlUser.Location = new Point(827, 110);
+            panelControlUser.Location = new Point(827, 109);
             panelControlUser.Name = "panelControlUser";
             panelControlUser.Size = new Size(430, 684);
             panelControlUser.TabIndex = 7;
@@ -128,7 +128,7 @@
             btnGuardar.ForeColor = Color.White;
             btnGuardar.Location = new Point(8, 507);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(393, 50);
+            btnGuardar.Size = new Size(393, 51);
             btnGuardar.TabIndex = 6;
             btnGuardar.Text = "Agregar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -313,7 +313,7 @@
             txtPassUser.BackColor = Color.FromArgb(245, 245, 242);
             txtPassUser.Location = new Point(109, 203);
             txtPassUser.Name = "txtPassUser";
-            txtPassUser.Size = new Size(287, 31);
+            txtPassUser.Size = new Size(285, 31);
             txtPassUser.TabIndex = 14;
             // 
             // btnEliminar
@@ -326,7 +326,7 @@
             btnEliminar.ForeColor = Color.White;
             btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
             btnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEliminar.Location = new Point(252, 574);
+            btnEliminar.Location = new Point(251, 573);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Padding = new Padding(5, 0, 0, 0);
             btnEliminar.Size = new Size(149, 53);
@@ -346,7 +346,7 @@
             btnEditar.ForeColor = Color.White;
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditar.Location = new Point(115, 574);
+            btnEditar.Location = new Point(115, 573);
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(5, 0, 0, 0);
             btnEditar.Size = new Size(131, 52);
@@ -381,6 +381,7 @@
             dataGridViewUsuarios.EnableHeadersVisualStyles = false;
             dataGridViewUsuarios.GridColor = SystemColors.ActiveCaptionText;
             dataGridViewUsuarios.Location = new Point(0, 0);
+            dataGridViewUsuarios.MultiSelect = false;
             dataGridViewUsuarios.Name = "dataGridViewUsuarios";
             dataGridViewUsuarios.ReadOnly = true;
             dataGridViewUsuarios.RowHeadersWidth = 51;
@@ -388,13 +389,14 @@
             dataGridViewUsuarios.Size = new Size(787, 629);
             dataGridViewUsuarios.TabIndex = 4;
             dataGridViewUsuarios.CellContentClick += dataGridViewUsuarios_CellContentClick;
+            dataGridViewUsuarios.MouseClick += dataGridViewUsuarios_MouseClick;
             // 
             // txtBusqueda
             // 
             txtBusqueda.BackColor = Color.FromArgb(245, 245, 242);
             txtBusqueda.BorderStyle = BorderStyle.FixedSingle;
             txtBusqueda.Font = new Font("Bookman Old Style", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBusqueda.Location = new Point(34, 110);
+            txtBusqueda.Location = new Point(34, 109);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.PlaceholderText = "  Nombre de Usuario o Id";
             txtBusqueda.Size = new Size(730, 34);
