@@ -16,9 +16,6 @@ public class MiembroEmpresa : People
 
     public override string ToString()
     {
-        return
-            $"{nameof(Id)}: {Id}, {nameof(Nombres)}: {Nombres}, {nameof(Apellidos)}: {Apellidos}, " +
-            $"{nameof(Alias)}: {Alias}, {nameof(Dui)}: {Dui}, {nameof(Correo)}: {Correo}, " +
-            $"{nameof(Telefono)}: {Telefono}, {nameof(Direccion)}: {Direccion}, {nameof(Empresa)}: {Empresa}";
+        return Nombres;
     }
 }

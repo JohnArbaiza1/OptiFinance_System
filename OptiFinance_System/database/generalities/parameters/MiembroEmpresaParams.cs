@@ -162,7 +162,8 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Dui = reader.GetString(4),
             Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
             Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
-            Direccion = reader.GetString(7)
+            Direccion = reader.GetString(7),
+            Password = reader.GetString(9)
         };
     }
     
