@@ -34,11 +34,20 @@ public class BalanceGeneralQuery
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByType, Map,
             Params.ParametersSelectAllByType(TypesAccount.Activo));
     }
-    
-    public List<BalanceGeneral> SelectAllBytYpeActivoCorriente()
+
+    public List<BalanceGeneral> SelectAllBytYpeActivoCorriente(bool selectResultadoAcreedor = false)
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByType, Map,
-            Params.ParametersSelectAllByType(TypesAccount.ActivoCorriente));
+        List<BalanceGeneral> byTypeActivocorriente = QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(),
+            Params.SqlSelectAllByType, Map, Params.ParametersSelectAllByType(TypesAccount.ActivoCorriente));
+        return !selectResultadoAcreedor ? byTypeActivocorriente : SelectAllBytYpeActivoCorrienteAndResultadoDeudor();
+    }
+    
+    public List<BalanceGeneral> SelectAllBytYpeActivoCorrienteAndResultadoDeudor()
+    {
+        List<BalanceGeneral> byTypeActivoCorriente = SelectAllBytYpeActivoCorriente();
+        List<BalanceGeneral> byTypeResultadoDeudor = SelectAllByTypeResultadoDeudor();
+        byTypeActivoCorriente.AddRange(byTypeResultadoDeudor);
+        return byTypeActivoCorriente;
     }
     
     public List<BalanceGeneral> SelectAllByTypeActivoNoCorriente()
@@ -52,11 +61,20 @@ public class BalanceGeneralQuery
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByType, Map,
             Params.ParametersSelectAllByType(TypesAccount.Pasivo));
     }
-    
-    public List<BalanceGeneral> SelectAllByTypePasivoCorriente()
+
+    public List<BalanceGeneral> SelectAllByTypePasivoCorriente(bool selectResultadoAcreedor = false)
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByType, Map,
-            Params.ParametersSelectAllByType(TypesAccount.PasivoCorriente));
+        List<BalanceGeneral> byTypePasivoCorriente = QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(),
+            Params.SqlSelectAllByType, Map, Params.ParametersSelectAllByType(TypesAccount.PasivoCorriente));
+        return !selectResultadoAcreedor ? byTypePasivoCorriente : SelectByTypePasivoCorrienteAndResultadoAcreedor();
+    }
+    
+    private List<BalanceGeneral> SelectByTypePasivoCorrienteAndResultadoAcreedor()
+    {
+        List<BalanceGeneral> byTypePasivoCorriente = SelectAllByTypePasivoCorriente();
+        List<BalanceGeneral> byTypeResultadoAcreedor = SelectAllByTypeResultadoAcreedor();
+        byTypePasivoCorriente.AddRange(byTypeResultadoAcreedor);
+        return byTypePasivoCorriente;
     }
     
     public List<BalanceGeneral> SelectAllByTypePasivoNoCorriente()
@@ -64,11 +82,20 @@ public class BalanceGeneralQuery
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByType, Map,
             Params.ParametersSelectAllByType(TypesAccount.PasivoNoCorriente));
     }
-    
-    public List<BalanceGeneral> SelectAllByTypeCapital()
+
+    public List<BalanceGeneral> SelectAllByTypeCapital(bool selectPuenteCierre = false)
     {
-        return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByType, Map,
-            Params.ParametersSelectAllByType(TypesAccount.Capital));
+        List<BalanceGeneral> byTypeCapital = QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(),
+            Params.SqlSelectAllByType, Map, Params.ParametersSelectAllByType(TypesAccount.Capital));
+        return !selectPuenteCierre ? byTypeCapital : SelctAllByTypeCapitalAndPuenteCierre();
+    }
+    
+    public List<BalanceGeneral> SelctAllByTypeCapitalAndPuenteCierre()
+    {
+        List<BalanceGeneral> byTypeCapital = SelectAllByTypeCapital();
+        List<BalanceGeneral> byTypePuenteCierre = SelectAllByTypePuenteCierre();
+        byTypeCapital.AddRange(byTypePuenteCierre);
+        return byTypeCapital;
     }
     
     public List<BalanceGeneral> SelectAllByTypeResultadoDeudor()
@@ -95,10 +122,24 @@ public class BalanceGeneralQuery
             Params.ParametersSumByType(TypesAccount.Activo));
     }
     
-    public BalanceGeneral? SumByTypeActivoCorriente()
+    private BalanceGeneral? SumInBalanceGeneral(BalanceGeneral? balanceGeneral1, BalanceGeneral? balanceGeneral2)
     {
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlSumByType, Map,
-            Params.ParametersSumByType(TypesAccount.ActivoCorriente));
+        if (balanceGeneral1 == null || balanceGeneral2 == null) return null;
+        balanceGeneral1.Debe += balanceGeneral2.Debe;
+        balanceGeneral1.Haber += balanceGeneral2.Haber;
+        return balanceGeneral1;
+    }
+
+    public BalanceGeneral? SumByTypeActivoCorriente(bool selectResultadoDeudor = false)
+    {
+        BalanceGeneral? byTypeActivoCorriente = QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(),
+            Params.SqlSumByType, Map, Params.ParametersSumByType(TypesAccount.ActivoCorriente));
+        return !selectResultadoDeudor ? byTypeActivoCorriente : SumByTypeActivoCorrienteAndResultadoDeudor();
+    }
+
+    public BalanceGeneral? SumByTypeActivoCorrienteAndResultadoDeudor()
+    {
+        return SumInBalanceGeneral(SumByTypeActivoCorriente(), SumByTypeResultadoDeudor());
     }
     
     public BalanceGeneral? SumByTypeActivoNoCorriente()
@@ -113,10 +154,17 @@ public class BalanceGeneralQuery
             Params.ParametersSumByType(TypesAccount.Pasivo));
     }
     
-    public BalanceGeneral? SumByTypePasivoCorriente()
+    public BalanceGeneral? SumByTypePasivoCorriente(bool selectResultadoAcreedor = false)
     {
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlSumByType, Map,
-            Params.ParametersSumByType(TypesAccount.PasivoCorriente));
+        BalanceGeneral? byTypePasivoCorriente = QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(),
+            Params.SqlSumByType, Map, Params.ParametersSumByType(TypesAccount.PasivoCorriente));
+        
+        return !selectResultadoAcreedor ? byTypePasivoCorriente : SumByTypePasivoCorrienteAndResultadoAcreedor();
+    }
+    
+    public BalanceGeneral? SumByTypePasivoCorrienteAndResultadoAcreedor()
+    {
+        return SumInBalanceGeneral(SumByTypePasivoCorriente(), SumByTypeResultadoAcreedor());
     }
     
     public BalanceGeneral? SumByTypePasivoNoCorriente()
@@ -124,11 +172,17 @@ public class BalanceGeneralQuery
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlSumByType, Map,
             Params.ParametersSumByType(TypesAccount.PasivoNoCorriente));
     }
-    
-    public BalanceGeneral? SumByTypeCapital()
+
+    public BalanceGeneral? SumByTypeCapital(bool selectPuenteCierre = false)
     {
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlSumByType, Map,
-            Params.ParametersSumByType(TypesAccount.Capital));
+        BalanceGeneral? byTypeCapital = QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(),
+            Params.SqlSumByType, Map, Params.ParametersSumByType(TypesAccount.Capital));
+        return !selectPuenteCierre ? byTypeCapital : SumByTypeCapitalAndPuenteCierre();
+    }
+    
+    public BalanceGeneral? SumByTypeCapitalAndPuenteCierre()
+    {
+        return SumInBalanceGeneral(SumByTypeCapital(), SumByTypePuenteCierre());
     }
     
     public BalanceGeneral? SumByTypeResultadoDeudor()
