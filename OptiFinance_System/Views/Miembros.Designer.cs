@@ -40,42 +40,42 @@
             btnEliminar = new Button();
             btnAgregar = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
-            txtAddress = new TextBox();
-            txtTelefono = new TextBox();
-            txtCorreo = new TextBox();
-            txtDui = new TextBox();
+            label9 = new Label();
             txtAlias = new TextBox();
             txtApellido = new TextBox();
             label2 = new Label();
             txtNombre = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
             label8 = new Label();
-            panel3 = new Panel();
-            dataGridView1 = new DataGridView();
-            btnBuscarMiembros = new Button();
-            txtBusqueda = new TextBox();
-            label9 = new Label();
+            txtAddress = new TextBox();
+            label7 = new Label();
+            txtTelefono = new TextBox();
+            label6 = new Label();
+            txtCorreo = new TextBox();
+            label5 = new Label();
+            txtDui = new TextBox();
             txtPassword = new TextBox();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            Column1 = new DataGridViewTextBoxColumn();
+            panel3 = new Panel();
+            dataMiembros = new DataGridView();
+            Nombre = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
+            Alias = new DataGridViewTextBoxColumn();
             Column8 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             Column7 = new DataGridViewTextBoxColumn();
+            btnBuscarMiembros = new Button();
+            txtBusqueda = new TextBox();
+            contextMenuStrip1 = new ContextMenuStrip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataMiembros).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -163,6 +163,7 @@
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAgregar
             // 
@@ -177,6 +178,7 @@
             btnAgregar.Text = "Agregar";
             btnAgregar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // tableLayoutPanel1
             // 
@@ -213,41 +215,14 @@
             tableLayoutPanel1.Size = new Size(464, 381);
             tableLayoutPanel1.TabIndex = 1;
             // 
-            // txtAddress
+            // label9
             // 
-            txtAddress.BackColor = Color.FromArgb(245, 245, 242);
-            txtAddress.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtAddress.Location = new Point(175, 332);
-            txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(286, 31);
-            txtAddress.TabIndex = 12;
-            // 
-            // txtTelefono
-            // 
-            txtTelefono.BackColor = Color.FromArgb(245, 245, 242);
-            txtTelefono.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTelefono.Location = new Point(175, 285);
-            txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(286, 31);
-            txtTelefono.TabIndex = 11;
-            // 
-            // txtCorreo
-            // 
-            txtCorreo.BackColor = Color.FromArgb(245, 245, 242);
-            txtCorreo.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCorreo.Location = new Point(175, 238);
-            txtCorreo.Name = "txtCorreo";
-            txtCorreo.Size = new Size(286, 31);
-            txtCorreo.TabIndex = 10;
-            // 
-            // txtDui
-            // 
-            txtDui.BackColor = Color.FromArgb(245, 245, 242);
-            txtDui.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDui.Location = new Point(175, 191);
-            txtDui.Name = "txtDui";
-            txtDui.Size = new Size(286, 31);
-            txtDui.TabIndex = 9;
+            label9.AutoSize = true;
+            label9.Location = new Point(3, 141);
+            label9.Name = "label9";
+            label9.Size = new Size(108, 23);
+            label9.TabIndex = 13;
+            label9.Text = "Password:";
             // 
             // txtAlias
             // 
@@ -303,23 +278,23 @@
             label4.TabIndex = 2;
             label4.Text = "Alias:";
             // 
-            // label5
+            // label8
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(3, 188);
-            label5.Name = "label5";
-            label5.Size = new Size(52, 23);
-            label5.TabIndex = 3;
-            label5.Text = "Dui:";
+            label8.AutoSize = true;
+            label8.Location = new Point(3, 329);
+            label8.Name = "label8";
+            label8.Size = new Size(108, 23);
+            label8.TabIndex = 6;
+            label8.Text = "Dirección:";
             // 
-            // label6
+            // txtAddress
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(3, 235);
-            label6.Name = "label6";
-            label6.Size = new Size(82, 23);
-            label6.TabIndex = 4;
-            label6.Text = "Correo:";
+            txtAddress.BackColor = Color.FromArgb(245, 245, 242);
+            txtAddress.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtAddress.Location = new Point(175, 332);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(286, 31);
+            txtAddress.TabIndex = 12;
             // 
             // label7
             // 
@@ -330,72 +305,50 @@
             label7.TabIndex = 5;
             label7.Text = "Telefono:";
             // 
-            // label8
+            // txtTelefono
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(3, 329);
-            label8.Name = "label8";
-            label8.Size = new Size(108, 23);
-            label8.TabIndex = 6;
-            label8.Text = "Dirección:";
+            txtTelefono.BackColor = Color.FromArgb(245, 245, 242);
+            txtTelefono.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtTelefono.Location = new Point(175, 285);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(286, 31);
+            txtTelefono.TabIndex = 11;
             // 
-            // panel3
+            // label6
             // 
-            panel3.Controls.Add(dataGridView1);
-            panel3.Location = new Point(41, 113);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(685, 589);
-            panel3.TabIndex = 3;
+            label6.AutoSize = true;
+            label6.Location = new Point(3, 235);
+            label6.Name = "label6";
+            label6.Size = new Size(82, 23);
+            label6.TabIndex = 4;
+            label6.Text = "Correo:";
             // 
-            // dataGridView1
+            // txtCorreo
             // 
-            dataGridView1.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column8, Column4, Column5, Column6, Column7 });
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(685, 589);
-            dataGridView1.TabIndex = 0;
+            txtCorreo.BackColor = Color.FromArgb(245, 245, 242);
+            txtCorreo.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCorreo.Location = new Point(175, 238);
+            txtCorreo.Name = "txtCorreo";
+            txtCorreo.Size = new Size(286, 31);
+            txtCorreo.TabIndex = 10;
             // 
-            // btnBuscarMiembros
+            // label5
             // 
-            btnBuscarMiembros.BackColor = Color.FromArgb(215, 143, 35);
-            btnBuscarMiembros.Image = (Image)resources.GetObject("btnBuscarMiembros.Image");
-            btnBuscarMiembros.Location = new Point(658, 48);
-            btnBuscarMiembros.Name = "btnBuscarMiembros";
-            btnBuscarMiembros.Size = new Size(68, 38);
-            btnBuscarMiembros.TabIndex = 2;
-            btnBuscarMiembros.UseVisualStyleBackColor = false;
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 188);
+            label5.Name = "label5";
+            label5.Size = new Size(52, 23);
+            label5.TabIndex = 3;
+            label5.Text = "Dui:";
             // 
-            // txtBusqueda
+            // txtDui
             // 
-            txtBusqueda.BackColor = Color.FromArgb(245, 245, 242);
-            txtBusqueda.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBusqueda.Location = new Point(41, 52);
-            txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(611, 31);
-            txtBusqueda.TabIndex = 1;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(3, 141);
-            label9.Name = "label9";
-            label9.Size = new Size(108, 23);
-            label9.TabIndex = 13;
-            label9.Text = "Password:";
+            txtDui.BackColor = Color.FromArgb(245, 245, 242);
+            txtDui.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDui.Location = new Point(175, 191);
+            txtDui.Name = "txtDui";
+            txtDui.Size = new Size(286, 31);
+            txtDui.TabIndex = 9;
             // 
             // txtPassword
             // 
@@ -405,18 +358,43 @@
             txtPassword.Size = new Size(286, 31);
             txtPassword.TabIndex = 14;
             // 
-            // contextMenuStrip1
+            // panel3
             // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
+            panel3.Controls.Add(dataMiembros);
+            panel3.Location = new Point(41, 113);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(685, 589);
+            panel3.TabIndex = 3;
             // 
-            // Column1
+            // dataMiembros
             // 
-            Column1.HeaderText = "Nombre";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.Width = 125;
+            dataMiembros.BackgroundColor = Color.FromArgb(245, 245, 242);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataMiembros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataMiembros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataMiembros.Columns.AddRange(new DataGridViewColumn[] { Nombre, Column2, Alias, Column8, Column4, Column5, Column6, Column7 });
+            dataMiembros.Dock = DockStyle.Fill;
+            dataMiembros.EnableHeadersVisualStyles = false;
+            dataMiembros.Location = new Point(0, 0);
+            dataMiembros.Name = "dataMiembros";
+            dataMiembros.RowHeadersWidth = 51;
+            dataMiembros.RowTemplate.Height = 29;
+            dataMiembros.Size = new Size(685, 589);
+            dataMiembros.TabIndex = 0;
+            dataMiembros.CellContentClick += dataMiembros_CellContentClick;
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.MinimumWidth = 6;
+            Nombre.Name = "Nombre";
+            Nombre.Width = 125;
             // 
             // Column2
             // 
@@ -425,12 +403,12 @@
             Column2.Name = "Column2";
             Column2.Width = 125;
             // 
-            // Column3
+            // Alias
             // 
-            Column3.HeaderText = "Alias";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.Width = 125;
+            Alias.HeaderText = "Alias";
+            Alias.MinimumWidth = 6;
+            Alias.Name = "Alias";
+            Alias.Width = 125;
             // 
             // Column8
             // 
@@ -467,6 +445,33 @@
             Column7.Name = "Column7";
             Column7.Width = 125;
             // 
+            // btnBuscarMiembros
+            // 
+            btnBuscarMiembros.BackColor = Color.FromArgb(215, 143, 35);
+            btnBuscarMiembros.Image = (Image)resources.GetObject("btnBuscarMiembros.Image");
+            btnBuscarMiembros.Location = new Point(658, 48);
+            btnBuscarMiembros.Name = "btnBuscarMiembros";
+            btnBuscarMiembros.Size = new Size(68, 38);
+            btnBuscarMiembros.TabIndex = 2;
+            btnBuscarMiembros.UseVisualStyleBackColor = false;
+            btnBuscarMiembros.Click += btnBuscarMiembros_Click;
+            // 
+            // txtBusqueda
+            // 
+            txtBusqueda.BackColor = Color.FromArgb(245, 245, 242);
+            txtBusqueda.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBusqueda.Location = new Point(41, 52);
+            txtBusqueda.Name = "txtBusqueda";
+            txtBusqueda.Size = new Size(611, 31);
+            txtBusqueda.TabIndex = 1;
+            txtBusqueda.KeyUp += txtBusqueda_KeyUp;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // Miembros
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -487,7 +492,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataMiembros).EndInit();
             ResumeLayout(false);
         }
 
@@ -502,7 +507,7 @@
         private Button btnBuscarMiembros;
         private Panel panel3;
         private GroupBox groupBox1;
-        private DataGridView dataGridView1;
+        private DataGridView dataMiembros;
         private TableLayoutPanel tableLayoutPanel1;
         private Label label2;
         private Label label3;
@@ -523,9 +528,9 @@
         private Label label9;
         private TextBox txtPassword;
         private ContextMenuStrip contextMenuStrip1;
-        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Alias;
         private DataGridViewTextBoxColumn Column8;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
