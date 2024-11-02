@@ -73,7 +73,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             new("@correo_electronico", entity.Correo),
             new("@telefono", entity.Telefono),
             new("@direccion", entity.Direccion),
-            new("@id_empresa", entity.Empresa?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0),
             new("@password", entity.Password)
         };
         return parameters;
@@ -90,7 +90,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             new("@correo_electronico", entity.Correo),
             new("@telefono", entity.Telefono),
             new("@direccion", entity.Direccion),
-            new("@id_empresa", entity.Empresa?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0),
             new("@id", entity.Id)
         };
         return parameters;
