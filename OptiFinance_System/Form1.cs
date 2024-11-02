@@ -211,7 +211,7 @@ public partial class Form1 : Form
         Usuario? usuario = UsuarioQuery.Instance.FindByUsername(usermame);
 
         if (usuario != null) return Validations.ComparePasswordHash(password, usuario.Password);
-        MiembroEmpresa? miembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(usermame);
+        MiembroEmpresa? miembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsernameWithoutEmpresa(usermame);
         return miembroEmpresa != null && Validations.ComparePasswordHash(password, miembroEmpresa.Password);
     }
 
@@ -253,7 +253,7 @@ public partial class Form1 : Form
         Usuario? curentUser = UsuarioQuery.Instance.FindByUsername(_usuario);
         if (curentUser == null)
         {
-            MiembroEmpresa? member = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
+            MiembroEmpresa? member = MiembroEmpresaQuery.Instance.FindByUsernameWithoutEmpresa(_usuario);
             if (member == null)
             {
                 Message.MessageViewError(@"Usuario no encontrado");

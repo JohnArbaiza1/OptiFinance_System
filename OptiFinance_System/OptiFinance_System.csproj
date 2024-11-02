@@ -33,6 +33,7 @@
         <None Update="database\resources\accounts\pasivos.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Remove="NewFile1.txt" />
     </ItemGroup>
 
     <ItemGroup>

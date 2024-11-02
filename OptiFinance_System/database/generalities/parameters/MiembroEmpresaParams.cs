@@ -38,6 +38,10 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     public string SqlFindByUsername =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE alias = @alias AND id_empresa = @id_empresa";
+    
+    public string SqlFindByUsernameWithoutEmpresa =>
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
+        "FROM miembros_empresa WHERE alias = @alias";
 
     public string SqlFindIdEmpresa => "SELECT id_empresa FROM miembros_empresa WHERE id = @id";
     
@@ -121,11 +125,11 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         return parameters;
     }
 
-    public List<SqlParameter> SelectAllParameters(Empresa entity)
+    public List<SqlParameter> ParametersSelectAll()
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id_empresa", entity.Id)
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
@@ -161,13 +165,38 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Direccion = reader.GetString(7)
         };
     }
+    
+    public MiembroEmpresa MapWithoutEmpresa(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader.GetInt64(0),
+            Nombres = reader.GetString(1),
+            Apellidos = reader.GetString(2),
+            Alias = reader.GetString(3),
+            Dui = reader.GetString(4),
+            Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
+            Direccion = reader.GetString(7),
+            Password = reader.GetString(9)
+        };
+    }
 
-    public List<SqlParameter> FindByUsernameParameters(string username)
+    public List<SqlParameter> ParametersFindByUsername(string username)
     {
         List<SqlParameter> parameters = new()
         {
             new("@alias", username),
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
+
+    public List<SqlParameter> ParametersFindByUsernameWithoutEmpresa(string username)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@alias", username)
         };
         return parameters;
     }

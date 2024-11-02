@@ -104,7 +104,7 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
     public List<MiembroEmpresa> SelectAll()
     {
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida,
-            Params.MapSelectAll);
+            Params.MapSelectAll, Params.ParametersSelectAll());
     }
 
     public List<MiembroEmpresa> SearchAll(string search)
@@ -121,6 +121,12 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
     public MiembroEmpresa? FindByUsername(string username)
     {
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsername, MapEntity,
-            Params.FindByUsernameParameters(username));
+            Params.ParametersFindByUsername(username));
+    }
+
+    public MiembroEmpresa? FindByUsernameWithoutEmpresa(string username)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsernameWithoutEmpresa,
+            Params.MapWithoutEmpresa, Params.ParametersFindByUsername(username));
     }
 }
