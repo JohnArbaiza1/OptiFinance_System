@@ -110,60 +110,61 @@ public partial class balanceGeneral : Form
         int rowIndex = 1;
 
         // Insertar secciones de Activos y Pasivos en paralelo
-        rowIndex = AddCuentaRows(dataBalance, rowIndex, "Activo Corriente", listaCuentaActivoCorriente, "Pasivo Corriente", listaCuentaPasivoCorriente);
-        rowIndex = AddCuentaRows(dataBalance, rowIndex, "", listaCuentaResultadoDeudora, "", listaCuentaResultadoAcreedor); // Resultado Deudor y Acreedor
-        rowIndex = AddCuentaRows(dataBalance, rowIndex, "Activo No Corriente", listaCuentaActivoNoCorriente, "Pasivo No Corriente", listaCuentaPasivoNoCorriente);
-        rowIndex = AddCuentaRows(dataBalance, rowIndex, "", listaCuentaCapital, "Capital", listaCuentaPuenteCierre);
+        rowIndex = agregarCuentasFilas(dataBalance, rowIndex, "Activo Corriente", listaCuentaActivoCorriente, "Pasivo Corriente", listaCuentaPasivoCorriente);
+        rowIndex = agregarCuentasFilas(dataBalance, rowIndex, "", listaCuentaResultadoDeudora, "", listaCuentaResultadoAcreedor); // Resultado Deudor y Acreedor
+        rowIndex = agregarCuentasFilas(dataBalance, rowIndex, "Total Activo Corriente", new List<BalanceGeneral>(), "Total Pasivo Corriente", new List<BalanceGeneral>()); // Resultado Deudor y Acreedor
+        rowIndex = agregarCuentasFilas(dataBalance, rowIndex, "Activo No Corriente", listaCuentaActivoNoCorriente, "Pasivo No Corriente", listaCuentaPasivoNoCorriente);
+        rowIndex = agregarCuentasFilas(dataBalance, rowIndex, "Total Activo No Corriente", new List<BalanceGeneral>(), "Total Pasivo No Corriente", new List<BalanceGeneral>());
+        // rowIndex = AddCuentaRows(dataBalance, rowIndex, "", listaCuentaCapital, "Capital", listaCuentaPuenteCierre);
+        // Llamada para agregar solo en el lado de pasivos
+        rowIndex = agregarCuentasFilas(dataBalance, rowIndex, "", new List<BalanceGeneral>(), "Capital", listaCuentaCapital);
+        rowIndex = agregarCuentasFilas(dataBalance, rowIndex, "", new List<BalanceGeneral>(), "", listaCuentaPuenteCierre);
+        rowIndex = agregarCuentasFilas(dataBalance, rowIndex, "", new List<BalanceGeneral>(), "Total de Capital", new List<BalanceGeneral>());
     }
-    
-    private int AddCuentaRows(DataGridView dgv, int startIndex, string tituloActivos, List<BalanceGeneral> cuentasActivos, string tituloPasivos, List<BalanceGeneral> cuentasPasivos)
+
+    private int agregarCuentasFilas(DataGridView dgv, int startIndex, string tituloActivos, List<BalanceGeneral> cuentasActivos, string tituloPasivos, List<BalanceGeneral> cuentasPasivos)
     {
+        lblFechaBalance.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        lblFechaBalance.AutoSize = false;
+        lblFechaBalance.TextAlign = ContentAlignment.MiddleCenter;
+        
         // Agregar el título de la subcategoría de Activos y Pasivos en la misma fila
         dgv.Rows.Insert(startIndex, "   " + tituloActivos, "", "   " + tituloPasivos, "");
         startIndex++;
-
-        // Obtener el número máximo de cuentas entre activos y pasivos
-        int maxLength = Math.Max(cuentasActivos.Count, cuentasPasivos.Count);
-
-        // Iterar sobre el rango máximo de cuentas
-        for (int i = 0; i < maxLength; i++)
+    
+        // Insertar las cuentas de Activos
+        foreach (var cuenta in cuentasActivos)
         {
-            // Crear una nueva fila
+            // crear una nueva fila (row) con celdas vacías basadas en el número de columnas
             var row = new DataGridViewRow();
-            row.CreateCells(dgv); // Crear celdas vacías
-
-            // Colocar la cuenta de Activo si existe
-            if (i < cuentasActivos.Count)
-            {
-                row.Cells[0].Value = "      " + cuentasActivos[i].NombreCuenta; // Detalle Activo
-                row.Cells[1].Value = cuentasActivos[i].Debe; // Monto Activo
-            }
-            // Dejar celdas vacías si no hay más cuentas de activos
-            else
-            {
-                row.Cells[0].Value = ""; // Detalle Activo
-                row.Cells[1].Value = ""; // Monto Activo
-            }
-
-            // Colocar la cuenta de Pasivo si existe
-            if (i < cuentasPasivos.Count)
-            {
-                row.Cells[2].Value = "      " + cuentasPasivos[i].NombreCuenta; // Detalle Pasivo
-                row.Cells[3].Value = cuentasPasivos[i].Haber; // Monto Pasivo
-            }
-            // Dejar celdas vacías si no hay más cuentas de pasivos
-            else
-            {
-                row.Cells[2].Value = ""; // Detalle Pasivo
-                row.Cells[3].Value = ""; // Monto Pasivo
-            }
-
+            row.CreateCells(dgv);
+    
+            row.Cells[0].Value = "      " + cuenta.NombreCuenta; // Detalle Activo
+            row.Cells[1].Value = cuenta.Debe; // Monto Activo
+    
             // Insertar la fila en el DataGridView
             dgv.Rows.Insert(startIndex, row);
-            
-            startIndex++; // Incrementar el índice para la siguiente fila
+            startIndex++;
         }
-
+    
+        // Insertar las cuentas de Pasivos, comenzando en la siguiente fila disponible
+        // int pasivoIndex = startIndex - cuentasActivos.Count - 1; // Ajustar el índice para comenzar junto al título de pasivos
+        
+        int pasivoIndex = 2; // Ajustar el índice para comenzar junto al título de pasivos
+        foreach (var cuenta in cuentasPasivos)
+        {
+            // Si no hay suficientes filas, crea una nueva
+            // if (dgv.Rows.Count <= pasivoIndex)
+            // {
+            //     dgv.Rows.Add(new DataGridViewRow());
+            // }
+    
+            // Agregar los detalles del pasivo en la columna correspondiente
+            dgv.Rows[pasivoIndex].Cells[2].Value = "      " + cuenta.NombreCuenta; // Detalle Pasivo
+            dgv.Rows[pasivoIndex].Cells[3].Value = cuenta.Haber; // Monto Pasivo
+            pasivoIndex++;
+        }
+    
         return startIndex; // Devolver el índice de fila actual
     }
 }
