@@ -35,6 +35,8 @@ public class Global
     
     /// <summary>
     /// Valida si hay una empresa seleccionada
+    /// true si hay una empresa seleccionada
+    /// false en caso contarario
     /// </summary>
     public static bool IsSelectedEmpresa { get; set; } = false;
     
