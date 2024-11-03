@@ -25,6 +25,10 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     public string SqlFindById =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE id = @id and id_empresa = @id_empresa";
+    
+    public string SqlFindByIdWithoutEmpresa =>
+    "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
+    "FROM miembros_empresa WHERE id = @id";
 
     public string SqlSelectAllByPartida =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
@@ -111,6 +115,15 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         {
             new("@id", id),
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByIdWithoutEmpresa(long id)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id", id)
         };
         return parameters;
     }

@@ -132,7 +132,7 @@ public partial class Form1 : Form
     private static bool ValidarUsuario(string username, string password)
     {
         People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
-                          MiembroEmpresaQuery.Instance.FindByUsername(username);
+                          MiembroEmpresaQuery.Instance.FindByUsernameWithoutEmpresa(username);
         return Validations.UserExist(usuario);
     }
 
@@ -240,7 +240,7 @@ public partial class Form1 : Form
 
         if (!ValidarUsuario(_usuario, _pass))
         {
-            Message.MessageViewError(@"Usuario o contraseña incorrecta");
+            Message.MessageViewError(@"Usuario o contraseña incorrectaaaaaaaa");
             return;
         }
 
@@ -260,7 +260,7 @@ public partial class Form1 : Form
                 return;
             }
 
-            Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindById(member.Id);
+            Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindByIdWithoutEmpresa(member.Id);
 
             if (Global.SelectedMiembroEmpresa == null)
             {

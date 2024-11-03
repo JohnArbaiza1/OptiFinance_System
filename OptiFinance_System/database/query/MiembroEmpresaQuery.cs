@@ -94,6 +94,12 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
         miembroEmpresa.Empresa = aux?.Empresa;
         return miembroEmpresa;
     }
+    
+    public MiembroEmpresa? FindByIdWithoutEmpresa(long id)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByIdWithoutEmpresa, MapEntity,
+            Params.ParametersFindByIdWithoutEmpresa(id));
+    }
 
     private MiembroEmpresa? GetEmpresa(long id)
     {
