@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Miembros));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
@@ -84,8 +84,9 @@
             panel1.Controls.Add(btnAtras);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1270, 69);
+            panel1.Size = new Size(1111, 52);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -94,9 +95,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Bookman Old Style", 24F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(35, 55, 80);
-            label1.Location = new Point(391, 9);
+            label1.Location = new Point(342, 7);
             label1.Name = "label1";
-            label1.Size = new Size(521, 45);
+            label1.Size = new Size(414, 39);
             label1.TabIndex = 4;
             label1.Text = "Miembros de la Empresa.";
             // 
@@ -104,6 +105,7 @@
             // 
             btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
             btnAtras.Location = new Point(0, 2);
+            btnAtras.Margin = new Padding(3, 2, 3, 2);
             btnAtras.Name = "btnAtras";
             btnAtras.Size = new Size(64, 64);
             btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -118,9 +120,10 @@
             panel2.Controls.Add(btnBuscarMiembros);
             panel2.Controls.Add(txtBusqueda);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 69);
+            panel2.Location = new Point(0, 52);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1270, 781);
+            panel2.Size = new Size(1111, 586);
             panel2.TabIndex = 1;
             // 
             // groupBox1
@@ -131,9 +134,11 @@
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.ForeColor = Color.FromArgb(31, 58, 93);
-            groupBox1.Location = new Point(750, 52);
+            groupBox1.Location = new Point(656, 39);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(476, 650);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(416, 488);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "Control de Miembros:";
@@ -143,9 +148,10 @@
             btnEditar.BackColor = Color.FromArgb(44, 161, 232);
             btnEditar.ForeColor = Color.White;
             btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
-            btnEditar.Location = new Point(164, 461);
+            btnEditar.Location = new Point(144, 346);
+            btnEditar.Margin = new Padding(3, 2, 3, 2);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(148, 54);
+            btnEditar.Size = new Size(130, 40);
             btnEditar.TabIndex = 4;
             btnEditar.Text = "Editar";
             btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -156,9 +162,10 @@
             btnEliminar.BackColor = Color.FromArgb(234, 130, 6);
             btnEliminar.ForeColor = Color.White;
             btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
-            btnEliminar.Location = new Point(6, 461);
+            btnEliminar.Location = new Point(5, 346);
+            btnEliminar.Margin = new Padding(3, 2, 3, 2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(152, 54);
+            btnEliminar.Size = new Size(133, 40);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -170,10 +177,11 @@
             btnAgregar.BackColor = Color.FromArgb(31, 58, 93);
             btnAgregar.ForeColor = Color.White;
             btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
-            btnAgregar.Location = new Point(318, 461);
+            btnAgregar.Location = new Point(278, 346);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Padding = new Padding(10, 0, 0, 0);
-            btnAgregar.Size = new Size(146, 54);
+            btnAgregar.Padding = new Padding(9, 0, 0, 0);
+            btnAgregar.Size = new Size(128, 40);
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -201,7 +209,8 @@
             tableLayoutPanel1.Controls.Add(label5, 0, 4);
             tableLayoutPanel1.Controls.Add(txtDui, 1, 4);
             tableLayoutPanel1.Controls.Add(txtPassword, 1, 3);
-            tableLayoutPanel1.Location = new Point(6, 63);
+            tableLayoutPanel1.Location = new Point(5, 47);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 8;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.4995289F));
@@ -212,15 +221,15 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.4995317F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.4995317F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5032816F));
-            tableLayoutPanel1.Size = new Size(464, 381);
+            tableLayoutPanel1.Size = new Size(406, 286);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(3, 141);
+            label9.Location = new Point(3, 105);
             label9.Name = "label9";
-            label9.Size = new Size(108, 23);
+            label9.Size = new Size(87, 20);
             label9.TabIndex = 13;
             label9.Text = "Password:";
             // 
@@ -228,18 +237,20 @@
             // 
             txtAlias.BackColor = Color.FromArgb(245, 245, 242);
             txtAlias.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtAlias.Location = new Point(175, 97);
+            txtAlias.Location = new Point(154, 72);
+            txtAlias.Margin = new Padding(3, 2, 3, 2);
             txtAlias.Name = "txtAlias";
-            txtAlias.Size = new Size(286, 31);
+            txtAlias.Size = new Size(249, 26);
             txtAlias.TabIndex = 8;
             // 
             // txtApellido
             // 
             txtApellido.BackColor = Color.FromArgb(245, 245, 242);
             txtApellido.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtApellido.Location = new Point(175, 50);
+            txtApellido.Location = new Point(154, 37);
+            txtApellido.Margin = new Padding(3, 2, 3, 2);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(286, 31);
+            txtApellido.Size = new Size(249, 26);
             txtApellido.TabIndex = 7;
             // 
             // label2
@@ -247,7 +258,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(92, 23);
+            label2.Size = new Size(76, 20);
             label2.TabIndex = 0;
             label2.Text = "Nombre:";
             // 
@@ -255,35 +266,36 @@
             // 
             txtNombre.BackColor = Color.FromArgb(245, 245, 242);
             txtNombre.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNombre.Location = new Point(175, 3);
+            txtNombre.Location = new Point(154, 2);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(286, 31);
+            txtNombre.Size = new Size(249, 26);
             txtNombre.TabIndex = 0;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 47);
+            label3.Location = new Point(3, 35);
             label3.Name = "label3";
-            label3.Size = new Size(98, 23);
+            label3.Size = new Size(81, 20);
             label3.TabIndex = 1;
             label3.Text = "Apellidos";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(3, 94);
+            label4.Location = new Point(3, 70);
             label4.Name = "label4";
-            label4.Size = new Size(64, 23);
+            label4.Size = new Size(52, 20);
             label4.TabIndex = 2;
             label4.Text = "Alias:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(3, 329);
+            label8.Location = new Point(3, 245);
             label8.Name = "label8";
-            label8.Size = new Size(108, 23);
+            label8.Size = new Size(89, 20);
             label8.TabIndex = 6;
             label8.Text = "Dirección:";
             // 
@@ -291,17 +303,18 @@
             // 
             txtAddress.BackColor = Color.FromArgb(245, 245, 242);
             txtAddress.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtAddress.Location = new Point(175, 332);
+            txtAddress.Location = new Point(154, 247);
+            txtAddress.Margin = new Padding(3, 2, 3, 2);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(286, 31);
+            txtAddress.Size = new Size(249, 26);
             txtAddress.TabIndex = 12;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(3, 282);
+            label7.Location = new Point(3, 210);
             label7.Name = "label7";
-            label7.Size = new Size(97, 23);
+            label7.Size = new Size(80, 20);
             label7.TabIndex = 5;
             label7.Text = "Telefono:";
             // 
@@ -309,17 +322,20 @@
             // 
             txtTelefono.BackColor = Color.FromArgb(245, 245, 242);
             txtTelefono.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTelefono.Location = new Point(175, 285);
+            txtTelefono.Location = new Point(154, 212);
+            txtTelefono.Margin = new Padding(3, 2, 3, 2);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(286, 31);
+            txtTelefono.Size = new Size(249, 26);
             txtTelefono.TabIndex = 11;
+            txtTelefono.TextChanged += txtTelefono_TextChanged;
+            txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(3, 235);
+            label6.Location = new Point(3, 175);
             label6.Name = "label6";
-            label6.Size = new Size(82, 23);
+            label6.Size = new Size(67, 20);
             label6.TabIndex = 4;
             label6.Text = "Correo:";
             // 
@@ -327,17 +343,18 @@
             // 
             txtCorreo.BackColor = Color.FromArgb(245, 245, 242);
             txtCorreo.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCorreo.Location = new Point(175, 238);
+            txtCorreo.Location = new Point(154, 177);
+            txtCorreo.Margin = new Padding(3, 2, 3, 2);
             txtCorreo.Name = "txtCorreo";
-            txtCorreo.Size = new Size(286, 31);
+            txtCorreo.Size = new Size(249, 26);
             txtCorreo.TabIndex = 10;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(3, 188);
+            label5.Location = new Point(3, 140);
             label5.Name = "label5";
-            label5.Size = new Size(52, 23);
+            label5.Size = new Size(43, 20);
             label5.TabIndex = 3;
             label5.Text = "Dui:";
             // 
@@ -345,47 +362,53 @@
             // 
             txtDui.BackColor = Color.FromArgb(245, 245, 242);
             txtDui.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDui.Location = new Point(175, 191);
+            txtDui.Location = new Point(154, 142);
+            txtDui.Margin = new Padding(3, 2, 3, 2);
             txtDui.Name = "txtDui";
-            txtDui.Size = new Size(286, 31);
+            txtDui.Size = new Size(249, 26);
             txtDui.TabIndex = 9;
+            txtDui.TextChanged += txtDui_TextChanged;
+            txtDui.KeyPress += txtDui_KeyPress;
             // 
             // txtPassword
             // 
             txtPassword.BackColor = Color.FromArgb(245, 245, 242);
-            txtPassword.Location = new Point(175, 144);
+            txtPassword.Location = new Point(154, 107);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(286, 31);
+            txtPassword.Size = new Size(249, 26);
             txtPassword.TabIndex = 14;
             // 
             // panel3
             // 
             panel3.Controls.Add(dataMiembros);
-            panel3.Location = new Point(41, 113);
+            panel3.Location = new Point(36, 85);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(685, 589);
+            panel3.Size = new Size(599, 442);
             panel3.TabIndex = 3;
             // 
             // dataMiembros
             // 
             dataMiembros.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataMiembros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataMiembros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataMiembros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataMiembros.Columns.AddRange(new DataGridViewColumn[] { Nombre, Column2, Alias, Column8, Column4, Column5, Column6, Column7 });
             dataMiembros.Dock = DockStyle.Fill;
             dataMiembros.EnableHeadersVisualStyles = false;
             dataMiembros.Location = new Point(0, 0);
+            dataMiembros.Margin = new Padding(3, 2, 3, 2);
             dataMiembros.Name = "dataMiembros";
             dataMiembros.RowHeadersWidth = 51;
             dataMiembros.RowTemplate.Height = 29;
-            dataMiembros.Size = new Size(685, 589);
+            dataMiembros.Size = new Size(599, 442);
             dataMiembros.TabIndex = 0;
             dataMiembros.CellContentClick += dataMiembros_CellContentClick;
             // 
@@ -449,9 +472,10 @@
             // 
             btnBuscarMiembros.BackColor = Color.FromArgb(215, 143, 35);
             btnBuscarMiembros.Image = (Image)resources.GetObject("btnBuscarMiembros.Image");
-            btnBuscarMiembros.Location = new Point(658, 48);
+            btnBuscarMiembros.Location = new Point(576, 36);
+            btnBuscarMiembros.Margin = new Padding(3, 2, 3, 2);
             btnBuscarMiembros.Name = "btnBuscarMiembros";
-            btnBuscarMiembros.Size = new Size(68, 38);
+            btnBuscarMiembros.Size = new Size(60, 28);
             btnBuscarMiembros.TabIndex = 2;
             btnBuscarMiembros.UseVisualStyleBackColor = false;
             btnBuscarMiembros.Click += btnBuscarMiembros_Click;
@@ -460,9 +484,10 @@
             // 
             txtBusqueda.BackColor = Color.FromArgb(245, 245, 242);
             txtBusqueda.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBusqueda.Location = new Point(41, 52);
+            txtBusqueda.Location = new Point(36, 39);
+            txtBusqueda.Margin = new Padding(3, 2, 3, 2);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(611, 31);
+            txtBusqueda.Size = new Size(535, 26);
             txtBusqueda.TabIndex = 1;
             txtBusqueda.KeyUp += txtBusqueda_KeyUp;
             // 
@@ -474,13 +499,14 @@
             // 
             // Miembros
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1270, 850);
+            ClientSize = new Size(1111, 638);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Miembros";
             Text = "Miembros";
             panel1.ResumeLayout(false);

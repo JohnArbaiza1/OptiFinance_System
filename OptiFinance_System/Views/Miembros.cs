@@ -204,4 +204,24 @@ public partial class Miembros : Form
             }
         }
     }
+
+    private void txtDui_TextChanged(object sender, EventArgs e)
+    {
+        Formats.FormatDui(sender, e);
+    }
+
+    private void txtTelefono_TextChanged(object sender, EventArgs e)
+    {
+        Formats.FormatTelefono(sender, e);
+    }
+
+    private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        Formats.OnlyNumbers(sender, e);
+    }
+
+    private void txtDui_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        Formats.OnlyNumbers(sender, e);
+    }
 }

@@ -23,6 +23,23 @@ public static class Formats
 
         if (textBox.SelectionStart is 5 or 12 or 16) textBox.SelectionStart++;
     }
+    public static void FormatDui(object sender, EventArgs e)
+    {
+        if (!sender.GetType().Name.Equals(nameof(TextBox))) return;
+        TextBox textBox = (TextBox)sender;
+
+        int cursorPosition = textBox.SelectionStart;
+        string text = textBox.Text.Replace("-", "");
+
+        if (text.Length > 9) text = text[..9];
+
+        if (text.Length > 8) text = text.Insert(8, "-");
+
+        textBox.Text = text;
+        textBox.SelectionStart = cursorPosition;
+
+        if (textBox.SelectionStart is 9) textBox.SelectionStart++;
+    }
 
     public static void FormatTelefono(object sender, EventArgs e)
     {
