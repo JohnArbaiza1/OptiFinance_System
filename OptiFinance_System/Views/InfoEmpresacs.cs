@@ -16,7 +16,6 @@ public partial class InfoEmpresacs : Form
     {
         InitializeComponent();
         txtGiroAux = textBox4;
-        Console.WriteLine(Global.SelectedUser!.Id);
         errores = new()
         {
             "El campo nombre de la empresa es obligatorio",

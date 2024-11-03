@@ -277,6 +277,10 @@ public partial class Form1 : Form
             }
             Global.IsSelectedEmpresa = true;
             Global.SelectedUser = Global.SelectedEmpresa.Usuario;
+
+            Console.WriteLine(Global.SelectedEmpresa.Id);
+            Console.WriteLine(Global.SelectedUser);
+            Console.WriteLine(Global.SelectedMiembroEmpresa.Id);
         }
         else
         {
