@@ -41,6 +41,9 @@ public class UsuarioParams : IQueriesString<Usuario>
 
     public string SqlFindByUsername =>
         "SELECT * FROM usuarios WHERE alias = @alias";
+    
+    public string SqlFindByEmpresa =>
+        "SELECT u.* FROM usuarios AS u INNER JOIN empresas AS e ON u.id = e.id_usuario WHERE e.id = @id_empresa";
 
     public List<SqlParameter> ParametersInsert(Usuario entity)
     {
@@ -107,6 +110,15 @@ public class UsuarioParams : IQueriesString<Usuario>
         List<SqlParameter> parameters = new()
         {
             new("@alias", username)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByEmpresa(long idEmpresa)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_empresa", idEmpresa)
         };
         return parameters;
     }

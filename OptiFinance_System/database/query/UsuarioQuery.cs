@@ -112,4 +112,17 @@ public class UsuarioQuery : IQueryEstandar<Usuario>
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsername, MapEntity,
             Params.ParametersFindByUsername(username));
     }
+
+    public Usuario? FindByEmpresa(long idEmpresa)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByEmpresa, MapEntity,
+            Params.ParametersFindByEmpresa(idEmpresa));
+    }
+
+    public Usuario? FindByTelefono(string telefono)
+    {
+        return null;
+    }
+    
+    // public Usuario? FindBy
 }

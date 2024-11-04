@@ -196,11 +196,11 @@ public partial class Miembros : Form
             if (result)
             {
                 limpiarTextBoxMiembro();
-                MessageBox.Show("Miembro Eliminado Correctamente");
+                MessageBox.Show(@"Miembro Eliminado Correctamente");
             }
             else
             {
-                MessageBox.Show("Error al eliminar los datos de Miembro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Error al eliminar los datos de Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

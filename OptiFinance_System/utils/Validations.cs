@@ -14,7 +14,7 @@ public class Validations
     public static bool ValidarUsuarioAndMiembroExist(string username)
     {
         People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
-                          MiembroEmpresaQuery.Instance.FindByUsername(username);
+                          MiembroEmpresaQuery.Instance.FindByUsername(username, true);
         
         return UserExist(usuario);
     }
@@ -26,8 +26,6 @@ public class Validations
         {
             Console.WriteLine(@"Es miembro empresa");
             MiembroEmpresa miembroEmpresa = (MiembroEmpresa)people;
-            Console.WriteLine(miembroEmpresa.Alias);
-            Console.WriteLine(miembroEmpresa.Password);
             return !miembroEmpresa.Alias.IsNullOrEmpty() && !miembroEmpresa.Password.IsNullOrEmpty();
         }
 
