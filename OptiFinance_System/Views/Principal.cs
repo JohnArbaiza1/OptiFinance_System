@@ -17,6 +17,7 @@ public partial class Principal : Form
     public static Button newPartida;
     public static Button info;
     public static Button miembroEmpresa;
+    public static Button usuariosButton;
     #endregion
     
     public Principal()
@@ -31,6 +32,7 @@ public partial class Principal : Form
         newPartida = btnIngresarPartida;
         info = btnInfo;
         miembroEmpresa = btnMiembros;
+        usuariosButton = btnUsuarios;
         //-------------------------------------------------------------
         // Establecemos el estilo del borde del formulario a ninguno
         FormBorderStyle = FormBorderStyle.None;
@@ -153,7 +155,7 @@ public partial class Principal : Form
             reajustesMenu();
             btnUsuarios.Visible = false;
             btnEmpresas.Visible = false;
-            panelEmpresa.Visible = false;
+            
         }
     }
 
