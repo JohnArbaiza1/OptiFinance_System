@@ -44,9 +44,26 @@ public partial class razones_Liquidez : Form
         lblActivCir.Text = totalActivoCirculante.Debe.ToString();
         lblPasCirculante.Text = totalPasivoCirculante.Haber.ToString();
         
-        // --> totales
-        lblTotalRcirculante.Text = (totalActivoCirculante.Debe / totalPasivoCirculante.Haber).ToString();
-        label16.Text = ((totalActivoCirculante.Debe - inventario.Debe) / (totalPasivoCirculante.Haber)).ToString();
-        lblTptalCapTrabajo.Text = (totalActivoCirculante.Debe - totalPasivoCirculante.Haber).ToString();
+        try
+        {
+            // --> totales
+            lblTotalRcirculante.Text = (totalActivoCirculante.Debe / totalPasivoCirculante.Haber).ToString();
+            label16.Text = ((totalActivoCirculante.Debe - inventario.Debe) / totalPasivoCirculante.Haber).ToString();
+            lblTptalCapTrabajo.Text = (totalActivoCirculante.Debe - totalPasivoCirculante.Haber).ToString();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error: No se puede realizar las operaciones debido a una división por cero.");
+            lblActivoCirculante.Text = "";
+            lblPasivoCirculante.Text = "";
+            lblActCirculante.Text = "";
+            lblPasiCiculante.Text = "";
+            lblInventario.Text = "";
+            lblActivCir.Text = "";
+            lblPasCirculante.Text = "";
+            lblTotalRcirculante.Text = "";
+            label16.Text = "";
+            lblTptalCapTrabajo.Text = "";
+        }
     }
 }
