@@ -147,4 +147,16 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsernameWithoutEmpresa,
             Params.MapWithoutEmpresa, Params.ParametersFindByUsername(username));
     }
+    
+    public MiembroEmpresa? FindByTelefono(string telefono)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByTelefono, MapEntity,
+            Params.ParametersFindByTelefono(telefono));
+    }
+    
+    public MiembroEmpresa? FindByEmail(string email)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByEmail, Params.MapSearch,
+            Params.ParametersFindByEmail(email));
+    }
 }

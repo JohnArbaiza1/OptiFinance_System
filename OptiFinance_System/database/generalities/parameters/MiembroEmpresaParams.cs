@@ -49,6 +49,12 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
 
     public string SqlFindIdEmpresa => "SELECT id_empresa FROM miembros_empresa WHERE id = @id";
     
+    public string SqlFindByTelefono =>
+        "SELECT * FROM miembros_empresa WHERE telefono = @telefono";
+
+    public string SqlFindByEmail =>
+        "SELECT * FROM miembros_empresa WHERE correo_electronico = @correo_electronico";
+    
     public List<SqlParameter> ParametersFindIdEmpresa(long id)
     {
         List<SqlParameter> parameters = new()
@@ -216,6 +222,14 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             }
         };
     }
+    
+    public MiembroEmpresa MapSearch(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader["id"] != DBNull.Value ? (long)reader["id"] : 0
+        };
+    }
 
     public List<SqlParameter> ParametersFindByUsername(string username)
     {
@@ -232,6 +246,24 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         List<SqlParameter> parameters = new()
         {
             new("@alias", username)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByTelefono(string telefono)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@telefono", telefono)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByEmail(string email)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@correo_electronico", email)
         };
         return parameters;
     }

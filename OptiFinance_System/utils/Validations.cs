@@ -11,6 +11,18 @@ public class Validations
         return BCrypt.Net.BCrypt.Verify(password, passwordHash);
     }
     
+    public static bool ExistTelefono(string telefono)
+    {
+        return UsuarioQuery.Instance.FindByTelefono(telefono) != null ||
+               MiembroEmpresaQuery.Instance.FindByTelefono(telefono) != null;
+    }
+    
+    public static bool ExistEmail(string email)
+    {
+        return UsuarioQuery.Instance.FindByEmail(email) != null ||
+               MiembroEmpresaQuery.Instance.FindByEmail(email) != null;
+    }
+    
     public static bool ValidarUsuarioAndMiembroExist(string username)
     {
         People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
