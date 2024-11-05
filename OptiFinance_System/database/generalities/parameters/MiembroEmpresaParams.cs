@@ -55,6 +55,9 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     public string SqlFindByEmail =>
         "SELECT * FROM miembros_empresa WHERE correo_electronico = @correo_electronico";
     
+    public string SqlFindByDui =>
+        "SELECT * FROM miembros_empresa WHERE dui = @dui";
+    
     public List<SqlParameter> ParametersFindIdEmpresa(long id)
     {
         List<SqlParameter> parameters = new()
@@ -264,6 +267,15 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         List<SqlParameter> parameters = new()
         {
             new("@correo_electronico", email)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByDui(string dui)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@dui", dui)
         };
         return parameters;
     }

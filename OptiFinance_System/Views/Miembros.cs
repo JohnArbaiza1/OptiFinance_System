@@ -224,4 +224,86 @@ public partial class Miembros : Form
     {
         Formats.OnlyNumbers(sender, e);
     }
+
+    private void txtAlias_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerAlias.Stop();
+        timerAlias.Start();
+    }
+
+    private void timerAlias_Tick(object sender, EventArgs e)
+    {
+        string alias = txtAlias.Text.Trim();
+        if (Validations.ValidarUsuarioAndMiembroExist(alias))
+        {
+            SetErrorProvider(errorProvider1, txtAlias, "El alias ya existe", ErrorIconAlignment.MiddleLeft);
+        }
+        else
+        {
+            errorProvider1.SetError(txtAlias, "");
+        }
+    }
+
+    private void SetErrorProvider(ErrorProvider errorProvider, Control control, string message, ErrorIconAlignment iconAlignment)
+    {
+        errorProvider.SetIconAlignment(control, iconAlignment);
+        errorProvider.SetError(control, message);
+    }
+
+    private void txtDui_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerDui.Stop();
+        timerDui.Start();
+    }
+
+    private void timerDui_Tick(object sender, EventArgs e)
+    {
+        string dui = txtDui.Text.Trim();
+        if (Validations.ExistDui(dui))
+        {
+            SetErrorProvider(errorProvider1, txtDui, "El dui ya existe", ErrorIconAlignment.MiddleLeft);
+        }
+        else
+        {
+            errorProvider1.SetError(txtDui, "");
+        }
+    }
+
+    private void txtCorreo_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerCorreo.Stop();
+        timerCorreo.Start();
+    }
+
+    private void timerCorreo_Tick(object sender, EventArgs e)
+    {
+        string correo = txtCorreo.Text.Trim();
+        if (Validations.ExistEmail(correo))
+        {
+            SetErrorProvider(errorProvider1, txtCorreo, "El correo ya existe", ErrorIconAlignment.MiddleLeft);
+        }
+        else
+        {
+            errorProvider1.SetError(txtCorreo, "");
+        }
+    }
+
+    private void txtTelefono_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerTelefono.Stop();
+        timerTelefono.Start();
+    }
+
+    private void timerTelefono_Tick(object sender, EventArgs e)
+    {
+        string telefono = txtTelefono.Text.Trim();
+        if (Validations.ExistTelefono(telefono))
+        {
+            SetErrorProvider(errorProvider1, txtTelefono, "El telefono ya existe", ErrorIconAlignment.MiddleLeft);
+        }
+        else
+        {
+            errorProvider1.SetError(txtTelefono, "");
+        }
+    }
 }

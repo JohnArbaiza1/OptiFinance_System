@@ -159,4 +159,10 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByEmail, Params.MapSearch,
             Params.ParametersFindByEmail(email));
     }
+    
+    public MiembroEmpresa? FindByDui(string dui)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByDui, Params.MapSearch,
+            Params.ParametersFindByDui(dui));
+    }
 }

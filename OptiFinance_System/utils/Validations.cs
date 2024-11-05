@@ -23,6 +23,11 @@ public class Validations
                MiembroEmpresaQuery.Instance.FindByEmail(email) != null;
     }
     
+    public static bool ExistDui(string dui)
+    {
+        return MiembroEmpresaQuery.Instance.FindByDui(dui) != null;
+    }
+    
     public static bool ValidarUsuarioAndMiembroExist(string username)
     {
         People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??

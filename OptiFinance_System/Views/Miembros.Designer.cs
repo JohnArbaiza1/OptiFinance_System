@@ -69,6 +69,11 @@
             btnBuscarMiembros = new Button();
             txtBusqueda = new TextBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            errorProvider1 = new ErrorProvider(components);
+            timerAlias = new System.Windows.Forms.Timer(components);
+            timerDui = new System.Windows.Forms.Timer(components);
+            timerCorreo = new System.Windows.Forms.Timer(components);
+            timerTelefono = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
             panel2.SuspendLayout();
@@ -76,6 +81,7 @@
             tableLayoutPanel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataMiembros).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -239,9 +245,11 @@
             txtAlias.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtAlias.Location = new Point(154, 72);
             txtAlias.Margin = new Padding(3, 2, 3, 2);
+            txtAlias.MaxLength = 20;
             txtAlias.Name = "txtAlias";
             txtAlias.Size = new Size(249, 26);
             txtAlias.TabIndex = 8;
+            txtAlias.KeyUp += txtAlias_KeyUp;
             // 
             // txtApellido
             // 
@@ -329,6 +337,7 @@
             txtTelefono.TabIndex = 11;
             txtTelefono.TextChanged += txtTelefono_TextChanged;
             txtTelefono.KeyPress += txtTelefono_KeyPress;
+            txtTelefono.KeyUp += txtTelefono_KeyUp;
             // 
             // label6
             // 
@@ -348,6 +357,7 @@
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(249, 26);
             txtCorreo.TabIndex = 10;
+            txtCorreo.KeyUp += txtCorreo_KeyUp;
             // 
             // label5
             // 
@@ -369,6 +379,7 @@
             txtDui.TabIndex = 9;
             txtDui.TextChanged += txtDui_TextChanged;
             txtDui.KeyPress += txtDui_KeyPress;
+            txtDui.KeyUp += txtDui_KeyUp;
             // 
             // txtPassword
             // 
@@ -497,6 +508,30 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // timerAlias
+            // 
+            timerAlias.Interval = 500;
+            timerAlias.Tick += timerAlias_Tick;
+            // 
+            // timerDui
+            // 
+            timerDui.Interval = 500;
+            timerDui.Tick += timerDui_Tick;
+            // 
+            // timerCorreo
+            // 
+            timerCorreo.Interval = 500;
+            timerCorreo.Tick += timerCorreo_Tick;
+            // 
+            // timerTelefono
+            // 
+            timerTelefono.Interval = 500;
+            timerTelefono.Tick += timerTelefono_Tick;
+            // 
             // Miembros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -519,6 +554,7 @@
             tableLayoutPanel1.PerformLayout();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataMiembros).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -562,5 +598,10 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column7;
+        private ErrorProvider errorProvider1;
+        private System.Windows.Forms.Timer timerAlias;
+        private System.Windows.Forms.Timer timerDui;
+        private System.Windows.Forms.Timer timerCorreo;
+        private System.Windows.Forms.Timer timerTelefono;
     }
 }
