@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Miembros));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
@@ -134,6 +134,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox1.Controls.Add(btnEditar);
             groupBox1.Controls.Add(btnEliminar);
             groupBox1.Controls.Add(btnAgregar);
@@ -162,6 +163,7 @@
             btnEditar.Text = "Editar";
             btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditar.UseVisualStyleBackColor = false;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnEliminar
             // 
@@ -392,6 +394,7 @@
             // 
             // panel3
             // 
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel3.Controls.Add(dataMiembros);
             panel3.Location = new Point(36, 85);
             panel3.Margin = new Padding(3, 2, 3, 2);
@@ -401,18 +404,18 @@
             // 
             // dataMiembros
             // 
+            dataMiembros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataMiembros.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataMiembros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataMiembros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataMiembros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataMiembros.Columns.AddRange(new DataGridViewColumn[] { Nombre, Column2, Alias, Column8, Column4, Column5, Column6, Column7 });
-            dataMiembros.Dock = DockStyle.Fill;
             dataMiembros.EnableHeadersVisualStyles = false;
             dataMiembros.Location = new Point(0, 0);
             dataMiembros.Margin = new Padding(3, 2, 3, 2);
