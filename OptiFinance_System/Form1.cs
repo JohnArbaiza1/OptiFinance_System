@@ -289,6 +289,7 @@ public partial class Form1 : Form
         else
         {
             Global.SelectedUser = curentUser;
+            Global.IsSelectedMiembroEmpresa = false;
         }
 
         Global.IsSelectedUser = true;
