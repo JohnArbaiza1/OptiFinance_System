@@ -25,10 +25,10 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     public string SqlFindById =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE id = @id and id_empresa = @id_empresa";
-    
+
     public string SqlFindByIdWithoutEmpresa =>
-    "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
-    "FROM miembros_empresa WHERE id = @id";
+        "SELECT me.*, e.nombre AS nombre_empresa FROM miembros_empresa AS me " +
+        "INNER JOIN empresas AS e ON me.id_empresa = e.id WHERE me.id = @id";
 
     public string SqlSelectAllByPartida =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
@@ -193,6 +193,27 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
             Direccion = reader.GetString(7),
             Password = reader.GetString(9)
+        };
+    }
+    
+    public MiembroEmpresa MapWithoutEmpresaFull(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader.GetInt64(0),
+            Nombres = reader.GetString(1),
+            Apellidos = reader.GetString(2),
+            Alias = reader.GetString(3),
+            Dui = reader.GetString(4),
+            Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
+            Direccion = reader.GetString(7),
+            Password = reader.GetString(9),
+            Empresa = new()
+            {
+                Id = reader["id_empresa"] != DBNull.Value ? (long)reader["id_empresa"] : 0,
+                Nombre = reader["nombre_empresa"] != DBNull.Value ? (string)reader["nombre_empresa"] : string.Empty
+            }
         };
     }
 

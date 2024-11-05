@@ -285,10 +285,6 @@ public partial class Form1 : Form
             }
             
             Global.SelectedUser = userEmpresa;
-
-            Console.WriteLine(Global.SelectedEmpresa.Id);
-            Console.WriteLine(Global.SelectedUser);
-            Console.WriteLine(Global.SelectedMiembroEmpresa.Id);
         }
         else
         {

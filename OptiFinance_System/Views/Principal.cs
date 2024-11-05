@@ -24,6 +24,14 @@ public partial class Principal : Form
     {
         AutoScaleMode = AutoScaleMode.Dpi;
         InitializeComponent();
+        if (Global.IsSelectedEmpresa)
+            lblNameEmpresa.Text = Global.SelectedEmpresa?.Nombre ?? "No hay empresa seleccionada";
+        else
+        {
+            MessageBox.Show(@"No hay empresa seleccionada", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        
         //Llamamos a las variables staticas
         cuentaXD = btnCuentas;
         libros = btnLibros;
