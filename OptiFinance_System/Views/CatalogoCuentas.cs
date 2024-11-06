@@ -14,58 +14,59 @@ public partial class CatalogoCuentas : Form
 
     private void CatalogoCuentas_Load(object sender, EventArgs e)
     {
-        List<Cuenta> cuentasActivo = CuentaQuery.Instance.SelectAllByTypeActivo();
-
-        // Asignas las cuentas al DataGridView, mostrando solo Codigo y Nombre
-        dataGridActivos.DataSource = cuentasActivo
+        // Cargar cuentas y asignarlas a los DataGridViews
+        CargarCuentasEnDataGridView(CuentaQuery.Instance.SelectAllByTypeActivo(), dataGridActivos);
+        CargarCuentasEnDataGridView(CuentaQuery.Instance.SelectAllByTypePasivo(), dataGridPasivos);
+        CargarCuentasEnDataGridView(CuentaQuery.Instance.SelectAllByTypeCapital(), dataGridCapital);
+        CargarCuentasEnDataGridView(CuentaQuery.Instance.SelectAllByTypeDeudora(), dataGridDeudora);
+        CargarCuentasEnDataGridView(CuentaQuery.Instance.SelectAllByTypeAcreedora(), dataGridAcreedora);
+        CargarCuentasEnDataGridView(CuentaQuery.Instance.SelectAllByTypePuenteCierre(), dataGridCierre);
+    }
+    private void CargarCuentasEnDataGridView(List<Cuenta> cuentas, DataGridView dataGrid)
+    {
+        // Asignar datos y configurar anchos de columna
+        dataGrid.DataSource = cuentas
             .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
             .ToList();
-        dataGridActivos.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridActivos.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
+        dataGrid.Columns["Codigo"].Width = 382;
+        dataGrid.Columns["Nombre"].Width = 690;
 
-        // Asignas las cuentas al DataGridView, mostrando solo Codigo y Nombre
-        List<Cuenta> cuentasPasivo = CuentaQuery.Instance.SelectAllByTypePasivo();
-        dataGridPasivos.DataSource = cuentasPasivo
-            .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
-            .ToList();
-        dataGridPasivos.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridPasivos.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
+        // Suscribirse al evento CellFormatting
+        dataGrid.CellFormatting += DataGrid_CellFormatting;
+    }
 
-        List<Cuenta> cuentasCapital = CuentaQuery.Instance.SelectAllByTypeCapital();
+    private void DataGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+    {
+        DataGridView dataGrid = sender as DataGridView;
 
-        // Asignas las cuentas al DataGridView, mostrando solo Codigo y Nombre
-        dataGridCapital.DataSource = cuentasCapital
-            .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
-            .ToList();
-        dataGridCapital.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridCapital.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
+        // Verificar que estamos en las columnas correctas
+        if (dataGrid.Columns[e.ColumnIndex].Name == "Codigo" || dataGrid.Columns[e.ColumnIndex].Name == "Nombre")
+        {
+            var codigo = dataGrid.Rows[e.RowIndex].Cells["Codigo"].Value?.ToString();
 
-        List<Cuenta> cuentasDeudora = CuentaQuery.Instance.SelectAllByTypeDeudora();
-
-        // Asignas las cuentas al DataGridView, mostrando solo Codigo y Nombre
-        dataGridDeudora.DataSource = cuentasDeudora
-            .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
-            .ToList();
-        dataGridDeudora.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridDeudora.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
-
-        List<Cuenta> cuentaAcreedora = CuentaQuery.Instance.SelectAllByTypeAcreedora();
-
-        // Asignas las cuentas al DataGridView, mostrando solo Codigo y Nombre
-        dataGridAcreedora.DataSource = cuentaAcreedora
-            .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
-            .ToList();
-        dataGridAcreedora.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridAcreedora.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
-
-        List<Cuenta> cuentaCierre = CuentaQuery.Instance.SelectAllByTypePuenteCierre();
-
-        // Asignas las cuentas al DataGridView, mostrando solo Codigo y Nombre
-        dataGridCierre.DataSource = cuentaCierre
-            .Select(c => new { Codigo = c.Codigo, Nombre = c.Nombre })
-            .ToList();
-        dataGridCierre.Columns["Codigo"].Width = 382;  // Ancho de 282 píxeles para la columna 'Codigo'
-        dataGridCierre.Columns["Nombre"].Width = 690;  // Ancho de 594 píxeles para la columna 'Nombre'
+            if (!string.IsNullOrEmpty(codigo))
+            {
+                // Aplicar formato según la longitud del código
+                if (codigo.Length <= 4)
+                {
+                    // Negrita fuerte
+                    e.CellStyle.Font = new Font(dataGrid.Font, FontStyle.Bold);
+                    e.CellStyle.ForeColor = Color.DarkKhaki; // Cambiar el color del texto
+                }
+                else if (codigo.Length == 6)
+                {
+                    // Negrita ligera con 4 espacios al inicio
+                    e.CellStyle.Font = new Font(dataGrid.Font.FontFamily, dataGrid.Font.Size, FontStyle.Bold);
+                    e.Value = "    " + e.Value;
+                }
+                else // Más de 6 dígitos
+                {
+                    // Texto normal con 8 espacios al inicio
+                    e.CellStyle.Font = new Font(dataGrid.Font, FontStyle.Regular);
+                    e.Value = "        " + e.Value;
+                }
+            }
+        }
     }
 
     private void btnAtras_Click(object sender, EventArgs e)
