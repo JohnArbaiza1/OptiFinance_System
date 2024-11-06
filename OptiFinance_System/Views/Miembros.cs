@@ -294,9 +294,16 @@ public partial class Miembros : Form
             errorProvider1.SetError(txtTelefono, "");
         }
     }
+    
 
     private void btnEditar_Click(object sender, EventArgs e)
     {
+        if (_selectMiembroEmpresa == null)
+        {
+            MessageBox.Show(@"No se ha seleccionado un Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        
         bool txtNombreEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtNombre, "El campo nombre no puede estar vacio");
         
@@ -317,21 +324,22 @@ public partial class Miembros : Form
         bool txtAddressEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtAddress, "El campo direccion no puede estar vacio");
 
-        bool aliasExist = Validations.ValidarUsuarioAndMiembroExist(txtAlias.Text.Trim());
-        bool duiExist = Validations.ExistDui(txtDui.Text.Trim());
-        bool emailExist = Validations.ExistEmail(txtCorreo.Text.Trim());
-        bool phoneExist = Validations.ExistTelefono(txtTelefono.Text.Trim());
+        bool aliasExist = !_selectMiembroEmpresa.Alias.Equals(txtAlias.Text.Trim()) &&
+                          Validations.ValidarUsuarioAndMiembroExist(txtAlias.Text.Trim());
+        bool duiExist = !_selectMiembroEmpresa.Dui.Equals(txtDui.Text.Trim()) &&
+                        Validations.ExistDui(txtDui.Text.Trim());
+        bool emailExist = _selectMiembroEmpresa.Correo != null &&
+                          !_selectMiembroEmpresa.Correo.Equals(txtCorreo.Text.Trim()) &&
+                          Validations.ExistEmail(txtCorreo.Text.Trim());
+        bool phoneExist = _selectMiembroEmpresa.Telefono != null &&
+                          !_selectMiembroEmpresa.Telefono.Equals(txtTelefono.Text.Trim()) &&
+                          Validations.ExistTelefono(txtTelefono.Text.Trim());
 
         bool result = txtNombreEmpty || txtApellidoEmpty || txtAliasEmpty || txtDuiEmpty || txtCorreoEmpty ||
                       txtTelefonoEmpty || txtAddressEmpty || aliasExist || duiExist || emailExist ||
                       phoneExist;
 
         if (result) return;
-        if (_selectMiembroEmpresa == null)
-        {
-            MessageBox.Show(@"No se ha seleccionado un Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
 
 
         MiembroEmpresa updateMember = new()
@@ -344,7 +352,7 @@ public partial class Miembros : Form
             Dui = txtDui.Text.Trim(),
             Nombres = txtNombre.Text.Trim(),
             Telefono = txtTelefono.Text.Trim(),
-            Password = txtTelefono.Text.IsNullOrEmpty() || txtTelefono.Text.Equals(_selectMiembroEmpresa.Password)
+            Password = txtPassword.Text.IsNullOrEmpty() || txtPassword.Text.Equals(_selectMiembroEmpresa.Password)
                 ? _selectMiembroEmpresa.Password
                 : Utilities.HashPassword(txtPassword.Text.Trim())
         };
@@ -353,6 +361,7 @@ public partial class Miembros : Form
         if (update)
         {
             MessageBox.Show(@"Miembro actualizado correctamente");
+            _selectMiembroEmpresa = null;
             LimpiarTextBoxMiembro();
         }
         else
