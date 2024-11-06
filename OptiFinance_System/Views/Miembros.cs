@@ -1,4 +1,6 @@
-﻿using OptiFinance_System.database.models;
+﻿using global::OptiFinance_System.global;
+using Microsoft.IdentityModel.Tokens;
+using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 using OptiFinance_System.utils;
 
@@ -297,17 +299,21 @@ public partial class Miembros : Form
     {
         bool txtNombreEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtNombre, "El campo nombre no puede estar vacio");
+        
         bool txtApellidoEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtApellido, "El campo apellido no puede estar vacio");
+        
         bool txtAliasEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtAlias, "El campo alias no puede estar vacio");
-        bool txtPasswordEmpty =
-            Validations.FieldNullOrEmpty(errorProvider1, txtPassword, "El campo password no puede estar vacio");
+        
         bool txtDuiEmpty = Validations.FieldNullOrEmpty(errorProvider1, txtDui, "El campo dui no puede estar vacio");
+        
         bool txtCorreoEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtCorreo, "El campo correo no puede estar vacio");
+        
         bool txtTelefonoEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtTelefono, "El campo telefono no puede estar vacio");
+        
         bool txtAddressEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtAddress, "El campo direccion no puede estar vacio");
 
@@ -316,15 +322,44 @@ public partial class Miembros : Form
         bool emailExist = Validations.ExistEmail(txtCorreo.Text.Trim());
         bool phoneExist = Validations.ExistTelefono(txtTelefono.Text.Trim());
 
-        bool result = txtNombreEmpty || txtApellidoEmpty || txtAliasEmpty || txtPasswordEmpty || txtDuiEmpty ||
-                      txtCorreoEmpty || txtTelefonoEmpty || txtAddressEmpty || aliasExist || duiExist || emailExist ||
+        bool result = txtNombreEmpty || txtApellidoEmpty || txtAliasEmpty || txtDuiEmpty || txtCorreoEmpty ||
+                      txtTelefonoEmpty || txtAddressEmpty || aliasExist || duiExist || emailExist ||
                       phoneExist;
 
         if (result) return;
+        if (_selectMiembroEmpresa == null)
+        {
+            MessageBox.Show(@"No se ha seleccionado un Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
 
-        if (_selectMiembroEmpresa == null) return;
-        
-        
+
+        MiembroEmpresa updateMember = new()
+        {
+            Id = _selectMiembroEmpresa.Id,
+            Apellidos = txtApellido.Text.Trim(),
+            Direccion = txtAddress.Text.Trim(),
+            Alias = txtAlias.Text.Trim(),
+            Correo = txtCorreo.Text.Trim(),
+            Dui = txtDui.Text.Trim(),
+            Nombres = txtNombre.Text.Trim(),
+            Telefono = txtTelefono.Text.Trim(),
+            Password = txtTelefono.Text.IsNullOrEmpty() || txtTelefono.Text.Equals(_selectMiembroEmpresa.Password)
+                ? _selectMiembroEmpresa.Password
+                : Utilities.HashPassword(txtPassword.Text.Trim())
+        };
+
+        bool update = MiembroEmpresaQuery.Instance.Update(updateMember);
+        if (update)
+        {
+            MessageBox.Show(@"Miembro actualizado correctamente");
+            LimpiarTextBoxMiembro();
+        }
+        else
+        {
+            MessageBox.Show(@"Error al actualizar miembro");
+        }
+
     }
 
     private void dataMiembros_CellClick(object sender, DataGridViewCellEventArgs e)
