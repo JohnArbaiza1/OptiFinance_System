@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using OptiFinance_System.database.models;
+﻿using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 using OptiFinance_System.utils;
 
@@ -16,9 +7,8 @@ namespace OptiFinance_System.Views;
 public partial class Miembros : Form
 {
     //Variables
-    private List<MiembroEmpresa>? listaMiembroEmpresa;
-    private int selectMiembroId;
-    private MiembroEmpresa? selectMiembroEmpresa;
+    private int _selectMiembroId;
+    private MiembroEmpresa? _selectMiembroEmpresa;
 
     public Miembros()
     {
@@ -60,7 +50,7 @@ public partial class Miembros : Form
     }
 
     //====================| Metodo para buscar los Miembros |====================
-    private void busquedaMiembrosEmpresa(string? search)
+    private void BusquedaMiembrosEmpresa(string? search)
     {
         if (string.IsNullOrEmpty(search))
         {
@@ -84,7 +74,7 @@ public partial class Miembros : Form
     }
 
     //====================| Metodo para limpiar textbox |====================
-    private void limpiarTextBoxMiembro()
+    private void LimpiarTextBoxMiembro()
     {
         txtNombre.Clear();
         txtApellido.Clear();
@@ -102,35 +92,6 @@ public partial class Miembros : Form
 
     private void dataMiembros_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-        try
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataMiembros.Rows[e.RowIndex];
-
-                selectMiembroId = (int)((MiembroEmpresa)row.Cells["Nombre"].Value).Id;
-                selectMiembroEmpresa = row.Cells["Nombre"].Value as MiembroEmpresa;
-                if (selectMiembroEmpresa == null)
-                {
-                    MessageBox.Show(@"No se ha seleccionado un Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                txtNombre.Text = selectMiembroEmpresa.Nombres;
-                txtApellido.Text = selectMiembroEmpresa.Apellidos;
-                txtAlias.Text = selectMiembroEmpresa.Alias;
-                txtPassword.Text = selectMiembroEmpresa.Password;
-                txtDui.Text = selectMiembroEmpresa.Dui;
-                txtCorreo.Text = selectMiembroEmpresa.Correo;
-                txtTelefono.Text = selectMiembroEmpresa.Telefono;
-                txtAddress.Text = selectMiembroEmpresa.Direccion;
-
-            }
-        }
-        catch (Exception exception)
-        {
-            Console.WriteLine(exception);
-            throw;
-        }
     }
 
     private void btnBuscarMiembros_Click(object sender, EventArgs e)
@@ -140,7 +101,7 @@ public partial class Miembros : Form
     private void txtBusqueda_KeyUp(object sender, KeyEventArgs e)
     {
         string search = txtBusqueda.Text.Trim();
-        busquedaMiembrosEmpresa(search);
+        BusquedaMiembrosEmpresa(search);
     }
 
     private void btnAgregar_Click(object sender, EventArgs e)
@@ -184,24 +145,22 @@ public partial class Miembros : Form
             MessageBox.Show(@"Miembro registrado correctamente");
         else
             MessageBox.Show(@"Error al registrar miembro");
-        limpiarTextBoxMiembro();
+        LimpiarTextBoxMiembro();
     }
 
     private void btnEliminar_Click(object sender, EventArgs e)
     {
         DialogResult respuesta = MessageBox.Show(@"¿Esta seguro de eliminar este miembro?", @"Eliminar Miembro", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-        if (respuesta == DialogResult.OK)
+        if (respuesta != DialogResult.OK) return;
+        bool result = MiembroEmpresaQuery.Instance.Delete(_selectMiembroId);
+        if (result)
         {
-            bool result = MiembroEmpresaQuery.Instance.Delete(selectMiembroId);
-            if (result)
-            {
-                limpiarTextBoxMiembro();
-                MessageBox.Show(@"Miembro Eliminado Correctamente");
-            }
-            else
-            {
-                MessageBox.Show(@"Error al eliminar los datos de Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            LimpiarTextBoxMiembro();
+            MessageBox.Show(@"Miembro Eliminado Correctamente");
+        }
+        else
+        {
+            MessageBox.Show(@"Error al eliminar los datos de Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -234,17 +193,24 @@ public partial class Miembros : Form
     private void timerAlias_Tick(object sender, EventArgs e)
     {
         string alias = txtAlias.Text.Trim();
+        if (_selectMiembroEmpresa != null && _selectMiembroEmpresa.Alias.Equals(alias))
+        {
+            SetErrorProvider(errorProvider1, txtAlias, "");
+            timerAlias.Stop();
+            return;
+        }
         if (Validations.ValidarUsuarioAndMiembroExist(alias))
         {
-            SetErrorProvider(errorProvider1, txtAlias, "El alias ya existe", ErrorIconAlignment.MiddleLeft);
+            SetErrorProvider(errorProvider1, txtAlias, "El alias ya existe");
         }
         else
         {
             errorProvider1.SetError(txtAlias, "");
         }
+        timerAlias.Stop();
     }
 
-    private void SetErrorProvider(ErrorProvider errorProvider, Control control, string message, ErrorIconAlignment iconAlignment)
+    private void SetErrorProvider(ErrorProvider errorProvider, Control control, string message, ErrorIconAlignment iconAlignment = ErrorIconAlignment.MiddleLeft)
     {
         errorProvider.SetIconAlignment(control, iconAlignment);
         errorProvider.SetError(control, message);
@@ -259,14 +225,21 @@ public partial class Miembros : Form
     private void timerDui_Tick(object sender, EventArgs e)
     {
         string dui = txtDui.Text.Trim();
+        if (_selectMiembroEmpresa != null && _selectMiembroEmpresa.Dui.Equals(dui))
+        {
+            SetErrorProvider(errorProvider1, txtDui, "");
+            timerDui.Stop();
+            return;
+        }
         if (Validations.ExistDui(dui))
         {
-            SetErrorProvider(errorProvider1, txtDui, "El dui ya existe", ErrorIconAlignment.MiddleLeft);
+            SetErrorProvider(errorProvider1, txtDui, "El dui ya existe");
         }
         else
         {
             errorProvider1.SetError(txtDui, "");
         }
+        timerDui.Stop();
     }
 
     private void txtCorreo_KeyUp(object sender, KeyEventArgs e)
@@ -278,14 +251,21 @@ public partial class Miembros : Form
     private void timerCorreo_Tick(object sender, EventArgs e)
     {
         string correo = txtCorreo.Text.Trim();
+        if (_selectMiembroEmpresa != null && _selectMiembroEmpresa.Correo != null && _selectMiembroEmpresa.Correo.Equals(correo))
+        {
+            SetErrorProvider(errorProvider1, txtCorreo, "");
+            timerCorreo.Stop();
+            return;
+        }
         if (Validations.ExistEmail(correo))
         {
-            SetErrorProvider(errorProvider1, txtCorreo, "El correo ya existe", ErrorIconAlignment.MiddleLeft);
+            SetErrorProvider(errorProvider1, txtCorreo, "El correo ya existe");
         }
         else
         {
             errorProvider1.SetError(txtCorreo, "");
         }
+        timerCorreo.Stop();
     }
 
     private void txtTelefono_KeyUp(object sender, KeyEventArgs e)
@@ -297,13 +277,83 @@ public partial class Miembros : Form
     private void timerTelefono_Tick(object sender, EventArgs e)
     {
         string telefono = txtTelefono.Text.Trim();
+        if (_selectMiembroEmpresa != null && _selectMiembroEmpresa.Telefono != null && _selectMiembroEmpresa.Telefono.Equals(telefono))
+        {
+            SetErrorProvider(errorProvider1, txtTelefono, "");
+            timerTelefono.Stop();
+            return;
+        }
         if (Validations.ExistTelefono(telefono))
         {
-            SetErrorProvider(errorProvider1, txtTelefono, "El telefono ya existe", ErrorIconAlignment.MiddleLeft);
+            SetErrorProvider(errorProvider1, txtTelefono, "El telefono ya existe");
         }
         else
         {
             errorProvider1.SetError(txtTelefono, "");
+        }
+    }
+
+    private void btnEditar_Click(object sender, EventArgs e)
+    {
+        bool txtNombreEmpty =
+            Validations.FieldNullOrEmpty(errorProvider1, txtNombre, "El campo nombre no puede estar vacio");
+        bool txtApellidoEmpty =
+            Validations.FieldNullOrEmpty(errorProvider1, txtApellido, "El campo apellido no puede estar vacio");
+        bool txtAliasEmpty =
+            Validations.FieldNullOrEmpty(errorProvider1, txtAlias, "El campo alias no puede estar vacio");
+        bool txtPasswordEmpty =
+            Validations.FieldNullOrEmpty(errorProvider1, txtPassword, "El campo password no puede estar vacio");
+        bool txtDuiEmpty = Validations.FieldNullOrEmpty(errorProvider1, txtDui, "El campo dui no puede estar vacio");
+        bool txtCorreoEmpty =
+            Validations.FieldNullOrEmpty(errorProvider1, txtCorreo, "El campo correo no puede estar vacio");
+        bool txtTelefonoEmpty =
+            Validations.FieldNullOrEmpty(errorProvider1, txtTelefono, "El campo telefono no puede estar vacio");
+        bool txtAddressEmpty =
+            Validations.FieldNullOrEmpty(errorProvider1, txtAddress, "El campo direccion no puede estar vacio");
+
+        bool aliasExist = Validations.ValidarUsuarioAndMiembroExist(txtAlias.Text.Trim());
+        bool duiExist = Validations.ExistDui(txtDui.Text.Trim());
+        bool emailExist = Validations.ExistEmail(txtCorreo.Text.Trim());
+        bool phoneExist = Validations.ExistTelefono(txtTelefono.Text.Trim());
+
+        bool result = txtNombreEmpty || txtApellidoEmpty || txtAliasEmpty || txtPasswordEmpty || txtDuiEmpty ||
+                      txtCorreoEmpty || txtTelefonoEmpty || txtAddressEmpty || aliasExist || duiExist || emailExist ||
+                      phoneExist;
+
+        if (result) return;
+
+        if (_selectMiembroEmpresa == null) return;
+        
+        
+    }
+
+    private void dataMiembros_CellClick(object sender, DataGridViewCellEventArgs e)
+    {
+        try
+        {
+            if (e.RowIndex < 0) return;
+            DataGridViewRow row = dataMiembros.Rows[e.RowIndex];
+
+            _selectMiembroId = (int)((MiembroEmpresa)row.Cells["Nombre"].Value).Id;
+            _selectMiembroEmpresa = row.Cells["Nombre"].Value as MiembroEmpresa;
+            if (_selectMiembroEmpresa == null)
+            {
+                MessageBox.Show(@"No se ha seleccionado un Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            txtNombre.Text = _selectMiembroEmpresa.Nombres;
+            txtApellido.Text = _selectMiembroEmpresa.Apellidos;
+            txtAlias.Text = _selectMiembroEmpresa.Alias;
+            txtPassword.Text = _selectMiembroEmpresa.Password;
+            txtDui.Text = _selectMiembroEmpresa.Dui;
+            txtCorreo.Text = _selectMiembroEmpresa.Correo;
+            txtTelefono.Text = _selectMiembroEmpresa.Telefono;
+            txtAddress.Text = _selectMiembroEmpresa.Direccion;
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception);
+            throw;
         }
     }
 }

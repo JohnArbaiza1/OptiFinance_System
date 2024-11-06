@@ -404,7 +404,10 @@
             // 
             // dataMiembros
             // 
+            dataMiembros.AllowUserToAddRows = false;
+            dataMiembros.AllowUserToDeleteRows = false;
             dataMiembros.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dataMiembros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataMiembros.BackgroundColor = Color.FromArgb(245, 245, 242);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
@@ -419,11 +422,16 @@
             dataMiembros.EnableHeadersVisualStyles = false;
             dataMiembros.Location = new Point(0, 0);
             dataMiembros.Margin = new Padding(3, 2, 3, 2);
+            dataMiembros.MultiSelect = false;
             dataMiembros.Name = "dataMiembros";
+            dataMiembros.ReadOnly = true;
+            dataMiembros.RowHeadersVisible = false;
             dataMiembros.RowHeadersWidth = 51;
             dataMiembros.RowTemplate.Height = 29;
+            dataMiembros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataMiembros.Size = new Size(599, 442);
             dataMiembros.TabIndex = 0;
+            dataMiembros.CellClick += dataMiembros_CellClick;
             dataMiembros.CellContentClick += dataMiembros_CellContentClick;
             // 
             // Nombre
@@ -431,56 +439,64 @@
             Nombre.HeaderText = "Nombre";
             Nombre.MinimumWidth = 6;
             Nombre.Name = "Nombre";
-            Nombre.Width = 125;
+            Nombre.ReadOnly = true;
+            Nombre.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Column2
             // 
             Column2.HeaderText = "Apellido";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
-            Column2.Width = 125;
+            Column2.ReadOnly = true;
+            Column2.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Alias
             // 
             Alias.HeaderText = "Alias";
             Alias.MinimumWidth = 6;
             Alias.Name = "Alias";
-            Alias.Width = 125;
+            Alias.ReadOnly = true;
+            Alias.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Column8
             // 
             Column8.HeaderText = "Password";
             Column8.MinimumWidth = 6;
             Column8.Name = "Column8";
-            Column8.Width = 125;
+            Column8.ReadOnly = true;
+            Column8.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Column4
             // 
             Column4.HeaderText = "Dui";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
-            Column4.Width = 125;
+            Column4.ReadOnly = true;
+            Column4.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Column5
             // 
             Column5.HeaderText = "Correo Electronico";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
-            Column5.Width = 200;
+            Column5.ReadOnly = true;
+            Column5.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Column6
             // 
             Column6.HeaderText = "Telefono";
             Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
-            Column6.Width = 125;
+            Column6.ReadOnly = true;
+            Column6.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Column7
             // 
             Column7.HeaderText = "Dirección";
             Column7.MinimumWidth = 6;
             Column7.Name = "Column7";
-            Column7.Width = 125;
+            Column7.ReadOnly = true;
+            Column7.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // btnBuscarMiembros
             // 
@@ -593,6 +609,11 @@
         private Label label9;
         private TextBox txtPassword;
         private ContextMenuStrip contextMenuStrip1;
+        private ErrorProvider errorProvider1;
+        private System.Windows.Forms.Timer timerAlias;
+        private System.Windows.Forms.Timer timerDui;
+        private System.Windows.Forms.Timer timerCorreo;
+        private System.Windows.Forms.Timer timerTelefono;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Alias;
@@ -601,10 +622,5 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column7;
-        private ErrorProvider errorProvider1;
-        private System.Windows.Forms.Timer timerAlias;
-        private System.Windows.Forms.Timer timerDui;
-        private System.Windows.Forms.Timer timerCorreo;
-        private System.Windows.Forms.Timer timerTelefono;
     }
 }

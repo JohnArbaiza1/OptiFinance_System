@@ -41,7 +41,6 @@ public class Validations
         if (people == null) return false;
         if (people is MiembroEmpresa)
         {
-            Console.WriteLine(@"Es miembro empresa");
             MiembroEmpresa miembroEmpresa = (MiembroEmpresa)people;
             return !miembroEmpresa.Alias.IsNullOrEmpty() && !miembroEmpresa.Password.IsNullOrEmpty();
         }
