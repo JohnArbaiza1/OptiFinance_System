@@ -98,6 +98,7 @@
             btnResultados.TabIndex = 10;
             btnResultados.Text = "Generar Estado de Resultados ";
             btnResultados.UseVisualStyleBackColor = false;
+            btnResultados.Click += btnResultados_Click;
             // 
             // contenedorEstadoResultados
             // 
