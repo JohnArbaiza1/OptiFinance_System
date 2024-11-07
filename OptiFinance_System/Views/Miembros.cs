@@ -117,6 +117,8 @@ public partial class Miembros : Form
         string phone = txtTelefono.Text.Trim();
         string address = txtAddress.Text.Trim();
 
+
+
         //Validamos que no se ingresen password vacias
         if (string.IsNullOrWhiteSpace(pass))
         {
@@ -293,8 +295,9 @@ public partial class Miembros : Form
         {
             errorProvider1.SetError(txtTelefono, "");
         }
+        timerTelefono.Stop();
     }
-    
+
 
     private void btnEditar_Click(object sender, EventArgs e)
     {
@@ -303,24 +306,24 @@ public partial class Miembros : Form
             MessageBox.Show(@"No se ha seleccionado un Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
-        
+
         bool txtNombreEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtNombre, "El campo nombre no puede estar vacio");
-        
+
         bool txtApellidoEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtApellido, "El campo apellido no puede estar vacio");
-        
+
         bool txtAliasEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtAlias, "El campo alias no puede estar vacio");
-        
+
         bool txtDuiEmpty = Validations.FieldNullOrEmpty(errorProvider1, txtDui, "El campo dui no puede estar vacio");
-        
+
         bool txtCorreoEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtCorreo, "El campo correo no puede estar vacio");
-        
+
         bool txtTelefonoEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtTelefono, "El campo telefono no puede estar vacio");
-        
+
         bool txtAddressEmpty =
             Validations.FieldNullOrEmpty(errorProvider1, txtAddress, "El campo direccion no puede estar vacio");
 
@@ -362,6 +365,9 @@ public partial class Miembros : Form
         {
             MessageBox.Show(@"Miembro actualizado correctamente");
             _selectMiembroEmpresa = null;
+            btnEditar.Visible = false;
+            btnEliminar.Visible = false;
+            btnAgregar.Visible = true;
             LimpiarTextBoxMiembro();
         }
         else
@@ -393,11 +399,41 @@ public partial class Miembros : Form
             txtCorreo.Text = _selectMiembroEmpresa.Correo;
             txtTelefono.Text = _selectMiembroEmpresa.Telefono;
             txtAddress.Text = _selectMiembroEmpresa.Direccion;
+            btnEditar.Visible = true;
+            btnAgregar.Visible = false;
+            btnEliminar.Visible = true;
+            btnCancelar.Visible = true;
         }
         catch (Exception exception)
         {
             Console.WriteLine(exception);
             throw;
         }
+    }
+
+    private void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        LimpiarTextBoxMiembro();
+    }
+
+    private void LimpiarCamposTexto()
+    {
+        txtNombre.Clear();
+        txtApellido.Clear();
+        txtAlias.Clear();
+        txtPassword.Clear();
+        txtDui.Clear();
+        txtCorreo.Clear();
+        txtTelefono.Clear();
+        txtAddress.Clear();
+    }
+
+    private void btnCancelar_Click(object sender, EventArgs e)
+    {
+        _selectMiembroEmpresa = null;
+        LimpiarCamposTexto();
+        btnEditar.Visible = false;
+        btnEliminar.Visible = false;
+        btnAgregar.Visible = true;
     }
 }

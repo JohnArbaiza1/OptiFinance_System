@@ -36,6 +36,8 @@
             btnAtras = new PictureBox();
             panel2 = new Panel();
             groupBox1 = new GroupBox();
+            btnCancelar = new Button();
+            btnLimpiar = new Button();
             btnEditar = new Button();
             btnEliminar = new Button();
             btnAgregar = new Button();
@@ -135,6 +137,8 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox1.Controls.Add(btnCancelar);
+            groupBox1.Controls.Add(btnLimpiar);
             groupBox1.Controls.Add(btnEditar);
             groupBox1.Controls.Add(btnEliminar);
             groupBox1.Controls.Add(btnAgregar);
@@ -150,6 +154,27 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Control de Miembros:";
             // 
+            // btnCancelar
+            // 
+            btnCancelar.Location = new Point(207, 400);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(95, 39);
+            btnCancelar.TabIndex = 6;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Visible = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Location = new Point(91, 400);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(110, 39);
+            btnLimpiar.TabIndex = 5;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
+            // 
             // btnEditar
             // 
             btnEditar.BackColor = Color.FromArgb(44, 161, 232);
@@ -163,6 +188,7 @@
             btnEditar.Text = "Editar";
             btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditar.UseVisualStyleBackColor = false;
+            btnEditar.Visible = false;
             btnEditar.Click += btnEditar_Click;
             // 
             // btnEliminar
@@ -178,6 +204,7 @@
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Visible = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAgregar
@@ -622,5 +649,7 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column7;
+        private Button btnLimpiar;
+        private Button btnCancelar;
     }
 }
