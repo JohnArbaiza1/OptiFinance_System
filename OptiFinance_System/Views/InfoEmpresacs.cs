@@ -59,8 +59,15 @@ public partial class InfoEmpresacs : Form
         empresa.Distrito = comboDistrito.SelectedItem as Distrito;
         empresa.Usuario = Form1.currentUser;
 
-        if (!EmpresaQuery.Instance.Insert(empresa)) return;
+        Empresa? empresaInsert = EmpresaQuery.Instance.InsertWithResult(empresa);
+        
+        if (empresaInsert == null)
+        {
+            Message.MessageViewError(@"Error al registrar la empresa");
+            return;
+        }
         Message.MessageViewSuccess(@"Empresa registrada correctamente");
+        Console.WriteLine(empresaInsert.Id);
         Close();
     }
 
@@ -106,5 +113,10 @@ public partial class InfoEmpresacs : Form
     private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
     {
         Formats.OnlyNumbers(sender, e);
+    }
+
+    private void groupBoxDoc_Enter(object sender, EventArgs e)
+    {
+        Console.WriteLine(@"Holaaa");
     }
 }

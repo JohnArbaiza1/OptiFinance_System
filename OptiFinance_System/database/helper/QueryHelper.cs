@@ -38,7 +38,6 @@ public static class QueryHelper
                 {
                     if (reader.Read())
                     {
-                        // Mapear el resultado al objeto de tipo T
                         result = func(reader);
                     }
                 }

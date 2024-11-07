@@ -38,6 +38,12 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
                     transaction)).All(result => result);
         });
     }
+    
+    public Empresa? InsertWithResult(Empresa entity, SqlTransaction? transaction = null)
+    {
+        return QueryHelper.ExecuteInsertWithResult(_connectionInstance.GetSqlConnection(), Params.SqlWithResult,
+            Params.ParametersInsert(entity), MapEntity, transaction);
+    }
 
     public bool Update(Empresa entity, SqlTransaction? transaction = null)
     {

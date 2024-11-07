@@ -67,16 +67,38 @@ public partial class RegistrarPartidas : Form
         comboFecha.TextChanged += comboFecha_TextChanged;
     }
 
-    private void btnBuscar_Click(object sender, EventArgs e)
+    /*private void btnBuscar_Click(object sender, EventArgs e)
     {
+        
+        buscarCodigoCuenta searchCodigo = new();
+        searchCodigo.ShowDialog();
         // Limpiar el ComboBox antes de la búsqueda
         comboFecha.Items.Clear();
 
         // Capturar el texto que el usuario ha escrito en el TextBox
         string codigoBusqueda = txtCodigo.Text.ToLower();
+        
+        Cuenta? selectedCuenta = comboFecha.Items.Cast<Cuenta>().FirstOrDefault(c => c.Codigo == codigoBusqueda);
+        if (selectedCuenta != null)
+        {
+            comboFecha.SelectedItem = selectedCuenta;
+        }
+        else
+        {
+            Console.WriteLine(@"No se encontró la cuenta");
+        }
+        
+        
+        List<Cuenta> cuentasCombobox = comboFecha.Items.Cast<Cuenta>().ToList();
+        Console.WriteLine(cuentasCombobox.Count);
+        
+        cuentasCombobox.ForEach(entity =>
+        {
+            Console.WriteLine(@"Nombre: " + entity.Nombre + @" Codigo: " + entity.Codigo);
+        });
 
         // Filtrar las cuentas según el código
-        foreach (Cuenta item in cuentas)
+        /*foreach (Cuenta item in cuentas)
         {
             // Comparar el código de la cuenta con el texto ingresado
             if (item.Codigo.ToLower().StartsWith(codigoBusqueda) || item.Codigo.ToLower() == codigoBusqueda)
@@ -84,22 +106,41 @@ public partial class RegistrarPartidas : Form
                 // Agregar el nombre de la cuenta al ComboBox
                 comboFecha.Items.Add(item);
             }
-        }
+        }#1#
 
 
         // Seleccionar el primer elemento si se encontraron coincidencias
-        if (comboFecha.Items.Count > 0)
+        /*if (comboFecha.Items.Count > 0)
         {
 
         }
         else
         {
             MessageBox.Show("No se encontraron cuentas que coincidan con el código."); // Mensaje si no se encuentran coincidencias
-        }
-
+        }#1#
+    }*/
+    
+    private void btnBuscar_Click(object sender, EventArgs e)
+    {
         buscarCodigoCuenta searchCodigo = new();
-        searchCodigo.Show();
+        searchCodigo.ShowDialog();
+    
+        // Capturar el texto que el usuario ha escrito en el TextBox
+        string codigoBusqueda = txtCodigo.Text.ToLower();
+    
+        // Buscar el objeto Cuenta en los items del ComboBox
+        Cuenta? selectedCuenta = comboFecha.Items.Cast<Cuenta>().FirstOrDefault(c => c.Codigo == codigoBusqueda);
+    
+        if (selectedCuenta != null)
+        {
+            comboFecha.SelectedItem = selectedCuenta;
+        }
+        else
+        {
+            Console.WriteLine(@"No se encontró la cuenta");
+        }
     }
+
 
     private void btnLimpiar_Click(object sender, EventArgs e)
     {

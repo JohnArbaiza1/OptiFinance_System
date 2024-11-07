@@ -175,13 +175,12 @@
             // lblMunicipio
             // 
             lblMunicipio.BackColor = Color.White;
-            lblMunicipio.BorderStyle = BorderStyle.None;
             lblMunicipio.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblMunicipio.Location = new Point(276, 430);
             lblMunicipio.Name = "lblMunicipio";
             lblMunicipio.PlaceholderText = "San Miguel";
             lblMunicipio.ReadOnly = true;
-            lblMunicipio.Size = new Size(317, 24);
+            lblMunicipio.Size = new Size(317, 31);
             lblMunicipio.TabIndex = 26;
             // 
             // label20

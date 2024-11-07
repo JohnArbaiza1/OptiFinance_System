@@ -13,6 +13,13 @@ public class EmpresaParams : IQueriesString<Empresa>
         "INSERT INTO empresas " +
         "(nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico) " +
         "VALUES (@nombre, @nit, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito, @id_giro_economico)";
+    
+    public string SqlWithResult =>
+        "INSERT INTO empresas " +
+        "(nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico) " +
+        "OUTPUT INSERTED.id, INSERTED.nombre, INSERTED.nit, INSERTED.representante_legal, INSERTED.direccion, " +
+        "INSERTED.telefono, INSERTED.email, INSERTED.id_usuario, INSERTED.id_distrito, INSERTED.id_giro_economico " +
+        "VALUES (@nombre, @nit, @representante_legal, @direccion, @telefono, @email, @id_usuario, @id_distrito, @id_giro_economico)";
 
     public string SqlUpdate =>
         "UPDATE empresas SET " +
@@ -53,6 +60,11 @@ public class EmpresaParams : IQueriesString<Empresa>
             new("@id_giro_economico", entity.GiroEconomico?.Id)
         };
         return parameters;
+    }
+    
+    public List<SqlParameter> ParametersInsertWithResult(Empresa entity)
+    {
+        return ParametersInsert(entity);
     }
 
     public List<SqlParameter> ParametersUpdate(Empresa entity)
