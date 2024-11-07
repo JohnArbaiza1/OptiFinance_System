@@ -161,9 +161,9 @@ public partial class InfoEmpresacs : Form
 
     private async void InfoEmpresacs_Shown(object sender, EventArgs e)
     {
-        await Task.Run(CargarDepartamentos);
+        // await Task.Run(CargarDepartamentos);
         await Task.Run(CargarDistritos);
-        await Task.Run(CargarMunicipios);
+        // await Task.Run(CargarMunicipios);
         // DatoInicial();
     }
 
