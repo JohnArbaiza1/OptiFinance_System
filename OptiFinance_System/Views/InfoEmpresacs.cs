@@ -105,7 +105,7 @@ public partial class InfoEmpresacs : Form
         if (distritos.Count == 0) return;
 
         Invoke(() => { comboDistrito.DataSource = distritos; });
-        comboDistrito.SelectedIndex = -1;
+        /*comboDistrito.SelectedIndex = -1;*/
     }
 
     private void CargarMunicipios()
