@@ -365,7 +365,7 @@ public partial class Principal : Form
         btnEstados.Enabled = Global.SelectedEmpresa != null;
         btnRLiquidez.Enabled = Global.SelectedEmpresa != null;
         btnIngresarPartida.Enabled = Global.SelectedEmpresa != null;
-        btnInfo.Enabled = Global.SelectedEmpresa != null;
+        // btnInfo.Enabled = Global.SelectedEmpresa != null;
         btnMiembros.Enabled = Global.SelectedEmpresa != null;
     }
     #endregion
