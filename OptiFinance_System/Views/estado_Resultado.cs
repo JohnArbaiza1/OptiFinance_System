@@ -7,9 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using OptiFinance_System.database.generalities.types;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
+using OptiFinance_System.global;
 
 namespace OptiFinance_System.Views;
 
@@ -73,7 +76,7 @@ public partial class estado_Resultado : Form
     private decimal utilidadAntesImpuesto = 0;
     private decimal impuesto = 0.13m;
     private decimal utilidadNetas = 0;
-    
+
 
     #endregion
 
@@ -97,7 +100,7 @@ public partial class estado_Resultado : Form
         listView1.Items.Add(new ListViewItem(new string[] { " ", resIngresos.ToString("F2") }, ingresosNeto));
         listView1.Items.Add(new ListViewItem(new string[] { " ", " " }, ingresosNeto));
     }
-    
+
     //Metodo para costos Operacionales
     private void costos()
     {
@@ -113,7 +116,7 @@ public partial class estado_Resultado : Form
         listView1.Items.Add(new ListViewItem(new string[] { " ", utilidadBruta.ToString("F2") }, utilidadB));
         listView1.Items.Add(new ListViewItem(new string[] { " ", " " }, utilidadB));
     }
-    
+
     //Metodo para los gastos
     private void gastosOperativos()
     {
@@ -131,12 +134,12 @@ public partial class estado_Resultado : Form
         EstadoResultado gastosO12 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.CuentasIncobrables);
         EstadoResultado gastosO13 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.Indemnizaciones);
         EstadoResultado gastosO14 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.AFP);
-        
+
         ListViewGroup gastosGroup = new("Gastos Operativos");
         listView1.Groups.Add(gastosGroup);
         listView1.Items.Add(new ListViewItem(new string[] { " ", " " }, gastosGroup));
         listView1.Items.Add(new ListViewItem(new string[] { "Gastos de Ventas:", " " }, gastosGroup));
-        
+
         //Agregando datos a listView
         foreach (var item in new[] {
                      gastosO1, gastosO2, gastosO3, gastosO4, gastosO5,
@@ -147,11 +150,11 @@ public partial class estado_Resultado : Form
             if (item != null)
                 listView1.Items.Add(new ListViewItem(new string[] { item.Nombre, item.Valor.ToString() }, gastosGroup));
         }
-        
+
         //Calculo del total 
-        foreach (var item in new[] { 
-                     gastosO1, gastosO2, gastosO3, gastosO4, gastosO5, 
-                     gastosO6, gastosO7, gastosO8, gastosO9, gastosO10, 
+        foreach (var item in new[] {
+                     gastosO1, gastosO2, gastosO3, gastosO4, gastosO5,
+                     gastosO6, gastosO7, gastosO8, gastosO9, gastosO10,
                      gastosO11, gastosO12, gastosO13, gastosO14
                  })
         {
@@ -186,11 +189,11 @@ public partial class estado_Resultado : Form
                 listView1.Items.Add(new ListViewItem(new string[] { item2.Nombre, item2.Valor.ToString() }, gastosGroup));
             }
         }
-        
+
         //Calculo del total 
-        foreach (var item in new[] { 
-                     gastosA1, gastosA2, gastosA3, gastosA4, gastosA5, 
-                     gastosA6, gastosA7, gastosA8, gastosA9, gastosA10, 
+        foreach (var item in new[] {
+                     gastosA1, gastosA2, gastosA3, gastosA4, gastosA5,
+                     gastosA6, gastosA7, gastosA8, gastosA9, gastosA10,
                      gastosA11
                  })
         {
@@ -198,7 +201,7 @@ public partial class estado_Resultado : Form
                 totalGastosAdministrativos += item.Valor;
         }
         Console.WriteLine($"El total de gatos administrativos: {totalGastosAdministrativos}");
-        
+
         //---------------------------------------------
         ListViewGroup utilidadOpera = new("Utilidad Operativa");
         listView1.Groups.Add(utilidadOpera);
@@ -207,8 +210,9 @@ public partial class estado_Resultado : Form
         listView1.Items.Add(new ListViewItem(new string[] { " ", " " }, utilidadOpera));
 
     }
-    
-    private void otrosIE(){
+
+    private void otrosIE()
+    {
         EstadoResultado otros1 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.IngresosFinancieros);
         EstadoResultado otros2 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.IngresosPorServicios);
         EstadoResultado otros3 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.IngresoPorServiciosOperativos);
@@ -238,7 +242,7 @@ public partial class estado_Resultado : Form
                 totalOtrosI += item.Valor;
         }
         Console.WriteLine($"Total de otros ingresos: {totalOtrosI}");
-        
+
         EstadoResultado otrosG1 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.InteresesBancarios);
         EstadoResultado otrosG2 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.ComisionesBancarias);
         EstadoResultado otrosG3 = EstadoResultadoQuery.Instance.GetAccountByName(TypeEstadoResultado.DiferenciasCambio);
@@ -255,7 +259,7 @@ public partial class estado_Resultado : Form
                 listView1.Items.Add(new ListViewItem(new string[] { item.Nombre, item.Valor.ToString() }, otros));
             }
         }
-        
+
         decimal totalOtrosE = 0;
         foreach (var item in new[]
                  {
@@ -267,7 +271,7 @@ public partial class estado_Resultado : Form
         }
         Console.WriteLine($"Total de otros Egresos: {totalOtrosE}");
         listView1.Items.Add(new ListViewItem(new string[] { " ", " " }, otros));
-        
+
         //-----------------------------------------------
         ListViewGroup utilidaAntes = new("Utilidad Antes de Impuestos");
         listView1.Groups.Add(utilidaAntes);
@@ -282,10 +286,10 @@ public partial class estado_Resultado : Form
         listView1.Groups.Add(utilidadImGroup);
         listView1.Items.Add(new ListViewItem(new string[] { "", "13%" }, utilidadImGroup));
         listView1.Items.Add(new ListViewItem(new string[] { " ", " " }, utilidadImGroup));
-        
-        decimal utilidadImpuesto =  utilidadAntesImpuesto * impuesto;
+
+        decimal utilidadImpuesto = utilidadAntesImpuesto * impuesto;
         utilidadNetas = utilidadAntesImpuesto - utilidadImpuesto;
-        
+
         ListViewGroup utilidadGroup = new("Utilidad Neta");
         listView1.Groups.Add(utilidadGroup);
         listView1.Items.Add(new ListViewItem(new string[] { " ", utilidadNetas.ToString("F2") }, utilidadGroup));
@@ -304,5 +308,114 @@ public partial class estado_Resultado : Form
         gastosOperativos();
         otrosIE();
         utilidadNeta();
+        button1.Enabled = true;
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        // Pedir al usuario que seleccione una ubicación para guardar el archivo PDF
+        using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+        {
+            saveFileDialog.Filter = "PDF Files|*.pdf";
+            saveFileDialog.Title = "Guardar Estado de Resultados como PDF";
+            saveFileDialog.FileName = $"Estado de Resultados {Global.SelectedEmpresa?.Nombre}.pdf"; // Nombre por defecto
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Generar el PDF con los datos del estado de resultados
+                GenerarEstadoResultadosPDF(saveFileDialog.FileName);
+            }
+        }
+    }
+    private void GenerarEstadoResultadosPDF(string filePath)
+    {
+        try
+        {
+            // Crear un documento PDF
+            Document document = new Document(PageSize.A4);
+            PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
+
+            // Abrir el documento para agregar contenido
+            document.Open();
+
+            // Título del PDF
+            string titulo = $"Estado de Resultados de {Global.SelectedEmpresa?.Nombre}";
+            iTextSharp.text.Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+            Paragraph parrafoTitulo = new Paragraph(titulo, tituloFont)
+            {
+                Alignment = Element.ALIGN_CENTER
+            };
+            document.Add(parrafoTitulo);
+            document.Add(new Chunk("\n"));
+
+            // Fecha del estado de resultados
+            Paragraph fecha = new Paragraph($"Fecha: {DateTime.Now.ToString("dd/MM/yyyy")}")
+            {
+                Alignment = Element.ALIGN_CENTER
+            };
+            document.Add(fecha);
+            document.Add(new Chunk("\n"));
+
+            // Crear tabla para el estado de resultados
+            PdfPTable table = new PdfPTable(2);
+            table.WidthPercentage = 100;
+            table.SetWidths(new float[] { 4f, 2f }); // Ajuste del ancho de las columnas
+
+            // Encabezados de la tabla
+            table.AddCell("Detalle");
+            table.AddCell("Monto");
+
+            decimal totalIngresos = 0;
+            decimal totalEgresos = 0;
+
+            // Rellenar datos desde el ListView y calcular totales
+            foreach (ListViewGroup group in listView1.Groups)
+            {
+                // Agregar el nombre del grupo como un título en negrita
+                PdfPCell cellGroup = new PdfPCell(new Phrase(group.Header, FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12)))
+                {
+                    Colspan = 2,
+                    BackgroundColor = new BaseColor(220, 220, 220), // Color de fondo para resaltar el grupo
+                    HorizontalAlignment = Element.ALIGN_LEFT
+                };
+                table.AddCell(cellGroup);
+
+                // Agregar los elementos del grupo y sumar montos según el grupo
+                foreach (ListViewItem item in group.Items)
+                {
+                    table.AddCell(item.Text); // Detalle
+                    table.AddCell(item.SubItems[1].Text); // Monto
+
+                    // Parsear el monto a decimal y sumar a ingresos o egresos según el grupo
+                    decimal monto;
+                    if (decimal.TryParse(item.SubItems[1].Text, out monto))
+                    {
+                        if (group.Header.Equals("Ingresos", StringComparison.OrdinalIgnoreCase))
+                        {
+                            totalIngresos += monto;
+                        }
+                        else if (group.Header.Equals("Egresos", StringComparison.OrdinalIgnoreCase))
+                        {
+                            totalEgresos += monto;
+                        }
+                    }
+                }
+            }
+
+            // Agregar la tabla al documento
+            document.Add(table);
+            document.Add(new Chunk("\n"));
+
+            // Calcular la utilidad neta
+            decimal utilidad = totalIngresos - totalEgresos;
+
+           
+            // Cerrar el documento
+            document.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Ocurrió un error al generar el PDF: {ex.Message}");
+        }
     }
 }

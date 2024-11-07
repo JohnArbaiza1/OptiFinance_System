@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
+using OptiFinance_System.global;
 
 namespace OptiFinance_System.Views;
 
@@ -20,7 +23,7 @@ public partial class balanceGeneral : Form
     private BalanceGeneral? _totalActivosNoCorrientes;
     private BalanceGeneral? _totalPasivosNoCorrientes;
     private BalanceGeneral? _totalCapital;
-    
+
     public balanceGeneral()
     {
         InitializeComponent();
@@ -36,7 +39,7 @@ public partial class balanceGeneral : Form
         // Configuración inicial del DataGridView
         dataBalance.Columns.Clear();
         dataBalance.Rows.Clear();
-        
+
         // Configurar columnas y anchos
         dataBalance.Columns.Add("DetalleActivos", "Detalle Activos");
         dataBalance.Columns["DetalleActivos"].Width = 400;
@@ -46,33 +49,33 @@ public partial class balanceGeneral : Form
         dataBalance.Columns["DetallePasivos"].Width = 400;
         dataBalance.Columns.Add("MontoPasivos", "$");
         dataBalance.Columns["MontoPasivos"].Width = 155;
-        
+
         // --> todas las cuentas
         List<BalanceGeneral> lista_cuentas = BalanceGeneralQuery.Instance.SelectAll();
-        
+
         // -> cuentas de activosx
         List<BalanceGeneral> lista_cuenta_activo = BalanceGeneralQuery.Instance.SelectAllByTypeActivo();
         List<BalanceGeneral> listaCuentaActivoCorriente = BalanceGeneralQuery.Instance.SelectAllBytYpeActivoCorriente();
         List<BalanceGeneral> listaCuentaActivoNoCorriente = BalanceGeneralQuery.Instance.SelectAllByTypeActivoNoCorriente();
-        
+
         // --> cuentas de pasivos + capital
         List<BalanceGeneral> lista_cuenta_pasivo = BalanceGeneralQuery.Instance.SelectAllByTypePasivo();
         List<BalanceGeneral> listaCuentaPasivoCorriente = BalanceGeneralQuery.Instance.SelectAllByTypePasivoCorriente();
         List<BalanceGeneral> listaCuentaPasivoNoCorriente = BalanceGeneralQuery.Instance.SelectAllByTypePasivoNoCorriente();
         List<BalanceGeneral> listaCuentaCapital = BalanceGeneralQuery.Instance.SelectAllByTypeCapital();
-        
+
         // Calcular totales
         calcular_totales();
-        
+
         // --> cuentas resultado deudora (4)
         List<BalanceGeneral> listaCuentaResultadoDeudora = BalanceGeneralQuery.Instance.SelectAllByTypeResultadoDeudor();
-        
+
         // --> cuentas resultado acreedor (5)
         List<BalanceGeneral> listaCuentaResultadoAcreedor = BalanceGeneralQuery.Instance.SelectAllByTypeResultadoAcreedor();
-        
+
         // --> cuentas puentes de cierre (6)
         List<BalanceGeneral> listaCuentaPuenteCierre = BalanceGeneralQuery.Instance.SelectAllByTypePuenteCierre();
-        
+
         // Añadir encabezados principales para activos y pasivos en la misma fila
         dataBalance.Rows.Add("Activos", "", "Pasivos", "");
 
@@ -91,8 +94,9 @@ public partial class balanceGeneral : Form
 
         txtTotalActivo.Text = (_totalActivoCorriente.Debe + _totalActivosNoCorrientes.Debe).ToString();
         txtTotalPasyPatri.Text = (_totalPasivoCorriente.Haber + _totalPasivosNoCorrientes.Haber + _totalCapital.Haber).ToString();
+        button1.Enabled = true;
     }
-    
+
     private void calcular_totales()
     {
         // Calcular y almacenar los totales
@@ -182,5 +186,114 @@ public partial class balanceGeneral : Form
         }
 
         return startIndex;
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        // Pedir al usuario que seleccione una ubicación para guardar el archivo PDF
+        using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+        {
+            saveFileDialog.Filter = "PDF Files|*.pdf";
+            saveFileDialog.Title = "Guardar balance general como PDF";
+            saveFileDialog.FileName = $"Balance General {Global.SelectedEmpresa?.Nombre}.pdf"; // Nombre por defecto
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Generar el PDF con los datos del balance
+                GenerarBalancePDF(saveFileDialog.FileName);
+            }
+        }
+    }
+    private void GenerarBalancePDF(string filePath)
+    {
+        try
+        {
+            // Crear un documento PDF
+            Document document = new Document(PageSize.A4);
+            PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
+
+            // Abrir el documento para agregar contenido
+            document.Open();
+
+            // Título del PDF
+            string titulo = $"Balance General de {Global.SelectedEmpresa?.Nombre}";
+            iTextSharp.text.Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+            Paragraph parrafoTitulo = new Paragraph(titulo, tituloFont)
+            {
+                Alignment = Element.ALIGN_CENTER
+            };
+            document.Add(parrafoTitulo);
+            document.Add(new Chunk("\n"));
+
+            // Fecha del balance
+            Paragraph fecha = new Paragraph($"Fecha: {DateTime.Now.ToString("dd/MM/yyyy")}")
+            {
+                Alignment = Element.ALIGN_CENTER
+            };
+            document.Add(fecha);
+            document.Add(new Chunk("\n"));
+
+            // Tabla para balance general (activos, pasivos)
+            PdfPTable table = new PdfPTable(4);
+            table.WidthPercentage = 100;
+            table.SetWidths(new float[] { 4f, 2f, 4f, 2f }); // Anchos de columnas
+
+            // Añadir encabezados
+            table.AddCell("Detalle Activos");
+            table.AddCell("Monto Activos");
+            table.AddCell("Detalle Pasivos");
+            table.AddCell("Monto Pasivos");
+
+            // Rellenar los datos de la tabla
+            foreach (DataGridViewRow row in dataBalance.Rows)
+            {
+                // Verificar si las celdas contienen valores antes de agregar a la tabla
+                string detalleActivo = row.Cells[0].Value?.ToString() ?? ""; // Si es null, usar una cadena vacía
+                string montoActivo = row.Cells[1].Value?.ToString() ?? "";   // Lo mismo para monto activo
+                string detallePasivo = row.Cells[2].Value?.ToString() ?? "";  // Lo mismo para detalle pasivo
+                string montoPasivo = row.Cells[3].Value?.ToString() ?? "";    // Lo mismo para monto pasivo
+
+                // Agregar los valores a la tabla
+                table.AddCell(detalleActivo);
+                table.AddCell(montoActivo);
+                table.AddCell(detallePasivo);
+                table.AddCell(montoPasivo);
+            }
+
+            // Agregar la tabla al documento
+            document.Add(table);
+            document.Add(new Chunk("\n"));
+
+            // Verificar si las propiedades tienen valor y asignarles un valor predeterminado si es nulo
+            decimal totalActivoCorriente = _totalActivoCorriente?.Debe ?? 0;
+            decimal totalActivosNoCorrientes = _totalActivosNoCorrientes?.Debe ?? 0;
+            decimal totalPasivoCorriente = _totalPasivoCorriente?.Haber ?? 0;
+            decimal totalPasivosNoCorrientes = _totalPasivosNoCorrientes?.Haber ?? 0;
+            decimal totalCapital = _totalCapital?.Haber ?? 0;
+
+            // Calcular los totales
+            string totalActivo = (totalActivoCorriente + totalActivosNoCorrientes).ToString("N2");
+            string totalPasivo = (totalPasivoCorriente + totalPasivosNoCorrientes + totalCapital).ToString("N2");
+
+            // Crear una fila para los totales
+            PdfPTable totalTable = new PdfPTable(4);
+            totalTable.WidthPercentage = 100;
+            totalTable.SetWidths(new float[] { 4f, 2f, 4f, 2f });
+
+            // Añadir los totales
+            totalTable.AddCell("Total Activo");
+            totalTable.AddCell(totalActivo);
+            totalTable.AddCell("Total Pasivo y Capital");
+            totalTable.AddCell(totalPasivo);
+
+            // Agregar la tabla de totales al documento
+            document.Add(totalTable);
+            // Cerrar el documento
+            document.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Ocurrió un error al generar el PDF: {ex.Message}");
+        }
     }
 }
