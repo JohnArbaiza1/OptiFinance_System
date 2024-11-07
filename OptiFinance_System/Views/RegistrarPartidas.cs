@@ -7,11 +7,13 @@ namespace OptiFinance_System.Views;
 
 public partial class RegistrarPartidas : Form
 {
+    public static TextBox? codeCuentas;
     List<Cuenta> cuentas;
     public RegistrarPartidas()
     {
         InitializeComponent();
         this.Load += RegistrarPartidas_Load;
+        codeCuentas = txtCodigo;
     }
 
     private void RegistrarPartidas_Load(object? sender, EventArgs e)
@@ -94,6 +96,9 @@ public partial class RegistrarPartidas : Form
         {
             MessageBox.Show("No se encontraron cuentas que coincidan con el código."); // Mensaje si no se encuentran coincidencias
         }
+
+        buscarCodigoCuenta searchCodigo = new();
+        searchCodigo.Show();
     }
 
     private void btnLimpiar_Click(object sender, EventArgs e)

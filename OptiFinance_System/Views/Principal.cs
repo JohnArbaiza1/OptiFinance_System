@@ -349,7 +349,7 @@ public partial class Principal : Form
         };
 
         // Esto es una prueba
-        btnNotificacion.Click += (sender, e) => { MessageBox.Show("Has hecho clic en Notificación"); };
+        btnNotificacion.Click += (sender, e) => { MessageBox.Show("No hay Notificaciónes"); };
         //Agregamos el botón al panel
         panelMenu.Controls.Add(btnNotificacion);
         //Reposicionamos por si acaso XD

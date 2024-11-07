@@ -122,7 +122,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnGuardar.Anchor = AnchorStyles.Bottom;
             btnGuardar.BackColor = Color.FromArgb(31, 58, 93);
             btnGuardar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnGuardar.ForeColor = Color.White;
@@ -271,9 +271,10 @@
             // txtAddress
             // 
             txtAddress.BackColor = Color.FromArgb(245, 245, 242);
+            txtAddress.Dock = DockStyle.Fill;
             txtAddress.Location = new Point(109, 303);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(284, 31);
+            txtAddress.Size = new Size(287, 31);
             txtAddress.TabIndex = 12;
             // 
             // label4
@@ -291,9 +292,10 @@
             // txtTelefonos
             // 
             txtTelefonos.BackColor = Color.FromArgb(245, 245, 242);
+            txtTelefonos.Dock = DockStyle.Fill;
             txtTelefonos.Location = new Point(109, 253);
             txtTelefonos.Name = "txtTelefonos";
-            txtTelefonos.Size = new Size(284, 31);
+            txtTelefonos.Size = new Size(287, 31);
             txtTelefonos.TabIndex = 11;
             // 
             // label5
@@ -311,9 +313,10 @@
             // txtPassUser
             // 
             txtPassUser.BackColor = Color.FromArgb(245, 245, 242);
+            txtPassUser.Dock = DockStyle.Fill;
             txtPassUser.Location = new Point(109, 203);
             txtPassUser.Name = "txtPassUser";
-            txtPassUser.Size = new Size(285, 31);
+            txtPassUser.Size = new Size(287, 31);
             txtPassUser.TabIndex = 14;
             // 
             // btnEliminar
