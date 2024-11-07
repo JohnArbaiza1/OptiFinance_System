@@ -14,13 +14,15 @@ public class Validations
     public static bool ExistTelefono(string telefono)
     {
         return UsuarioQuery.Instance.FindByTelefono(telefono) != null ||
-               MiembroEmpresaQuery.Instance.FindByTelefono(telefono) != null;
+               MiembroEmpresaQuery.Instance.FindByTelefono(telefono) != null ||
+               EmpresaQuery.Instance.FindByTelefono(telefono) != null;
     }
     
     public static bool ExistEmail(string email)
     {
         return UsuarioQuery.Instance.FindByEmail(email) != null ||
-               MiembroEmpresaQuery.Instance.FindByEmail(email) != null;
+               MiembroEmpresaQuery.Instance.FindByEmail(email) != null || 
+               EmpresaQuery.Instance.FindByEmail(email) != null;
     }
     
     public static bool ExistDui(string dui)

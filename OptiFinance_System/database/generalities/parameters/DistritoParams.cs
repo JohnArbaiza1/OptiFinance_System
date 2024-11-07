@@ -15,7 +15,7 @@ public class DistritoParams : IQueriesString<Distrito>
 
     public string SqlDelete => "DELETE FROM distritos WHERE id = @id";
     public string SqlFindById => "SELECT id, nombre, id_municipio FROM distritos WHERE id = @id";
-    public string SqlSelectAllByPartida => "SELECT id, nombre, id_municipio FROM distritos";
+    public string SqlSelectAllByPartida => "SELECT id, nombre, id_municipio FROM distritos ORDER BY id_municipio";
 
     public string SqlSearchAll =>
         "SELECT id, nombre, id_municipio FROM distritos WHERE CONCAT(id, nombre, id_municipio) LIKE @search";

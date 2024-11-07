@@ -36,6 +36,18 @@ public class EmpresaParams : IQueriesString<Empresa>
     public string SqlFindByIdWithoutUser =>
         "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
         "FROM empresas WHERE id = @id";
+    
+    public string SqlFindByNit =>
+        "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
+        "FROM empresas WHERE nit = @nit";
+    
+    public string SqlFindByEmail =>
+        "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
+        "FROM empresas WHERE email = @email";
+    
+    public string SqlFindByTelefono =>
+        "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
+        "FROM empresas WHERE telefono = @telefono";
 
     public string SqlSelectAllByPartida =>
         "SELECT id, nombre, nit, representante_legal, direccion, telefono, email, id_usuario, id_distrito, id_giro_economico " +
@@ -99,6 +111,33 @@ public class EmpresaParams : IQueriesString<Empresa>
         {
             new("@id", id),
             new("@id_usuario", Global.SelectedUser?.Id ?? 0)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByNit(string nit)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@nit", nit)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByTelefono(string telefono)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@telefono", telefono)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByEmail(string email)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@email", email)
         };
         return parameters;
     }
