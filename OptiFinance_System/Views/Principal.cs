@@ -157,7 +157,8 @@ public partial class Principal : Form
             reajustesMenu();
             btnUsuarios.Visible = false;
             btnEmpresas.Visible = false;
-            
+            btnIngresarCuenta.Enabled = false;
+
         }
     }
 
