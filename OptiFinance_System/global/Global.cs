@@ -1,4 +1,5 @@
-﻿using OptiFinance_System.database.models;
+﻿using iTextSharp.text;
+using OptiFinance_System.database.models;
 
 namespace OptiFinance_System.global;
 
@@ -44,5 +45,9 @@ public class Global
     /// Contiene todos los giros económicos en caché,con la finalidad de no hacer consultas innecesarias a la base de datos
     /// </summary>
     public static List<GiroEconomico>? ListGirosEconomicos { get; set; } = null;
-    public static List<Usuario>? listUsuarios { get; set; } = null;
+    public static List<Usuario>? ListUsuarios { get; set; } = null;
+    public static List<Distrito> ListDistritos { get; set; } = new();
+    public static List<Departamento> ListDepartamentos { get; set; } = new();
+    public static List<Municipio> ListMunicipios { get; set; } = new();
+
 }

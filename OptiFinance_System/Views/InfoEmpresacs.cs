@@ -101,57 +101,32 @@ public partial class InfoEmpresacs : Form
 
     private void CargarDistritos()
     {
-        List<Distrito> distritos = DistritoQuery.Instance.SelectAll();
+        List<Distrito> distritos = Global.ListDistritos;
         if (distritos.Count == 0) return;
-
-        Invoke(() => { comboDistrito.DataSource = distritos; });
-        /*comboDistrito.SelectedIndex = -1;*/
+        if (comMunucipio.SelectedIndex < 0) return;
+        
+        Municipio currentMunicipio = (Municipio)comMunucipio.SelectedItem;
+        comboDistrito.DataSource = distritos.FindAll(
+            entity => entity.Municipio?.Id == currentMunicipio.Id);
     }
 
     private void CargarMunicipios()
     {
-        List<Municipio> municipios = MunicipioQuery.Instance.SelectAll();
+        List<Municipio> municipios = Global.ListMunicipios;
         if (municipios.Count == 0) return;
 
-        comboDepartamento.SelectedItem = comboDepartamento.Items.Cast<Departamento>()
-            .FirstOrDefault(entity => entity.Codigo == "SM");
-
-        Departamento? departamentoSelected = comboDepartamento.SelectedItem?.GetType() == typeof(Departamento)
-            ? (Departamento)comboDepartamento.SelectedItem
-            : null;
-
-        Invoke(() =>
-        {
-            comMunucipio.DataSource =
-                municipios.FindAll(entity => entity.Departamento?.Id == departamentoSelected?.Id);
-        });
+        if (comboDepartamento.SelectedIndex < 0) return;
+        Departamento currentDepartamento = (Departamento)comboDepartamento.SelectedItem;
+        comMunucipio.DataSource = municipios.FindAll(
+            entity => entity.Departamento?.Id == currentDepartamento.Id);
     }
 
     private void CargarDepartamentos()
     {
-        List<Departamento> departamentos = DepartamentoQuery.Instance.SelectAll();
+        List<Departamento> departamentos = Global.ListDepartamentos;
         if (departamentos.Count == 0) return;
-
-        Invoke(() => { comboDepartamento.DataSource = departamentos; });
+        comboDepartamento.DataSource = departamentos;
     }
-
-    /*private void DatoInicial()
-    {
-        comboDistrito.SelectedItem =
-            comboDistrito.Items.Cast<Distrito>().FirstOrDefault(entity => entity.Nombre == "San Miguel");
-        Distrito? selected = comboDistrito.SelectedItem?.GetType() == typeof(Distrito)
-            ? (Distrito) comboDistrito.SelectedItem
-            : null;
-
-        comMunucipio.SelectedItem = comMunucipio.Items.Cast<Municipio>()
-            .FirstOrDefault(entity => entity.Id == selected?.Municipio?.Id);
-        Municipio? selectedMunicipio = comMunucipio.SelectedItem?.GetType() == typeof(Municipio)
-            ? (Municipio) comMunucipio.SelectedItem
-            : null;
-
-        comboDepartamento.SelectedItem = comboDepartamento.Items.Cast<Departamento>()
-            .FirstOrDefault(entity => entity.Id == selectedMunicipio?.Departamento?.Id);
-    }*/
 
     private void btnBuscarGiro_Click(object sender, EventArgs e)
     {
@@ -159,12 +134,11 @@ public partial class InfoEmpresacs : Form
         busqueda.Show();
     }
 
-    private async void InfoEmpresacs_Shown(object sender, EventArgs e)
+    private void InfoEmpresacs_Shown(object sender, EventArgs e)
     {
-        // await Task.Run(CargarDepartamentos);
-        await Task.Run(CargarDistritos);
-        // await Task.Run(CargarMunicipios);
-        // DatoInicial();
+        CargarDepartamentos();
+        CargarMunicipios();
+        CargarDistritos();
     }
 
     private void txtNit_TextChanged(object sender, EventArgs e)

@@ -20,24 +20,24 @@ public partial class Usuarios : Form
     #region Metodo user
     private void cargarUsers()
     {
-        if (Global.listUsuarios == null)
+        if (Global.ListUsuarios == null)
         {
             Console.WriteLine(@"Cargando Usuarios desde la base de datos");
-            Global.listUsuarios = UsuarioQuery.Instance.SelectAll();
+            Global.ListUsuarios = UsuarioQuery.Instance.SelectAll();
         }
         else
         {
             Console.WriteLine(@"Cargando usuarios desde la lista");
         }
 
-        if (Global.listUsuarios.Count == 0)
+        if (Global.ListUsuarios.Count == 0)
         {
             Console.WriteLine("No se encontraron usuarios.");
             return;
         }
 
         // Verificamos cuántos usuarios se han cargado
-        Console.WriteLine($@"Total de usuarios cargados: {Global.listUsuarios.Count}");
+        Console.WriteLine($@"Total de usuarios cargados: {Global.ListUsuarios.Count}");
 
         List<Usuario> usuarios = UsuarioQuery.Instance.SelectAll();
         if (usuarios.Count == 0) return;
@@ -74,7 +74,7 @@ public partial class Usuarios : Form
         txtTelefonos.Clear();
         txtAddress.Clear();
 
-        Global.listUsuarios = null;
+        Global.ListUsuarios = null;
         cargarUsers();
     }
 

@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using OptiFinance_System.database.models;
+using OptiFinance_System.database.query;
 using OptiFinance_System.global;
 using OptiFinance_System.global.database;
 
@@ -115,6 +116,9 @@ public partial class Principal : Form
     private void Principal_Load(object sender, EventArgs e)
     {
         btnInicio_Click(null, e);
+        Global.ListDistritos = DistritoQuery.Instance.SelectAll();
+        Global.ListMunicipios = MunicipioQuery.Instance.SelectAll();
+        Global.ListDepartamentos = DepartamentoQuery.Instance.SelectAll();
 
         //Validamos las opciones que se mostraran segun el id del tipo de usuario
         if (Global.SelectedUser == null) return;
