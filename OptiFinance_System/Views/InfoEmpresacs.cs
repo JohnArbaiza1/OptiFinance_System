@@ -73,7 +73,6 @@ public partial class InfoEmpresacs : Form
 
         _empresaInsert = empresaInsert;
         Message.MessageViewSuccess(@"Empresa registrada correctamente");
-        Console.WriteLine(empresaInsert.Id);
         lblEmpresa.Text = empresaInsert.Nombre;
         lblComercio.Text = empresaInsert.GiroEconomico?.ToString() ?? "";
         lblNit.Text = empresaInsert.Nit;
@@ -94,7 +93,7 @@ public partial class InfoEmpresacs : Form
         }
         lblAddres.Text = empresaInsert.Direccion;
         ClearText();
-        // Close();
+        Close();
     }
 
     private void InfoEmpresacs_Load(object sender, EventArgs e)
