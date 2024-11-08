@@ -343,6 +343,7 @@
             txtTelefonos.TabIndex = 11;
             txtTelefonos.TextChanged += txtTelefonos_TextChanged;
             txtTelefonos.KeyPress += txtTelefonos_KeyPress;
+            txtTelefonos.KeyUp += txtTelefonos_KeyUp;
             // 
             // label5
             // 
@@ -510,6 +511,7 @@
             // timerTelefono
             // 
             timerTelefono.Interval = 500;
+            timerTelefono.Tick += timerTelefono_Tick;
             // 
             // errorProvider1
             // 

@@ -338,4 +338,23 @@ public partial class Usuarios : Form
             Validations.ExistEmail(email) ? "El correo ya existe" : string.Empty);
         timerCorreo.Stop();
     }
+
+    private void txtTelefonos_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerTelefono.Stop();
+        timerTelefono.Start();
+    }
+
+    private void timerTelefono_Tick(object sender, EventArgs e)
+    {
+        string telefono = txtTelefonos.Text.Trim();
+        if (selectedUser != null && telefono.Equals(selectedUser.Telefono))
+        {
+            SetErrorProvider(errorProvider1, txtTelefonos, string.Empty);
+        }
+
+        SetErrorProvider(errorProvider1, txtTelefonos,
+            Validations.ExistTelefono(telefono) ? "El telefono ya existe" : string.Empty);
+        timerTelefono.Stop();
+    }
 }
