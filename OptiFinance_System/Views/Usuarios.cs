@@ -325,6 +325,7 @@ public partial class Usuarios : Form
         if (selectedUser != null && alias.Equals(selectedUser.Alias))
         {
             SetErrorProvider(errorProvider1, txtAlias, string.Empty);
+            return;
         }
 
         SetErrorProvider(errorProvider1, txtAlias,
@@ -344,6 +345,7 @@ public partial class Usuarios : Form
         if (selectedUser != null && email.Equals(selectedUser.Email))
         {
             SetErrorProvider(errorProvider1, txtEmail, string.Empty);
+            return;
         }
 
         SetErrorProvider(errorProvider1, txtEmail,
@@ -363,6 +365,7 @@ public partial class Usuarios : Form
         if (selectedUser != null && telefono.Equals(selectedUser.Telefono))
         {
             SetErrorProvider(errorProvider1, txtTelefonos, string.Empty);
+            return;
         }
 
         SetErrorProvider(errorProvider1, txtTelefonos,

@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             Container = new Panel();
             pictureBox1 = new PictureBox();
             panelControlUser = new Panel();
@@ -109,7 +109,6 @@
             // panelControlUser
             // 
             panelControlUser.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panelControlUser.Controls.Add(btnCancelar);
             panelControlUser.Controls.Add(groupBox1);
             panelControlUser.Location = new Point(724, 82);
             panelControlUser.Margin = new Padding(3, 2, 3, 2);
@@ -119,7 +118,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(124, 481);
+            btnCancelar.Location = new Point(26, 346);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(114, 29);
             btnCancelar.TabIndex = 7;
@@ -131,6 +130,7 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(btnCancelar);
             groupBox1.Controls.Add(btnLimpiar);
             groupBox1.Controls.Add(btnGuardar);
             groupBox1.Controls.Add(tableLayoutPanel1);
@@ -427,14 +427,14 @@
             // dataGridViewUsuarios
             // 
             dataGridViewUsuarios.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle3.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewUsuarios.Dock = DockStyle.Fill;
             dataGridViewUsuarios.EnableHeadersVisualStyles = false;
