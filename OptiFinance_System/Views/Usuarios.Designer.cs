@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             Container = new Panel();
             pictureBox1 = new PictureBox();
             panelControlUser = new Panel();
+            btnCancelar = new Button();
             groupBox1 = new GroupBox();
+            btnLimpiar = new Button();
             btnGuardar = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             label7 = new Label();
@@ -58,8 +61,10 @@
             panelHeader = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
-            btnLimpiar = new Button();
-            btnCancelar = new Button();
+            timerAlias = new System.Windows.Forms.Timer(components);
+            timerCorreo = new System.Windows.Forms.Timer(components);
+            timerTelefono = new System.Windows.Forms.Timer(components);
+            errorProvider1 = new ErrorProvider(components);
             Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelControlUser.SuspendLayout();
@@ -69,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewUsuarios).BeginInit();
             panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // Container
@@ -111,6 +117,16 @@
             panelControlUser.Size = new Size(376, 513);
             panelControlUser.TabIndex = 7;
             // 
+            // btnCancelar
+            // 
+            btnCancelar.Location = new Point(124, 481);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(114, 29);
+            btnCancelar.TabIndex = 7;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Visible = false;
+            // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -128,6 +144,15 @@
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Control de Usuarios";
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Location = new Point(14, 438);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(81, 31);
+            btnLimpiar.TabIndex = 7;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
             // 
             // btnGuardar
             // 
@@ -208,9 +233,11 @@
             txtAlias.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtAlias.Location = new Point(96, 78);
             txtAlias.Margin = new Padding(3, 2, 3, 2);
+            txtAlias.MaxLength = 20;
             txtAlias.Name = "txtAlias";
             txtAlias.Size = new Size(250, 26);
             txtAlias.TabIndex = 7;
+            txtAlias.KeyUp += txtAlias_KeyUp;
             // 
             // txtLastName
             // 
@@ -334,6 +361,7 @@
             txtPassUser.Dock = DockStyle.Fill;
             txtPassUser.Location = new Point(96, 154);
             txtPassUser.Margin = new Padding(3, 2, 3, 2);
+            txtPassUser.MaxLength = 30;
             txtPassUser.Name = "txtPassUser";
             txtPassUser.Size = new Size(250, 26);
             txtPassUser.TabIndex = 14;
@@ -395,14 +423,14 @@
             // dataGridViewUsuarios
             // 
             dataGridViewUsuarios.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewUsuarios.Dock = DockStyle.Fill;
             dataGridViewUsuarios.EnableHeadersVisualStyles = false;
@@ -468,24 +496,22 @@
             btnAtras.TabStop = false;
             btnAtras.Click += btnAtras_Click;
             // 
-            // btnLimpiar
+            // timerAlias
             // 
-            btnLimpiar.Location = new Point(14, 438);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(81, 31);
-            btnLimpiar.TabIndex = 7;
-            btnLimpiar.Text = "Limpiar";
-            btnLimpiar.UseVisualStyleBackColor = true;
+            timerAlias.Interval = 500;
+            timerAlias.Tick += timerAlias_Tick;
             // 
-            // btnCancelar
+            // timerCorreo
             // 
-            btnCancelar.Location = new Point(124, 481);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(114, 29);
-            btnCancelar.TabIndex = 7;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
-            btnCancelar.Visible = false;
+            timerCorreo.Interval = 500;
+            // 
+            // timerTelefono
+            // 
+            timerTelefono.Interval = 500;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // Usuarios
             // 
@@ -510,6 +536,7 @@
             panelHeader.ResumeLayout(false);
             panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -545,5 +572,9 @@
         private PictureBox pictureBox1;
         private Button btnLimpiar;
         private Button btnCancelar;
+        private System.Windows.Forms.Timer timerAlias;
+        private System.Windows.Forms.Timer timerCorreo;
+        private System.Windows.Forms.Timer timerTelefono;
+        private ErrorProvider errorProvider1;
     }
 }

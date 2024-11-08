@@ -284,6 +284,12 @@ public partial class Usuarios : Form
             MessageBox.Show(@"Parece que ha ocurrido un error\n" + ex);
         }
     }
+    
+    private void SetErrorProvider(ErrorProvider errorProvider, Control control, string message, ErrorIconAlignment iconAlignment = ErrorIconAlignment.MiddleLeft)
+    {
+        errorProvider.SetIconAlignment(control, iconAlignment);
+        errorProvider.SetError(control, message);
+    }
 
     private void txtTelefonos_TextChanged(object sender, EventArgs e)
     {
@@ -293,5 +299,23 @@ public partial class Usuarios : Form
     private void txtTelefonos_KeyPress(object sender, KeyPressEventArgs e)
     {
         Formats.OnlyNumbers(sender, e);
+    }
+
+    private void txtAlias_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerAlias.Stop();
+        timerAlias.Start();
+    }
+
+    private void timerAlias_Tick(object sender, EventArgs e)
+    {
+        string alias = txtAlias.Text.Trim();
+        if (selectedUser != null && alias.Equals(selectedUser.Alias))
+        {
+            SetErrorProvider(errorProvider1, txtAlias, string.Empty);
+        }
+
+        SetErrorProvider(errorProvider1, txtAlias,
+            Validations.ValidarUsuarioAndMiembroExist(alias) ? "El usuario ya existe" : string.Empty);
     }
 }
