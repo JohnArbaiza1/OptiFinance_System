@@ -166,6 +166,12 @@ public partial class Miembros : Form
         {
             MessageBox.Show(@"Error al eliminar los datos de Miembro", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        _selectMiembroEmpresa = null;
+        LimpiarCamposTexto();
+        btnEditar.Visible = false;
+        btnEliminar.Visible = false;
+        btnAgregar.Visible = true;
+        btnCancelar.Visible = false;
     }
 
     private void txtDui_TextChanged(object sender, EventArgs e)
@@ -355,7 +361,7 @@ public partial class Miembros : Form
             Dui = txtDui.Text.Trim(),
             Nombres = txtNombre.Text.Trim(),
             Telefono = txtTelefono.Text.Trim(),
-            Password = txtPassword.Text.IsNullOrEmpty() || txtPassword.Text.Equals(_selectMiembroEmpresa.Password)
+            Password = txtPassword.Text.IsNullOrEmpty() || txtPassword.Text.Trim().Equals(_selectMiembroEmpresa.Password)
                 ? _selectMiembroEmpresa.Password
                 : Utilities.HashPassword(txtPassword.Text.Trim())
         };
@@ -368,6 +374,7 @@ public partial class Miembros : Form
             btnEditar.Visible = false;
             btnEliminar.Visible = false;
             btnAgregar.Visible = true;
+            btnCancelar.Visible = false;
             LimpiarTextBoxMiembro();
         }
         else
@@ -413,11 +420,12 @@ public partial class Miembros : Form
 
     private void btnLimpiar_Click(object sender, EventArgs e)
     {
-        LimpiarTextBoxMiembro();
+        LimpiarCamposTexto();
     }
 
     private void LimpiarCamposTexto()
     {
+        if (_selectMiembroEmpresa != null) return;
         txtNombre.Clear();
         txtApellido.Clear();
         txtAlias.Clear();
