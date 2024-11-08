@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Miembros));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
@@ -60,14 +60,6 @@
             txtPassword = new TextBox();
             panel3 = new Panel();
             dataMiembros = new DataGridView();
-            btnBuscarMiembros = new Button();
-            txtBusqueda = new TextBox();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            errorProvider1 = new ErrorProvider(components);
-            timerAlias = new System.Windows.Forms.Timer(components);
-            timerDui = new System.Windows.Forms.Timer(components);
-            timerCorreo = new System.Windows.Forms.Timer(components);
-            timerTelefono = new System.Windows.Forms.Timer(components);
             Nombre = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Alias = new DataGridViewTextBoxColumn();
@@ -76,6 +68,14 @@
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             Column7 = new DataGridViewTextBoxColumn();
+            btnBuscarMiembros = new Button();
+            txtBusqueda = new TextBox();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            errorProvider1 = new ErrorProvider(components);
+            timerAlias = new System.Windows.Forms.Timer(components);
+            timerDui = new System.Windows.Forms.Timer(components);
+            timerCorreo = new System.Windows.Forms.Timer(components);
+            timerTelefono = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
             panel2.SuspendLayout();
@@ -154,7 +154,7 @@
             btnCancelar.BackColor = Color.FromArgb(215, 143, 35);
             btnCancelar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(318, 521);
+            btnCancelar.Location = new Point(165, 521);
             btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(146, 44);
@@ -169,7 +169,7 @@
             btnLimpiar.BackColor = Color.FromArgb(234, 130, 6);
             btnLimpiar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnLimpiar.ForeColor = Color.White;
-            btnLimpiar.Location = new Point(165, 521);
+            btnLimpiar.Location = new Point(9, 521);
             btnLimpiar.Margin = new Padding(3, 4, 3, 4);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(149, 44);
@@ -213,10 +213,10 @@
             btnAgregar.BackColor = Color.FromArgb(31, 58, 93);
             btnAgregar.ForeColor = Color.White;
             btnAgregar.Image = (Image)resources.GetObject("btnAgregar.Image");
-            btnAgregar.Location = new Point(318, 461);
+            btnAgregar.Location = new Point(317, 521);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Padding = new Padding(10, 0, 0, 0);
-            btnAgregar.Size = new Size(146, 53);
+            btnAgregar.Size = new Size(146, 44);
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -421,15 +421,16 @@
             // 
             // dataMiembros
             // 
+            dataMiembros.AllowUserToAddRows = false;
             dataMiembros.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataMiembros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataMiembros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataMiembros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataMiembros.Columns.AddRange(new DataGridViewColumn[] { Nombre, Column2, Alias, Column8, Column4, Column5, Column6, Column7 });
             dataMiembros.Dock = DockStyle.Fill;
@@ -445,57 +446,6 @@
             dataMiembros.TabIndex = 0;
             dataMiembros.CellClick += dataMiembros_CellClick;
             dataMiembros.CellContentClick += dataMiembros_CellContentClick;
-            // 
-            // btnBuscarMiembros
-            // 
-            btnBuscarMiembros.BackColor = Color.FromArgb(215, 143, 35);
-            btnBuscarMiembros.Image = (Image)resources.GetObject("btnBuscarMiembros.Image");
-            btnBuscarMiembros.Location = new Point(658, 48);
-            btnBuscarMiembros.Name = "btnBuscarMiembros";
-            btnBuscarMiembros.Size = new Size(69, 37);
-            btnBuscarMiembros.TabIndex = 2;
-            btnBuscarMiembros.UseVisualStyleBackColor = false;
-            btnBuscarMiembros.Click += btnBuscarMiembros_Click;
-            // 
-            // txtBusqueda
-            // 
-            txtBusqueda.BackColor = Color.FromArgb(245, 245, 242);
-            txtBusqueda.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBusqueda.Location = new Point(41, 52);
-            txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(611, 31);
-            txtBusqueda.TabIndex = 1;
-            txtBusqueda.KeyUp += txtBusqueda_KeyUp;
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
-            // errorProvider1
-            // 
-            errorProvider1.ContainerControl = this;
-            // 
-            // timerAlias
-            // 
-            timerAlias.Interval = 500;
-            timerAlias.Tick += timerAlias_Tick;
-            // 
-            // timerDui
-            // 
-            timerDui.Interval = 500;
-            timerDui.Tick += timerDui_Tick;
-            // 
-            // timerCorreo
-            // 
-            timerCorreo.Interval = 500;
-            timerCorreo.Tick += timerCorreo_Tick;
-            // 
-            // timerTelefono
-            // 
-            timerTelefono.Interval = 500;
-            timerTelefono.Tick += timerTelefono_Tick;
             // 
             // Nombre
             // 
@@ -560,6 +510,57 @@
             Column7.Name = "Column7";
             Column7.ReadOnly = true;
             Column7.Width = 200;
+            // 
+            // btnBuscarMiembros
+            // 
+            btnBuscarMiembros.BackColor = Color.FromArgb(215, 143, 35);
+            btnBuscarMiembros.Image = (Image)resources.GetObject("btnBuscarMiembros.Image");
+            btnBuscarMiembros.Location = new Point(658, 48);
+            btnBuscarMiembros.Name = "btnBuscarMiembros";
+            btnBuscarMiembros.Size = new Size(69, 37);
+            btnBuscarMiembros.TabIndex = 2;
+            btnBuscarMiembros.UseVisualStyleBackColor = false;
+            btnBuscarMiembros.Click += btnBuscarMiembros_Click;
+            // 
+            // txtBusqueda
+            // 
+            txtBusqueda.BackColor = Color.FromArgb(245, 245, 242);
+            txtBusqueda.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBusqueda.Location = new Point(41, 52);
+            txtBusqueda.Name = "txtBusqueda";
+            txtBusqueda.Size = new Size(611, 31);
+            txtBusqueda.TabIndex = 1;
+            txtBusqueda.KeyUp += txtBusqueda_KeyUp;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // timerAlias
+            // 
+            timerAlias.Interval = 500;
+            timerAlias.Tick += timerAlias_Tick;
+            // 
+            // timerDui
+            // 
+            timerDui.Interval = 500;
+            timerDui.Tick += timerDui_Tick;
+            // 
+            // timerCorreo
+            // 
+            timerCorreo.Interval = 500;
+            timerCorreo.Tick += timerCorreo_Tick;
+            // 
+            // timerTelefono
+            // 
+            timerTelefono.Interval = 500;
+            timerTelefono.Tick += timerTelefono_Tick;
             // 
             // Miembros
             // 
