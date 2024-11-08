@@ -174,6 +174,11 @@ public partial class Usuarios : Form
 
     private void btnEditar_Click(object sender, EventArgs e)
     {
+        if (selectedUser == null)
+        {
+            MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
         string username = txtName.Text.Trim();
         string apellidos = txtLastName.Text.Trim();
         string alias = txtAlias.Text.Trim();
@@ -182,29 +187,32 @@ public partial class Usuarios : Form
         string telefono = txtTelefonos.Text.Trim();
         string direccion = txtAddress.Text.Trim();
 
-        //Validamos que no se pueda ingresar contraeñas vacias
-        if (string.IsNullOrWhiteSpace(password))
+        bool validateEmptyUsername = string.IsNullOrWhiteSpace(username);
+        bool validateEmptyApellidos = string.IsNullOrWhiteSpace(apellidos);
+        bool validateEmptyAlias = string.IsNullOrWhiteSpace(alias);
+        bool validateEmptyEmail = string.IsNullOrWhiteSpace(email);
+        bool validateEmptyTelefono = string.IsNullOrWhiteSpace(telefono);
+        bool validateEmptyDireccion = string.IsNullOrWhiteSpace(direccion);
+
+        bool validateEmptyFields = validateEmptyUsername || validateEmptyApellidos || validateEmptyAlias ||
+                                   validateEmptyEmail || validateEmptyTelefono || validateEmptyDireccion;
+
+        bool validateAliasUnique = Validations.ValidarUsuarioAndMiembroExist(alias) &&
+                                   !alias.Equals(selectedUser?.Alias ?? string.Empty);
+
+        bool validateEmailUnique = Validations.ExistEmail(email) && !email.Equals(selectedUser?.Email ?? string.Empty);
+        bool validateTelefonoUnique = Validations.ExistTelefono(telefono) && !telefono.Equals(selectedUser?.Telefono ?? string.Empty);
+
+        bool validateUniqueFields = validateAliasUnique || validateEmailUnique || validateTelefonoUnique;
+
+        if (validateEmptyFields)
         {
-            MessageBox.Show(@"Debe Ingresar la contraseña", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(@"Debe completar todos los campos", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
-        if (selectedUser == null)
-        {
-            MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        if (!alias.Equals(selectedUser.Alias))
-        {
-            if (Validations.ValidarUsuarioAndMiembroExist(alias))
-            {
-                MessageBox.Show(@"El usuario ya existe", @"!Advertencia¡", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        }
-
-        Usuario user = new Usuario();
+        if (validateUniqueFields) return;
+        Usuario user = new();
         {
             // user.Id = selectedUserId;
             user.Id = selectedUser.Id;
@@ -277,6 +285,10 @@ public partial class Usuarios : Form
                 txtPassUser.Text = selectedUser.Password;
                 txtTelefonos.Text = selectedUser.Telefono;
                 txtAddress.Text = selectedUser.Direccion;
+                btnEditar.Visible = true;
+                btnEliminar.Visible = true;
+                btnCancelar.Visible = true;
+                btnGuardar.Visible = false;
             }
         }
         catch (Exception ex)
@@ -356,5 +368,34 @@ public partial class Usuarios : Form
         SetErrorProvider(errorProvider1, txtTelefonos,
             Validations.ExistTelefono(telefono) ? "El telefono ya existe" : string.Empty);
         timerTelefono.Stop();
+    }
+
+    private void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        Limpiar();
+    }
+    
+    private void Limpiar()
+    {
+        if (selectedUser != null) return;
+        txtName.Clear();
+        txtLastName.Clear();
+        txtAlias.Clear();
+        txtEmail.Clear();
+        txtPassUser.Clear();
+        txtTelefonos.Clear();
+        txtAddress.Clear();
+        txtTelefonos.Clear();
+        txtBusqueda.Clear();
+    }
+
+    private void btnCancelar_Click(object sender, EventArgs e)
+    {
+        selectedUser = null;
+        Limpiar();
+        btnEditar.Visible = false;
+        btnEliminar.Visible = false;
+        btnCancelar.Visible = false;
+        btnGuardar.Visible = true;
     }
 }
