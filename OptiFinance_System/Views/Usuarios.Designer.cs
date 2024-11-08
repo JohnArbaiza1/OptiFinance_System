@@ -418,6 +418,7 @@
             // 
             // dataGridViewUsuarios
             // 
+            dataGridViewUsuarios.AllowUserToAddRows = false;
             dataGridViewUsuarios.BackgroundColor = Color.FromArgb(245, 245, 242);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
