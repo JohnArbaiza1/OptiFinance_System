@@ -34,8 +34,8 @@
             Container = new Panel();
             pictureBox1 = new PictureBox();
             panelControlUser = new Panel();
-            btnCancelar = new Button();
             groupBox1 = new GroupBox();
+            btnCancelar = new Button();
             btnLimpiar = new Button();
             btnGuardar = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -116,17 +116,6 @@
             panelControlUser.Size = new Size(376, 513);
             panelControlUser.TabIndex = 7;
             // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(26, 346);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(114, 29);
-            btnCancelar.TabIndex = 7;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
-            btnCancelar.Visible = false;
-            btnCancelar.Click += btnCancelar_Click;
-            // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -145,6 +134,17 @@
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Control de Usuarios";
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Location = new Point(26, 346);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(114, 29);
+            btnCancelar.TabIndex = 7;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Visible = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnLimpiar
             // 

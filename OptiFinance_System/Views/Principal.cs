@@ -186,6 +186,12 @@ public partial class Principal : Form
         //Verificamos la respuesta del usuario
         if (respuesta == DialogResult.OK)
         {
+            Global.SelectedEmpresa = null;
+            Global.SelectedMiembroEmpresa = null;
+            Global.SelectedUser = null;
+            Global.IsSelectedEmpresa = false;
+            Global.IsSelectedMiembroEmpresa = false;
+            Global.IsSelectedUser = false;
             login.Show();
             Hide();
         }
@@ -394,6 +400,12 @@ public partial class Principal : Form
         //Verificamos la respuesta del usuario
         if (respuesta == DialogResult.OK)
         {
+            Global.SelectedEmpresa = null;
+            Global.SelectedMiembroEmpresa = null;
+            Global.SelectedUser = null;
+            Global.IsSelectedEmpresa = false;
+            Global.IsSelectedMiembroEmpresa = false;
+            Global.IsSelectedUser = false;
             Form1 form = new Form1();
             form.Show();
             Hide();
