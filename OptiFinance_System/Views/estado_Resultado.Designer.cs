@@ -33,6 +33,7 @@
             label1 = new Label();
             btnAtras = new PictureBox();
             panel2 = new Panel();
+            button1 = new Button();
             btnResultados = new Button();
             contenedorEstadoResultados = new Panel();
             listView1 = new ListView();
@@ -78,32 +79,49 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(button1);
             panel2.Controls.Add(btnResultados);
             panel2.Controls.Add(contenedorEstadoResultados);
             panel2.Controls.Add(lblFechaEResultados);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 69);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1270, 781);
+            panel2.Size = new Size(1270, 782);
             panel2.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(234, 130, 6);
+            button1.Enabled = false;
+            button1.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(837, 709);
+            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Name = "button1";
+            button1.Size = new Size(166, 45);
+            button1.TabIndex = 11;
+            button1.Text = "Guardar en PDF";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // btnResultados
             // 
             btnResultados.BackColor = Color.FromArgb(31, 58, 93);
             btnResultados.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnResultados.ForeColor = Color.White;
-            btnResultados.Location = new Point(664, 705);
+            btnResultados.Location = new Point(492, 709);
             btnResultados.Name = "btnResultados";
             btnResultados.Size = new Size(339, 45);
             btnResultados.TabIndex = 10;
             btnResultados.Text = "Generar Estado de Resultados ";
             btnResultados.UseVisualStyleBackColor = false;
+            btnResultados.Click += btnResultados_Click;
             // 
             // contenedorEstadoResultados
             // 
             contenedorEstadoResultados.BorderStyle = BorderStyle.Fixed3D;
             contenedorEstadoResultados.Controls.Add(listView1);
-            contenedorEstadoResultados.Location = new Point(277, 58);
+            contenedorEstadoResultados.Location = new Point(277, 59);
             contenedorEstadoResultados.Name = "contenedorEstadoResultados";
             contenedorEstadoResultados.Size = new Size(726, 641);
             contenedorEstadoResultados.TabIndex = 9;
@@ -135,7 +153,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1270, 850);
+            ClientSize = new Size(1270, 851);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -160,5 +178,6 @@
         private Panel contenedorEstadoResultados;
         private ListView listView1;
         private Button btnResultados;
+        private Button button1;
     }
 }

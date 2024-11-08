@@ -26,6 +26,10 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE id = @id and id_empresa = @id_empresa";
 
+    public string SqlFindByIdWithoutEmpresa =>
+        "SELECT me.*, e.nombre AS nombre_empresa FROM miembros_empresa AS me " +
+        "INNER JOIN empresas AS e ON me.id_empresa = e.id WHERE me.id = @id";
+
     public string SqlSelectAllByPartida =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE id_empresa = @id_empresa";
@@ -38,8 +42,21 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
     public string SqlFindByUsername =>
         "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
         "FROM miembros_empresa WHERE alias = @alias AND id_empresa = @id_empresa";
+    
+    public string SqlFindByUsernameWithoutEmpresa =>
+        "SELECT id, nombres, apellidos, alias, dui, correo_electronico, telefono, direccion, id_empresa, password " +
+        "FROM miembros_empresa WHERE alias = @alias";
 
     public string SqlFindIdEmpresa => "SELECT id_empresa FROM miembros_empresa WHERE id = @id";
+    
+    public string SqlFindByTelefono =>
+        "SELECT * FROM miembros_empresa WHERE telefono = @telefono";
+
+    public string SqlFindByEmail =>
+        "SELECT * FROM miembros_empresa WHERE correo_electronico = @correo_electronico";
+    
+    public string SqlFindByDui =>
+        "SELECT * FROM miembros_empresa WHERE dui = @dui";
     
     public List<SqlParameter> ParametersFindIdEmpresa(long id)
     {
@@ -69,7 +86,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             new("@correo_electronico", entity.Correo),
             new("@telefono", entity.Telefono),
             new("@direccion", entity.Direccion),
-            new("@id_empresa", entity.Empresa?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0),
             new("@password", entity.Password)
         };
         return parameters;
@@ -86,7 +103,7 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             new("@correo_electronico", entity.Correo),
             new("@telefono", entity.Telefono),
             new("@direccion", entity.Direccion),
-            new("@id_empresa", entity.Empresa?.Id ?? 0),
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0),
             new("@id", entity.Id)
         };
         return parameters;
@@ -110,6 +127,15 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         };
         return parameters;
     }
+    
+    public List<SqlParameter> ParametersFindByIdWithoutEmpresa(long id)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id", id)
+        };
+        return parameters;
+    }
 
     public List<SqlParameter> ParametersSearchAll(string search)
     {
@@ -121,11 +147,11 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
         return parameters;
     }
 
-    public List<SqlParameter> SelectAllParameters(Empresa entity)
+    public List<SqlParameter> ParametersSelectAll()
     {
         List<SqlParameter> parameters = new()
         {
-            new("@id_empresa", entity.Id)
+            new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
         };
         return parameters;
     }
@@ -158,16 +184,98 @@ public class MiembroEmpresaParams : IQueriesString<MiembroEmpresa>
             Dui = reader.GetString(4),
             Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
             Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
-            Direccion = reader.GetString(7)
+            Direccion = reader.GetString(7),
+            Password = reader.GetString(9)
+        };
+    }
+    
+    public MiembroEmpresa MapWithoutEmpresa(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader.GetInt64(0),
+            Nombres = reader.GetString(1),
+            Apellidos = reader.GetString(2),
+            Alias = reader.GetString(3),
+            Dui = reader.GetString(4),
+            Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
+            Direccion = reader.GetString(7),
+            Password = reader.GetString(9)
+        };
+    }
+    
+    public MiembroEmpresa MapWithoutEmpresaFull(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader.GetInt64(0),
+            Nombres = reader.GetString(1),
+            Apellidos = reader.GetString(2),
+            Alias = reader.GetString(3),
+            Dui = reader.GetString(4),
+            Correo = reader.IsDBNull(5) ? null : reader.GetString(5),
+            Telefono = reader.IsDBNull(6) ? null : reader.GetString(6),
+            Direccion = reader.GetString(7),
+            Password = reader.GetString(9),
+            Empresa = new()
+            {
+                Id = reader["id_empresa"] != DBNull.Value ? (long)reader["id_empresa"] : 0,
+                Nombre = reader["nombre_empresa"] != DBNull.Value ? (string)reader["nombre_empresa"] : string.Empty
+            }
+        };
+    }
+    
+    public MiembroEmpresa MapSearch(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = reader["id"] != DBNull.Value ? (long)reader["id"] : 0
         };
     }
 
-    public List<SqlParameter> FindByUsernameParameters(string username)
+    public List<SqlParameter> ParametersFindByUsername(string username)
     {
         List<SqlParameter> parameters = new()
         {
             new("@alias", username),
             new("@id_empresa", Global.SelectedEmpresa?.Id ?? 0)
+        };
+        return parameters;
+    }
+
+    public List<SqlParameter> ParametersFindByUsernameWithoutEmpresa(string username)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@alias", username)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByTelefono(string telefono)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@telefono", telefono)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByEmail(string email)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@correo_electronico", email)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByDui(string dui)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@dui", dui)
         };
         return parameters;
     }

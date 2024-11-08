@@ -41,6 +41,15 @@ public class UsuarioParams : IQueriesString<Usuario>
 
     public string SqlFindByUsername =>
         "SELECT * FROM usuarios WHERE alias = @alias";
+    
+    public string SqlFindByEmpresa =>
+        "SELECT u.* FROM usuarios AS u INNER JOIN empresas AS e ON u.id = e.id_usuario WHERE e.id = @id_empresa";
+
+    public string SqlFindByTelefono =>
+        "SELECT * FROM usuarios WHERE telefono = @telefono";
+
+    public string SqlFindByEmail =>
+        "SELECT * FROM usuarios WHERE email = @email";
 
     public List<SqlParameter> ParametersInsert(Usuario entity)
     {
@@ -93,6 +102,24 @@ public class UsuarioParams : IQueriesString<Usuario>
         return parameters;
     }
 
+    public List<SqlParameter> ParametersFindByTelefono(string telefono)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@telefono", telefono)
+        };
+        return parameters;
+    }
+    
+    public List<SqlParameter> ParametersFindByEmail(string email)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@email", email)
+        };
+        return parameters;
+    }
+
     public List<SqlParameter> ParametersSearchAll(string search)
     {
         List<SqlParameter> parameters = new()
@@ -110,6 +137,15 @@ public class UsuarioParams : IQueriesString<Usuario>
         };
         return parameters;
     }
+    
+    public List<SqlParameter> ParametersFindByEmpresa(long idEmpresa)
+    {
+        List<SqlParameter> parameters = new()
+        {
+            new("@id_empresa", idEmpresa)
+        };
+        return parameters;
+    }
 
     public Usuario Map(SqlDataReader reader)
     {
@@ -124,6 +160,21 @@ public class UsuarioParams : IQueriesString<Usuario>
             Telefono = reader.IsDBNull(6) ? null : reader.GetString(UsuarioField.Telefono),
             Direccion = reader.IsDBNull(7) ? null : reader.GetString(UsuarioField.Direccion),
             TipoUsuario = TipoUsuarioQuery.Instance.FindById(reader.GetInt64(UsuarioField.IdTipoUsuario))
+        };
+    }
+    
+    public Usuario MapSearch(SqlDataReader reader)
+    {
+        return new()
+        {
+            Id = (long)reader["id"],
+            /*Apellidos = reader["apellidos"].ToString() ?? string.Empty,
+            Nombres = reader["nombres"].ToString() ?? string.Empty,
+            Alias = reader["alias"].ToString() ?? string.Empty,
+            Email = reader["email"].ToString() ?? string.Empty,
+            Password = reader["password"].ToString() ?? string.Empty,
+            Telefono = reader["telefono"].ToString() ?? string.Empty,
+            Direccion = reader["direccion"].ToString() ?? string.Empty*/
         };
     }
 }

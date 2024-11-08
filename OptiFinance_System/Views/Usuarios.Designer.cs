@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             Container = new Panel();
             pictureBox1 = new PictureBox();
             panelControlUser = new Panel();
             groupBox1 = new GroupBox();
+            btnCancelar = new Button();
+            btnLimpiar = new Button();
             btnGuardar = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             label7 = new Label();
@@ -58,6 +61,10 @@
             panelHeader = new Panel();
             label1 = new Label();
             btnAtras = new PictureBox();
+            timerAlias = new System.Windows.Forms.Timer(components);
+            timerCorreo = new System.Windows.Forms.Timer(components);
+            timerTelefono = new System.Windows.Forms.Timer(components);
+            errorProvider1 = new ErrorProvider(components);
             Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelControlUser.SuspendLayout();
@@ -67,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewUsuarios).BeginInit();
             panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // Container
@@ -108,6 +116,8 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(btnCancelar);
+            groupBox1.Controls.Add(btnLimpiar);
             groupBox1.Controls.Add(btnGuardar);
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Controls.Add(btnEliminar);
@@ -120,15 +130,44 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Control de Usuarios";
             // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = Color.FromArgb(215, 143, 35);
+            btnCancelar.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(6, 573);
+            btnCancelar.Margin = new Padding(3, 4, 3, 4);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(103, 52);
+            btnCancelar.TabIndex = 7;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Visible = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.BackColor = Color.FromArgb(234, 130, 6);
+            btnLimpiar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLimpiar.ForeColor = Color.White;
+            btnLimpiar.Location = new Point(0, 519);
+            btnLimpiar.Margin = new Padding(3, 4, 3, 4);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(405, 41);
+            btnLimpiar.TabIndex = 7;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click;
+            // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnGuardar.Anchor = AnchorStyles.Bottom;
             btnGuardar.BackColor = Color.FromArgb(31, 58, 93);
             btnGuardar.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnGuardar.ForeColor = Color.White;
-            btnGuardar.Location = new Point(8, 507);
+            btnGuardar.Location = new Point(0, 461);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(393, 51);
+            btnGuardar.Size = new Size(402, 51);
             btnGuardar.TabIndex = 6;
             btnGuardar.Text = "Agregar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -188,6 +227,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(287, 31);
             txtEmail.TabIndex = 8;
+            txtEmail.KeyUp += txtEmail_KeyUp;
             // 
             // txtAlias
             // 
@@ -195,9 +235,11 @@
             txtAlias.Dock = DockStyle.Fill;
             txtAlias.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtAlias.Location = new Point(109, 103);
+            txtAlias.MaxLength = 20;
             txtAlias.Name = "txtAlias";
             txtAlias.Size = new Size(287, 31);
             txtAlias.TabIndex = 7;
+            txtAlias.KeyUp += txtAlias_KeyUp;
             // 
             // txtLastName
             // 
@@ -271,9 +313,10 @@
             // txtAddress
             // 
             txtAddress.BackColor = Color.FromArgb(245, 245, 242);
+            txtAddress.Dock = DockStyle.Fill;
             txtAddress.Location = new Point(109, 303);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(284, 31);
+            txtAddress.Size = new Size(287, 31);
             txtAddress.TabIndex = 12;
             // 
             // label4
@@ -291,10 +334,14 @@
             // txtTelefonos
             // 
             txtTelefonos.BackColor = Color.FromArgb(245, 245, 242);
+            txtTelefonos.Dock = DockStyle.Fill;
             txtTelefonos.Location = new Point(109, 253);
             txtTelefonos.Name = "txtTelefonos";
-            txtTelefonos.Size = new Size(284, 31);
+            txtTelefonos.Size = new Size(287, 31);
             txtTelefonos.TabIndex = 11;
+            txtTelefonos.TextChanged += txtTelefonos_TextChanged;
+            txtTelefonos.KeyPress += txtTelefonos_KeyPress;
+            txtTelefonos.KeyUp += txtTelefonos_KeyUp;
             // 
             // label5
             // 
@@ -311,9 +358,11 @@
             // txtPassUser
             // 
             txtPassUser.BackColor = Color.FromArgb(245, 245, 242);
+            txtPassUser.Dock = DockStyle.Fill;
             txtPassUser.Location = new Point(109, 203);
+            txtPassUser.MaxLength = 30;
             txtPassUser.Name = "txtPassUser";
-            txtPassUser.Size = new Size(285, 31);
+            txtPassUser.Size = new Size(287, 31);
             txtPassUser.TabIndex = 14;
             // 
             // btnEliminar
@@ -326,14 +375,15 @@
             btnEliminar.ForeColor = Color.White;
             btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
             btnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEliminar.Location = new Point(251, 573);
+            btnEliminar.Location = new Point(252, 573);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Padding = new Padding(5, 0, 0, 0);
-            btnEliminar.Size = new Size(149, 53);
+            btnEliminar.Size = new Size(148, 53);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Visible = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
             // btnEditar
@@ -354,6 +404,7 @@
             btnEditar.Text = " Editar";
             btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditar.UseVisualStyleBackColor = false;
+            btnEditar.Visible = false;
             btnEditar.Click += btnEditar_Click;
             // 
             // panelTabla
@@ -367,6 +418,7 @@
             // 
             // dataGridViewUsuarios
             // 
+            dataGridViewUsuarios.AllowUserToAddRows = false;
             dataGridViewUsuarios.BackgroundColor = Color.FromArgb(245, 245, 242);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
@@ -388,8 +440,8 @@
             dataGridViewUsuarios.RowTemplate.Height = 29;
             dataGridViewUsuarios.Size = new Size(787, 629);
             dataGridViewUsuarios.TabIndex = 4;
+            dataGridViewUsuarios.CellClick += dataGridViewUsuarios_CellClick;
             dataGridViewUsuarios.CellContentClick += dataGridViewUsuarios_CellContentClick;
-            dataGridViewUsuarios.MouseClick += dataGridViewUsuarios_MouseClick;
             // 
             // txtBusqueda
             // 
@@ -437,6 +489,25 @@
             btnAtras.TabStop = false;
             btnAtras.Click += btnAtras_Click;
             // 
+            // timerAlias
+            // 
+            timerAlias.Interval = 500;
+            timerAlias.Tick += timerAlias_Tick;
+            // 
+            // timerCorreo
+            // 
+            timerCorreo.Interval = 500;
+            timerCorreo.Tick += timerCorreo_Tick;
+            // 
+            // timerTelefono
+            // 
+            timerTelefono.Interval = 500;
+            timerTelefono.Tick += timerTelefono_Tick;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // Usuarios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -459,6 +530,7 @@
             panelHeader.ResumeLayout(false);
             panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -492,5 +564,11 @@
         private Label label7;
         private TextBox txtPassUser;
         private PictureBox pictureBox1;
+        private Button btnLimpiar;
+        private Button btnCancelar;
+        private System.Windows.Forms.Timer timerAlias;
+        private System.Windows.Forms.Timer timerCorreo;
+        private System.Windows.Forms.Timer timerTelefono;
+        private ErrorProvider errorProvider1;
     }
 }

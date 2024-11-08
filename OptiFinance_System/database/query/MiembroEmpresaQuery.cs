@@ -79,6 +79,7 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
     {
         return Delete(entities.Select(e => e.Id).ToList());
     }
+    
 
     public MiembroEmpresa? FindById(long id)
     {
@@ -88,11 +89,17 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
 
         if (miembroEmpresa == null) return null;
         if (miembroEmpresa.Empresa != null) return miembroEmpresa;
-        Console.WriteLine("Empresa es nullable");
+        Console.WriteLine(@"Empresa es nullable");
         MiembroEmpresa? aux = QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindIdEmpresa,
             Params.MapOnlyIdEmpresa, Params.ParametersFindIdEmpresa(id));
         miembroEmpresa.Empresa = aux?.Empresa;
         return miembroEmpresa;
+    }
+    
+    public MiembroEmpresa? FindByIdWithoutEmpresa(long id)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByIdWithoutEmpresa, 
+            Params.MapWithoutEmpresaFull, Params.ParametersFindByIdWithoutEmpresa(id));
     }
 
     private MiembroEmpresa? GetEmpresa(long id)
@@ -104,7 +111,7 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
     public List<MiembroEmpresa> SelectAll()
     {
         return QueryHelper.ExecuteSelect(_connectionInstance.GetSqlConnection(), Params.SqlSelectAllByPartida,
-            Params.MapSelectAll);
+            Params.MapSelectAll, Params.ParametersSelectAll());
     }
 
     public List<MiembroEmpresa> SearchAll(string search)
@@ -118,9 +125,44 @@ public class MiembroEmpresaQuery : IQueryEstandar<MiembroEmpresa>
         return Params.Map(reader);
     }
 
-    public MiembroEmpresa? FindByUsername(string username)
+    /// <summary>
+    /// Busca a un Miembro de Empresa por su nombre de usuario
+    /// </summary>
+    /// <param name="username"> Nombre de usuario a buscar </param>
+    /// <param name="withoutEmpresa"> Valida si se desea buscar a un usuario sin importar que  haya empresa seleccionada
+    /// <para><c>true</c>: Busca a un usuario sin importar que haya empresa seleccionada</para>
+    /// <c>false</c>: Busca a un usuario que pertenezca a la empresa seleccionada </param>
+    /// <returns>
+    /// Un objeto de tipo <see cref="MiembroEmpresa"/> si se encuentra, de lo contrario <c>null</c>
+    /// </returns>
+    public MiembroEmpresa? FindByUsername(string username, bool withoutEmpresa = false)
     {
-        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsername, MapEntity,
-            Params.FindByUsernameParameters(username));
+        MiembroEmpresa? miembroEmpresa = QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsername, MapEntity,
+            Params.ParametersFindByUsername(username));
+        return !withoutEmpresa ? miembroEmpresa : FindByUsernameWithoutEmpresa(username);
+    }
+
+    private MiembroEmpresa? FindByUsernameWithoutEmpresa(string username)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByUsernameWithoutEmpresa,
+            Params.MapWithoutEmpresa, Params.ParametersFindByUsername(username));
+    }
+    
+    public MiembroEmpresa? FindByTelefono(string telefono)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByTelefono, MapEntity,
+            Params.ParametersFindByTelefono(telefono));
+    }
+    
+    public MiembroEmpresa? FindByEmail(string email)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByEmail, Params.MapSearch,
+            Params.ParametersFindByEmail(email));
+    }
+    
+    public MiembroEmpresa? FindByDui(string dui)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByDui, Params.MapSearch,
+            Params.ParametersFindByDui(dui));
     }
 }

@@ -132,7 +132,7 @@ public partial class Form1 : Form
     private static bool ValidarUsuario(string username, string password)
     {
         People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
-                          MiembroEmpresaQuery.Instance.FindByUsername(username);
+                          MiembroEmpresaQuery.Instance.FindByUsername(username, true);
         return Validations.UserExist(usuario);
     }
 
@@ -211,7 +211,7 @@ public partial class Form1 : Form
         Usuario? usuario = UsuarioQuery.Instance.FindByUsername(usermame);
 
         if (usuario != null) return Validations.ComparePasswordHash(password, usuario.Password);
-        MiembroEmpresa? miembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(usermame);
+        MiembroEmpresa? miembroEmpresa = MiembroEmpresaQuery.Instance.FindByUsername(usermame, true);
         return miembroEmpresa != null && Validations.ComparePasswordHash(password, miembroEmpresa.Password);
     }
 
@@ -240,7 +240,7 @@ public partial class Form1 : Form
 
         if (!ValidarUsuario(_usuario, _pass))
         {
-            Message.MessageViewError(@"Usuario o contraseña incorrecta");
+            Message.MessageViewError(@"Usuario o contraseña incorrectaaaaaaaa");
             return;
         }
 
@@ -253,14 +253,14 @@ public partial class Form1 : Form
         Usuario? curentUser = UsuarioQuery.Instance.FindByUsername(_usuario);
         if (curentUser == null)
         {
-            MiembroEmpresa? member = MiembroEmpresaQuery.Instance.FindByUsername(_usuario);
+            MiembroEmpresa? member = MiembroEmpresaQuery.Instance.FindByUsername(_usuario, true);
             if (member == null)
             {
                 Message.MessageViewError(@"Usuario no encontrado");
                 return;
             }
 
-            Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindById(member.Id);
+            Global.SelectedMiembroEmpresa = MiembroEmpresaQuery.Instance.FindByIdWithoutEmpresa(member.Id);
 
             if (Global.SelectedMiembroEmpresa == null)
             {
@@ -276,11 +276,20 @@ public partial class Form1 : Form
                 return;
             }
             Global.IsSelectedEmpresa = true;
-            Global.SelectedUser = Global.SelectedEmpresa.Usuario;
+            
+            Usuario? userEmpresa = UsuarioQuery.Instance.FindByEmpresa(Global.SelectedEmpresa.Id);
+            if (userEmpresa == null)
+            {
+                Message.MessageViewError(@"Usuario de empresa no encontrado");
+                return;
+            }
+            
+            Global.SelectedUser = userEmpresa;
         }
         else
         {
             Global.SelectedUser = curentUser;
+            Global.IsSelectedMiembroEmpresa = false;
         }
 
         Global.IsSelectedUser = true;

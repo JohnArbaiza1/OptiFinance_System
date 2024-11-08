@@ -14,6 +14,14 @@ public partial class SeleccionEmpresa : Form
         InitializeComponent();
         _empresaQuery = EmpresaQuery.Instance;
     }
+    
+    private void CargarBalanceGeneral()
+    {
+        BalanceGeneralQuery query = BalanceGeneralQuery.Instance;
+        BalanceGeneral? balanceGeneral = query.SumByTypeActivoNoCorriente();
+
+        Console.WriteLine(@"Debe: " + balanceGeneral?.Debe + @" Haber: " + balanceGeneral?.Haber); 
+    }
 
     private void btnAtras_Click(object sender, EventArgs e)
     {
@@ -58,6 +66,7 @@ public partial class SeleccionEmpresa : Form
         Principal.newPartida.Enabled = Global.IsSelectedEmpresa;
         Principal.info.Enabled = Global.IsSelectedEmpresa;
         Principal.miembroEmpresa.Enabled = Global.IsSelectedEmpresa;
+        CargarBalanceGeneral();
         // Inicio.lblNombreEmpresa.Text = $@"Bienvenidos a {empresa?.Nombre ?? ""}";
         Close();
     }

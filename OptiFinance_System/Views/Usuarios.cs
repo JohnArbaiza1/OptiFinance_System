@@ -20,24 +20,24 @@ public partial class Usuarios : Form
     #region Metodo user
     private void cargarUsers()
     {
-        if (Global.listUsuarios == null)
+        if (Global.ListUsuarios == null)
         {
             Console.WriteLine(@"Cargando Usuarios desde la base de datos");
-            Global.listUsuarios = UsuarioQuery.Instance.SelectAll();
+            Global.ListUsuarios = UsuarioQuery.Instance.SelectAll();
         }
         else
         {
             Console.WriteLine(@"Cargando usuarios desde la lista");
         }
 
-        if (Global.listUsuarios.Count == 0)
+        if (Global.ListUsuarios.Count == 0)
         {
             Console.WriteLine("No se encontraron usuarios.");
             return;
         }
 
         // Verificamos cuántos usuarios se han cargado
-        Console.WriteLine($@"Total de usuarios cargados: {Global.listUsuarios.Count}");
+        Console.WriteLine($@"Total de usuarios cargados: {Global.ListUsuarios.Count}");
 
         List<Usuario> usuarios = UsuarioQuery.Instance.SelectAll();
         if (usuarios.Count == 0) return;
@@ -74,7 +74,7 @@ public partial class Usuarios : Form
         txtTelefonos.Clear();
         txtAddress.Clear();
 
-        Global.listUsuarios = null;
+        Global.ListUsuarios = null;
         cargarUsers();
     }
 
@@ -131,7 +131,7 @@ public partial class Usuarios : Form
             MessageBox.Show(@"Debe Ingresar la contraseña", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
-        
+
         if (Validations.ValidarUsuarioAndMiembroExist(alias))
         {
             MessageBox.Show(@"El usuario ya existe", @"!Advertencia¡", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -162,41 +162,6 @@ public partial class Usuarios : Form
 
     private void dataGridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-        try
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridViewUsuarios.Rows[e.RowIndex];
-
-                selectedUserId = (int)((Usuario)row.Cells["Nombre"].Value).Id;
-                selectedUser = row.Cells["Nombre"].Value as Usuario;
-                if (selectedUser == null)
-                {
-                    MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                /*txtName.Text = row.Cells["Nombre"].Value.ToString();
-                txtLastName.Text = row.Cells["Apellido"].Value.ToString();
-                txtAlias.Text = row.Cells["Alias"].Value.ToString();
-                txtEmail.Text = row.Cells["Email"].Value.ToString();
-                txtPassUser.Text = row.Cells["Password"].Value.ToString();
-                txtTelefonos.Text = row.Cells["Telefono"].Value.ToString();
-                txtAddress.Text = row.Cells["Direccion"].Value.ToString();*/
-                
-                txtName.Text = selectedUser.Nombres;
-                txtLastName.Text = selectedUser.Apellidos;
-                txtAlias.Text = selectedUser.Alias;
-                txtEmail.Text = selectedUser.Email;
-                txtPassUser.Text = selectedUser.Password;
-                txtTelefonos.Text = selectedUser.Telefono;
-                txtAddress.Text = selectedUser.Direccion;
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(@"Parece que ha ocurrido un error\n" + ex);
-        }
     }
 
 
@@ -209,6 +174,11 @@ public partial class Usuarios : Form
 
     private void btnEditar_Click(object sender, EventArgs e)
     {
+        if (selectedUser == null)
+        {
+            MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
         string username = txtName.Text.Trim();
         string apellidos = txtLastName.Text.Trim();
         string alias = txtAlias.Text.Trim();
@@ -217,29 +187,32 @@ public partial class Usuarios : Form
         string telefono = txtTelefonos.Text.Trim();
         string direccion = txtAddress.Text.Trim();
 
-        //Validamos que no se pueda ingresar contraeñas vacias
-        if (string.IsNullOrWhiteSpace(password))
+        bool validateEmptyUsername = string.IsNullOrWhiteSpace(username);
+        bool validateEmptyApellidos = string.IsNullOrWhiteSpace(apellidos);
+        bool validateEmptyAlias = string.IsNullOrWhiteSpace(alias);
+        bool validateEmptyEmail = string.IsNullOrWhiteSpace(email);
+        bool validateEmptyTelefono = string.IsNullOrWhiteSpace(telefono);
+        bool validateEmptyDireccion = string.IsNullOrWhiteSpace(direccion);
+
+        bool validateEmptyFields = validateEmptyUsername || validateEmptyApellidos || validateEmptyAlias ||
+                                   validateEmptyEmail || validateEmptyTelefono || validateEmptyDireccion;
+
+        bool validateAliasUnique = Validations.ValidarUsuarioAndMiembroExist(alias) &&
+                                   !alias.Equals(selectedUser?.Alias ?? string.Empty);
+
+        bool validateEmailUnique = Validations.ExistEmail(email) && !email.Equals(selectedUser?.Email ?? string.Empty);
+        bool validateTelefonoUnique = Validations.ExistTelefono(telefono) && !telefono.Equals(selectedUser?.Telefono ?? string.Empty);
+
+        bool validateUniqueFields = validateAliasUnique || validateEmailUnique || validateTelefonoUnique;
+
+        if (validateEmptyFields)
         {
-            MessageBox.Show(@"Debe Ingresar la contraseña", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
-        
-        if (selectedUser == null)
-        {
-            MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(@"Debe completar todos los campos", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
-        if (!alias.Equals(selectedUser.Alias))
-        {
-            if (Validations.ValidarUsuarioAndMiembroExist(alias))
-            {
-                MessageBox.Show(@"El usuario ya existe", @"!Advertencia¡", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        }
-
-        Usuario user = new Usuario();
+        if (validateUniqueFields) return;
+        Usuario user = new();
         {
             // user.Id = selectedUserId;
             user.Id = selectedUser.Id;
@@ -289,8 +262,143 @@ public partial class Usuarios : Form
 
     }
 
-    private void dataGridViewUsuarios_MouseClick(object sender, MouseEventArgs e)
+    private void dataGridViewUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
     {
+        try
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridViewUsuarios.Rows[e.RowIndex];
 
+                selectedUserId = (int)((Usuario)row.Cells["Nombre"].Value).Id;
+                selectedUser = row.Cells["Nombre"].Value as Usuario;
+                if (selectedUser == null)
+                {
+                    MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                txtName.Text = selectedUser.Nombres;
+                txtLastName.Text = selectedUser.Apellidos;
+                txtAlias.Text = selectedUser.Alias;
+                txtEmail.Text = selectedUser.Email;
+                txtPassUser.Text = selectedUser.Password;
+                txtTelefonos.Text = selectedUser.Telefono;
+                txtAddress.Text = selectedUser.Direccion;
+                btnEditar.Visible = true;
+                btnEliminar.Visible = true;
+                btnCancelar.Visible = true;
+                btnGuardar.Visible = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(@"Parece que ha ocurrido un error\n" + ex);
+        }
+    }
+
+    private void SetErrorProvider(ErrorProvider errorProvider, Control control, string message, ErrorIconAlignment iconAlignment = ErrorIconAlignment.MiddleLeft)
+    {
+        errorProvider.SetIconAlignment(control, iconAlignment);
+        errorProvider.SetError(control, message);
+    }
+
+    private void txtTelefonos_TextChanged(object sender, EventArgs e)
+    {
+        Formats.FormatTelefono(sender, e);
+    }
+
+    private void txtTelefonos_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        Formats.OnlyNumbers(sender, e);
+    }
+
+    private void txtAlias_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerAlias.Stop();
+        timerAlias.Start();
+    }
+
+    private void timerAlias_Tick(object sender, EventArgs e)
+    {
+        string alias = txtAlias.Text.Trim();
+        if (selectedUser != null && alias.Equals(selectedUser.Alias))
+        {
+            SetErrorProvider(errorProvider1, txtAlias, string.Empty);
+            return;
+        }
+
+        SetErrorProvider(errorProvider1, txtAlias,
+            Validations.ValidarUsuarioAndMiembroExist(alias) ? "El usuario ya existe" : string.Empty);
+        timerAlias.Stop();
+    }
+
+    private void txtEmail_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerCorreo.Stop();
+        timerCorreo.Start();
+    }
+
+    private void timerCorreo_Tick(object sender, EventArgs e)
+    {
+        string email = txtEmail.Text.Trim();
+        if (selectedUser != null && email.Equals(selectedUser.Email))
+        {
+            SetErrorProvider(errorProvider1, txtEmail, string.Empty);
+            return;
+        }
+
+        SetErrorProvider(errorProvider1, txtEmail,
+            Validations.ExistEmail(email) ? "El correo ya existe" : string.Empty);
+        timerCorreo.Stop();
+    }
+
+    private void txtTelefonos_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerTelefono.Stop();
+        timerTelefono.Start();
+    }
+
+    private void timerTelefono_Tick(object sender, EventArgs e)
+    {
+        string telefono = txtTelefonos.Text.Trim();
+        if (selectedUser != null && telefono.Equals(selectedUser.Telefono))
+        {
+            SetErrorProvider(errorProvider1, txtTelefonos, string.Empty);
+            return;
+        }
+
+        SetErrorProvider(errorProvider1, txtTelefonos,
+            Validations.ExistTelefono(telefono) ? "El telefono ya existe" : string.Empty);
+        timerTelefono.Stop();
+    }
+
+    private void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        Limpiar();
+    }
+    
+    private void Limpiar()
+    {
+        if (selectedUser != null) return;
+        txtName.Clear();
+        txtLastName.Clear();
+        txtAlias.Clear();
+        txtEmail.Clear();
+        txtPassUser.Clear();
+        txtTelefonos.Clear();
+        txtAddress.Clear();
+        txtTelefonos.Clear();
+        txtBusqueda.Clear();
+    }
+
+    private void btnCancelar_Click(object sender, EventArgs e)
+    {
+        selectedUser = null;
+        Limpiar();
+        btnEditar.Visible = false;
+        btnEliminar.Visible = false;
+        btnCancelar.Visible = false;
+        btnGuardar.Visible = true;
     }
 }

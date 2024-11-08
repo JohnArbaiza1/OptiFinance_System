@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using OptiFinance_System.database.models;
+using OptiFinance_System.database.query;
 using OptiFinance_System.global;
 using OptiFinance_System.global.database;
 
@@ -17,12 +18,15 @@ public partial class Principal : Form
     public static Button newPartida;
     public static Button info;
     public static Button miembroEmpresa;
+    public static Button usuariosButton;
     #endregion
     
     public Principal()
     {
         AutoScaleMode = AutoScaleMode.Dpi;
         InitializeComponent();
+        if (Global.IsSelectedEmpresa && Global.IsSelectedMiembroEmpresa) lblNameEmpresa.Text = Global.SelectedEmpresa?.Nombre ?? "Hola";
+        
         //Llamamos a las variables staticas
         cuentaXD = btnCuentas;
         libros = btnLibros;
@@ -31,6 +35,7 @@ public partial class Principal : Form
         newPartida = btnIngresarPartida;
         info = btnInfo;
         miembroEmpresa = btnMiembros;
+        usuariosButton = btnUsuarios;
         //-------------------------------------------------------------
         // Establecemos el estilo del borde del formulario a ninguno
         FormBorderStyle = FormBorderStyle.None;
@@ -111,6 +116,9 @@ public partial class Principal : Form
     private void Principal_Load(object sender, EventArgs e)
     {
         btnInicio_Click(null, e);
+        Global.ListDistritos = DistritoQuery.Instance.SelectAll();
+        Global.ListMunicipios = MunicipioQuery.Instance.SelectAll();
+        Global.ListDepartamentos = DepartamentoQuery.Instance.SelectAll();
 
         //Validamos las opciones que se mostraran segun el id del tipo de usuario
         if (Global.SelectedUser == null) return;
@@ -153,7 +161,8 @@ public partial class Principal : Form
             reajustesMenu();
             btnUsuarios.Visible = false;
             btnEmpresas.Visible = false;
-            panelEmpresa.Visible = false;
+            btnIngresarCuenta.Enabled = false;
+
         }
     }
 
@@ -173,12 +182,23 @@ public partial class Principal : Form
 
     private void btnBarraTituloCerrar_Click(object sender, EventArgs e)
     {
+        Form1 login = new Form1();
         //Almacenamos la respuesta del usuario en una variable
         DialogResult respuesta = MessageBox.Show(@"¿Esta seguro que desea salir?", @"Salir del Sistema",
             MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
         //Verificamos la respuesta del usuario
-        if (respuesta == DialogResult.OK) Application.Exit();
+        if (respuesta == DialogResult.OK)
+        {
+            Global.SelectedEmpresa = null;
+            Global.SelectedMiembroEmpresa = null;
+            Global.SelectedUser = null;
+            Global.IsSelectedEmpresa = false;
+            Global.IsSelectedMiembroEmpresa = false;
+            Global.IsSelectedUser = false;
+            login.Show();
+            Hide();
+        }
     }
 
     //Nos permite mover la ventana del formulario a traves de la barra de titulo
@@ -345,7 +365,7 @@ public partial class Principal : Form
         };
 
         // Esto es una prueba
-        btnNotificacion.Click += (sender, e) => { MessageBox.Show("Has hecho clic en Notificación"); };
+        btnNotificacion.Click += (sender, e) => { MessageBox.Show("No hay Notificaciónes"); };
         //Agregamos el botón al panel
         panelMenu.Controls.Add(btnNotificacion);
         //Reposicionamos por si acaso XD
@@ -361,7 +381,7 @@ public partial class Principal : Form
         btnEstados.Enabled = Global.SelectedEmpresa != null;
         btnRLiquidez.Enabled = Global.SelectedEmpresa != null;
         btnIngresarPartida.Enabled = Global.SelectedEmpresa != null;
-        btnInfo.Enabled = Global.SelectedEmpresa != null;
+        // btnInfo.Enabled = Global.SelectedEmpresa != null;
         btnMiembros.Enabled = Global.SelectedEmpresa != null;
     }
     #endregion
@@ -382,7 +402,18 @@ public partial class Principal : Form
             MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
         //Verificamos la respuesta del usuario
-        if (respuesta == DialogResult.OK) Application.Exit();
+        if (respuesta == DialogResult.OK)
+        {
+            Global.SelectedEmpresa = null;
+            Global.SelectedMiembroEmpresa = null;
+            Global.SelectedUser = null;
+            Global.IsSelectedEmpresa = false;
+            Global.IsSelectedMiembroEmpresa = false;
+            Global.IsSelectedUser = false;
+            Form1 form = new Form1();
+            form.Show();
+            Hide();
+        }
     }
 
     //=================================================================================

@@ -13,7 +13,7 @@ public class DepartamentoParams : IQueriesString<Departamento>
     public string SqlDelete => "DELETE FROM departamentos WHERE id = @Id";
     public string SqlFindById => "SELECT id, nombre, codigo FROM departamentos WHERE id = @Id";
     public string SqlFindName => "SELECT id, nombre, codigo FROM departamentos WHERE nombre = @Nombre";
-    public string SqlSelectAllByPartida => "SELECT id, nombre, codigo FROM departamentos";
+    public string SqlSelectAllByPartida => "SELECT id, nombre, codigo FROM departamentos ORDER BY id";
     public string SqlSearchAll { get; }
 
     public List<SqlParameter> ParametersInsert(Departamento entity)

@@ -11,10 +11,29 @@ public class Validations
         return BCrypt.Net.BCrypt.Verify(password, passwordHash);
     }
     
+    public static bool ExistTelefono(string telefono)
+    {
+        return UsuarioQuery.Instance.FindByTelefono(telefono) != null ||
+               MiembroEmpresaQuery.Instance.FindByTelefono(telefono) != null ||
+               EmpresaQuery.Instance.FindByTelefono(telefono) != null;
+    }
+    
+    public static bool ExistEmail(string email)
+    {
+        return UsuarioQuery.Instance.FindByEmail(email) != null ||
+               MiembroEmpresaQuery.Instance.FindByEmail(email) != null || 
+               EmpresaQuery.Instance.FindByEmail(email) != null;
+    }
+    
+    public static bool ExistDui(string dui)
+    {
+        return MiembroEmpresaQuery.Instance.FindByDui(dui) != null;
+    }
+    
     public static bool ValidarUsuarioAndMiembroExist(string username)
     {
         People? usuario = (People?)UsuarioQuery.Instance.FindByUsername(username) ??
-                          MiembroEmpresaQuery.Instance.FindByUsername(username);
+                          MiembroEmpresaQuery.Instance.FindByUsername(username, true);
         
         return UserExist(usuario);
     }
@@ -24,10 +43,7 @@ public class Validations
         if (people == null) return false;
         if (people is MiembroEmpresa)
         {
-            Console.WriteLine(@"Es miembro empresa");
             MiembroEmpresa miembroEmpresa = (MiembroEmpresa)people;
-            Console.WriteLine(miembroEmpresa.Alias);
-            Console.WriteLine(miembroEmpresa.Password);
             return !miembroEmpresa.Alias.IsNullOrEmpty() && !miembroEmpresa.Password.IsNullOrEmpty();
         }
 

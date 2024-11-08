@@ -1,4 +1,5 @@
-﻿using OptiFinance_System.database.models;
+﻿using Microsoft.IdentityModel.Tokens;
+using OptiFinance_System.database.models;
 using OptiFinance_System.database.query;
 using OptiFinance_System.utils;
 using Message = OptiFinance_System.utils.Message;
@@ -38,13 +39,27 @@ public partial class Registro : Form
             Message.MessageViewError(@"Las contraseñas no coinciden");
             return;
         }
+        errorProvider1.SetIconAlignment(txtUsuario, ErrorIconAlignment.MiddleLeft);
+        errorProvider1.SetIconAlignment(txtCorreo, ErrorIconAlignment.MiddleLeft);
+        
+        if (username.IsNullOrEmpty() || password.IsNullOrEmpty() || nombres.IsNullOrEmpty() || apellidos.IsNullOrEmpty() || email.IsNullOrEmpty())
+        {
+            Message.MessageViewError(@"Debe llenar todos los campos");
+            return;
+        }
 
         if (Validations.UserExist(UsuarioQuery.Instance.FindByUsername(username)))
         {
-            Message.MessageViewError(@"El usuario ya existe");
+            errorProvider1.SetError(txtUsuario, @"El usuario ya existe");
             txtUsuario.Clear();
             return;
         }
+        if (Validations.ExistEmail(email))
+        {
+            errorProvider1.SetError(txtCorreo, @"El correo ya existe");
+            return;
+        }
+        errorProvider1.Clear();
 
         Usuario user = new()
         {

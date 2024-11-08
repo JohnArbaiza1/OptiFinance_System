@@ -110,6 +110,7 @@
             // 
             // dataPartidas
             // 
+            dataPartidas.AllowUserToAddRows = false;
             dataPartidas.BackgroundColor = Color.FromArgb(245, 245, 242);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
@@ -129,7 +130,6 @@
             dataPartidas.RowTemplate.Height = 29;
             dataPartidas.Size = new Size(1215, 638);
             dataPartidas.TabIndex = 0;
-       
             // 
             // panel2
             // 

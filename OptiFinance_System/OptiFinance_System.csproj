@@ -33,6 +33,7 @@
         <None Update="database\resources\accounts\pasivos.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Remove="NewFile1.txt" />
     </ItemGroup>
 
     <ItemGroup>
@@ -43,6 +44,7 @@
 
     <ItemGroup>
         <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageReference Include="itextsharp" Version="5.5.13.4" />
         <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

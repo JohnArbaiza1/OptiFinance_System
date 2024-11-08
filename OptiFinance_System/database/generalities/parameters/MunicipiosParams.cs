@@ -15,7 +15,7 @@ public class MunicipiosParams : IQueriesString<Municipio>
 
     public string SqlDelete => "DELETE FROM municipios WHERE id = @id";
     public string SqlFindById => "SELECT id, nombre, id_departamento FROM municipios WHERE id = @id";
-    public string SqlSelectAllByPartida => "SELECT id, nombre, id_departamento FROM municipios";
+    public string SqlSelectAllByPartida => "SELECT id, nombre, id_departamento FROM municipios ORDER BY id_departamento";
 
     public string SqlSearchAll => "SELECT id, nombre, id_departamento FROM municipios " +
                                   "WHERE CONCAT(id, nombre, id_departamento) LIKE @search";

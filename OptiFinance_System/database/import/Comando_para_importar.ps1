@@ -6,3 +6,5 @@
 }
 
 sqlpackage.exe /Action:Import /tsn:localhost\SQLEXPRESS /tdn:sistemas_contables /sf:Backup.bacpac /TargetTrustServerCertificate:True
+<#Colocar una pausa para que no se cierre el powershell#>
+Pause

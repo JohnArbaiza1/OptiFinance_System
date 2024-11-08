@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             barraTitulo = new Panel();
+            lblNameEmpresa = new Label();
             pictureSelectEmpresa = new PictureBox();
             opcionesBarraTitulo = new Panel();
             btnMaximo = new PictureBox();
@@ -73,7 +74,6 @@
             btnMayor = new Button();
             panelContenedor = new Panel();
             panelRedireccion = new Panel();
-            lblNameEmpresa = new Label();
             barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureSelectEmpresa).BeginInit();
             opcionesBarraTitulo.SuspendLayout();
@@ -102,6 +102,17 @@
             barraTitulo.Size = new Size(1269, 50);
             barraTitulo.TabIndex = 0;
             barraTitulo.MouseDown += barraTitulo_MouseDown;
+            // 
+            // lblNameEmpresa
+            // 
+            lblNameEmpresa.AutoSize = true;
+            lblNameEmpresa.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameEmpresa.ForeColor = Color.FromArgb(34, 53, 80);
+            lblNameEmpresa.Location = new Point(74, 17);
+            lblNameEmpresa.Name = "lblNameEmpresa";
+            lblNameEmpresa.Size = new Size(70, 28);
+            lblNameEmpresa.TabIndex = 3;
+            lblNameEmpresa.Text = "label1";
             // 
             // pictureSelectEmpresa
             // 
@@ -733,17 +744,6 @@
             panelRedireccion.MouseMove += panelRedireccion_MouseMove;
             panelRedireccion.MouseUp += panelRedireccion_MouseUp;
             // 
-            // lblNameEmpresa
-            // 
-            lblNameEmpresa.AutoSize = true;
-            lblNameEmpresa.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblNameEmpresa.ForeColor = Color.FromArgb(34, 53, 80);
-            lblNameEmpresa.Location = new Point(74, 17);
-            lblNameEmpresa.Name = "lblNameEmpresa";
-            lblNameEmpresa.Size = new Size(70, 28);
-            lblNameEmpresa.TabIndex = 3;
-            lblNameEmpresa.Text = "label1";
-            // 
             // Principal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -753,6 +753,7 @@
             Controls.Add(barraTitulo);
             Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Principal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Principal";

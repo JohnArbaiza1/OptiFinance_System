@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(balanceGeneral));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label1 = new Label();
+            btnAtras = new PictureBox();
             panel2 = new Panel();
+            button1 = new Button();
             txtTotalPasyPatri = new TextBox();
             label3 = new Label();
             txtTotalActivo = new TextBox();
@@ -45,12 +47,11 @@
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             lblFechaBalance = new Label();
-            btnAtras = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
             panel2.SuspendLayout();
             ContenedorBalance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataBalance).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnAtras).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -60,7 +61,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1252, 66);
+            panel1.Size = new Size(1253, 67);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -75,8 +76,20 @@
             label1.TabIndex = 7;
             label1.Text = "BALANCE GENERAL";
             // 
+            // btnAtras
+            // 
+            btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
+            btnAtras.Location = new Point(0, 0);
+            btnAtras.Name = "btnAtras";
+            btnAtras.Size = new Size(64, 64);
+            btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnAtras.TabIndex = 4;
+            btnAtras.TabStop = false;
+            btnAtras.Click += btnAtras_Click;
+            // 
             // panel2
             // 
+            panel2.Controls.Add(button1);
             panel2.Controls.Add(txtTotalPasyPatri);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(txtTotalActivo);
@@ -85,18 +98,33 @@
             panel2.Controls.Add(ContenedorBalance);
             panel2.Controls.Add(lblFechaBalance);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 66);
+            panel2.Location = new Point(0, 67);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1252, 737);
+            panel2.Size = new Size(1253, 736);
             panel2.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(234, 130, 6);
+            button1.Enabled = false;
+            button1.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(255, 615);
+            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Name = "button1";
+            button1.Size = new Size(195, 48);
+            button1.TabIndex = 15;
+            button1.Text = "Generar PDF";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // txtTotalPasyPatri
             // 
             txtTotalPasyPatri.BackColor = Color.FromArgb(245, 245, 242);
-            txtTotalPasyPatri.Location = new Point(971, 624);
+            txtTotalPasyPatri.Location = new Point(935, 641);
             txtTotalPasyPatri.Name = "txtTotalPasyPatri";
             txtTotalPasyPatri.ReadOnly = true;
-            txtTotalPasyPatri.Size = new Size(227, 27);
+            txtTotalPasyPatri.Size = new Size(263, 27);
             txtTotalPasyPatri.TabIndex = 14;
             // 
             // label3
@@ -105,7 +133,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(35, 55, 80);
-            label3.Location = new Point(702, 628);
+            label3.Location = new Point(935, 615);
             label3.Name = "label3";
             label3.Size = new Size(263, 23);
             label3.TabIndex = 13;
@@ -114,7 +142,7 @@
             // txtTotalActivo
             // 
             txtTotalActivo.BackColor = Color.FromArgb(245, 245, 242);
-            txtTotalActivo.Location = new Point(458, 624);
+            txtTotalActivo.Location = new Point(672, 641);
             txtTotalActivo.Name = "txtTotalActivo";
             txtTotalActivo.ReadOnly = true;
             txtTotalActivo.Size = new Size(223, 27);
@@ -126,7 +154,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(35, 55, 80);
-            label2.Location = new Point(311, 628);
+            label2.Location = new Point(726, 615);
             label2.Name = "label2";
             label2.Size = new Size(131, 23);
             label2.TabIndex = 11;
@@ -143,6 +171,7 @@
             btnGenerarBalance.TabIndex = 10;
             btnGenerarBalance.Text = "Generar Balance";
             btnGenerarBalance.UseVisualStyleBackColor = false;
+            btnGenerarBalance.Click += btnGenerarBalance_Click;
             // 
             // ContenedorBalance
             // 
@@ -155,6 +184,7 @@
             // 
             // dataBalance
             // 
+            dataBalance.AllowUserToAddRows = false;
             dataBalance.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataBalance.BackgroundColor = Color.FromArgb(245, 245, 242);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -220,23 +250,12 @@
             lblFechaBalance.TabIndex = 8;
             lblFechaBalance.Text = "FECHA DEL BALANCE GENERAL";
             // 
-            // btnAtras
-            // 
-            btnAtras.Image = (Image)resources.GetObject("btnAtras.Image");
-            btnAtras.Location = new Point(0, 0);
-            btnAtras.Name = "btnAtras";
-            btnAtras.Size = new Size(64, 64);
-            btnAtras.SizeMode = PictureBoxSizeMode.AutoSize;
-            btnAtras.TabIndex = 4;
-            btnAtras.TabStop = false;
-            btnAtras.Click += btnAtras_Click;
-            // 
             // balanceGeneral
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1252, 803);
+            ClientSize = new Size(1253, 803);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -244,11 +263,11 @@
             Text = "balanceGeneral";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ContenedorBalance.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataBalance).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnAtras).EndInit();
             ResumeLayout(false);
         }
 
@@ -270,5 +289,6 @@
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private PictureBox btnAtras;
+        private Button button1;
     }
 }

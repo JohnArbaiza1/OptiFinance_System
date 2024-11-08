@@ -38,6 +38,12 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
                     transaction)).All(result => result);
         });
     }
+    
+    public Empresa? InsertWithResult(Empresa entity, SqlTransaction? transaction = null)
+    {
+        return QueryHelper.ExecuteInsertWithResult(_connectionInstance.GetSqlConnection(), Params.SqlWithResult,
+            Params.ParametersInsert(entity), MapEntity, transaction);
+    }
 
     public bool Update(Empresa entity, SqlTransaction? transaction = null)
     {
@@ -91,6 +97,24 @@ public class EmpresaQuery : IQueryEstandar<Empresa>
     {
         return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByIdWithoutUser, MapEntity,
             Params.ParametersFindByIdWithoutUser(id));
+    }
+    
+    public Empresa? FindByNit(string nit)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByNit, MapEntity,
+            Params.ParametersFindByNit(nit));
+    }
+    
+    public Empresa? FindByEmail(string email)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByEmail, MapEntity,
+            Params.ParametersFindByEmail(email));
+    }
+    
+    public Empresa? FindByTelefono(string telefono)
+    {
+        return QueryHelper.ExecuteFind(_connectionInstance.GetSqlConnection(), Params.SqlFindByTelefono, MapEntity,
+            Params.ParametersFindByTelefono(telefono));
     }
 
     public List<Empresa> SelectAll()
