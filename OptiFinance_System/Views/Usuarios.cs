@@ -131,7 +131,7 @@ public partial class Usuarios : Form
             MessageBox.Show(@"Debe Ingresar la contraseña", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
-        
+
         if (Validations.ValidarUsuarioAndMiembroExist(alias))
         {
             MessageBox.Show(@"El usuario ya existe", @"!Advertencia¡", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -162,41 +162,6 @@ public partial class Usuarios : Form
 
     private void dataGridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-        try
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridViewUsuarios.Rows[e.RowIndex];
-
-                selectedUserId = (int)((Usuario)row.Cells["Nombre"].Value).Id;
-                selectedUser = row.Cells["Nombre"].Value as Usuario;
-                if (selectedUser == null)
-                {
-                    MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                /*txtName.Text = row.Cells["Nombre"].Value.ToString();
-                txtLastName.Text = row.Cells["Apellido"].Value.ToString();
-                txtAlias.Text = row.Cells["Alias"].Value.ToString();
-                txtEmail.Text = row.Cells["Email"].Value.ToString();
-                txtPassUser.Text = row.Cells["Password"].Value.ToString();
-                txtTelefonos.Text = row.Cells["Telefono"].Value.ToString();
-                txtAddress.Text = row.Cells["Direccion"].Value.ToString();*/
-                
-                txtName.Text = selectedUser.Nombres;
-                txtLastName.Text = selectedUser.Apellidos;
-                txtAlias.Text = selectedUser.Alias;
-                txtEmail.Text = selectedUser.Email;
-                txtPassUser.Text = selectedUser.Password;
-                txtTelefonos.Text = selectedUser.Telefono;
-                txtAddress.Text = selectedUser.Direccion;
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(@"Parece que ha ocurrido un error\n" + ex);
-        }
     }
 
 
@@ -223,7 +188,7 @@ public partial class Usuarios : Form
             MessageBox.Show(@"Debe Ingresar la contraseña", @"¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
-        
+
         if (selectedUser == null)
         {
             MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -289,8 +254,44 @@ public partial class Usuarios : Form
 
     }
 
-    private void dataGridViewUsuarios_MouseClick(object sender, MouseEventArgs e)
+    private void dataGridViewUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
     {
+        try
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridViewUsuarios.Rows[e.RowIndex];
 
+                selectedUserId = (int)((Usuario)row.Cells["Nombre"].Value).Id;
+                selectedUser = row.Cells["Nombre"].Value as Usuario;
+                if (selectedUser == null)
+                {
+                    MessageBox.Show(@"No se ha seleccionado un usuario", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                txtName.Text = selectedUser.Nombres;
+                txtLastName.Text = selectedUser.Apellidos;
+                txtAlias.Text = selectedUser.Alias;
+                txtEmail.Text = selectedUser.Email;
+                txtPassUser.Text = selectedUser.Password;
+                txtTelefonos.Text = selectedUser.Telefono;
+                txtAddress.Text = selectedUser.Direccion;
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(@"Parece que ha ocurrido un error\n" + ex);
+        }
+    }
+
+    private void txtTelefonos_TextChanged(object sender, EventArgs e)
+    {
+        Formats.FormatTelefono(sender, e);
+    }
+
+    private void txtTelefonos_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        Formats.OnlyNumbers(sender, e);
     }
 }
