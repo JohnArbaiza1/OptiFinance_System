@@ -26,6 +26,13 @@
 
 </div>
 
+## IDES y Herramientas empleadas.
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,github,rider,visualstudio,discord" />
+  </a>
+</p>
+
 ## Requisitos <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Clipboard.png" alt="Clipboard" width="25" height="25" />
 
 Si desea hacer uso de este proyecto debe tener instalado .NET 6.0 o superior, en su equipo.
@@ -33,6 +40,8 @@ Si desea hacer uso de este proyecto debe tener instalado .NET 6.0 o superior, en
 Herramientas para la gestión visualización de los datos tales como:
 * Sql server management studio.
 * DataGrip
+
+Se requiere del archivo JSON con la cadena de conexión.
 
  ## Instalación 🔧
   Para poder tener el proyecto solo clona nuestro repositorio y explora un poco el funcionamiento de este.
