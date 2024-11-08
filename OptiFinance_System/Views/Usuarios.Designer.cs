@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             Container = new Panel();
             pictureBox1 = new PictureBox();
             panelControlUser = new Panel();
@@ -225,6 +225,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(250, 26);
             txtEmail.TabIndex = 8;
+            txtEmail.KeyUp += txtEmail_KeyUp;
             // 
             // txtAlias
             // 
@@ -423,14 +424,14 @@
             // dataGridViewUsuarios
             // 
             dataGridViewUsuarios.BackgroundColor = Color.FromArgb(245, 245, 242);
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 58, 93);
-            dataGridViewCellStyle1.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(44, 161, 232);
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(31, 58, 93);
+            dataGridViewCellStyle2.Font = new Font("Bookman Old Style", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(44, 161, 232);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewUsuarios.Dock = DockStyle.Fill;
             dataGridViewUsuarios.EnableHeadersVisualStyles = false;
@@ -504,6 +505,7 @@
             // timerCorreo
             // 
             timerCorreo.Interval = 500;
+            timerCorreo.Tick += timerCorreo_Tick;
             // 
             // timerTelefono
             // 

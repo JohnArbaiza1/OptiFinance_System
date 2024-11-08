@@ -284,7 +284,7 @@ public partial class Usuarios : Form
             MessageBox.Show(@"Parece que ha ocurrido un error\n" + ex);
         }
     }
-    
+
     private void SetErrorProvider(ErrorProvider errorProvider, Control control, string message, ErrorIconAlignment iconAlignment = ErrorIconAlignment.MiddleLeft)
     {
         errorProvider.SetIconAlignment(control, iconAlignment);
@@ -317,5 +317,25 @@ public partial class Usuarios : Form
 
         SetErrorProvider(errorProvider1, txtAlias,
             Validations.ValidarUsuarioAndMiembroExist(alias) ? "El usuario ya existe" : string.Empty);
+        timerAlias.Stop();
+    }
+
+    private void txtEmail_KeyUp(object sender, KeyEventArgs e)
+    {
+        timerCorreo.Stop();
+        timerCorreo.Start();
+    }
+
+    private void timerCorreo_Tick(object sender, EventArgs e)
+    {
+        string email = txtEmail.Text.Trim();
+        if (selectedUser != null && email.Equals(selectedUser.Email))
+        {
+            SetErrorProvider(errorProvider1, txtEmail, string.Empty);
+        }
+
+        SetErrorProvider(errorProvider1, txtEmail,
+            Validations.ExistEmail(email) ? "El correo ya existe" : string.Empty);
+        timerCorreo.Stop();
     }
 }
