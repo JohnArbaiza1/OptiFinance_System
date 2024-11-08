@@ -12,6 +12,9 @@ public partial class InfoEmpresacs : Form
     public static TextBox txtGiroAux;
     private List<string> _errores;
     private Empresa? _empresaInsert;
+    private List<Distrito> _distritos;
+    private List<Municipio> _municipios;
+    private List<Departamento> _departamentos;
 
     public InfoEmpresacs()
     {
@@ -101,31 +104,28 @@ public partial class InfoEmpresacs : Form
 
     private void CargarDistritos()
     {
-        List<Distrito> distritos = Global.ListDistritos;
-        if (distritos.Count == 0) return;
+        if (_distritos.Count == 0) return;
         if (comMunucipio.SelectedIndex < 0) return;
-        
+
         Municipio currentMunicipio = (Municipio)comMunucipio.SelectedItem;
-        comboDistrito.DataSource = distritos.FindAll(
+        comboDistrito.DataSource = _distritos.FindAll(
             entity => entity.Municipio?.Id == currentMunicipio.Id);
     }
 
     private void CargarMunicipios()
     {
-        List<Municipio> municipios = Global.ListMunicipios;
-        if (municipios.Count == 0) return;
-
+        if (_municipios.Count == 0) return;
         if (comboDepartamento.SelectedIndex < 0) return;
+        
         Departamento currentDepartamento = (Departamento)comboDepartamento.SelectedItem;
-        comMunucipio.DataSource = municipios.FindAll(
+        comMunucipio.DataSource = _municipios.FindAll(
             entity => entity.Departamento?.Id == currentDepartamento.Id);
     }
 
     private void CargarDepartamentos()
     {
-        List<Departamento> departamentos = Global.ListDepartamentos;
-        if (departamentos.Count == 0) return;
-        comboDepartamento.DataSource = departamentos;
+        if (_departamentos.Count == 0) return;
+        comboDepartamento.DataSource = _departamentos;
     }
 
     private void btnBuscarGiro_Click(object sender, EventArgs e)
@@ -136,6 +136,9 @@ public partial class InfoEmpresacs : Form
 
     private void InfoEmpresacs_Shown(object sender, EventArgs e)
     {
+        _departamentos = Global.ListDepartamentos;
+        _municipios = Global.ListMunicipios;
+        _distritos = Global.ListDistritos;
         CargarDepartamentos();
         CargarMunicipios();
         CargarDistritos();
@@ -279,18 +282,10 @@ public partial class InfoEmpresacs : Form
         timerCorreo.Stop();
     }
 
-    private void comboDistrito_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (comboDistrito.SelectedIndex == -1) return;
-        Distrito selected = (Distrito)comboDistrito.SelectedItem;
-        Distrito? distrito = DistritoQuery.Instance.FindById(selected.Id);
-        Console.WriteLine(distrito?.Nombre);
-    }
-
     private void btnEdit_Click(object sender, EventArgs e)
     {
         if (_empresaInsert == null) return;
-        
+
         bool validateNombre = Validations.TextBoxNullOrEmpty(errorProvider, txtNombreEmpresa, _errores[0]);
         bool validateGiro = Validations.TextBoxNullOrEmpty(errorProvider, textBox4, _errores[1]);
         bool validateNit = Validations.TextBoxNullOrEmpty(errorProvider, txtNit, _errores[2])
@@ -302,10 +297,10 @@ public partial class InfoEmpresacs : Form
             || (textBox2.Text != _empresaInsert.Email && Validations.ExistEmail(textBox2.Text));
         bool validateDireccion = Validations.TextBoxNullOrEmpty(errorProvider, textBox3, _errores[6]);
         bool validateDistrito = Validations.ComboBoxNullOrEmpty(errorProvider, comboDistrito, _errores[7]);
-        
+
         if (validateNombre || validateGiro || validateNit || validateRepresentante || validateTelefono ||
             validateEmail || validateDireccion || validateDistrito) return;
-        
+
         _empresaInsert.Nombre = txtNombreEmpresa.Text;
         _empresaInsert.GiroEconomico = textBox4.Tag as GiroEconomico;
         _empresaInsert.Nit = txtNit.Text;
@@ -314,7 +309,7 @@ public partial class InfoEmpresacs : Form
         _empresaInsert.Email = textBox2.Text;
         _empresaInsert.Direccion = textBox3.Text;
         _empresaInsert.Distrito = comboDistrito.SelectedItem as Distrito;
-        
+
         bool update = EmpresaQuery.Instance.Update(_empresaInsert);
         if (update)
         {
@@ -325,6 +320,21 @@ public partial class InfoEmpresacs : Form
         {
             Message.MessageViewError(@"Error al actualizar la empresa");
         }
+
+    }
+
+    private void comboDepartamento_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        CargarMunicipios();
+    }
+
+    private void comMunucipio_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        CargarDistritos();
+    }
+    
+    private void comboDistrito_SelectedIndexChanged(object sender, EventArgs e)
+    {
         
     }
 }

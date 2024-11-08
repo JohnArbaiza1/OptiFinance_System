@@ -753,6 +753,7 @@
             comboDepartamento.Name = "comboDepartamento";
             comboDepartamento.Size = new Size(314, 27);
             comboDepartamento.TabIndex = 19;
+            comboDepartamento.SelectedIndexChanged += comboDepartamento_SelectedIndexChanged;
             // 
             // comMunucipio
             // 
@@ -764,6 +765,7 @@
             comMunucipio.Name = "comMunucipio";
             comMunucipio.Size = new Size(314, 27);
             comMunucipio.TabIndex = 20;
+            comMunucipio.SelectedIndexChanged += comMunucipio_SelectedIndexChanged;
             // 
             // pabelNav
             // 
