@@ -178,12 +178,17 @@ public partial class Principal : Form
 
     private void btnBarraTituloCerrar_Click(object sender, EventArgs e)
     {
+        Form1 login = new Form1();
         //Almacenamos la respuesta del usuario en una variable
         DialogResult respuesta = MessageBox.Show(@"¿Esta seguro que desea salir?", @"Salir del Sistema",
             MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
         //Verificamos la respuesta del usuario
-        if (respuesta == DialogResult.OK) Application.Exit();
+        if (respuesta == DialogResult.OK)
+        {
+            login.Show();
+            Hide();
+        }
     }
 
     //Nos permite mover la ventana del formulario a traves de la barra de titulo
@@ -387,7 +392,12 @@ public partial class Principal : Form
             MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
         //Verificamos la respuesta del usuario
-        if (respuesta == DialogResult.OK) Application.Exit();
+        if (respuesta == DialogResult.OK)
+        {
+            Form1 form = new Form1();
+            form.Show();
+            Hide();
+        }
     }
 
     //=================================================================================
